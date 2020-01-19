@@ -1,0 +1,643 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E760A2F62392049D00139E3D /* LinkedStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2ED2392049D00139E3D /* LinkedStack.cpp */; };
+		E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* CleanQueue.hpp */; };
+		E760A2F82392049D00139E3D /* CleanBase.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* CleanBase.hpp */; };
+		E760A2F92392049D00139E3D /* LinkedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* LinkedQueue.cpp */; };
+		E760A2FA2392049D00139E3D /* CleanList.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F12392049D00139E3D /* CleanList.hpp */; };
+		E760A2FB2392049D00139E3D /* ListWithCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F22392049D00139E3D /* ListWithCursor.cpp */; };
+		E760A2FC2392049D00139E3D /* CleanStack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F32392049D00139E3D /* CleanStack.hpp */; };
+		E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F42392049D00139E3D /* BoundedQueue.cpp */; };
+		E760A2FE2392049D00139E3D /* BoundedMovingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */; };
+		E760A306239204DC00139E3D /* TestCleanpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = E760A305239204DC00139E3D /* TestCleanpp.mm */; };
+		E760A308239204DC00139E3D /* libCleanppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanppLibrary.a */; };
+		E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A3102392095700139E3D /* BoundedQueue.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E760A309239204DC00139E3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E760A2B3239203A200139E3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E760A2BA239203A200139E3D;
+			remoteInfo = CleanppLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E760A2BB239203A200139E3D /* libCleanppLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanppLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
+		E760A2D3239203DA00139E3D /* build.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = build.db; sourceTree = "<group>"; };
+		E760A2D4239203DA00139E3D /* d937476256edb37e040db45e0b5e8640-desc.xcbuild */ = {isa = PBXFileReference; lastKnownFileType = file; path = "d937476256edb37e040db45e0b5e8640-desc.xcbuild"; sourceTree = "<group>"; };
+		E760A2D5239203DA00139E3D /* BuildDescriptionCacheIndex-c89a806d7197394738d936474be546ea */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BuildDescriptionCacheIndex-c89a806d7197394738d936474be546ea"; sourceTree = "<group>"; };
+		E760A2D6239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-desc.xcbuild */ = {isa = PBXFileReference; lastKnownFileType = file; path = "5b00e254f3b53ebba7b728a0453599bf-desc.xcbuild"; sourceTree = "<group>"; };
+		E760A2D9239203DA00139E3D /* TARGET@v11_hash=62043DA917A9D3EBDFE7E9E5C98471AA-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=62043DA917A9D3EBDFE7E9E5C98471AA-json"; sourceTree = "<group>"; };
+		E760A2DA239203DA00139E3D /* TARGET@v11_hash=BBA9ABF5E76891E6CAE4C3E011C03DD6-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=BBA9ABF5E76891E6CAE4C3E011C03DD6-json"; sourceTree = "<group>"; };
+		E760A2DC239203DA00139E3D /* WORKSPACE@v11_mod=1575078817.0_hash=c89a806d7197394738d936474be546ea_subobjects=9E5EBF7872D28A25E3A64C28EF96B21E-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WORKSPACE@v11_mod=1575078817.0_hash=c89a806d7197394738d936474be546ea_subobjects=9E5EBF7872D28A25E3A64C28EF96B21E-json"; sourceTree = "<group>"; };
+		E760A2DD239203DA00139E3D /* WORKSPACE@v11_mod=1575078946.0_hash=c89a806d7197394738d936474be546ea_subobjects=8246349F7C5DE28C5B3313A75F36B689-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WORKSPACE@v11_mod=1575078946.0_hash=c89a806d7197394738d936474be546ea_subobjects=8246349F7C5DE28C5B3313A75F36B689-json"; sourceTree = "<group>"; };
+		E760A2DF239203DA00139E3D /* PROJECT@v11_mod=1575078816.734793_hash=061a1e01fe5de57797b34fe47e309c68-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PROJECT@v11_mod=1575078816.734793_hash=061a1e01fe5de57797b34fe47e309c68-json"; sourceTree = "<group>"; };
+		E760A2E0239203DA00139E3D /* PROJECT@v11_mod=1575078946.3711252_hash=061a1e01fe5de57797b34fe47e309c68-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PROJECT@v11_mod=1575078946.3711252_hash=061a1e01fe5de57797b34fe47e309c68-json"; sourceTree = "<group>"; };
+		E760A2E1239203DA00139E3D /* d937476256edb37e040db45e0b5e8640-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "d937476256edb37e040db45e0b5e8640-manifest.xcbuild"; sourceTree = "<group>"; };
+		E760A2E5239203DA00139E3D /* CleanppLibrary-own-target-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-own-target-headers.hmap"; sourceTree = "<group>"; };
+		E760A2E6239203DA00139E3D /* CleanppLibrary-all-non-framework-target-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-all-non-framework-target-headers.hmap"; sourceTree = "<group>"; };
+		E760A2E7239203DA00139E3D /* CleanppLibrary-generated-files.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-generated-files.hmap"; sourceTree = "<group>"; };
+		E760A2E8239203DA00139E3D /* CleanppLibrary.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = CleanppLibrary.hmap; sourceTree = "<group>"; };
+		E760A2E9239203DA00139E3D /* CleanppLibrary-all-target-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-all-target-headers.hmap"; sourceTree = "<group>"; };
+		E760A2EA239203DA00139E3D /* CleanppLibrary-project-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-project-headers.hmap"; sourceTree = "<group>"; };
+		E760A2EB239203DA00139E3D /* all-product-headers.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = "all-product-headers.yaml"; sourceTree = "<group>"; };
+		E760A2ED2392049D00139E3D /* LinkedStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedStack.cpp; sourceTree = "<group>"; };
+		E760A2EE2392049D00139E3D /* CleanQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanQueue.hpp; sourceTree = "<group>"; };
+		E760A2EF2392049D00139E3D /* CleanBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanBase.hpp; sourceTree = "<group>"; };
+		E760A2F02392049D00139E3D /* LinkedQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedQueue.cpp; sourceTree = "<group>"; };
+		E760A2F12392049D00139E3D /* CleanList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanList.hpp; sourceTree = "<group>"; };
+		E760A2F22392049D00139E3D /* ListWithCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListWithCursor.cpp; sourceTree = "<group>"; };
+		E760A2F32392049D00139E3D /* CleanStack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanStack.hpp; sourceTree = "<group>"; };
+		E760A2F42392049D00139E3D /* BoundedQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedQueue.cpp; sourceTree = "<group>"; };
+		E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedMovingStack.cpp; sourceTree = "<group>"; };
+		E760A303239204DC00139E3D /* TestCleanpp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestCleanpp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E760A305239204DC00139E3D /* TestCleanpp.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCleanpp.mm; sourceTree = "<group>"; };
+		E760A307239204DC00139E3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E760A30E239207E200139E3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E760A3102392095700139E3D /* BoundedQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoundedQueue.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E760A2B9239203A200139E3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E760A300239204DC00139E3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E760A308239204DC00139E3D /* libCleanppLibrary.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E760A2B2239203A200139E3D = {
+			isa = PBXGroup;
+			children = (
+				E760A2CE239203DA00139E3D /* Build */,
+				E760A2EC239203DA00139E3D /* doc */,
+				E760A2CA239203DA00139E3D /* include */,
+				E760A2CD239203DA00139E3D /* README.md */,
+				E760A2C9239203DA00139E3D /* src */,
+				E760A2CC239203DA00139E3D /* test */,
+				E760A2BC239203A200139E3D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E760A2BC239203A200139E3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2BB239203A200139E3D /* libCleanppLibrary.a */,
+				E760A303239204DC00139E3D /* TestCleanpp.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E760A2C9239203DA00139E3D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */,
+				E760A2F42392049D00139E3D /* BoundedQueue.cpp */,
+				E760A2F02392049D00139E3D /* LinkedQueue.cpp */,
+				E760A2ED2392049D00139E3D /* LinkedStack.cpp */,
+				E760A2F22392049D00139E3D /* ListWithCursor.cpp */,
+				E760A30E239207E200139E3D /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		E760A2CA239203DA00139E3D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2CB239203DA00139E3D /* cleanpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E760A2CB239203DA00139E3D /* cleanpp */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2EF2392049D00139E3D /* CleanBase.hpp */,
+				E760A2F12392049D00139E3D /* CleanList.hpp */,
+				E760A2EE2392049D00139E3D /* CleanQueue.hpp */,
+				E760A2F32392049D00139E3D /* CleanStack.hpp */,
+				E760A3102392095700139E3D /* BoundedQueue.hpp */,
+			);
+			path = cleanpp;
+			sourceTree = "<group>";
+		};
+		E760A2CC239203DA00139E3D /* test */ = {
+			isa = PBXGroup;
+			children = (
+				E760A305239204DC00139E3D /* TestCleanpp.mm */,
+				E760A307239204DC00139E3D /* Info.plist */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		E760A2CE239203DA00139E3D /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2CF239203DA00139E3D /* Products */,
+				E760A2D0239203DA00139E3D /* Intermediates */,
+			);
+			path = Build;
+			sourceTree = "<group>";
+		};
+		E760A2CF239203DA00139E3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		E760A2D0239203DA00139E3D /* Intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2D1239203DA00139E3D /* XCBuildData */,
+				E760A2E2239203DA00139E3D /* CleanppLibrary.build */,
+			);
+			path = Intermediates;
+			sourceTree = "<group>";
+		};
+		E760A2D1239203DA00139E3D /* XCBuildData */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */,
+				E760A2D3239203DA00139E3D /* build.db */,
+				E760A2D4239203DA00139E3D /* d937476256edb37e040db45e0b5e8640-desc.xcbuild */,
+				E760A2D5239203DA00139E3D /* BuildDescriptionCacheIndex-c89a806d7197394738d936474be546ea */,
+				E760A2D6239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-desc.xcbuild */,
+				E760A2D7239203DA00139E3D /* PIFCache */,
+				E760A2E1239203DA00139E3D /* d937476256edb37e040db45e0b5e8640-manifest.xcbuild */,
+			);
+			path = XCBuildData;
+			sourceTree = "<group>";
+		};
+		E760A2D7239203DA00139E3D /* PIFCache */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2D8239203DA00139E3D /* target */,
+				E760A2DB239203DA00139E3D /* workspace */,
+				E760A2DE239203DA00139E3D /* project */,
+			);
+			path = PIFCache;
+			sourceTree = "<group>";
+		};
+		E760A2D8239203DA00139E3D /* target */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2D9239203DA00139E3D /* TARGET@v11_hash=62043DA917A9D3EBDFE7E9E5C98471AA-json */,
+				E760A2DA239203DA00139E3D /* TARGET@v11_hash=BBA9ABF5E76891E6CAE4C3E011C03DD6-json */,
+			);
+			path = target;
+			sourceTree = "<group>";
+		};
+		E760A2DB239203DA00139E3D /* workspace */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2DC239203DA00139E3D /* WORKSPACE@v11_mod=1575078817.0_hash=c89a806d7197394738d936474be546ea_subobjects=9E5EBF7872D28A25E3A64C28EF96B21E-json */,
+				E760A2DD239203DA00139E3D /* WORKSPACE@v11_mod=1575078946.0_hash=c89a806d7197394738d936474be546ea_subobjects=8246349F7C5DE28C5B3313A75F36B689-json */,
+			);
+			path = workspace;
+			sourceTree = "<group>";
+		};
+		E760A2DE239203DA00139E3D /* project */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2DF239203DA00139E3D /* PROJECT@v11_mod=1575078816.734793_hash=061a1e01fe5de57797b34fe47e309c68-json */,
+				E760A2E0239203DA00139E3D /* PROJECT@v11_mod=1575078946.3711252_hash=061a1e01fe5de57797b34fe47e309c68-json */,
+			);
+			path = project;
+			sourceTree = "<group>";
+		};
+		E760A2E2239203DA00139E3D /* CleanppLibrary.build */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2E3239203DA00139E3D /* Debug */,
+			);
+			path = CleanppLibrary.build;
+			sourceTree = "<group>";
+		};
+		E760A2E3239203DA00139E3D /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2E4239203DA00139E3D /* CleanppLibrary.build */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		E760A2E4239203DA00139E3D /* CleanppLibrary.build */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2E5239203DA00139E3D /* CleanppLibrary-own-target-headers.hmap */,
+				E760A2E6239203DA00139E3D /* CleanppLibrary-all-non-framework-target-headers.hmap */,
+				E760A2E7239203DA00139E3D /* CleanppLibrary-generated-files.hmap */,
+				E760A2E8239203DA00139E3D /* CleanppLibrary.hmap */,
+				E760A2E9239203DA00139E3D /* CleanppLibrary-all-target-headers.hmap */,
+				E760A2EA239203DA00139E3D /* CleanppLibrary-project-headers.hmap */,
+				E760A2EB239203DA00139E3D /* all-product-headers.yaml */,
+			);
+			path = CleanppLibrary.build;
+			sourceTree = "<group>";
+		};
+		E760A2EC239203DA00139E3D /* doc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E760A2B7239203A200139E3D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */,
+				E760A2FC2392049D00139E3D /* CleanStack.hpp in Headers */,
+				E760A2F82392049D00139E3D /* CleanBase.hpp in Headers */,
+				E760A2FA2392049D00139E3D /* CleanList.hpp in Headers */,
+				E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E760A2BA239203A200139E3D /* CleanppLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "CleanppLibrary" */;
+			buildPhases = (
+				E760A2B7239203A200139E3D /* Headers */,
+				E760A2B8239203A200139E3D /* Sources */,
+				E760A2B9239203A200139E3D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CleanppLibrary;
+			productName = CleanppLibrary;
+			productReference = E760A2BB239203A200139E3D /* libCleanppLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E760A302239204DC00139E3D /* TestCleanpp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E760A30B239204DC00139E3D /* Build configuration list for PBXNativeTarget "TestCleanpp" */;
+			buildPhases = (
+				E760A2FF239204DC00139E3D /* Sources */,
+				E760A300239204DC00139E3D /* Frameworks */,
+				E760A301239204DC00139E3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E760A30A239204DC00139E3D /* PBXTargetDependency */,
+			);
+			name = TestCleanpp;
+			productName = TestCleanpp;
+			productReference = E760A303239204DC00139E3D /* TestCleanpp.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E760A2B3239203A200139E3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Alan Weide";
+				TargetAttributes = {
+					E760A2BA239203A200139E3D = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					E760A302239204DC00139E3D = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = E760A2B6239203A200139E3D /* Build configuration list for PBXProject "CleanppLibrary" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E760A2B2239203A200139E3D;
+			productRefGroup = E760A2BC239203A200139E3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E760A2BA239203A200139E3D /* CleanppLibrary */,
+				E760A302239204DC00139E3D /* TestCleanpp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E760A301239204DC00139E3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E760A2B8239203A200139E3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E760A2F92392049D00139E3D /* LinkedQueue.cpp in Sources */,
+				E760A2FE2392049D00139E3D /* BoundedMovingStack.cpp in Sources */,
+				E760A2FB2392049D00139E3D /* ListWithCursor.cpp in Sources */,
+				E760A2F62392049D00139E3D /* LinkedStack.cpp in Sources */,
+				E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E760A2FF239204DC00139E3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E760A306239204DC00139E3D /* TestCleanpp.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E760A30A239204DC00139E3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E760A2BA239203A200139E3D /* CleanppLibrary */;
+			targetProxy = E760A309239204DC00139E3D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E760A2C4239203A200139E3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E760A2C5239203A200139E3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E760A2C7239203A200139E3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					$SRCROOT/include/cleanpp,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wextra",
+					"-Wall",
+				);
+			};
+			name = Debug;
+		};
+		E760A2C8239203A200139E3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					$SRCROOT/include/cleanpp,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wextra",
+					"-Wall",
+				);
+			};
+			name = Release;
+		};
+		E760A30C239204DC00139E3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					$SRCROOT/include/cleanpp,
+				);
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_BUNDLE_IDENTIFIER = weide.TestCleanpp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wextra",
+					"-Wall",
+				);
+			};
+			name = Debug;
+		};
+		E760A30D239204DC00139E3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					$SRCROOT/include/cleanpp,
+				);
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_BUNDLE_IDENTIFIER = weide.TestCleanpp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wextra",
+					"-Wall",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E760A2B6239203A200139E3D /* Build configuration list for PBXProject "CleanppLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E760A2C4239203A200139E3D /* Debug */,
+				E760A2C5239203A200139E3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "CleanppLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E760A2C7239203A200139E3D /* Debug */,
+				E760A2C8239203A200139E3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E760A30B239204DC00139E3D /* Build configuration list for PBXNativeTarget "TestCleanpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E760A30C239204DC00139E3D /* Debug */,
+				E760A30D239204DC00139E3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E760A2B3239203A200139E3D /* Project object */;
+}
