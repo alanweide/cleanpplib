@@ -29,8 +29,6 @@ using namespace cleanpp;
 }
 
 - (void)testIncrementZero {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
     std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>();
     std::unique_ptr<natural_number> one = std::make_unique<bounded_nn>(1);
     n->increment();
@@ -38,8 +36,6 @@ using namespace cleanpp;
 }
 
 - (void)testIncrementNine {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
     std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(9);
     std::unique_ptr<natural_number> ten = std::make_unique<bounded_nn>(10);
     n->increment();
@@ -47,8 +43,6 @@ using namespace cleanpp;
 }
 
 - (void)testDecrementOne {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
     std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(1);
     std::unique_ptr<natural_number> zero = std::make_unique<bounded_nn>(0);
     n->decrement();
@@ -56,8 +50,6 @@ using namespace cleanpp;
 }
 
 - (void)testDecrementTen {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
     std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(10);
     std::unique_ptr<natural_number> nine = std::make_unique<bounded_nn>(9);
     n->decrement();
