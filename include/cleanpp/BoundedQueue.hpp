@@ -58,15 +58,15 @@ namespace cleanpp {
 //			contents_ = std::move(contents_t);
 //		}
 		
-		void clear();
+		void clear() override;
 		
-		void enqueue(std::unique_ptr<T>& x);
+		void enqueue(std::unique_ptr<T>& x) override;
 		
-		void dequeue(std::unique_ptr<T>& x);
+		void dequeue(std::unique_ptr<T>& x) override;
 		
-		bool isEmpty() const;
+		bool isEmpty() const override;
 		
-		std::ostream& print(std::ostream& out);
+		std::ostream& print(std::ostream& out) override;
 	};
 }
 

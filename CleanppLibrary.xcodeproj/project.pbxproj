@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8682AD8723D66465003F4238 /* NaturalNumberKernel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8423D66465003F4238 /* NaturalNumberKernel.hpp */; };
+		8682AD8923D6668E003F4238 /* NaturalNumber.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8823D6668E003F4238 /* NaturalNumber.hpp */; };
+		8682AD8B23D6671A003F4238 /* BoundedNN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD8A23D6671A003F4238 /* BoundedNN.cpp */; };
+		8682AD8C23D6671A003F4238 /* BoundedNN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD8A23D6671A003F4238 /* BoundedNN.cpp */; };
+		8682AD8E23D679CA003F4238 /* BoundedNN.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8D23D679CA003F4238 /* BoundedNN.hpp */; };
 		E760A2F62392049D00139E3D /* LinkedStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2ED2392049D00139E3D /* LinkedStack.cpp */; };
 		E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* CleanQueue.hpp */; };
 		E760A2F82392049D00139E3D /* CleanBase.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* CleanBase.hpp */; };
@@ -32,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8682AD8423D66465003F4238 /* NaturalNumberKernel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NaturalNumberKernel.hpp; sourceTree = "<group>"; };
+		8682AD8823D6668E003F4238 /* NaturalNumber.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NaturalNumber.hpp; sourceTree = "<group>"; };
+		8682AD8A23D6671A003F4238 /* BoundedNN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedNN.cpp; sourceTree = "<group>"; };
+		8682AD8D23D679CA003F4238 /* BoundedNN.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoundedNN.hpp; sourceTree = "<group>"; };
+		8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestCleanpp.xctestplan; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanppLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanppLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
@@ -91,10 +101,9 @@
 		E760A2B2239203A200139E3D = {
 			isa = PBXGroup;
 			children = (
-				E760A2CE239203DA00139E3D /* Build */,
-				E760A2EC239203DA00139E3D /* doc */,
-				E760A2CA239203DA00139E3D /* include */,
 				E760A2CD239203DA00139E3D /* README.md */,
+				E760A2CE239203DA00139E3D /* Build */,
+				E760A2CA239203DA00139E3D /* include */,
 				E760A2C9239203DA00139E3D /* src */,
 				E760A2CC239203DA00139E3D /* test */,
 				E760A2BC239203A200139E3D /* Products */,
@@ -119,6 +128,7 @@
 				E760A2ED2392049D00139E3D /* LinkedStack.cpp */,
 				E760A2F22392049D00139E3D /* ListWithCursor.cpp */,
 				E760A30E239207E200139E3D /* main.cpp */,
+				8682AD8A23D6671A003F4238 /* BoundedNN.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -139,6 +149,9 @@
 				E760A2EE2392049D00139E3D /* CleanQueue.hpp */,
 				E760A2F32392049D00139E3D /* CleanStack.hpp */,
 				E760A3102392095700139E3D /* BoundedQueue.hpp */,
+				8682AD8423D66465003F4238 /* NaturalNumberKernel.hpp */,
+				8682AD8823D6668E003F4238 /* NaturalNumber.hpp */,
+				8682AD8D23D679CA003F4238 /* BoundedNN.hpp */,
 			);
 			path = cleanpp;
 			sourceTree = "<group>";
@@ -147,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				E760A305239204DC00139E3D /* TestCleanpp.mm */,
+				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
 			path = test;
@@ -258,13 +272,6 @@
 			path = CleanppLibrary.build;
 			sourceTree = "<group>";
 		};
-		E760A2EC239203DA00139E3D /* doc */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = doc;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -272,10 +279,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8682AD8E23D679CA003F4238 /* BoundedNN.hpp in Headers */,
 				E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */,
 				E760A2FC2392049D00139E3D /* CleanStack.hpp in Headers */,
+				8682AD8723D66465003F4238 /* NaturalNumberKernel.hpp in Headers */,
 				E760A2F82392049D00139E3D /* CleanBase.hpp in Headers */,
 				E760A2FA2392049D00139E3D /* CleanList.hpp in Headers */,
+				8682AD8923D6668E003F4238 /* NaturalNumber.hpp in Headers */,
 				E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +384,7 @@
 				E760A2FB2392049D00139E3D /* ListWithCursor.cpp in Sources */,
 				E760A2F62392049D00139E3D /* LinkedStack.cpp in Sources */,
 				E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */,
+				8682AD8B23D6671A003F4238 /* BoundedNN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E760A306239204DC00139E3D /* TestCleanpp.mm in Sources */,
+				8682AD8C23D6671A003F4238 /* BoundedNN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,9 +567,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				DEVELOPMENT_TEAM = "";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -583,9 +596,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = U2U4VCGTYC;
+				DEVELOPMENT_TEAM = "";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
