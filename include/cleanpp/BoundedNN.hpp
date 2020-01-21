@@ -16,7 +16,7 @@ class bounded_nn: public natural_number {
 private:
     int n;
 public:
-    bounded_nn();
+    bounded_nn(int n = 0);
     
     bounded_nn(bounded_nn const &other) = delete;
     bounded_nn(bounded_nn&& other);
@@ -32,7 +32,7 @@ public:
     void decrement() override;
     void set_from_int(int n) override;
     
-    std::ostream& print(std::ostream& out) override;
+    std::ostream& print(std::ostream& out) override;    
 };
 }
 

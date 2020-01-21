@@ -19,6 +19,22 @@ public:
     virtual bool is_zero() = 0;
     virtual void multiply_by_radix(int digit) = 0;
     virtual void divide_by_radix(int &digit) = 0;
+    virtual bool operator==(natural_number_kernel &other) {
+        bool ans = false;
+        if (other.is_zero() && this->is_zero()) {
+            ans = true;
+        } else if (other.is_zero() == this->is_zero()) {
+            int last_this, last_other;
+            this->divide_by_radix(last_this);
+            other.divide_by_radix(last_other);
+            if (last_this == last_other) {
+                ans = *this == other;
+            }
+            this->multiply_by_radix(last_this);
+            other.multiply_by_radix(last_other);
+        }
+        return ans;
+    }
 };
 }
 

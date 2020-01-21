@@ -10,7 +10,7 @@
 #include<BoundedNN.hpp>
 
 namespace cleanpp {
-bounded_nn::bounded_nn(): n(0) {};
+bounded_nn::bounded_nn(int n): n(n) {};
 
 bounded_nn::bounded_nn(bounded_nn&& other): n(std::move(other.n)) {
     other.clear();

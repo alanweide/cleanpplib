@@ -21,8 +21,8 @@
 		E760A2FC2392049D00139E3D /* CleanStack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F32392049D00139E3D /* CleanStack.hpp */; };
 		E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F42392049D00139E3D /* BoundedQueue.cpp */; };
 		E760A2FE2392049D00139E3D /* BoundedMovingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */; };
-		E760A306239204DC00139E3D /* TestCleanpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = E760A305239204DC00139E3D /* TestCleanpp.mm */; };
-		E760A308239204DC00139E3D /* libCleanppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanppLibrary.a */; };
+		E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = E760A305239204DC00139E3D /* TestBoundedNN.mm */; };
+		E760A308239204DC00139E3D /* libCleanpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanpp.a */; };
 		E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A3102392095700139E3D /* BoundedQueue.hpp */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		8682AD8A23D6671A003F4238 /* BoundedNN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedNN.cpp; sourceTree = "<group>"; };
 		8682AD8D23D679CA003F4238 /* BoundedNN.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoundedNN.hpp; sourceTree = "<group>"; };
 		8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestCleanpp.xctestplan; sourceTree = "<group>"; };
-		E760A2BB239203A200139E3D /* libCleanppLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanppLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
 		E760A2D3239203DA00139E3D /* build.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = build.db; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		E760A2F42392049D00139E3D /* BoundedQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedQueue.cpp; sourceTree = "<group>"; };
 		E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedMovingStack.cpp; sourceTree = "<group>"; };
 		E760A303239204DC00139E3D /* TestCleanpp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestCleanpp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E760A305239204DC00139E3D /* TestCleanpp.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCleanpp.mm; sourceTree = "<group>"; };
+		E760A305239204DC00139E3D /* TestBoundedNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBoundedNN.mm; sourceTree = "<group>"; };
 		E760A307239204DC00139E3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E760A30E239207E200139E3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E760A3102392095700139E3D /* BoundedQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoundedQueue.hpp; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E760A308239204DC00139E3D /* libCleanppLibrary.a in Frameworks */,
+				E760A308239204DC00139E3D /* libCleanpp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +113,7 @@
 		E760A2BC239203A200139E3D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E760A2BB239203A200139E3D /* libCleanppLibrary.a */,
+				E760A2BB239203A200139E3D /* libCleanpp.a */,
 				E760A303239204DC00139E3D /* TestCleanpp.xctest */,
 			);
 			name = Products;
@@ -159,7 +159,7 @@
 		E760A2CC239203DA00139E3D /* test */ = {
 			isa = PBXGroup;
 			children = (
-				E760A305239204DC00139E3D /* TestCleanpp.mm */,
+				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
@@ -293,9 +293,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E760A2BA239203A200139E3D /* CleanppLibrary */ = {
+		E760A2BA239203A200139E3D /* Cleanpp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "CleanppLibrary" */;
+			buildConfigurationList = E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "Cleanpp" */;
 			buildPhases = (
 				E760A2B7239203A200139E3D /* Headers */,
 				E760A2B8239203A200139E3D /* Sources */,
@@ -305,9 +305,9 @@
 			);
 			dependencies = (
 			);
-			name = CleanppLibrary;
+			name = Cleanpp;
 			productName = CleanppLibrary;
-			productReference = E760A2BB239203A200139E3D /* libCleanppLibrary.a */;
+			productReference = E760A2BB239203A200139E3D /* libCleanpp.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		E760A302239204DC00139E3D /* TestCleanpp */ = {
@@ -358,7 +358,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E760A2BA239203A200139E3D /* CleanppLibrary */,
+				E760A2BA239203A200139E3D /* Cleanpp */,
 				E760A302239204DC00139E3D /* TestCleanpp */,
 			);
 		};
@@ -392,7 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E760A306239204DC00139E3D /* TestCleanpp.mm in Sources */,
+				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				8682AD8C23D6671A003F4238 /* BoundedNN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,7 +402,7 @@
 /* Begin PBXTargetDependency section */
 		E760A30A239204DC00139E3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E760A2BA239203A200139E3D /* CleanppLibrary */;
+			target = E760A2BA239203A200139E3D /* Cleanpp */;
 			targetProxy = E760A309239204DC00139E3D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -633,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "CleanppLibrary" */ = {
+		E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "Cleanpp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E760A2C7239203A200139E3D /* Debug */,

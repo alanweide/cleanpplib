@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E760A2BA239203A200139E3D"
-               BuildableName = "libCleanppLibrary.a"
-               BlueprintName = "CleanppLibrary"
+               BuildableName = "libCleanpp.a"
+               BlueprintName = "Cleanpp"
                ReferencedContainer = "container:CleanppLibrary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E760A2BA239203A200139E3D"
-            BuildableName = "libCleanppLibrary.a"
-            BlueprintName = "CleanppLibrary"
+            BuildableName = "libCleanpp.a"
+            BlueprintName = "Cleanpp"
             ReferencedContainer = "container:CleanppLibrary.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
