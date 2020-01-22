@@ -1,16 +1,16 @@
 //
-//  NaturalNumberKernel.hpp
+//  natuarl_number_kernel.hpp
 //  CleanppLibrary
 //
 //  Created by Alan Weide on 1/20/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef NaturalNumberKernel_hpp
-#define NaturalNumberKernel_hpp
+#ifndef natural_number_kernel_h
+#define natural_number_kernel_h
 
 #include <stdio.h>
-#include "CleanBase.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
 class natural_number_kernel: public clean_base<void> {
@@ -19,7 +19,7 @@ public:
     virtual bool is_zero() = 0;
     virtual void multiply_by_radix(int digit) = 0;
     virtual void divide_by_radix(int &digit) = 0;
-    virtual bool operator==(natural_number_kernel &other) {
+    bool operator==(natural_number_kernel &other) {
         bool ans = false;
         if (other.is_zero() && this->is_zero()) {
             ans = true;
@@ -35,7 +35,22 @@ public:
         }
         return ans;
     }
+    
+    virtual std::ostream& print(std::ostream& out) override {
+        if (is_zero()) {
+            out << 0;
+        } else {
+            int d;
+            divide_by_radix(d);
+            if (!is_zero()) {
+                print(out);
+            }
+            out << d;
+            multiply_by_radix(d);
+        }
+        return out;
+    }    
 };
 }
 
-#endif /* NaturalNumberKernel_hpp */
+#endif /* natural_number_kernel_h */

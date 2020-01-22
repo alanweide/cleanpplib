@@ -1,19 +1,19 @@
 //
-//  NaturalNumber.hpp
+//  natural_number.hpp
 //  CleanppLibrary
 //
 //  Created by Alan Weide on 1/20/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef NaturalNumber_h
-#define NaturalNumber_h
+#ifndef natural_number_h
+#define natural_number_h
 
-#include "NaturalNumberKernel.hpp"
+#include <natural_number_kernel.hpp>
 
 namespace cleanpp {
 class natural_number: public natural_number_kernel {
-public:
+public:    
     virtual void increment() {
         int d = 0;
         this->divide_by_radix(d);
@@ -46,4 +46,4 @@ public:
 };
 }
 
-#endif /* NaturalNumber_h */
+#endif /* natural_number_h */

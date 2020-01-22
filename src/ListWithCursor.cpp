@@ -11,8 +11,7 @@
 
 #include "CleanList.hpp"
 
-#include "CleanStack.hpp"
-#include "LinkedStack.cpp"
+#include <linked_stack.hpp>
 #include "BoundedMovingStack.cpp"
 
 namespace cleanpp {

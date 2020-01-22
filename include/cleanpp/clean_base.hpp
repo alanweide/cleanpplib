@@ -1,13 +1,13 @@
 //
-//  CleanBase.hpp
+//  clean_base.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 12/11/18.
 //  Copyright © 2018 Alan Weide. All rights reserved.
 //
 
-#ifndef CleanBase_h
-#define CleanBase_h
+#ifndef clean_base_h
+#define clean_base_h
 
 //using std::swap;
 
@@ -40,4 +40,4 @@ namespace cleanpp {
 	};
 }
 
-#endif /* CleanBase_h */
+#endif /* clean_base_h */

@@ -7,11 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-//#include "CleanQueue.hpp"
-//#include "CleanStack.hpp"
-#include "BoundedNN.hpp"
-//#include "BoundedQueue.hpp"
 #include <stdio.h>
+#include <bounded_nn.hpp>
 
 @interface TestBoundedNN : XCTestCase
 @end
@@ -42,6 +39,13 @@ using namespace cleanpp;
     XCTAssert(*n == *ten);
 }
 
+- (void)testIncrementFive {
+    std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(5);
+    std::unique_ptr<natural_number> six = std::make_unique<bounded_nn>(6);
+    n->increment();
+    XCTAssert(*n == *six);
+}
+
 - (void)testDecrementOne {
     std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(1);
     std::unique_ptr<natural_number> zero = std::make_unique<bounded_nn>(0);
@@ -54,6 +58,13 @@ using namespace cleanpp;
     std::unique_ptr<natural_number> nine = std::make_unique<bounded_nn>(9);
     n->decrement();
     XCTAssert(*n == *nine);
+}
+
+- (void)testDecrementFive {
+    std::unique_ptr<natural_number> n = std::make_unique<bounded_nn>(5);
+    std::unique_ptr<natural_number> four = std::make_unique<bounded_nn>(4);
+    n->decrement();
+    XCTAssert(*n == *four);
 }
 
 @end

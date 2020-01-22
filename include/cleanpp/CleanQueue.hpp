@@ -13,7 +13,7 @@
 #include <iostream>
 #include <memory>
 
-#include "CleanBase.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
 	template <typename T>  // template definition

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "CleanBase.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
 	template <class T>

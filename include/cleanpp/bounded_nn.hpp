@@ -1,15 +1,15 @@
 //
-//  BoundedNN.hpp
+//  bounded_nn.hpp
 //  CleanppLibrary
 //
 //  Created by Alan Weide on 1/20/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef BoundedNN_h
-#define BoundedNN_h
+#ifndef bounded_nn_h
+#define bounded_nn_h
 
-#include <NaturalNumber.hpp>
+#include <natural_number.hpp>
 
 namespace cleanpp {
 class bounded_nn: public natural_number {
@@ -23,7 +23,7 @@ public:
     
     bounded_nn& operator=(const bounded_nn& other) = delete;
     bounded_nn& operator=(bounded_nn&& other);
-    
+        
     void clear() override;
     bool is_zero() override;
     void multiply_by_radix(int d) override;
@@ -32,9 +32,9 @@ public:
     void decrement() override;
     void set_from_int(int n) override;
     
-    std::ostream& print(std::ostream& out) override;    
+    std::ostream& print(std::ostream& out) override;
 };
 }
 
 
-#endif /* BoundedNN_h */
+#endif /* bounded_nn_h */

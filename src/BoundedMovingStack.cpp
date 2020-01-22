@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream>
 
-#include "CleanStack.hpp"
+#include <clean_stack.hpp>
 
 namespace cleanpp {
 	

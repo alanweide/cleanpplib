@@ -1,5 +1,5 @@
 //
-//  BoundedNN.cpp
+//  bounded_nn.cpp
 //  CleanppLibrary
 //
 //  Created by Alan Weide on 1/20/20.
@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-#include<BoundedNN.hpp>
+#include<bounded_nn.hpp>
 
 namespace cleanpp {
 bounded_nn::bounded_nn(int n): n(n) {};
@@ -25,6 +25,7 @@ bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
     other.clear();
     return *this;
 }
+
 void bounded_nn::clear() {
     this->n = 0;
 }
