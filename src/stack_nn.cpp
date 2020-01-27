@@ -7,6 +7,7 @@
 //
 
 #include <stack_nn.hpp>
+#include <clean_stack/linked_stack.hpp>
 
 namespace cleanpp {
 
@@ -31,16 +32,9 @@ stack_nn& stack_nn::operator=(stack_nn&& other) {
 
 void stack_nn::clear() {
     rep->clear();
-//    int z = 0;
-//    rep.push(z);
 }
 
 bool stack_nn::is_zero() {
-//    int d;
-//    rep.pop(d);
-//    bool is_zero = d == 0 && rep.is_empty();
-//    rep.push(d);
-//    return is_zero;
     return rep->is_empty();
 }
 
