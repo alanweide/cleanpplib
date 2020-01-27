@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-#include<bounded_nn.hpp>
+#include <bounded_nn.hpp>
 
 namespace cleanpp {
 bounded_nn::bounded_nn(int n): n(n) {};
@@ -26,35 +26,35 @@ bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
     return *this;
 }
 
+bool bounded_nn::operator==(const bounded_nn &other) {
+    return this->n == other.n;
+}
+
 void bounded_nn::clear() {
-    this->n = 0;
+    n = 0;
 }
 bool bounded_nn::is_zero() {
-    return this->n == 0;
+    return n == 0;
 }
 void bounded_nn::multiply_by_radix(int d) {
-    this->n *= RADIX;
-    this->n += d;
+    n *= RADIX;
+    n += d;
 }
 void bounded_nn::divide_by_radix(int &d) {
-    d = this->n % RADIX;
-    this->n /= RADIX;
+    d = n % RADIX;
+    n /= RADIX;
 }
 
-void bounded_nn::increment() {
-    this->n++;
-}
-
-void bounded_nn::decrement() {
-    this->n--;
-}
-
-void bounded_nn::set_from_int(int n) {
-    this->n = n;
-}
-
-std::ostream& bounded_nn::print(std::ostream& out) {
-    return out << this->n;
-}
+//void bounded_nn::increment() {
+//    this->n++;
+//}
+//
+//void bounded_nn::decrement() {
+//    this->n--;
+//}
+//
+//void bounded_nn::set_from_int(int n) {
+//    this->n = n;
+//}
 
 }

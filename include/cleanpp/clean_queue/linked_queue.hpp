@@ -1,20 +1,20 @@
 //
-//  LinkedQueue.cpp
+//  linked_queue.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 1/17/19.
 //  Copyright © 2019 Alan Weide. All rights reserved.
 //
 
-#ifndef LinkedQueue_cpp
-#define LinkedQueue_cpp
+#ifndef linked_queue_h
+#define linked_queue_h
 
-#include "CleanQueue.hpp"
+#include <clean_queue.hpp>
 
 namespace cleanpp {
 	
 	template <typename T>
-	class clean_queue: public clean_base<T> {
+	class linked_queue: public clean_base<T> {
 	private:
 		class queue_node {
 		private:
@@ -58,17 +58,17 @@ namespace cleanpp {
 		std::shared_ptr<queue_node> top_ptr_;
 		std::shared_ptr<queue_node> tail_ptr_;
 	public:
-		clean_queue<T>(): top_ptr_(), tail_ptr_() { }
+		linked_queue<T>(): top_ptr_(), tail_ptr_() { }
 		
-		clean_queue<T>(clean_queue<T> const &other) = delete;
-		clean_queue<T>(clean_queue<T>&& other):
+		linked_queue<T>(linked_queue<T> const &other) = delete;
+		linked_queue<T>(linked_queue<T>&& other):
 		top_ptr_(std::move(other.top_ptr_)),
 		tail_ptr_(std::move(other.tail_ptr_)) {
 			other.clear();
 		}
 		
-		clean_queue<T>& operator=(const clean_queue<T>& other) = delete;
-		clean_queue<T>& operator=(clean_queue<T>&& other) {
+		linked_queue<T>& operator=(const linked_queue<T>& other) = delete;
+		linked_queue<T>& operator=(linked_queue<T>&& other) {
 			if (&other == this) {
 				return *this;
 			}
@@ -131,4 +131,4 @@ namespace cleanpp {
 	
 }
 
-#endif // LinkedQueue_cpp
+#endif /* linked_queue_h */

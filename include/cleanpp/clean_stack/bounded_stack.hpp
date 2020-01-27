@@ -1,13 +1,13 @@
 //
-//  BoundedMovingStack.cpp
+//  bounded_stack.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 9/25/18.
 //  Copyright © 2018 Alan Weide. All rights reserved.
 //
 
-#ifndef BoundedMovingStack_cpp
-#define BoundedMovingStack_cpp
+#ifndef bounded_stack_h
+#define bounded_stack_h
 
 #include <stdio.h>
 #include <memory>
@@ -18,7 +18,7 @@
 
 namespace cleanpp {
 	
-	template <class T>
+	template <typename T>
 	class bounded_stack: public clean_stack<T>
 	{
 	private:
@@ -105,7 +105,7 @@ namespace cleanpp {
 		}
 	};
 	
-	//template <class T>
+	//template <typename T>
 	//class BoundedMovingStack_Explicit {
 	//private:
 	//	static const int MAX_SIZE = 6;

@@ -7,13 +7,12 @@
 //
 
 #include <stack_nn.hpp>
-#include <linked_stack.hpp>
 
 namespace cleanpp {
 
 stack_nn::stack_nn(int n) {
-    rep = std::make_unique<linked_stack<int32_t>>();
-    this->set_from_int(n);
+    rep = std::make_unique<linked_stack<int>>();
+    set_from_int(n);
 };
 
 stack_nn::stack_nn(stack_nn&& other): rep(std::move(other.rep)) {
@@ -32,19 +31,28 @@ stack_nn& stack_nn::operator=(stack_nn&& other) {
 
 void stack_nn::clear() {
     rep->clear();
+//    int z = 0;
+//    rep.push(z);
 }
 
 bool stack_nn::is_zero() {
+//    int d;
+//    rep.pop(d);
+//    bool is_zero = d == 0 && rep.is_empty();
+//    rep.push(d);
+//    return is_zero;
     return rep->is_empty();
-//    return true;
 }
 
 void stack_nn::multiply_by_radix(int d) {
-    rep->push(d);
+    assert(0 <= d && d < 10);
+    if (!is_zero() || d != 0) {
+        rep->push(d);
+    }
 }
 
 void stack_nn::divide_by_radix(int &d) {
-    if (rep->is_empty()) {
+    if (is_zero()) {
         d = 0;
     } else {
         rep->pop(d);

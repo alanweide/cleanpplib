@@ -1,13 +1,13 @@
 //
-//  ListWithCursor.hpp
+//  clean_list.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 12/6/18.
 //  Copyright © 2018 Alan Weide. All rights reserved.
 //
 
-#ifndef CleanList_hpp
-#define CleanList_hpp
+#ifndef clean_list_h
+#define clean_list_h
 
 #include <stdio.h>
 #include <iostream>
@@ -15,7 +15,7 @@
 
 namespace cleanpp {
 	template <class T>
-	class list: public clean_base<T> {
+	class clean_list: public clean_base<T> {
 	public:
 		virtual void advance() = 0;
 		virtual void retreat() = 0;
@@ -26,7 +26,7 @@ namespace cleanpp {
 	};
 
 	template<class T>
-	class list_secondary: public list<T> {
+	class list_secondary: public clean_list<T> {
 	public:
 		virtual void reset() {
 			while (!this->isAtFront()) {
@@ -36,4 +36,4 @@ namespace cleanpp {
 	};
 }
 
-#endif /* CleanList_hpp */
+#endif /* clean_list_h */
