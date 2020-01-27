@@ -16,7 +16,7 @@
 namespace cleanpp {
 class stack_nn: public natural_number {
 private:
-    std::unique_ptr<clean_stack<int>> rep;
+    linked_stack<int> rep;
 public:
     stack_nn(int n = 0);
     

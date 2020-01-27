@@ -11,8 +11,7 @@
 
 namespace cleanpp {
 
-stack_nn::stack_nn(int n) {
-    rep = std::make_unique<linked_stack<int>>();
+stack_nn::stack_nn(int n): rep() {
     set_from_int(n);
 };
 
@@ -31,17 +30,17 @@ stack_nn& stack_nn::operator=(stack_nn&& other) {
 }
 
 void stack_nn::clear() {
-    rep->clear();
+    rep.clear();
 }
 
 bool stack_nn::is_zero() {
-    return rep->is_empty();
+    return rep.is_empty();
 }
 
 void stack_nn::multiply_by_radix(int d) {
     assert(0 <= d && d < 10);
     if (!is_zero() || d != 0) {
-        rep->push(d);
+        rep.push(d);
     }
 }
 
@@ -49,7 +48,7 @@ void stack_nn::divide_by_radix(int &d) {
     if (is_zero()) {
         d = 0;
     } else {
-        rep->pop(d);
+        rep.pop(d);
     }
 }
 

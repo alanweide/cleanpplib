@@ -21,15 +21,14 @@ private:
     class stack_node: public clean_base<void> {
     private:
     public:
-        std::unique_ptr<T> contents;
+        T contents;
         std::unique_ptr<stack_node> next;
         
         stack_node(): contents(), next() {
         }
         
-//        stack_node(T& new_contents): next() {
-//            *contents = new_contents;
-//        }
+        stack_node(T& new_contents): contents(std::move(new_contents)), next() {
+		}
         
         stack_node(stack_node const &other) = delete;
         stack_node(stack_node&& other): contents(std::move(other.contents)),
@@ -50,7 +49,7 @@ private:
         }
         
         void clear() override {
-            contents.reset();
+			contents = T();
             next.reset();
         }
         
@@ -85,7 +84,10 @@ public:
     }
     
     void clear() override {
-        top_ptr_.reset();
+		if (top_ptr_ != nullptr) {
+			top_ptr_.reset();
+		}
+		assert(top_ptr_ == nullptr);
     }
 
     
@@ -96,7 +98,7 @@ public:
     }
     
     void pop(T& x) override {
-        x = *std::move(top_ptr_->contents);
+        x = std::move(top_ptr_->contents);
         top_ptr_ = std::move(top_ptr_->next);
     }
     
