@@ -9,12 +9,12 @@
 #ifndef bounded_nn_h
 #define bounded_nn_h
 
-#include <natural_number.hpp>
+#include "natural_number.hpp"
 
 namespace cleanpp {
 class bounded_nn: public natural_number {
 private:
-    int n;
+    long n;
 public:
     bounded_nn(int n = 0);
     
@@ -24,15 +24,19 @@ public:
     bounded_nn& operator=(const bounded_nn& other) = delete;
     bounded_nn& operator=(bounded_nn&& other);
         
+    bool operator==(const bounded_nn &other);
+    
     void clear() override;
     bool is_zero() override;
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;
-    void increment() override;
-    void decrement() override;
-    void set_from_int(int n) override;
+//    void increment() override;
+//    void decrement() override;
+//    void set_from_int(int n) override;
     
-    std::ostream& print(std::ostream& out) override;
+    friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
+        return out << o.n;
+    }
 };
 }
 

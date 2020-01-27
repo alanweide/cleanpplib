@@ -10,13 +10,13 @@
 #define stack_nn_h
 
 #include <stdio.h>
-#include <natural_number.hpp>
-#include <clean_stack.hpp>
+#include <clean_stack/linked_stack.hpp>
+#include "natural_number.hpp"
 
 namespace cleanpp {
 class stack_nn: public natural_number {
 private:
-    std::unique_ptr<clean_stack<int32_t>> rep;
+    std::unique_ptr<clean_stack<int>> rep;
 public:
     stack_nn(int n = 0);
     

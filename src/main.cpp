@@ -224,7 +224,7 @@ void swap(SwappableResource& r1, SwappableResource& r2)
 	r2 = std::move(temp);
 }
 
-template<class T> std::ostream& operator<<(std::ostream& out, std::stack<T>& s) {
+template<typename T> std::ostream& operator<<(std::ostream& out, std::stack<T>& s) {
 	if (!s.empty()) {
 		auto r_u = std::move(s.top());
 		s.pop();
@@ -237,7 +237,7 @@ template<class T> std::ostream& operator<<(std::ostream& out, std::stack<T>& s) 
 	return out;
 };
 
-template<class T>
+template<typename T>
 class Auto_ptr
 {
 	T* m_ptr;

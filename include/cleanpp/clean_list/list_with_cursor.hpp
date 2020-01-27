@@ -1,42 +1,41 @@
 //
-//  ListWithCursor.cpp
+//  list_with_cursor.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 10/19/18.
 //  Copyright © 2018 Alan Weide. All rights reserved.
 //
 
-#ifndef ListWithCursor_cpp
-#define ListWithCursor_cpp
+#ifndef list_with_cursor_h
+#define list_with_cursor_h
 
 #include "CleanList.hpp"
 
 #include <linked_stack.hpp>
-#include "BoundedMovingStack.cpp"
+#include <bounded_stack.hpp>
 
 namespace cleanpp {
 
-	template <class T>
-	class clean_list: public list_secondary<T> {
+	template <typename T>
+	class list_with_cursor: public list_secondary<T> {
 	private:
-		clean_stack<T>* prec_;
-		clean_stack<T>* rem_;
-
+		std::unique_ptr<clean_stack<T>> prec_;
+		std::unique_ptr<clean_stack<T>> rem_;
 	public:
-		clean_list<T>() {
-			prec_ = new linked_stack<T>{ };
-			rem_ = new linked_stack<T>{ };
+		list_with_cursor<T>() {
+            prec_ = std::make_unique<linked_stack<T>>();
+			rem_ = std::make_unique<linked_stack<T>>();
 		}
 
-		clean_list<T>(clean_list<T> const &other) = delete;
-		clean_list<T>(clean_list<T>&& other) {
-			prec_ = new linked_stack<T>{std::move(other.prec_)};
-			rem_ = new linked_stack<T>{std::move(other.rem_)};
+		list_with_cursor<T>(clean_list<T> const &other) = delete;
+		list_with_cursor<T>(clean_list<T>&& other) {
+			prec_ = std::move(other.prec_);
+			rem_ = std::move(other.rem_);
 			other.clear(); // done "for free" by previous two statements in this case
 		}
 
-		clean_list<T>& operator=(clean_list<T> const &other) = delete;
-		clean_list<T>& operator=(clean_list<T>&& other) {
+		list_with_cursor<T>& operator=(clean_list<T> const &other) = delete;
+		list_with_cursor<T>& operator=(clean_list<T>&& other) {
 			if (&other == this) {
 				return this;
 			}
@@ -45,6 +44,10 @@ namespace cleanpp {
 			other.clear(); // done "for free" by previous two statements in this case
 			return this;
 		}
+        
+        bool operator==(list_with_cursor<T> &other) override {
+            return *(this->prec_) == *(other.prec_) && *(this->rem_) == *(other.rem_);
+        }
 
 		void clear() {
 			prec_->clear();

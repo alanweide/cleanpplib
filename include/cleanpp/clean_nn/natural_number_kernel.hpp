@@ -36,17 +36,17 @@ public:
         return ans;
     }
     
-    virtual std::ostream& print(std::ostream& out) override {
-        if (is_zero()) {
+    friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o) {
+        if (o.is_zero()) {
             out << 0;
         } else {
             int d;
-            divide_by_radix(d);
-            if (!is_zero()) {
-                print(out);
+            o.divide_by_radix(d);
+            if (!o.is_zero()) {
+                out << o;
             }
             out << d;
-            multiply_by_radix(d);
+            o.multiply_by_radix(d);
         }
         return out;
     }    

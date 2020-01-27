@@ -7,27 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8682AD8723D66465003F4238 /* natural_number_kernel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8423D66465003F4238 /* natural_number_kernel.hpp */; };
-		8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8823D6668E003F4238 /* natural_number.hpp */; };
+		860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */; };
+		8682AD8723D66465003F4238 /* natural_number_kernel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8423D66465003F4238 /* natural_number_kernel.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8823D6668E003F4238 /* natural_number.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD8B23D6671A003F4238 /* bounded_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD8A23D6671A003F4238 /* bounded_nn.cpp */; };
-		8682AD8E23D679CA003F4238 /* bounded_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8D23D679CA003F4238 /* bounded_nn.hpp */; };
+		8682AD8E23D679CA003F4238 /* bounded_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8D23D679CA003F4238 /* bounded_nn.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD9223D897C6003F4238 /* stack_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9023D897C6003F4238 /* stack_nn.cpp */; };
-		8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9123D897C6003F4238 /* stack_nn.hpp */; };
-		8682AD9723D89837003F4238 /* linked_stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9523D89837003F4238 /* linked_stack.cpp */; };
-		8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9623D89837003F4238 /* linked_stack.hpp */; };
+		8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9123D897C6003F4238 /* stack_nn.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9623D89837003F4238 /* linked_stack.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */; };
-		8682ADA123D8DA59003F4238 /* stack_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9F23D8DA59003F4238 /* stack_node.cpp */; };
-		E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* CleanQueue.hpp */; };
-		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; };
-		E760A2F92392049D00139E3D /* LinkedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* LinkedQueue.cpp */; };
-		E760A2FA2392049D00139E3D /* CleanList.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F12392049D00139E3D /* CleanList.hpp */; };
-		E760A2FB2392049D00139E3D /* ListWithCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F22392049D00139E3D /* ListWithCursor.cpp */; };
-		E760A2FC2392049D00139E3D /* clean_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F32392049D00139E3D /* clean_stack.hpp */; };
-		E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F42392049D00139E3D /* BoundedQueue.cpp */; };
-		E760A2FE2392049D00139E3D /* BoundedMovingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */; };
+		8682ADA423D8F440003F4238 /* TestLinkedStackINt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8682ADA323D8F440003F4238 /* TestLinkedStackINt.mm */; };
+		E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* clean_queue.hpp */; };
+		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* linked_queue.hpp */; };
+		E760A2FA2392049D00139E3D /* clean_list.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F12392049D00139E3D /* clean_list.hpp */; };
+		E760A2FB2392049D00139E3D /* list_with_cursor.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F22392049D00139E3D /* list_with_cursor.hpp */; };
+		E760A2FC2392049D00139E3D /* clean_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2F32392049D00139E3D /* clean_stack.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		E760A2FE2392049D00139E3D /* bounded_stack.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F52392049D00139E3D /* bounded_stack.hpp */; };
 		E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = E760A305239204DC00139E3D /* TestBoundedNN.mm */; };
 		E760A308239204DC00139E3D /* libCleanpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanpp.a */; };
-		E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A3102392095700139E3D /* BoundedQueue.hpp */; };
+		E760A3112392095700139E3D /* bounded_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A3102392095700139E3D /* bounded_queue.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackNaturalNumber.mm; sourceTree = "<group>"; };
 		8682AD8423D66465003F4238 /* natural_number_kernel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = natural_number_kernel.hpp; sourceTree = "<group>"; };
 		8682AD8823D6668E003F4238 /* natural_number.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = natural_number.hpp; sourceTree = "<group>"; };
 		8682AD8A23D6671A003F4238 /* bounded_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bounded_nn.cpp; sourceTree = "<group>"; };
@@ -48,10 +48,9 @@
 		8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestCleanpp.xctestplan; sourceTree = "<group>"; };
 		8682AD9023D897C6003F4238 /* stack_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stack_nn.cpp; sourceTree = "<group>"; };
 		8682AD9123D897C6003F4238 /* stack_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack_nn.hpp; sourceTree = "<group>"; };
-		8682AD9523D89837003F4238 /* linked_stack.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linked_stack.cpp; sourceTree = "<group>"; };
 		8682AD9623D89837003F4238 /* linked_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linked_stack.hpp; sourceTree = "<group>"; };
 		8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStackNN.mm; sourceTree = "<group>"; };
-		8682AD9F23D8DA59003F4238 /* stack_node.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stack_node.cpp; sourceTree = "<group>"; };
+		8682ADA323D8F440003F4238 /* TestLinkedStackINt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackINt.mm; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
@@ -73,19 +72,17 @@
 		E760A2E9239203DA00139E3D /* CleanppLibrary-all-target-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-all-target-headers.hmap"; sourceTree = "<group>"; };
 		E760A2EA239203DA00139E3D /* CleanppLibrary-project-headers.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CleanppLibrary-project-headers.hmap"; sourceTree = "<group>"; };
 		E760A2EB239203DA00139E3D /* all-product-headers.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = "all-product-headers.yaml"; sourceTree = "<group>"; };
-		E760A2EE2392049D00139E3D /* CleanQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanQueue.hpp; sourceTree = "<group>"; };
+		E760A2EE2392049D00139E3D /* clean_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clean_queue.hpp; sourceTree = "<group>"; };
 		E760A2EF2392049D00139E3D /* clean_base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clean_base.hpp; sourceTree = "<group>"; };
-		E760A2F02392049D00139E3D /* LinkedQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedQueue.cpp; sourceTree = "<group>"; };
-		E760A2F12392049D00139E3D /* CleanList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CleanList.hpp; sourceTree = "<group>"; };
-		E760A2F22392049D00139E3D /* ListWithCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListWithCursor.cpp; sourceTree = "<group>"; };
+		E760A2F02392049D00139E3D /* linked_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linked_queue.hpp; sourceTree = "<group>"; };
+		E760A2F12392049D00139E3D /* clean_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clean_list.hpp; sourceTree = "<group>"; };
+		E760A2F22392049D00139E3D /* list_with_cursor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list_with_cursor.hpp; sourceTree = "<group>"; };
 		E760A2F32392049D00139E3D /* clean_stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clean_stack.hpp; sourceTree = "<group>"; };
-		E760A2F42392049D00139E3D /* BoundedQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedQueue.cpp; sourceTree = "<group>"; };
-		E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedMovingStack.cpp; sourceTree = "<group>"; };
+		E760A2F52392049D00139E3D /* bounded_stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bounded_stack.hpp; sourceTree = "<group>"; };
 		E760A303239204DC00139E3D /* TestCleanpp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestCleanpp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A305239204DC00139E3D /* TestBoundedNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBoundedNN.mm; sourceTree = "<group>"; };
 		E760A307239204DC00139E3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E760A30E239207E200139E3D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		E760A3102392095700139E3D /* BoundedQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoundedQueue.hpp; sourceTree = "<group>"; };
+		E760A3102392095700139E3D /* bounded_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bounded_queue.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +104,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860934A923DD08BF00D38073 /* clean_list */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2F12392049D00139E3D /* clean_list.hpp */,
+				E760A2F22392049D00139E3D /* list_with_cursor.hpp */,
+			);
+			path = clean_list;
+			sourceTree = "<group>";
+		};
+		860934AA23DD08D700D38073 /* clean_stack */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2F32392049D00139E3D /* clean_stack.hpp */,
+				8682AD9623D89837003F4238 /* linked_stack.hpp */,
+				E760A2F52392049D00139E3D /* bounded_stack.hpp */,
+			);
+			path = clean_stack;
+			sourceTree = "<group>";
+		};
+		860934AB23DD08E300D38073 /* clean_nn */ = {
+			isa = PBXGroup;
+			children = (
+				8682AD8423D66465003F4238 /* natural_number_kernel.hpp */,
+				8682AD8823D6668E003F4238 /* natural_number.hpp */,
+				8682AD8D23D679CA003F4238 /* bounded_nn.hpp */,
+				8682AD9123D897C6003F4238 /* stack_nn.hpp */,
+			);
+			path = clean_nn;
+			sourceTree = "<group>";
+		};
+		860934AC23DD08F500D38073 /* clean_queue */ = {
+			isa = PBXGroup;
+			children = (
+				E760A2EE2392049D00139E3D /* clean_queue.hpp */,
+				E760A3102392095700139E3D /* bounded_queue.hpp */,
+				E760A2F02392049D00139E3D /* linked_queue.hpp */,
+			);
+			path = clean_queue;
+			sourceTree = "<group>";
+		};
 		E760A2B2239203A200139E3D = {
 			isa = PBXGroup;
 			children = (
@@ -131,15 +168,8 @@
 		E760A2C9239203DA00139E3D /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E760A2F52392049D00139E3D /* BoundedMovingStack.cpp */,
-				E760A2F42392049D00139E3D /* BoundedQueue.cpp */,
-				E760A2F02392049D00139E3D /* LinkedQueue.cpp */,
-				E760A2F22392049D00139E3D /* ListWithCursor.cpp */,
-				E760A30E239207E200139E3D /* main.cpp */,
 				8682AD8A23D6671A003F4238 /* bounded_nn.cpp */,
 				8682AD9023D897C6003F4238 /* stack_nn.cpp */,
-				8682AD9523D89837003F4238 /* linked_stack.cpp */,
-				8682AD9F23D8DA59003F4238 /* stack_node.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -155,16 +185,11 @@
 		E760A2CB239203DA00139E3D /* cleanpp */ = {
 			isa = PBXGroup;
 			children = (
+				860934AC23DD08F500D38073 /* clean_queue */,
+				860934AB23DD08E300D38073 /* clean_nn */,
+				860934AA23DD08D700D38073 /* clean_stack */,
+				860934A923DD08BF00D38073 /* clean_list */,
 				E760A2EF2392049D00139E3D /* clean_base.hpp */,
-				E760A2F12392049D00139E3D /* CleanList.hpp */,
-				E760A2EE2392049D00139E3D /* CleanQueue.hpp */,
-				E760A2F32392049D00139E3D /* clean_stack.hpp */,
-				E760A3102392095700139E3D /* BoundedQueue.hpp */,
-				8682AD8423D66465003F4238 /* natural_number_kernel.hpp */,
-				8682AD8823D6668E003F4238 /* natural_number.hpp */,
-				8682AD8D23D679CA003F4238 /* bounded_nn.hpp */,
-				8682AD9623D89837003F4238 /* linked_stack.hpp */,
-				8682AD9123D897C6003F4238 /* stack_nn.hpp */,
 			);
 			path = cleanpp;
 			sourceTree = "<group>";
@@ -174,6 +199,8 @@
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
+				8682ADA323D8F440003F4238 /* TestLinkedStackINt.mm */,
+				860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */,
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
@@ -294,15 +321,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8682AD8E23D679CA003F4238 /* bounded_nn.hpp in Headers */,
-				E760A2F72392049D00139E3D /* CleanQueue.hpp in Headers */,
 				E760A2FC2392049D00139E3D /* clean_stack.hpp in Headers */,
 				8682AD8723D66465003F4238 /* natural_number_kernel.hpp in Headers */,
 				E760A2F82392049D00139E3D /* clean_base.hpp in Headers */,
-				E760A2FA2392049D00139E3D /* CleanList.hpp in Headers */,
 				8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */,
 				8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */,
 				8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */,
-				E760A3112392095700139E3D /* BoundedQueue.hpp in Headers */,
+				E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */,
+				E760A2FA2392049D00139E3D /* clean_list.hpp in Headers */,
+				E760A3112392095700139E3D /* bounded_queue.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,13 +422,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E760A2F92392049D00139E3D /* LinkedQueue.cpp in Sources */,
-				E760A2FE2392049D00139E3D /* BoundedMovingStack.cpp in Sources */,
-				8682ADA123D8DA59003F4238 /* stack_node.cpp in Sources */,
-				E760A2FB2392049D00139E3D /* ListWithCursor.cpp in Sources */,
+				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,
+				E760A2FE2392049D00139E3D /* bounded_stack.hpp in Sources */,
+				E760A2FB2392049D00139E3D /* list_with_cursor.hpp in Sources */,
 				8682AD9223D897C6003F4238 /* stack_nn.cpp in Sources */,
-				8682AD9723D89837003F4238 /* linked_stack.cpp in Sources */,
-				E760A2FD2392049D00139E3D /* BoundedQueue.cpp in Sources */,
 				8682AD8B23D6671A003F4238 /* bounded_nn.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +434,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8682ADA423D8F440003F4238 /* TestLinkedStackINt.mm in Sources */,
+				860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,
 			);
