@@ -20,18 +20,24 @@ class linked_stack: public clean_stack<T> {
 private:
     class stack_node: public clean_base {
     private:
-        T contents_;
+//        T contents_;
+        std::unique_ptr<T> contents_;
         std::unique_ptr<stack_node> next_;
     public:
         stack_node(): contents_(), next_() {
         }
         
-        stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next): contents_(std::move(new_contents)), next_(std::move(new_next)) {
+        stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next):
+//            contents_(std::move(new_contents)),
+            next_(std::move(new_next)) {
+                contents_ = std::make_unique<T>(std::move(new_contents));
 		}
         
         stack_node(stack_node const &other) = delete;
-        stack_node(stack_node&& other): contents_(std::move(other.contents_)),
-        next_(std::move(other.next_)) {
+        stack_node(stack_node&& other):
+            contents_(std::move(other.contents_)),
+            next_(std::move(other.next_)) {
+
             other.clear();
         }
 
@@ -48,7 +54,8 @@ private:
         }
         
         T&& contents() {
-            return std::move(contents_);
+            // return std::move(contents_);
+            return std::move(*contents_);
         }
                 
         std::unique_ptr<stack_node>&& next() {
