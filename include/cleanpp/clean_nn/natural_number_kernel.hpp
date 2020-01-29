@@ -21,37 +21,9 @@ public:
     virtual void multiply_by_radix(int digit) = 0;
     virtual void divide_by_radix(int &digit) = 0;
     
-    bool operator==(natural_number_kernel &other) {
-        bool ans = false;
-        if (other.is_zero() && this->is_zero()) {
-            ans = true;
-        } else if (other.is_zero() == this->is_zero()) {
-            int last_this, last_other;
-            this->divide_by_radix(last_this);
-            other.divide_by_radix(last_other);
-            if (last_this == last_other) {
-                ans = *this == other;
-            }
-            this->multiply_by_radix(last_this);
-            other.multiply_by_radix(last_other);
-        }
-        return ans;
-    }
+    bool operator==(natural_number_kernel &other);
     
-    friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o) {
-        if (o.is_zero()) {
-            out << 0;
-        } else {
-            int d;
-            o.divide_by_radix(d);
-            if (!o.is_zero()) {
-                out << o;
-            }
-            out << d;
-            o.multiply_by_radix(d);
-        }
-        return out;
-    }    
+    friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
 };
 }
 

@@ -14,9 +14,8 @@
 #include "natural_number.hpp"
 
 namespace cleanpp {
+
 class stack_nn: public natural_number {
-private:
-    linked_stack<int> rep;
 public:
     stack_nn(int n = 0);
     
@@ -30,7 +29,10 @@ public:
     bool is_zero() override;
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;    
+private:
+    linked_stack<int> rep;
 };
+
 }
 
 #endif /* stack_nn_hpp */

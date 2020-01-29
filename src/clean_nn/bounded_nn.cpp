@@ -45,16 +45,16 @@ void bounded_nn::divide_by_radix(int &d) {
     n /= RADIX;
 }
 
-//void bounded_nn::increment() {
-//    this->n++;
-//}
-//
-//void bounded_nn::decrement() {
-//    this->n--;
-//}
-//
-//void bounded_nn::set_from_int(int n) {
-//    this->n = n;
-//}
+void bounded_nn::increment() {
+    this->n++;
+}
+
+void bounded_nn::decrement() {
+    this->n--;
+}
+
+void bounded_nn::set_from_int(int n) {
+    this->n = n;
+}
 
 }

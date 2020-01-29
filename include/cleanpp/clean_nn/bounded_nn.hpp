@@ -30,9 +30,9 @@ public:
     bool is_zero() override;
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;
-//    void increment() override;
-//    void decrement() override;
-//    void set_from_int(int n) override;
+    void increment() override;
+    void decrement() override;
+    void set_from_int(int n) override;
     
     friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
         return out << o.n;

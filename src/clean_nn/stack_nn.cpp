@@ -13,7 +13,7 @@ namespace cleanpp {
 
 stack_nn::stack_nn(int n): rep() {
     set_from_int(n);
-};
+}
 
 stack_nn::stack_nn(stack_nn&& other): rep(std::move(other.rep)) {
     other.clear();
