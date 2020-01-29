@@ -17,7 +17,7 @@
 
 namespace cleanpp {
 	template <class T>
-	class clean_stack: public clean_base<T>
+	class clean_stack: public clean_base
 	{
 	public:
 //        clean_stack<T>(const clean_stack<T> &other) = delete;

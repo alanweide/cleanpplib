@@ -55,6 +55,8 @@ static std::string stackNNToString(linked_stack<stack_nn> &s) {
 
 - (void)testIsEmpty_Empty {
     linked_stack<stack_nn> s{};
+//    clean_stack<natural_number> * s_ptr = new linked_stack<natural_number>();
+//    std::unique_ptr<clean_stack<natural_number>> s_unique = std::make_unique<clean_stack<natural_number>>();
     XCTAssert(s.is_empty());
 }
 

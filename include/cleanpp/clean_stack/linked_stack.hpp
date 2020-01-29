@@ -18,7 +18,7 @@ namespace cleanpp {
 template <class T>
 class linked_stack: public clean_stack<T> {
 private:
-    class stack_node: public clean_base<void> {
+    class stack_node: public clean_base {
     private:
     public:
         T contents;

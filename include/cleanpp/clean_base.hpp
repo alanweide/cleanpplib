@@ -13,21 +13,16 @@
 
 namespace cleanpp {
 
-	template<class T>
 	class clean_base {
 	public:
-		clean_base<T>() = default;
-        virtual ~clean_base<T>() = default;
+		clean_base() = default;
+        virtual ~clean_base() = default;
 
 //        virtual clean_base<T> operator=(clean_base<T> &other) = delete;
 //        virtual clean_base<T> operator=(clean_base<T> &&other) = 0;
         
         virtual void clear() = 0;
-        
-        friend std::ostream& operator<<(std::ostream& out, clean_base<T>& o) {
-            return out << o;
-        }
-	};
+    };
 }
 
 #endif /* clean_base_h */
