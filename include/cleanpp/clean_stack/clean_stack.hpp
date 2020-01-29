@@ -15,6 +15,8 @@
 
 #include <clean_base.hpp>
 
+#include "linked_stack.hpp"
+
 namespace cleanpp {
 	template <class T>
 	class clean_stack: public clean_base
@@ -42,6 +44,7 @@ namespace cleanpp {
             }
             return ans;
         }
+        
 	};
 }
 

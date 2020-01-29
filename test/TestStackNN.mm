@@ -20,15 +20,10 @@
 using namespace cleanpp;
 using namespace std;
 
-static string nnToString(stack_nn &o) {
+static string nnToString(unique_ptr<natural_number> &o) {
     stringstream s;
-    s << o;
+    s << *o;
     return s.str();
-}
-
-static NSString *stringToNSString(const string &n_str) {
-    NSString *n_ns = [NSString stringWithCString:n_str.c_str() encoding:[NSString defaultCStringEncoding]];
-    return n_ns;
 }
 
 - (void)setUp {
@@ -40,172 +35,354 @@ static NSString *stringToNSString(const string &n_str) {
 }
 
 - (void)testInitializerDef {
-    stack_nn n;
+    unique_ptr<natural_number> n = make_unique<stack_nn>();
+    
     string n_str = nnToString(n);
     XCTAssert(n_str == "0");
 }
 
 - (void)testInitializer_SingleDig {
-    stack_nn n(4);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(4);
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n_str == "4", @"n = %@", n_ns);
+    XCTAssert(n_str == "4", @"n = %s", n_str.c_str());
 }
 
 - (void)testInitializer_TwoDig {
-    stack_nn n(45);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(45);
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n_str == "45", @"n = %@", n_ns);
+    XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementZero {
-    stack_nn n;
-    stack_nn expected(1);
-    n.increment();
+    unique_ptr<natural_number> n = make_unique<stack_nn>();
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(1);
+    
+    n->increment();
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementNine {
-    stack_nn n(9);
-    stack_nn expected(10);
-    n.increment();
+    unique_ptr<natural_number> n = make_unique<stack_nn>(9);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(10);
+    
+    n->increment();
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementFive {
-    stack_nn n(5);
-    stack_nn expected(6);
-    n.increment();
+    unique_ptr<natural_number> n = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(6);
+    
+    n->increment();
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementOne {
-    stack_nn n(1);
-    stack_nn expected(0);
-    n.decrement();
+    unique_ptr<natural_number> n = make_unique<stack_nn>(1);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(0);
+    
+    n->decrement();
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementTen {
-    stack_nn n(10);
-    stack_nn expected(9);
-    n.decrement();
-//    std::cout << "n = " << n << "\n";
+    unique_ptr<natural_number> n = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(9);
+    
+    n->decrement();
+
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementFive {
-    stack_nn n(5);
-    stack_nn expected(4);
-    n.decrement();
+    unique_ptr<natural_number> n = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(4);
+    
+    n->decrement();
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testMultRadZero_Zero {
-    stack_nn n(0);
-    stack_nn expected(0);
-    n.multiply_by_radix(0);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(0);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(0);
+    
+    n->multiply_by_radix(0);
+    
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testMultRadZero_Five {
-    stack_nn n(0);
-    stack_nn expected(5);
-    
-    n.multiply_by_radix(5);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(0);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(5);
+
+    n->multiply_by_radix(5);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testMultRadFive_Zero {
-    stack_nn n(5);
-    stack_nn expected(50);
-    
-    n.multiply_by_radix(0);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(50);
+
+    n->multiply_by_radix(0);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testMultRadFive_Five {
-    stack_nn n(5);
-    stack_nn expected(55);
-    
-    n.multiply_by_radix(5);
+    unique_ptr<natural_number> n = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(55);
+
+    n->multiply_by_radix(5);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDivRadZero {
-    stack_nn n(0);
-    stack_nn expected(0);
-    
+    unique_ptr<natural_number> n = make_unique<stack_nn>(0);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(0);
+
     int d = 4;
-    n.divide_by_radix(d);
+    n->divide_by_radix(d);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
     XCTAssert(d == 0);
 }
 
 - (void)testDivRadFive {
-    stack_nn n(5);
-    stack_nn expected(0);
-    
+    unique_ptr<natural_number> n = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(0);
+
     int d = 4;
-    n.divide_by_radix(d);
+    n->divide_by_radix(d);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
     XCTAssert(d == 5, @"d = %d", d);
 }
 
 - (void)testDiveRadFifty {
-    stack_nn n(50);
-    stack_nn expected(5);
-    
+    unique_ptr<natural_number> n = make_unique<stack_nn>(50);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(5);
+
     int d = 4;
-    n.divide_by_radix(d);
+    n->divide_by_radix(d);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
     XCTAssert(d == 0);
 }
 
 - (void)testDivRadFiftyFive {
-    stack_nn n(55);
-    stack_nn expected(5);
-    
+    unique_ptr<natural_number> n = make_unique<stack_nn>(55);
+    unique_ptr<natural_number> expected= make_unique<stack_nn>(5);
+
     int d = 4;
-    n.divide_by_radix(d);
+    n->divide_by_radix(d);
     
     string n_str = nnToString(n);
-    NSString * n_ns = stringToNSString(n_str);
-    XCTAssert(n == expected, @"n = %@", n_ns);
+    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
     XCTAssert(d == 5, @"d = %d", d);
+}
+
+- (void)testAddZeroZero {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>();
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>();
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddZeroFive {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(5);
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddFiveZero {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>();
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddFourFour {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(4);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(4);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(8);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(4);
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddFiveFive {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(5);
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddTenTen {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(20);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(10);
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAdd57_66{
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(57);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(66);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(123);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(66);
+    
+    add(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtractZeroZero {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>();
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>();
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtractFiveZero {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>();
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(5);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>();
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtractFourFour {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(4);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(4);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(0);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(4);
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtractTenTen {
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(10);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(0);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(10);
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtract77_66{
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(77);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(66);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(11);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(66);
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testSubtract77_6{
+    unique_ptr<natural_number> n1 = make_unique<stack_nn>(77);
+    unique_ptr<natural_number> n2 = make_unique<stack_nn>(6);
+    unique_ptr<natural_number> n1_exp = make_unique<stack_nn>(71);
+    unique_ptr<natural_number> n2_exp = make_unique<stack_nn>(6);
+    
+    subtract(n1, n2);
+    
+    string n1_str = nnToString(n1);
+    string n2_str = nnToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
 }
 
 @end

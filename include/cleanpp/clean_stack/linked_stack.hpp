@@ -20,41 +20,48 @@ class linked_stack: public clean_stack<T> {
 private:
     class stack_node: public clean_base {
     private:
+        T contents_;
+        std::unique_ptr<stack_node> next_;
     public:
-        T contents;
-        std::unique_ptr<stack_node> next;
-        
-        stack_node(): contents(), next() {
+        stack_node(): contents_(), next_() {
         }
         
-        stack_node(T& new_contents): contents(std::move(new_contents)), next() {
+        stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next): contents_(std::move(new_contents)), next_(std::move(new_next)) {
 		}
         
         stack_node(stack_node const &other) = delete;
-        stack_node(stack_node&& other): contents(std::move(other.contents)),
-        next(std::move(other.next)) {
+        stack_node(stack_node&& other): contents_(std::move(other.contents_)),
+        next_(std::move(other.next_)) {
             other.clear();
         }
 
         
-//        stack_node& operator=(const stack_node& other) = delete;
+        stack_node& operator=(const stack_node& other) = delete;
         stack_node& operator=(stack_node&& other) {
             if (&other == this) {
                 return *this;
             }
-            contents = std::move(other.contents);
-            next = std::move(other.next);
+            contents_ = std::move(other.contents_);
+            next_ = std::move(other.next_);
             other.clear();
             return *this;
         }
         
+        T&& contents() {
+            return std::move(contents_);
+        }
+                
+        std::unique_ptr<stack_node>&& next() {
+            return std::move(next_);
+        }
+        
         void clear() override {
-			contents = T();
-            next.reset();
+            contents();
+            next_.reset();
         }
         
         friend std::ostream& operator<<(std::ostream& out, stack_node& o) {
-            return out << o->contents;
+            return out << o->contents_;
         }
         
         virtual ~stack_node() = default;
@@ -92,14 +99,12 @@ public:
 
     
     void push(T& x) override {
-        auto new_top = std::make_unique<stack_node>(x);
-        new_top->next = std::move(top_ptr_);
-        top_ptr_ = std::move(new_top);
+        top_ptr_ = std::make_unique<stack_node>(x, top_ptr_);
     }
     
     void pop(T& x) override {
-        x = std::move(top_ptr_->contents);
-        top_ptr_ = std::move(top_ptr_->next);
+        x = top_ptr_->contents();
+        top_ptr_ = top_ptr_->next();
     }
     
     bool is_empty() const override {

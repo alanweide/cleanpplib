@@ -22,12 +22,12 @@
 using namespace cleanpp;
 using namespace std;
 
-static NSString *stringToNSString(const std::string &s_str) {
+static NSString *stringToNSString(const string &s_str) {
     NSString *s_ns = [NSString stringWithCString:s_str.c_str() encoding:[NSString defaultCStringEncoding]];
     return s_ns;
 }
 
-static std::string stackIntToString(linked_stack<int> &s) {
+static string stackIntToString(linked_stack<int> &s) {
     stringstream s_stm;
     s_stm << s;
     string s_str = s_stm.str();
@@ -47,7 +47,7 @@ static std::string stackIntToString(linked_stack<int> &s) {
 - (void)testInitializerDef {
     linked_stack<int> s{};
     string empty_stack = "<>";
-    std::string s_str = stackIntToString(s);
+    string s_str = stackIntToString(s);
     NSString * s_ns = stringToNSString(s_str);
     XCTAssert(s_str == empty_stack, @"%@", s_ns);
 }
@@ -79,7 +79,7 @@ static std::string stackIntToString(linked_stack<int> &s) {
     int z = 0;
     s.push(z);
     
-    std::string s_str = stackIntToString(s);
+    string s_str = stackIntToString(s);
     NSString * s_ns = stringToNSString(s_str);
     XCTAssert(s_str == expected_stack, @"%@", s_ns);
 }
@@ -92,7 +92,7 @@ static std::string stackIntToString(linked_stack<int> &s) {
     s.push(z);
     s.push(o);
     
-    std::string s_str = stackIntToString(s);
+    string s_str = stackIntToString(s);
     NSString * s_ns = stringToNSString(s_str);
     XCTAssert(s_str == expected_stack, @"%@", s_ns);
 }
@@ -105,7 +105,7 @@ static std::string stackIntToString(linked_stack<int> &s) {
     s.push(z);
     s.pop(o);
     
-    std::string s_str = stackIntToString(s);
+    string s_str = stackIntToString(s);
     NSString * s_ns = stringToNSString(s_str);
     XCTAssert(s_str == expected_stack, @"%@", s_ns);
     XCTAssert(o == 0, @"%d", o);
@@ -119,7 +119,7 @@ static std::string stackIntToString(linked_stack<int> &s) {
     s.push(a);
     s.pop(b);
     
-    std::string s_str = stackIntToString(s);
+    string s_str = stackIntToString(s);
     NSString * s_ns = stringToNSString(s_str);
     XCTAssert(s_str == expected_stack, @"%@", s_ns);
     XCTAssert(b == 5, @"%d", b);
