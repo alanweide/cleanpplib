@@ -25,7 +25,7 @@ using namespace std;
 
 static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
     stringstream s_stm;
-    s_stm << *static_cast<linked_stack<bounded_nn> *>(s.get());
+    s_stm << *s;
     string s_str = s_stm.str();
     return s_str;
 }

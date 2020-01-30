@@ -21,6 +21,8 @@ namespace cleanpp {
 	template <class T>
 	class clean_stack: public clean_base
 	{
+    private:
+        virtual std::string to_str() = 0;
 	public:
 //        clean_stack<T>(const clean_stack<T> &other) = delete;
 //		clean_stack<T>& operator=(const clean_stack<T>& other) = delete;
@@ -38,13 +40,16 @@ namespace cleanpp {
                 T this_top, other_top;
                 pop(this_top);
                 other.pop(other_top);
-                ans = *this == other;
+                ans = (*this == other);
                 push(this_top);
                 other.push(other_top);
             }
             return ans;
         }
-        
+
+        friend std::ostream& operator<<(std::ostream& out, clean_stack<T>& o) {
+            return out << o.to_str();
+        }
 	};
 }
 

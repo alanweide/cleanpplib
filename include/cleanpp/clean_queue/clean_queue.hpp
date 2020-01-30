@@ -17,12 +17,18 @@
 
 namespace cleanpp {
 	template <typename T>  // template definition
-	class clean_queue: public clean_base<T>
+	class clean_queue: public clean_base
 	{
+    private:
+        virtual std::string to_str() = 0;
 	public:
-		virtual void enqueue(std::unique_ptr<T>& x) = 0;
-		virtual void dequeue(std::unique_ptr<T>& x) = 0;
+		virtual void enqueue(T& x) = 0;
+		virtual void dequeue(T& x) = 0;
 		virtual bool isEmpty() const = 0;
+        
+        friend std::ostream& operator<<(std::ostream& out, clean_queue<T>& o) {
+            return out << o.to_str();
+        }
 	};
 }
 

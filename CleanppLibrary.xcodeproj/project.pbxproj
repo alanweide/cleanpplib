@@ -11,6 +11,7 @@
 		860934AF23E2102D00D38073 /* natural_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934AE23E2102D00D38073 /* natural_number.cpp */; };
 		860934B123E2124900D38073 /* natural_number_kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934B023E2124900D38073 /* natural_number_kernel.cpp */; };
 		8663DF7E23E2210D00DCA186 /* abstract_template.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8663DF7C23E2210D00DCA186 /* abstract_template.hpp */; };
+		8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */; };
 		8682AD8723D66465003F4238 /* natural_number_kernel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8423D66465003F4238 /* natural_number_kernel.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD8823D6668E003F4238 /* natural_number.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD8B23D6671A003F4238 /* bounded_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD8A23D6671A003F4238 /* bounded_nn.cpp */; };
@@ -47,6 +48,7 @@
 		860934AE23E2102D00D38073 /* natural_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number.cpp; sourceTree = "<group>"; };
 		860934B023E2124900D38073 /* natural_number_kernel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number_kernel.cpp; sourceTree = "<group>"; };
 		8663DF7C23E2210D00DCA186 /* abstract_template.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = abstract_template.hpp; sourceTree = "<group>"; };
+		8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		8682AD8423D66465003F4238 /* natural_number_kernel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = natural_number_kernel.hpp; sourceTree = "<group>"; };
 		8682AD8823D6668E003F4238 /* natural_number.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = natural_number.hpp; sourceTree = "<group>"; };
 		8682AD8A23D6671A003F4238 /* bounded_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bounded_nn.cpp; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
 				8682ADA323D8F440003F4238 /* TestLinkedStackInt.mm */,
 				860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */,
+				8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */,
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
@@ -455,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8682ADA423D8F440003F4238 /* TestLinkedStackInt.mm in Sources */,
+				8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */,
 				860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,

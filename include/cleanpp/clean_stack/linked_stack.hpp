@@ -11,6 +11,7 @@
 
 #include <type_traits>
 #include <stdio.h>
+#include <sstream>
 #include "clean_stack.hpp"
 
 namespace cleanpp {
@@ -24,7 +25,9 @@ private:
         std::unique_ptr<T> contents_;
         std::unique_ptr<stack_node> next_;
     public:
-        stack_node(): contents_(), next_() {
+        stack_node() {
+            contents_ = std::make_unique<T>();
+            next_ = nullptr;
         }
         
         stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next):
@@ -63,14 +66,10 @@ private:
         }
         
         void clear() override {
-            contents();
+            contents_ = std::make_unique<T>();
             next_.reset();
         }
-        
-        friend std::ostream& operator<<(std::ostream& out, stack_node& o) {
-            return out << o->contents_;
-        }
-        
+                
         virtual ~stack_node() = default;
     };
     
@@ -98,10 +97,10 @@ public:
     }
     
     void clear() override {
-		if (top_ptr_ != nullptr) {
+		if (!is_empty()) {
 			top_ptr_.reset();
 		}
-		assert(top_ptr_ == nullptr);
+		assert(is_empty());
     }
 
     
@@ -110,6 +109,7 @@ public:
     }
     
     void pop(T& x) override {
+        assert(!is_empty());
         x = top_ptr_->contents();
         top_ptr_ = top_ptr_->next();
     }
@@ -118,15 +118,17 @@ public:
         return top_ptr_ == nullptr;
     }
     
-    friend std::ostream& operator<<(std::ostream& out, linked_stack<T>& o) {
+private:
+    std::string to_str() override {
+        std::stringstream out;
         out << "<";
         linked_stack<T> temp{};
-        while (!o.is_empty())
+        while (!is_empty())
         {
             T top;
-            o.pop(top);
+            pop(top);
             out << top;
-            if (!o.is_empty())
+            if (!is_empty())
             {
                 out << ", ";
             }
@@ -135,10 +137,10 @@ public:
         while (!temp.is_empty()) {
             T top;
             temp.pop(top);
-            o.push(top);
+            push(top);
         }
         out << ">";
-        return out;
+        return out.str();
     }
 };
 
