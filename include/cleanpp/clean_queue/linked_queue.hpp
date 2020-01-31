@@ -18,64 +18,16 @@ namespace cleanpp {
 template <typename T>
 class linked_queue: public clean_queue<T> {
 private:
-    class stack_node: public clean_base {
-    private:
-        std::unique_ptr<T> contents_;
-        std::unique_ptr<stack_node> next_;
-    public:
-        stack_node(): contents_(), next_() {
-        }
-        
-        stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next):
-        next_(std::move(new_next)) {
-            contents_ = std::make_unique<T>(std::move(new_contents));
-        }
-        
-        stack_node(stack_node const &other) = delete;
-        stack_node(stack_node&& other):
-        contents_(std::move(other.contents_)),
-        next_(std::move(other.next_)) {
-            
-            other.clear();
-        }
-        
-        
-        stack_node& operator=(const stack_node& other) = delete;
-        stack_node& operator=(stack_node&& other) {
-            if (&other == this) {
-                return *this;
-            }
-            contents_ = std::move(other.contents_);
-            next_ = std::move(other.next_);
-            other.clear();
-            return *this;
-        }
-        
-        T&& contents() {
-            return std::move(*contents_);
-        }
-        
-        std::unique_ptr<stack_node>&& next() {
-            return std::move(next_);
-        }
-        
-        void clear() override {
-            contents_ = std::make_unique<T>();
-            next_.reset();
-        }
-        
-        virtual ~stack_node() = default;
-    };
     class queue_node {
     private:
+        std::unique_ptr<T> contents_;
+        std::shared_ptr<queue_node> next_;
+        
         void clear() {
             contents_();
             next_();
         }
     public:
-        std::unique_ptr<T> contents_;
-        std::shared_ptr<queue_node> next_;
-        
         queue_node(): contents_(), next_() {}
         
         queue_node(T& new_contents):
@@ -99,6 +51,18 @@ private:
             next_ = std::move(other.next_);
             other.clear();
             return *this;
+        }
+        
+        T&& contents() {
+            return std::move(*contents_);
+        }
+        
+        void set_next(std::shared_ptr<queue_node>& new_next) {
+            next_ = new_next;
+        }
+        
+        std::shared_ptr<queue_node>&& next() {
+            return std::move(next_);
         }
         
         friend std::ostream& operator<<(std::ostream& out, const queue_node& node) {
@@ -136,15 +100,10 @@ public:
         tail_ptr_.reset();
     }
     
-    //		void swap(linked_queue<T>& other) {
-    //			std::swap(top_ptr_, other.top_ptr_);
-    //			std::swap(tail_ptr_, other.tail_ptr_);
-    //		}
-    
     void enqueue(T& x) {
         auto new_tail = std::make_shared<queue_node>(x);
         if (tail_ptr_ != nullptr) {
-            tail_ptr_->next = new_tail;
+            tail_ptr_->set_next(new_tail);
         } else {
             top_ptr_ = new_tail;
         }
@@ -154,13 +113,11 @@ public:
     }
     
     void dequeue(T& x) {
-        //			std::swap(x, top_ptr_->contents);
-        //			std::swap(top_ptr_, top_ptr_->next);
         x = top_ptr_->contents();
         top_ptr_ = top_ptr_->next();
     }
     
-    bool isEmpty() const {
+    bool is_empty() const {
         return top_ptr_ == nullptr;
     }
     
@@ -169,19 +126,19 @@ private:
         std::stringstream out;
         out << "<";
         std::unique_ptr<clean_queue<T>> temp = std::make_unique<linked_queue<T>>();
-        while (!isEmpty())
+        while (!is_empty())
         {
             T elem;
             dequeue(elem);
             out << elem;
-            if (!isEmpty())
+            if (!is_empty())
             {
                 out << ", ";
             }
             temp->enqueue(elem);
         }
 //        this(std::move(*temp));
-        while (!temp->isEmpty())
+        while (!temp->is_empty())
         {
             T elem;
             temp->dequeue(elem);

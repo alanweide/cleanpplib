@@ -62,7 +62,7 @@ public:
         head_ = (head_ + 1) % MAX_SIZE;
     }
     
-    bool isEmpty() const {
+    bool is_empty() const {
         return length_ == 0;
     }
     

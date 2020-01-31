@@ -24,7 +24,7 @@ namespace cleanpp {
 	public:
 		virtual void enqueue(T& x) = 0;
 		virtual void dequeue(T& x) = 0;
-		virtual bool isEmpty() const = 0;
+		virtual bool is_empty() const = 0;
         
         friend std::ostream& operator<<(std::ostream& out, clean_queue<T>& o) {
             return out << o.to_str();

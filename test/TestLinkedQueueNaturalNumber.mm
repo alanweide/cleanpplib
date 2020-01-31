@@ -23,7 +23,7 @@
 using namespace cleanpp;
 using namespace std;
 
-static string stackNNToString(unique_ptr<clean_queue<bounded_nn>> &s) {
+static string queueNNToString(unique_ptr<clean_queue<bounded_nn>> &s) {
     stringstream s_stm;
     s_stm << *s;
     string s_str = s_stm.str();
@@ -41,79 +41,80 @@ static string stackNNToString(unique_ptr<clean_queue<bounded_nn>> &s) {
 - (void)testInitializerDef {
     std::unique_ptr<clean_queue<bounded_nn>> q = std::make_unique<linked_queue<bounded_nn>>();
     string empty_stack = "<>";
-    string q_str = stackNNToString(q);
+    string q_str = queueNNToString(q);
     XCTAssert(q_str == empty_stack, @"%s", q_str.c_str());
 }
-//
-//- (void)testIsEmpty_Empty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    XCTAssert(s->is_empty());
-//}
-//
-//- (void)testIsEmpty_NonEmpty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    bounded_nn a(1);
-//    s->push(a);
-//    XCTAssert(!s->is_empty());
-//}
-//
-//- (void)testIsEmpty_Empty_PushPop {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    bounded_nn a(1), b(2);
-//    s->push(a);
-//    s->pop(b);
-//    XCTAssert(s->is_empty());
-//}
-//
-//- (void)testPushToEmpty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    string expected_stack = "<1>";
-//
-//    bounded_nn a(1);
-//    s->push(a);
-//
-//    string s_str = stackNNToString(s);
-//    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
-//}
-//
-//- (void)testPushToNonEmpty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    string expected_stack = "<2, 1>";
-//
-//    bounded_nn a(1), b(2);
-//    s->push(a);
-//    s->push(b);
-//
-//    string s_str = stackNNToString(s);
-//    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
-//}
-//
-//- (void)testPopEmptyToEmpty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    string expected_stack = "<>";
-//    bounded_nn expected_a(0);
-//
-//    bounded_nn a(1), b(2);
-//    s->push(a);
-//    s->pop(b);
-//
-//    string s_str = stackNNToString(s);
-//    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
-//    XCTAssert(a == expected_a);
-//}
-//
-//- (void)testPopNonEmptyToEmpty {
-//    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-//    string expected_stack = "<>";
-//    bounded_nn expected_b(1);
-//
-//    bounded_nn a(1), b(2);
-//    s->push(a);
-//    s->pop(b);
-//
-//    string s_str = stackNNToString(s);
-//    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
-//    XCTAssert(b == expected_b);
-//}
+
+- (void)testIsEmpty_Empty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    XCTAssert(q->is_empty());
+}
+
+- (void)testIsEmpty_NonEmpty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    bounded_nn a(1);
+    q->enqueue(a);
+    XCTAssert(!q->is_empty());
+}
+
+- (void)testIsEmpty_Empty_EnqDeq {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    bounded_nn a(1), b(2);
+    q->enqueue(a);
+    q->dequeue(b);
+    XCTAssert(q->is_empty());
+}
+
+- (void)testEnqueueToEmpty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    string expected = "<1>";
+
+    bounded_nn a(1);
+    q->enqueue(a);
+
+    string q_str = queueNNToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+}
+
+- (void)testEnqueueToNonEmpty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    string expected = "<1, 2>";
+
+    bounded_nn a(1), b(2);
+    q->enqueue(a);
+    q->enqueue(b);
+
+    string q_str = queueNNToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+}
+
+- (void)testDequeueEmptyToEmpty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    string expected = "<>";
+    bounded_nn expected_a(1);
+
+    bounded_nn a(1);
+    q->enqueue(a);
+    q->dequeue(a);
+
+    string q_str = queueNNToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+    XCTAssert(a == expected_a);
+}
+
+- (void)testDequeueNonEmptyToEmpty {
+    unique_ptr<clean_queue<bounded_nn>> q = make_unique<linked_queue<bounded_nn>>();
+    string expected = "<>";
+    bounded_nn expected_a(0), expected_b(1);
+
+    bounded_nn a(1), b(2);
+    q->enqueue(a);
+    q->dequeue(b);
+
+    string q_str = queueNNToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+    XCTAssert(a == expected_a);
+    XCTAssert(b == expected_b);
+}
 
 @end
