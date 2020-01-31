@@ -18,15 +18,10 @@ namespace cleanpp {
 template <typename T>
 class linked_queue: public clean_queue<T> {
 private:
-    class queue_node {
+    class queue_node: public clean_base {
     private:
         std::unique_ptr<T> contents_;
         std::shared_ptr<queue_node> next_;
-        
-        void clear() {
-            contents_();
-            next_();
-        }
     public:
         queue_node(): contents_(), next_() {}
         
@@ -51,6 +46,11 @@ private:
             next_ = std::move(other.next_);
             other.clear();
             return *this;
+        }
+        
+        void clear() {
+            contents_.reset();
+            next_.reset();
         }
         
         T&& contents() {

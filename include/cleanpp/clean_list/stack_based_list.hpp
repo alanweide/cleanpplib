@@ -1,41 +1,40 @@
 //
-//  list_with_cursor.hpp
+//  stack_based_list.hpp
 //  Move Semantics
 //
 //  Created by Alan Weide on 10/19/18.
 //  Copyright © 2018 Alan Weide. All rights reserved.
 //
 
-#ifndef list_with_cursor_h
-#define list_with_cursor_h
+#ifndef stack_based_list_h
+#define stack_based_list_h
 
-#include "CleanList.hpp"
+#include "clean_list.hpp"
 
-#include <linked_stack.hpp>
-#include <bounded_stack.hpp>
+#include <clean_stack/linked_stack.hpp>
 
 namespace cleanpp {
 
 	template <typename T>
-	class list_with_cursor: public list_secondary<T> {
+	class stack_based_list: public list_secondary<T> {
 	private:
 		std::unique_ptr<clean_stack<T>> prec_;
 		std::unique_ptr<clean_stack<T>> rem_;
 	public:
-		list_with_cursor<T>() {
+		stack_based_list<T>() {
             prec_ = std::make_unique<linked_stack<T>>();
 			rem_ = std::make_unique<linked_stack<T>>();
 		}
 
-		list_with_cursor<T>(clean_list<T> const &other) = delete;
-		list_with_cursor<T>(clean_list<T>&& other) {
+		stack_based_list<T>(stack_based_list<T> const &other) = delete;
+		stack_based_list<T>(stack_based_list<T>&& other) {
 			prec_ = std::move(other.prec_);
 			rem_ = std::move(other.rem_);
 			other.clear(); // done "for free" by previous two statements in this case
 		}
 
-		list_with_cursor<T>& operator=(clean_list<T> const &other) = delete;
-		list_with_cursor<T>& operator=(clean_list<T>&& other) {
+		stack_based_list<T>& operator=(stack_based_list<T> const &other) = delete;
+		stack_based_list<T>& operator=(stack_based_list<T>&& other) {
 			if (&other == this) {
 				return this;
 			}
@@ -45,64 +44,65 @@ namespace cleanpp {
 			return this;
 		}
         
-        bool operator==(list_with_cursor<T> &other) override {
+        bool operator==(stack_based_list<T> &other) {
             return *(this->prec_) == *(other.prec_) && *(this->rem_) == *(other.rem_);
         }
 
-		void clear() {
+		void clear() override {
 			prec_->clear();
 			rem_->clear();
 		}
 
-		void swap(clean_list<T>& other) {
+		void swap(stack_based_list<T>& other) {
 			prec_->swap(other.prec_);
 			rem_->swap(other.rem_);
 		}
 
-		void advance() {
+		void advance() override {
 			T x{ };
 			rem_->pop(x);
 			prec_->push(x);
 		}
 
-		void retreat() {
+		void retreat() override {
 			T x{ };
 			prec_->pop(x);
 			rem_->push(x);
 		}
 
-		void insert(T& x) {
+		void insert(T& x) override {
 			prec_->push(x);
 		}
 
-		void remove(T& x) {
-			prec_->pop(x);
+		void remove(T& x) override {
+			rem_->pop(x);
 		}
 
-		bool isAtEnd() {
-			return rem_->isEmpty();
+		bool is_at_end() override {
+			return rem_->is_empty();
 		}
 
-		bool isAtFront() {
-			return prec_->isEmpty();
+		bool is_at_front() override {
+			return prec_->is_empty();
 		}
 		
-		std::ostream& print(std::ostream& out) {
+		std::string to_str() override {
+            std::stringstream out;
 			out << "(";
-			clean_stack<T>* rev_prec = new linked_stack<T>{ };
-			while (!prec_->isEmpty()) {
+			std::unique_ptr<clean_stack<T>> rev_prec = std::make_unique<linked_stack<T>>();
+			while (!prec_->is_empty()) {
 				T x;
 				prec_->pop(x);
 				rev_prec->push(x);
 			}
 			out << *rev_prec;
-			while (!rev_prec->isEmpty()) {
+			while (!rev_prec->is_empty()) {
 				T x;
 				rev_prec->pop(x);
 				prec_->push(x);
 			}
 			out << ", " << *rem_ << ")";
-			return out;
+            return out.str();
 		}
 
 	};
