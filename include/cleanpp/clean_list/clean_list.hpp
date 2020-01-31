@@ -68,6 +68,7 @@ public:
             this->retreat();
             pos--;
         }
+        
         return out.str();
     }
 };
