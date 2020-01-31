@@ -63,8 +63,10 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 - (void)testIsEmpty_Empty_EnqDeq {
     unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
     nn_type a(1), b(2);
+    
     q->enqueue(a);
     q->dequeue(b);
+    
     XCTAssert(q->is_empty());
 }
 
@@ -73,6 +75,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
     string expected = "<1>";
 
     nn_type a(1);
+    
     q->enqueue(a);
 
     string q_str = queueNNToString(q);
@@ -85,6 +88,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 
     nn_type a(1), b(2);
     q->enqueue(a);
+    
     q->enqueue(b);
 
     string q_str = queueNNToString(q);
@@ -98,6 +102,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 
     nn_type a(1);
     q->enqueue(a);
+    
     q->dequeue(a);
 
     string q_str = queueNNToString(q);
@@ -112,6 +117,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 
     nn_type a(1), b(2);
     q->enqueue(a);
+    
     q->dequeue(b);
 
     string q_str = queueNNToString(q);
