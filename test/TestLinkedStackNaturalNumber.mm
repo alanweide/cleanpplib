@@ -13,6 +13,7 @@
 #include <sstream>
 #include <clean_stack/linked_stack.hpp>
 #include <clean_nn/bounded_nn.hpp>
+#include <clean_nn/stack_nn.hpp>
 
 @interface TestLinkedStackNaturalNumber : XCTestCase
 
@@ -23,7 +24,9 @@
 using namespace cleanpp;
 using namespace std;
 
-static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
+typedef stack_nn nn_type;
+
+static string stackNNToString(unique_ptr<clean_stack<nn_type>> &s) {
     stringstream s_stm;
     s_stm << *s;
     string s_str = s_stm.str();
@@ -39,37 +42,37 @@ static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
 }
 
 - (void)testInitializerDef {
-    std::unique_ptr<clean_stack<bounded_nn>> s = std::make_unique<linked_stack<bounded_nn>>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<linked_stack<nn_type>>();
     string empty_stack = "<>";
     string s_str = stackNNToString(s);
     XCTAssert(s_str == empty_stack, @"%s", s_str.c_str());
 }
 
 - (void)testIsEmpty_Empty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
     XCTAssert(s->is_empty());
 }
 
 - (void)testIsEmpty_NonEmpty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-    bounded_nn a(1);
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
+    nn_type a(1);
     s->push(a);
     XCTAssert(!s->is_empty());
 }
 
 - (void)testIsEmpty_Empty_PushPop {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
-    bounded_nn a(1), b(2);
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
+    nn_type a(1), b(2);
     s->push(a);
     s->pop(b);
     XCTAssert(s->is_empty());
 }
 
 - (void)testPushToEmpty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
     string expected_stack = "<1>";
     
-    bounded_nn a(1);
+    nn_type a(1);
     s->push(a);
     
     string s_str = stackNNToString(s);
@@ -77,10 +80,10 @@ static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
 }
 
 - (void)testPushToNonEmpty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
     string expected_stack = "<2, 1>";
     
-    bounded_nn a(1), b(2);
+    nn_type a(1), b(2);
     s->push(a);
     s->push(b);
     
@@ -89,11 +92,11 @@ static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
 }
 
 - (void)testPopEmptyToEmpty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
     string expected_stack = "<>";
-    bounded_nn expected_a(0);
+    nn_type expected_a(0);
     
-    bounded_nn a(1), b(2);
+    nn_type a(1), b(2);
     s->push(a);
     s->pop(b);
     
@@ -103,11 +106,11 @@ static string stackNNToString(unique_ptr<clean_stack<bounded_nn>> &s) {
 }
 
 - (void)testPopNonEmptyToEmpty {
-    unique_ptr<clean_stack<bounded_nn>> s = make_unique<linked_stack<bounded_nn>>();
+    unique_ptr<clean_stack<nn_type>> s = make_unique<linked_stack<nn_type>>();
     string expected_stack = "<>";
-    bounded_nn expected_b(1);
+    nn_type expected_b(1);
     
-    bounded_nn a(1), b(2);
+    nn_type a(1), b(2);
     s->push(a);
     s->pop(b);
     

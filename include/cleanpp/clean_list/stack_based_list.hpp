@@ -59,12 +59,14 @@ namespace cleanpp {
 		}
 
 		void advance() override {
+            assert(!is_at_end());
 			T x{ };
 			rem_->pop(x);
 			prec_->push(x);
 		}
 
 		void retreat() override {
+            assert(!is_at_front());
 			T x{ };
 			prec_->pop(x);
 			rem_->push(x);
@@ -75,6 +77,7 @@ namespace cleanpp {
 		}
 
 		void remove(T& x) override {
+            assert(!is_at_end());
 			rem_->pop(x);
 		}
 
