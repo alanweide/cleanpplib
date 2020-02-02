@@ -25,6 +25,7 @@ using namespace cleanpp;
 using namespace std;
 
 typedef stack_nn nn_type;
+typedef stack_based_list<nn_type> list_nn_type;
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,7 +36,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testInitializerDef {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<>, <>)";
     
     string list_str = list->to_str();
@@ -43,20 +44,20 @@ typedef stack_nn nn_type;
 }
 
 - (void)testIsAtFrontEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     XCTAssert(list->is_at_front());
 }
 
 - (void)testIsAtEndEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     XCTAssert(list->is_at_end());
 }
 
 - (void)testIsAtFrontNonemptyTrue {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     nn_type a(1);
     list->insert(a);
     list->retreat();
@@ -65,8 +66,8 @@ typedef stack_nn nn_type;
 }
 
 - (void)testIsAtFrontNonemptyFalse {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     nn_type a(1);
     list->insert(a);
     
@@ -74,8 +75,8 @@ typedef stack_nn nn_type;
 }
 
 - (void)testIsAtEndNonemptyTrue {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     nn_type a(1);
     list->insert(a);
     list->retreat();
@@ -84,8 +85,8 @@ typedef stack_nn nn_type;
 }
 
 - (void)testIsAtEndNonemptyFalse {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
-    
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+
     nn_type a(1);
     list->insert(a);
     
@@ -93,7 +94,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testInsertFromEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1>, <>)";
     nn_type a_exp;
     
@@ -107,7 +108,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testInsertFromNonemptyAtEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1, 2>, <>)";
     nn_type a_exp, b_exp;
     
@@ -123,7 +124,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testInsertFromNonemptyAtFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<2>, <1>)";
     nn_type a_exp, b_exp;
     
@@ -140,7 +141,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testInsertNonemptyInMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
     
@@ -159,7 +160,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testRetreatFromEndToFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<>, <1>)";
     nn_type a_exp;
     
@@ -174,7 +175,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testRetreatFromMiddleToFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<>, <2, 1>)";
     nn_type a_exp, b_exp;
     
@@ -192,7 +193,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testRetreatFromEndToMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
@@ -209,7 +210,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testRetreatMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1>, <3, 2>)";
     nn_type a_exp, b_exp, c_exp;
 
@@ -229,7 +230,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testAdvanceFrontToEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1>, <>)";
     nn_type a_exp;
     
@@ -245,7 +246,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testAdvanceFromMiddleToEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<2, 1>, <>)";
     nn_type a_exp, b_exp;
     
@@ -263,7 +264,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testAdvanceFromFrontToMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
@@ -282,7 +283,7 @@ typedef stack_nn nn_type;
 }
 
 - (void)testAdvanceMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<stack_based_list<nn_type>>();
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
     string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
 

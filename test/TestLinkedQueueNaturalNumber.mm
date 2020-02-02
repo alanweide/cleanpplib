@@ -25,6 +25,7 @@ using namespace cleanpp;
 using namespace std;
 
 typedef stack_nn nn_type;
+typedef linked_queue<nn_type> queue_nn_type;
 
 static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
     stringstream s_stm;
@@ -42,26 +43,26 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 }
 
 - (void)testInitializerDef {
-    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     string empty_stack = "<>";
     string q_str = queueNNToString(q);
     XCTAssert(q_str == empty_stack, @"%s", q_str.c_str());
 }
 
 - (void)testIsEmpty_Empty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     XCTAssert(q->is_empty());
 }
 
 - (void)testIsEmpty_NonEmpty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     nn_type a(1);
     q->enqueue(a);
     XCTAssert(!q->is_empty());
 }
 
 - (void)testIsEmpty_Empty_EnqDeq {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     nn_type a(1), b(2);
     
     q->enqueue(a);
@@ -71,7 +72,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 }
 
 - (void)testEnqueueToEmpty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     string expected = "<1>";
 
     nn_type a(1);
@@ -83,7 +84,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 }
 
 - (void)testEnqueueToNonEmpty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     string expected = "<1, 2>";
 
     nn_type a(1), b(2);
@@ -96,7 +97,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 }
 
 - (void)testDequeueEmptyToEmpty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     string expected = "<>";
     nn_type expected_a(1);
 
@@ -111,7 +112,7 @@ static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
 }
 
 - (void)testDequeueNonEmptyToEmpty {
-    unique_ptr<clean_queue<nn_type>> q = make_unique<linked_queue<nn_type>>();
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
     string expected = "<>";
     nn_type expected_a(0), expected_b(1);
 
