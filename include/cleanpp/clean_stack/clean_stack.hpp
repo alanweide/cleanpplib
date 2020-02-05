@@ -24,8 +24,6 @@ namespace cleanpp {
     private:
         virtual std::string to_str() = 0;
 	public:
-//        clean_stack<T>(const clean_stack<T> &other) = delete;
-//		clean_stack<T>& operator=(const clean_stack<T>& other) = delete;
 		virtual void push(T& x) = 0;
 		virtual void pop(T& x) = 0;
 		virtual bool is_empty() const = 0;
