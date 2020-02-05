@@ -43,6 +43,58 @@ typedef stack_based_list<nn_type> list_nn_type;
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
+- (void)testClearFromEmpty {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    
+    list->clear();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testClearFromEmptyRem {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    
+    nn_type a(5);
+    list->insert(a);
+    
+    list->clear();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testClearFromEmptyPrec {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    
+    nn_type a(5);
+    list->insert(a);
+    list->retreat();
+    
+    list->clear();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testClearFromNonEmpty {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    
+    nn_type a(5), b(3);
+    list->insert(a);
+    list->insert(b);
+    list->retreat();
+    
+    list->clear();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
 - (void)testIsAtFrontEmpty {
     unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
 
@@ -303,5 +355,57 @@ typedef stack_based_list<nn_type> list_nn_type;
     XCTAssert(c == c_exp);
 }
 
+- (void)testRemoveToEmpty {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    nn_type a_exp(5);
+    
+    nn_type a, b(5);
+    list->insert(b);
+    list->retreat();
+    
+    list->remove(a);
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+    XCTAssert(a == a_exp);
+}
+
+- (void)testRemoveToNonEmptyRem {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <1>)";
+    nn_type a_exp(5);
+    
+    nn_type a, b(5), c(1);
+    list->insert(b);
+    list->insert(c);
+    list->retreat();
+    list->retreat();
+    
+    list->remove(a);
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+    XCTAssert(a == a_exp);
+}
+
+- (void)testRemoveToNonEmptyPrecRem {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<1>, <3>)";
+    nn_type a_exp(5);
+    
+    nn_type a, b(5), c(1), d(3);
+    list->insert(c);
+    list->insert(b);
+    list->insert(d);
+    list->retreat();
+    list->retreat();
+    
+    list->remove(a);
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+    XCTAssert(a == a_exp);
+}
 
 @end

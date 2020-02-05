@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <clean_stack/linked_stack.hpp>
+#include <clean_stack/array_stack.hpp>
 #include "natural_number.hpp"
 
 namespace cleanpp {
@@ -30,7 +31,8 @@ public:
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;    
 private:
-    linked_stack<int> rep;
+//    linked_stack<int> rep;
+    array_stack<int> rep;
 };
 
 }

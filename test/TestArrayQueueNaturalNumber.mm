@@ -1,6 +1,6 @@
 //
-//  TestLinkedStackNaturalNumber.m
-//  TestCleanpp
+//  TestArrayQueueNaturalNumber.m
+//  TestArrayQueueNaturalNumber
 //
 //  Created by Alan Weide on 1/22/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
@@ -12,20 +12,21 @@
 #include <string>
 #include <sstream>
 #include <clean_queue/linked_queue.hpp>
+#include <clean_queue/array_queue.hpp>
 #include <clean_nn/bounded_nn.hpp>
 #include <clean_nn/stack_nn.hpp>
 
-@interface TestLinkedQueueNaturalNumber : XCTestCase
+@interface TestArrayQueueNaturalNumber : XCTestCase
 
 @end
 
-@implementation TestLinkedQueueNaturalNumber
+@implementation TestArrayQueueNaturalNumber
 
 using namespace cleanpp;
 using namespace std;
 
 typedef stack_nn nn_type;
-typedef linked_queue<nn_type> queue_nn_type;
+typedef array_queue<nn_type> queue_nn_type;
 
 static string queueNNToString(unique_ptr<clean_queue<nn_type>> &s) {
     stringstream s_stm;

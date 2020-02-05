@@ -121,4 +121,22 @@ static string stackNNToString(unique_ptr<clean_stack<nn_type>> &s) {
     XCTAssert(b == expected_b);
 }
 
+- (void)testNonMonotonicResizing {
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    string expected_stack = "<>";
+    nn_type expected_b(1);
+    
+    const int cap = 100;
+    for (int i = 0; i < cap; i++) {
+        nn_type n(i);
+        s->push(n);
+    }
+    while (!s->is_empty()) {
+        nn_type n;
+        s->pop(n);
+    }
+    
+    XCTAssert(s->is_empty());
+}
+
 @end

@@ -23,11 +23,12 @@ template <typename T>
 class array_stack: public clean_stack<T>
 {
 private:
-    static const int START_CAP = 6;
+    static const int MIN_CAP = 1;
+    static const int GROW_FAC = 2;
+    static const int SHRINK_FAC = 4;
     int cap_;
     
     int length_;
-    int init_so_far_;
     std::unique_ptr<T[]> contents_;
     
     std::string to_str() override {
@@ -49,10 +50,13 @@ private:
     
     void resize_if_needed() {
         int old_cap = cap_;
-        if (length_ == cap_) {
-            cap_ *= 2;
-        } else if (length_ * 2 < cap_) {
-            cap_ /= 2;
+        if (length_ >= cap_) {
+            cap_ = length_ * GROW_FAC;
+        } else if (length_ * SHRINK_FAC < cap_) {
+            cap_ /= SHRINK_FAC;
+            if (cap_ < MIN_CAP) {
+                cap_ = MIN_CAP;
+            }
         }
         if (cap_ != old_cap) {
             auto temp_cont = std::move(contents_);
@@ -62,10 +66,11 @@ private:
             }
         }
     }
+
 public:
     
     array_stack<T>():
-    cap_(START_CAP), length_(0), init_so_far_(0)
+    cap_(MIN_CAP), length_(0)
     {
         contents_ = std::make_unique<T[]>(cap_);
         //            for (int i = 0; i < cap; i++) {
@@ -75,7 +80,7 @@ public:
     
     array_stack<T>(array_stack<T> const &other) = delete;
     array_stack<T>(array_stack<T>&& other):
-    cap_(std::move(other.cap_)), length_(std::move(other.length_)), init_so_far_(std::move(other.init_so_far_)), contents_(std::move(other.contents_))
+    cap_(std::move(other.cap_)), length_(std::move(other.length_)), contents_(std::move(other.contents_))
     {
         other.clear();
     }
@@ -88,7 +93,6 @@ public:
         
         cap_ = std::move(other.cap_);
         length_ = std::move(other.length_);
-        init_so_far_ = std::move(other.init_so_far_);
         contents_ = std::move(other.contents_);
         other.clear();
         return *this;
@@ -109,7 +113,7 @@ public:
     }
     
     void pop(T& x) override {
-        //		std::cout << "\nBoundedMovingStack_Hidden::pop(T& x):\n";
+        assert(!this->is_empty());
         
         length_--;
         x = std::move(contents_[length_]);
