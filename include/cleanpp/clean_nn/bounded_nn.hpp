@@ -13,8 +13,6 @@
 
 namespace cleanpp {
 class bounded_nn: public natural_number {
-private:
-    long n;
 public:
     bounded_nn(int n = 0);
     
@@ -35,8 +33,10 @@ public:
     void set_from_int(int n) override;
     
     friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
-        return out << o.n;
+        return out << o.n_;
     }
+private:
+    long n_;
 };
 }
 

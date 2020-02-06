@@ -16,7 +16,7 @@
 
 namespace cleanpp {
 template <class T>
-class clean_list: public clean_base {
+class list_kernel: public clean_base {
 public:
     virtual void advance() = 0;
     virtual void retreat() = 0;
@@ -74,7 +74,7 @@ public:
 };
 
 template<class T>
-class list_secondary: public clean_list<T> {
+class clean_list: public list_kernel<T> {
 public:
     virtual void reset() {
         while (!this->is_at_front()) {

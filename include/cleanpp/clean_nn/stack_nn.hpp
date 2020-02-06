@@ -31,8 +31,7 @@ public:
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;    
 private:
-//    linked_stack<int> rep;
-    array_stack<int> rep;
+    array_stack<int> rep_;
 };
 
 }

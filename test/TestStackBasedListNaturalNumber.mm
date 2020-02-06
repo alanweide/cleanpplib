@@ -408,4 +408,56 @@ typedef stack_based_list<nn_type> list_nn_type;
     XCTAssert(a == a_exp);
 }
 
+- (void)testResetFromEmpty {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <>)";
+    
+    list->reset();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testResetFromEmptyRem {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <4>)";
+    
+    nn_type a(4);
+    list->insert(a);
+    
+    list->reset();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testResetFromEmptyPrec {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <4>)";
+    
+    nn_type a(4);
+    list->insert(a);
+    list->retreat();
+    
+    list->reset();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
+- (void)testResetFromNonEmpty {
+    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    string expected = "(<>, <5, 4>)";
+    
+    nn_type a(4), b(5);
+    list->insert(a);
+    list->retreat();
+    list->insert(b);
+    
+    list->reset();
+    
+    string list_str = list->to_str();
+    XCTAssert(list_str == expected, @"%s", list_str.c_str());
+}
+
 @end

@@ -10,9 +10,9 @@
 #include <bounded_nn.hpp>
 
 namespace cleanpp {
-bounded_nn::bounded_nn(int n): n(n) {};
+bounded_nn::bounded_nn(int n): n_(n) {};
 
-bounded_nn::bounded_nn(bounded_nn&& other): n(std::move(other.n)) {
+bounded_nn::bounded_nn(bounded_nn&& other): n_(std::move(other.n_)) {
     other.clear();
 }
 
@@ -21,40 +21,40 @@ bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
         return *this;
     }
     
-    n = other.n;
+    n_ = other.n_;
     other.clear();
     return *this;
 }
 
 bool bounded_nn::operator==(const bounded_nn &other) {
-    return this->n == other.n;
+    return this->n_ == other.n_;
 }
 
 void bounded_nn::clear() {
-    n = 0;
+    n_ = 0;
 }
 bool bounded_nn::is_zero() {
-    return n == 0;
+    return n_ == 0;
 }
 void bounded_nn::multiply_by_radix(int d) {
-    n *= RADIX;
-    n += d;
+    n_ *= RADIX;
+    n_ += d;
 }
 void bounded_nn::divide_by_radix(int &d) {
-    d = n % RADIX;
-    n /= RADIX;
+    d = n_ % RADIX;
+    n_ /= RADIX;
 }
 
 void bounded_nn::increment() {
-    this->n++;
+    this->n_++;
 }
 
 void bounded_nn::decrement() {
-    this->n--;
+    this->n_--;
 }
 
 void bounded_nn::set_from_int(int n) {
-    this->n = n;
+    this->n_ = n;
 }
 
 }
