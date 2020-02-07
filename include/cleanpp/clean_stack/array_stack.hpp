@@ -73,9 +73,6 @@ public:
 	cap_(MIN_CAP), length_(0)
 	{
 		contents_ = std::make_unique<T[]>(cap_);
-		//            for (int i = 0; i < cap; i++) {
-		//                contents_[i] = std::make_unique<T>();
-		//            }
 	}
 	
 	array_stack<T>(array_stack<T> const &other) = delete;

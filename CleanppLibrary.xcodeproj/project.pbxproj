@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */; };
 		860934AF23E2102D00D38073 /* natural_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934AE23E2102D00D38073 /* natural_number.cpp */; };
-		860934B123E2124900D38073 /* natural_number_kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934B023E2124900D38073 /* natural_number_kernel.cpp */; };
 		8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */; };
 		8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8323E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm */; };
 		8663DF8623EB076E00DCA186 /* TestArrayStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8523EB076D00DCA186 /* TestArrayStackNaturalNumber.mm */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackNaturalNumber.mm; sourceTree = "<group>"; };
 		860934AE23E2102D00D38073 /* natural_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number.cpp; sourceTree = "<group>"; };
-		860934B023E2124900D38073 /* natural_number_kernel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number_kernel.cpp; sourceTree = "<group>"; };
 		8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		8663DF8323E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStackBasedListNaturalNumber.mm; sourceTree = "<group>"; };
 		8663DF8523EB076D00DCA186 /* TestArrayStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestArrayStackNaturalNumber.mm; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				8682AD8A23D6671A003F4238 /* bounded_nn.cpp */,
 				8682AD9023D897C6003F4238 /* stack_nn.cpp */,
 				860934AE23E2102D00D38073 /* natural_number.cpp */,
-				860934B023E2124900D38073 /* natural_number_kernel.cpp */,
 			);
 			path = clean_nn;
 			sourceTree = "<group>";
@@ -444,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				860934B123E2124900D38073 /* natural_number_kernel.cpp in Sources */,
 				860934AF23E2102D00D38073 /* natural_number.cpp in Sources */,
 				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,
 				E760A2FE2392049D00139E3D /* array_stack.hpp in Sources */,
