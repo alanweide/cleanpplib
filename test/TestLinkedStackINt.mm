@@ -20,17 +20,11 @@
 @implementation TestLinkedStackInt
 
 using namespace cleanpp;
-using namespace std;
 
-static NSString *stringToNSString(const string &s_str) {
-    NSString *s_ns = [NSString stringWithCString:s_str.c_str() encoding:[NSString defaultCStringEncoding]];
-    return s_ns;
-}
-
-static string stackIntToString(linked_stack<int> &s) {
-    stringstream s_stm;
+static std::string stackIntToString(linked_stack<int> &s) {
+    std::stringstream s_stm;
     s_stm << s;
-    string s_str = s_stm.str();
+    std::string s_str = s_stm.str();
     return s_str;
 }
 
@@ -46,10 +40,10 @@ static string stackIntToString(linked_stack<int> &s) {
 
 - (void)testInitializerDef {
     linked_stack<int> s{};
-    string empty_stack = "<>";
-    string s_str = stackIntToString(s);
-    NSString * s_ns = stringToNSString(s_str);
-    XCTAssert(s_str == empty_stack, @"%@", s_ns);
+    std::string empty_stack = "<>";
+	
+    std::string s_str = stackIntToString(s);
+    XCTAssert(s_str == empty_stack, @"%s", s_str.c_str());
 }
 
 - (void)testIsEmpty_Empty {
@@ -74,54 +68,50 @@ static string stackIntToString(linked_stack<int> &s) {
 
 - (void)testPushToEmpty {
     linked_stack<int> s{};
-    string expected_stack = "<0>";
+    std::string expected_stack = "<0>";
     
     int z = 0;
     s.push(z);
     
-    string s_str = stackIntToString(s);
-    NSString * s_ns = stringToNSString(s_str);
-    XCTAssert(s_str == expected_stack, @"%@", s_ns);
+    std::string s_str = stackIntToString(s);
+    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
 }
 
 - (void)testPushToNonEmpty {
     linked_stack<int> s{};
-    string expected_stack = "<1, 0>";
+    std::string expected_stack = "<1, 0>";
     
     int z = 0, o = 1;
     s.push(z);
     s.push(o);
     
-    string s_str = stackIntToString(s);
-    NSString * s_ns = stringToNSString(s_str);
-    XCTAssert(s_str == expected_stack, @"%@", s_ns);
+    std::string s_str = stackIntToString(s);
+    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
 }
 
 - (void)testPopZeroToEmpty {
     linked_stack<int> s{};
-    string expected_stack = "<>";
+    std::string expected_stack = "<>";
     
     int z = 0, o = 1;
     s.push(z);
     s.pop(o);
     
-    string s_str = stackIntToString(s);
-    NSString * s_ns = stringToNSString(s_str);
-    XCTAssert(s_str == expected_stack, @"%@", s_ns);
+    std::string s_str = stackIntToString(s);
+    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
     XCTAssert(o == 0, @"%d", o);
 }
 
 - (void)testPopFiveToEmpty {
     linked_stack<int> s{};
-    string expected_stack = "<>";
+    std::string expected_stack = "<>";
     
     int a = 5, b = 1;
     s.push(a);
     s.pop(b);
     
-    string s_str = stackIntToString(s);
-    NSString * s_ns = stringToNSString(s_str);
-    XCTAssert(s_str == expected_stack, @"%@", s_ns);
+    std::string s_str = stackIntToString(s);
+    XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
     XCTAssert(b == 5, @"%d", b);
 }
 
