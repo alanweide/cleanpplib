@@ -22,7 +22,6 @@
 @implementation TestStackBasedListNaturalNumber
 
 using namespace cleanpp;
-using namespace std;
 
 typedef stack_nn nn_type;
 typedef stack_based_list<nn_type> list_nn_type;
@@ -36,39 +35,39 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testInitializerDef {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
     list->clear();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmptyRem {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
     nn_type a(5);
     list->insert(a);
     
     list->clear();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmptyPrec {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
     nn_type a(5);
     list->insert(a);
@@ -76,13 +75,13 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->clear();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromNonEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
     nn_type a(5), b(3);
     list->insert(a);
@@ -91,24 +90,24 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->clear();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testIsAtFrontEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     XCTAssert(list->is_at_front());
 }
 
 - (void)testIsAtEndEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     XCTAssert(list->is_at_end());
 }
 
 - (void)testIsAtFrontNonemptyTrue {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
     list->insert(a);
@@ -118,7 +117,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testIsAtFrontNonemptyFalse {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
     list->insert(a);
@@ -127,7 +126,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testIsAtEndNonemptyTrue {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
     list->insert(a);
@@ -137,7 +136,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testIsAtEndNonemptyFalse {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
     list->insert(a);
@@ -146,22 +145,22 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testInsertFromEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <>)";
     nn_type a_exp;
     
     nn_type a(1);
     
     list->insert(a);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testInsertFromNonemptyAtEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1, 2>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1, 2>, <>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -169,15 +168,15 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->insert(b);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testInsertFromNonemptyAtFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<2>, <1>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<2>, <1>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -186,15 +185,15 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->insert(b);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testInsertNonemptyInMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1, 3>, <2>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
     
     nn_type a(1), b(2), c(3);
@@ -204,7 +203,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->insert(c);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
@@ -212,8 +211,8 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRetreatFromEndToFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <1>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <1>)";
     nn_type a_exp;
     
     nn_type a(1);
@@ -221,14 +220,14 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->retreat();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testRetreatFromMiddleToFront {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <2, 1>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <2, 1>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -238,15 +237,15 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->retreat();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testRetreatFromEndToMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <2>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -255,15 +254,15 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->retreat();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testRetreatMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <3, 2>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <3, 2>)";
     nn_type a_exp, b_exp, c_exp;
 
     nn_type a(1), b(2), c(3);
@@ -274,7 +273,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->retreat();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
@@ -282,8 +281,8 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testAdvanceFrontToEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <>)";
     nn_type a_exp;
     
     nn_type a(1);
@@ -292,14 +291,14 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->advance();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testAdvanceFromMiddleToEnd {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<2, 1>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<2, 1>, <>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -309,15 +308,15 @@ typedef stack_based_list<nn_type> list_nn_type;
 
     list->advance();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testAdvanceFromFrontToMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <2>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
@@ -328,15 +327,15 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->advance();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testAdvanceMiddle {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1, 3>, <2>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
 
     nn_type a(1), b(2), c(3);
@@ -348,7 +347,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->advance();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
@@ -356,8 +355,8 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRemoveToEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     nn_type a_exp(5);
     
     nn_type a, b(5);
@@ -366,14 +365,14 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->remove(a);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testRemoveToNonEmptyRem {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <1>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <1>)";
     nn_type a_exp(5);
     
     nn_type a, b(5), c(1);
@@ -384,14 +383,14 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->remove(a);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testRemoveToNonEmptyPrecRem {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<1>, <3>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<1>, <3>)";
     nn_type a_exp(5);
     
     nn_type a, b(5), c(1), d(3);
@@ -403,37 +402,37 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->remove(a);
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testResetFromEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <>)";
     
     list->reset();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testResetFromEmptyRem {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <4>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <4>)";
     
     nn_type a(4);
     list->insert(a);
     
     list->reset();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testResetFromEmptyPrec {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <4>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <4>)";
     
     nn_type a(4);
     list->insert(a);
@@ -441,13 +440,13 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->reset();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testResetFromNonEmpty {
-    unique_ptr<clean_list<nn_type>> list = make_unique<list_nn_type>();
-    string expected = "(<>, <5, 4>)";
+    std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
+    std::string expected = "(<>, <5, 4>)";
     
     nn_type a(4), b(5);
     list->insert(a);
@@ -456,7 +455,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     list->reset();
     
-    string list_str = list->to_str();
+    std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 

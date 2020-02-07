@@ -74,7 +74,7 @@ public:
 };
 
 template<class T>
-class clean_list: public list_kernel<T> {
+class list: public list_kernel<T> {
 public:
     virtual void reset() {
         while (!this->is_at_front()) {

@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-#include <clean_nn/natural_number_kernel.hpp>
+#include <clean_nn/natural_number.hpp>
 
 namespace cleanpp {
 bool natural_number_kernel::operator==(natural_number_kernel &other) {

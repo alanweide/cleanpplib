@@ -11,16 +11,16 @@
 
 #include "clean_list.hpp"
 
-#include <clean_stack/linked_stack.hpp>
+#include <clean_stack/array_stack.hpp>
 
 namespace cleanpp {
 
 template <typename T>
-class stack_based_list: public clean_list<T> {
+class stack_based_list: public list<T> {
 public:
     stack_based_list<T>() {
-        prec_ = std::make_unique<linked_stack<T>>();
-        rem_ = std::make_unique<linked_stack<T>>();
+        prec_ = std::make_unique<array_stack<T>>();
+        rem_ = std::make_unique<array_stack<T>>();
     }
     
     stack_based_list<T>(stack_based_list<T> const &other) = delete;
@@ -89,7 +89,7 @@ public:
     std::string to_str() override {
         std::stringstream out;
         out << "(";
-        std::unique_ptr<clean_stack<T>> rev_prec = std::make_unique<linked_stack<T>>();
+        std::unique_ptr<stack<T>> rev_prec = std::make_unique<array_stack<T>>();
         while (!prec_->is_empty()) {
             T x;
             prec_->pop(x);
@@ -105,8 +105,8 @@ public:
         return out.str();
     }
 private:
-    std::unique_ptr<clean_stack<T>> prec_;
-    std::unique_ptr<clean_stack<T>> rem_;
+    std::unique_ptr<stack<T>> prec_;
+    std::unique_ptr<stack<T>> rem_;
 };
 
 }

@@ -14,7 +14,7 @@
 namespace cleanpp {
 
 template <class T>
-class array_queue: public clean_queue<T>
+class array_queue: public queue<T>
 {
 private:
     static const int MIN_CAP = 6;
