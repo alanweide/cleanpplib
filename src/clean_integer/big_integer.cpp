@@ -30,17 +30,17 @@ bool big_integer_kernel::operator==(big_integer_kernel &other) {
 
 std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
 	bool didNegate = false;
-	if (o.sign() == big_integer_kernel::NEGATIVE) {
+	if (o.sign() == NEGATIVE) {
 		out << '-';
 		o.negate();
 		didNegate = true;
 	}
-	if (o.sign() == big_integer_kernel::ZERO) {
+	if (o.sign() == ZERO) {
 		out << 0;
 	} else {
 		int d;
 		o.divide_by_radix(d);
-		if (o.sign() != big_integer_kernel::ZERO) {
+		if (o.sign() != ZERO) {
 			out << o;
 		}
 		out << d;
@@ -56,25 +56,39 @@ std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
 // big_integer
 void big_integer::increase_magnitude() {
 	int d = 0;
+	integer_sign old_sign = sign();
+	if (old_sign == NEGATIVE) {
+		negate();
+	}
 	divide_by_radix(d);
 	d++;
 	if (d == big_integer::RADIX) {
 		d -= big_integer::RADIX;
-		increment();
+		increase_magnitude();
 	}
 	multiply_by_radix(d);
+	if (old_sign == NEGATIVE) {
+		negate();
+	}
 }
 
 void big_integer::decrease_magnitude() {
-	assert(sign() != big_integer::ZERO);
+	assert(sign() != ZERO);
+	integer_sign old_sign = sign();
+	if (old_sign == NEGATIVE) {
+		negate();
+	}
 	int d = 0;
 	divide_by_radix(d);
 	d--;
 	if (d < 0) {
 		d += big_integer::RADIX;
-		decrement();
+		decrease_magnitude();
 	}
 	multiply_by_radix(d);
+	if (old_sign == NEGATIVE) {
+		negate();
+	}
 }
 
 void big_integer::increment() {
@@ -92,8 +106,11 @@ void big_integer::increment() {
 void big_integer::decrement() {
 	switch (this->sign()) {
 		case NEGATIVE:
+			increase_magnitude();
+			break;
 		case ZERO:
 			increase_magnitude();
+			negate();
 			break;
 		case POSITIVE:
 			decrease_magnitude();

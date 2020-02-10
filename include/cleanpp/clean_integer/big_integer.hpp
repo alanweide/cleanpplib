@@ -15,17 +15,18 @@
 
 namespace cleanpp {
 
+enum integer_sign {
+	NEGATIVE, ZERO, POSITIVE
+};
+
 class big_integer_kernel: public clean_base {
 public:
-	enum sign {
-		NEGATIVE, ZERO, POSITIVE
-	};
 	static const int RADIX = 10;
 
 	virtual void multiply_by_radix(int d) = 0;
 	virtual void divide_by_radix(int& d) = 0;
 	virtual void negate() = 0;
-	virtual sign sign() = 0;
+	virtual integer_sign sign() = 0;
 
 	bool operator==(big_integer_kernel &other);
 	

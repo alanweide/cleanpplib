@@ -33,6 +33,9 @@
 		E775B52B23F20191007DB0C1 /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B52923F20191007DB0C1 /* big_integer.cpp */; };
 		E775B52C23F20191007DB0C1 /* big_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B52A23F20191007DB0C1 /* big_integer.hpp */; };
 		E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */; };
+		E775B53223F213F7007DB0C1 /* nn_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B53023F213F7007DB0C1 /* nn_integer.cpp */; };
+		E775B53323F213F7007DB0C1 /* nn_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B53123F213F7007DB0C1 /* nn_integer.hpp */; };
+		E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B53423F218CE007DB0C1 /* TestNNInteger.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		E775B52923F20191007DB0C1 /* big_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = big_integer.cpp; sourceTree = "<group>"; };
 		E775B52A23F20191007DB0C1 /* big_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = big_integer.hpp; sourceTree = "<group>"; };
 		E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackNaturalNumber.mm; sourceTree = "<group>"; };
+		E775B53023F213F7007DB0C1 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
+		E775B53123F213F7007DB0C1 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
+		E775B53423F218CE007DB0C1 /* TestNNInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNNInteger.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +227,7 @@
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
+				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
 				860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */,
 				E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */,
 				8663DF8523EB076D00DCA186 /* TestArrayStackNaturalNumber.mm */,
@@ -343,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				E775B52923F20191007DB0C1 /* big_integer.cpp */,
+				E775B53023F213F7007DB0C1 /* nn_integer.cpp */,
 			);
 			path = clean_integer;
 			sourceTree = "<group>";
@@ -351,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				E775B52A23F20191007DB0C1 /* big_integer.hpp */,
+				E775B53123F213F7007DB0C1 /* nn_integer.hpp */,
 			);
 			path = clean_integer;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 				8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */,
 				E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */,
 				E760A2FA2392049D00139E3D /* clean_list.hpp in Headers */,
+				E775B53323F213F7007DB0C1 /* nn_integer.hpp in Headers */,
 				E760A3112392095700139E3D /* array_queue.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E775B53223F213F7007DB0C1 /* nn_integer.cpp in Sources */,
 				860934AF23E2102D00D38073 /* natural_number.cpp in Sources */,
 				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,
 				E760A2FE2392049D00139E3D /* array_stack.hpp in Sources */,
@@ -483,6 +494,7 @@
 				86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */,
+				E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */,
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,
 				8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */,
 				8663DF8623EB076E00DCA186 /* TestArrayStackNaturalNumber.mm in Sources */,
