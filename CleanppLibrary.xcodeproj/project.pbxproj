@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */; };
+		860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */; };
 		860934AF23E2102D00D38073 /* natural_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934AE23E2102D00D38073 /* natural_number.cpp */; };
 		8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */; };
 		8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8663DF8323E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm */; };
@@ -19,7 +19,6 @@
 		8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9123D897C6003F4238 /* stack_nn.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8682AD9623D89837003F4238 /* linked_stack.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */; };
-		8682ADA423D8F440003F4238 /* TestLinkedStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8682ADA323D8F440003F4238 /* TestLinkedStackInt.mm */; };
 		86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */; };
 		E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* clean_queue.hpp */; };
 		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +30,12 @@
 		E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = E760A305239204DC00139E3D /* TestBoundedNN.mm */; };
 		E760A308239204DC00139E3D /* libCleanpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanpp.a */; };
 		E760A3112392095700139E3D /* array_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A3102392095700139E3D /* array_queue.hpp */; };
+		E775B52B23F20191007DB0C1 /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B52923F20191007DB0C1 /* big_integer.cpp */; };
+		E775B52C23F20191007DB0C1 /* big_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B52A23F20191007DB0C1 /* big_integer.hpp */; };
+		E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */; };
+		E775B53223F213F7007DB0C1 /* nn_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B53023F213F7007DB0C1 /* nn_integer.cpp */; };
+		E775B53323F213F7007DB0C1 /* nn_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B53123F213F7007DB0C1 /* nn_integer.hpp */; };
+		E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B53423F218CE007DB0C1 /* TestNNInteger.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackNaturalNumber.mm; sourceTree = "<group>"; };
+		860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackInt.mm; sourceTree = "<group>"; };
 		860934AE23E2102D00D38073 /* natural_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number.cpp; sourceTree = "<group>"; };
 		8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		8663DF8323E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStackBasedListNaturalNumber.mm; sourceTree = "<group>"; };
@@ -57,7 +62,6 @@
 		8682AD9123D897C6003F4238 /* stack_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack_nn.hpp; sourceTree = "<group>"; };
 		8682AD9623D89837003F4238 /* linked_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linked_stack.hpp; sourceTree = "<group>"; };
 		8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStackNN.mm; sourceTree = "<group>"; };
-		8682ADA323D8F440003F4238 /* TestLinkedStackInt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackInt.mm; sourceTree = "<group>"; };
 		86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestArrayQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -91,6 +95,12 @@
 		E760A305239204DC00139E3D /* TestBoundedNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBoundedNN.mm; sourceTree = "<group>"; };
 		E760A307239204DC00139E3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E760A3102392095700139E3D /* array_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = array_queue.hpp; sourceTree = "<group>"; };
+		E775B52923F20191007DB0C1 /* big_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = big_integer.cpp; sourceTree = "<group>"; };
+		E775B52A23F20191007DB0C1 /* big_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = big_integer.hpp; sourceTree = "<group>"; };
+		E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackNaturalNumber.mm; sourceTree = "<group>"; };
+		E775B53023F213F7007DB0C1 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
+		E775B53123F213F7007DB0C1 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
+		E775B53423F218CE007DB0C1 /* TestNNInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNNInteger.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +195,7 @@
 		E760A2C9239203DA00139E3D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E775B52823F2015E007DB0C1 /* clean_integer */,
 				860934AD23E20FD600D38073 /* clean_nn */,
 			);
 			path = src;
@@ -201,6 +212,7 @@
 		E760A2CB239203DA00139E3D /* cleanpp */ = {
 			isa = PBXGroup;
 			children = (
+				E775B52D23F207F0007DB0C1 /* clean_integer */,
 				860934AC23DD08F500D38073 /* clean_queue */,
 				860934AB23DD08E300D38073 /* clean_nn */,
 				860934AA23DD08D700D38073 /* clean_stack */,
@@ -215,8 +227,9 @@
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
-				8682ADA323D8F440003F4238 /* TestLinkedStackInt.mm */,
-				860934A523DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm */,
+				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
+				860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */,
+				E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */,
 				8663DF8523EB076D00DCA186 /* TestArrayStackNaturalNumber.mm */,
 				8663DF8123E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm */,
 				86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */,
@@ -333,6 +346,24 @@
 			path = CleanppLibrary.build;
 			sourceTree = "<group>";
 		};
+		E775B52823F2015E007DB0C1 /* clean_integer */ = {
+			isa = PBXGroup;
+			children = (
+				E775B52923F20191007DB0C1 /* big_integer.cpp */,
+				E775B53023F213F7007DB0C1 /* nn_integer.cpp */,
+			);
+			path = clean_integer;
+			sourceTree = "<group>";
+		};
+		E775B52D23F207F0007DB0C1 /* clean_integer */ = {
+			isa = PBXGroup;
+			children = (
+				E775B52A23F20191007DB0C1 /* big_integer.hpp */,
+				E775B53123F213F7007DB0C1 /* nn_integer.hpp */,
+			);
+			path = clean_integer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -344,10 +375,12 @@
 				E760A2FC2392049D00139E3D /* clean_stack.hpp in Headers */,
 				E760A2F82392049D00139E3D /* clean_base.hpp in Headers */,
 				8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */,
+				E775B52C23F20191007DB0C1 /* big_integer.hpp in Headers */,
 				8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */,
 				8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */,
 				E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */,
 				E760A2FA2392049D00139E3D /* clean_list.hpp in Headers */,
+				E775B53323F213F7007DB0C1 /* nn_integer.hpp in Headers */,
 				E760A3112392095700139E3D /* array_queue.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,12 +474,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E775B53223F213F7007DB0C1 /* nn_integer.cpp in Sources */,
 				860934AF23E2102D00D38073 /* natural_number.cpp in Sources */,
 				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,
 				E760A2FE2392049D00139E3D /* array_stack.hpp in Sources */,
 				E760A2FB2392049D00139E3D /* stack_based_list.hpp in Sources */,
 				8682AD9223D897C6003F4238 /* stack_nn.cpp in Sources */,
 				8682AD8B23D6671A003F4238 /* bounded_nn.cpp in Sources */,
+				E775B52B23F20191007DB0C1 /* big_integer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,11 +489,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8682ADA423D8F440003F4238 /* TestLinkedStackInt.mm in Sources */,
 				8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */,
-				860934A623DA40CD00D38073 /* TestLinkedStackNaturalNumber.mm in Sources */,
+				860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */,
 				86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
+				E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */,
+				E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */,
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,
 				8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */,
 				8663DF8623EB076E00DCA186 /* TestArrayStackNaturalNumber.mm in Sources */,
