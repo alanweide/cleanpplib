@@ -79,38 +79,38 @@ void natural_number::set_from_int(int n) {
     }
 }
 
-void add(natural_number &x, natural_number &y) {
+void add(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y) {
     int x_low;
-    x.divide_by_radix(x_low);
+    x->divide_by_radix(x_low);
     int y_low;
-    y.divide_by_radix(y_low);
-    if (!y.is_zero()) {
+    y->divide_by_radix(y_low);
+    if (!y->is_zero()) {
         add(x, y);
     }
     x_low += y_low;
     if (x_low >= natural_number::RADIX) {
         x_low -= natural_number::RADIX;
-        x.increment();
+        x->increment();
     }
-    x.multiply_by_radix(x_low);
-    y.multiply_by_radix(y_low);
+    x->multiply_by_radix(x_low);
+    y->multiply_by_radix(y_low);
 }
 
-void subtract(natural_number &x, natural_number &y) {
+void subtract(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y) {
     int x_low;
-    x.divide_by_radix(x_low);
+    x->divide_by_radix(x_low);
     int y_low;
-    y.divide_by_radix(y_low);
-    if (!y.is_zero()) {
+    y->divide_by_radix(y_low);
+    if (!y->is_zero()) {
         subtract(x, y);
     }
     x_low -= y_low;
     if (x_low < 0) {
         x_low += natural_number::RADIX;
-        x.decrement();
+        x->decrement();
     }
-    x.multiply_by_radix(x_low);
-    y.multiply_by_radix(y_low);
+    x->multiply_by_radix(x_low);
+    y->multiply_by_radix(y_low);
 }
 
 }

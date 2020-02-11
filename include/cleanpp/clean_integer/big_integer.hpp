@@ -16,7 +16,7 @@
 namespace cleanpp {
 
 enum integer_sign {
-	NEGATIVE, ZERO, POSITIVE
+	NEGATIVE = -1, ZERO = 0, POSITIVE = 1
 };
 
 class big_integer_kernel: public clean_base {
@@ -42,8 +42,8 @@ public:
 	virtual void decrement();
 	virtual void set_from_int(int n);
 	
-//	friend void add(big_integer &x, big_integer &y);
-//	friend void subtract(big_integer &x, big_integer &y);
+	friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 
 };
 }

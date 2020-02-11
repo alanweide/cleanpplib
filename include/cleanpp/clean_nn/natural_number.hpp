@@ -32,8 +32,8 @@ public:
     virtual void decrement();
     virtual void set_from_int(int n);
     
-    friend void add(natural_number &x, natural_number &y);
-    friend void subtract(natural_number &x, natural_number &y);
+    friend void add(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
+    friend void subtract(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
 };
 
 }
