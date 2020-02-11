@@ -26,7 +26,7 @@ public:
 	virtual void multiply_by_radix(int d) = 0;
 	virtual void divide_by_radix(int& d) = 0;
 	virtual void negate() = 0;
-	virtual integer_sign sign() = 0;
+	virtual integer_sign sign() const = 0;
 
 	bool operator==(big_integer_kernel &other);
 	
@@ -35,13 +35,18 @@ public:
 
 class big_integer: public big_integer_kernel {
 private:
+    virtual void increase_magnitude();
 	virtual void decrease_magnitude();
-	virtual void increase_magnitude();
+
+    friend void change_magnitude_up(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend void change_magnitude_down(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 public:
 	virtual void increment();
 	virtual void decrement();
 	virtual void set_from_int(int n);
-	
+    virtual integer_sign abs();
+    virtual void assign_sign(integer_sign sign);
+
 	friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 

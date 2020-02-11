@@ -472,6 +472,104 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
 }
 
+- (void)testAddZeroNegFive {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>();
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddNegFiveZero {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>();
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddFourNegFour {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(4);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-4);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddNegFourNegFour {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-4);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-4);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-8);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddNegFiveNegFive {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-10);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAddNegTenNegTen {
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-10);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-10);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-20);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-10);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testAdd57_Neg66{
+    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(67);
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-56);
+    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(11);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-56);
+
+    add(n1, n2);
+
+    std::string n1_str = bigintToString(n1);
+    std::string n2_str = bigintToString(n2);
+    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
+}
+
 - (void)testSubtractZeroZero {
     std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>();
     std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>();
@@ -563,104 +661,6 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(66);
 
     subtract(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddZeroNegFive {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>();
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddNegFiveZero {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>();
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddFourNegFour {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(4);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-4);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddNegFourNegFour {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-4);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-4);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-8);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddNegFiveNegFive {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-5);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-10);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAddNegTenNegTen {
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(-10);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-10);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-20);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-10);
-
-    add(n1, n2);
-
-    std::string n1_str = bigintToString(n1);
-    std::string n2_str = bigintToString(n2);
-    XCTAssert(*n1 == *n1_exp, @"n = %s", n1_str.c_str());
-    XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
-}
-
-- (void)testAdd57_Neg66{
-    std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(57);
-    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-66);
-    std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-11);
-    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-66);
-
-    add(n1, n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);

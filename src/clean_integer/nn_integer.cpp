@@ -57,7 +57,7 @@ void nn_integer::multiply_by_radix(int d) {
 	n_.multiply_by_radix(d);
 }
 
-integer_sign nn_integer::sign() {
+integer_sign nn_integer::sign() const {
 	return sign_;
 }
 

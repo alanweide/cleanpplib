@@ -29,7 +29,7 @@ public:
 	void multiply_by_radix(int d) override;
 	void divide_by_radix(int &d) override;
 	void negate() override;
-	integer_sign sign() override;
+	integer_sign sign() const override;
 
 private:
 	stack_nn n_;

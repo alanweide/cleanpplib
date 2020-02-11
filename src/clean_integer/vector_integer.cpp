@@ -1,15 +1,15 @@
 //
-//  nn_integer.cpp
+//  vector_integer.cpp
 //  Cleanpp
 //
 //  Created by Alan Weide on 2/10/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#include <clean_integer/nn_integer.hpp>
+#include <clean_integer/vector_integer.hpp>
 
 namespace cleanpp {
-nn_integer::nn_integer(int n) {
+vector_integer::vector_integer(int n) {
 	if (n < 0) {
 		sign_ = NEGATIVE;
 		n *= -1;
@@ -21,11 +21,11 @@ nn_integer::nn_integer(int n) {
 	n_ = stack_nn(n);
 }
 
-nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
+vector_integer::vector_integer(vector_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
 	other.clear();
 }
 
-nn_integer& nn_integer::operator=(nn_integer &&other) {
+vector_integer& vector_integer::operator=(vector_integer &&other) {
 	if (&other == this) {
 		return *this;
 	}
@@ -36,12 +36,12 @@ nn_integer& nn_integer::operator=(nn_integer &&other) {
 }
 
 // big_integer_kernel
-void nn_integer::clear() {
+void vector_integer::clear() {
 	n_.clear();
 	sign_ = ZERO;
 }
 
-void nn_integer::divide_by_radix(int &d) {
+void vector_integer::divide_by_radix(int &d) {
 	n_.divide_by_radix(d);
 	if (n_.is_zero()) {
 		sign_ = ZERO;
@@ -49,7 +49,7 @@ void nn_integer::divide_by_radix(int &d) {
 	assert (0 <= d && d < RADIX);
 }
 
-void nn_integer::multiply_by_radix(int d) {
+void vector_integer::multiply_by_radix(int d) {
 	assert (0 <= d && d < RADIX);
 	if (0 < d && n_.is_zero()) {
 		sign_ = POSITIVE;
@@ -57,11 +57,11 @@ void nn_integer::multiply_by_radix(int d) {
 	n_.multiply_by_radix(d);
 }
 
-integer_sign nn_integer::sign() {
+integer_sign vector_integer::sign() const {
 	return sign_;
 }
 
-void nn_integer::negate() {
+void vector_integer::negate() {
 	if (sign_ == POSITIVE) {
 		sign_ = NEGATIVE;
 	} else if (sign_ == NEGATIVE) {

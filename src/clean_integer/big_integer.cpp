@@ -27,10 +27,9 @@ int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
         }
         x->multiply_by_radix(x_low);
         y->multiply_by_radix(y_low);
-        return comp;
+        return comp * x->sign();
     }
 }
-
 
 // big_integer_kernel
 bool big_integer_kernel::operator==(big_integer_kernel &other) {
@@ -57,6 +56,7 @@ std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
         o.negate();
         didNegate = true;
     }
+    
     if (o.sign() == ZERO) {
         out << 0;
     } else {
@@ -77,11 +77,9 @@ std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
 
 // big_integer
 void big_integer::increase_magnitude() {
-    int d = 0;
     integer_sign old_sign = sign();
-    if (old_sign == NEGATIVE) {
-        negate();
-    }
+    
+    int d;
     divide_by_radix(d);
     d++;
     if (d == big_integer::RADIX) {
@@ -89,17 +87,17 @@ void big_integer::increase_magnitude() {
         increase_magnitude();
     }
     multiply_by_radix(d);
-    if (old_sign == NEGATIVE) {
+    
+    if (old_sign == -sign()) {
         negate();
     }
 }
 
 void big_integer::decrease_magnitude() {
     assert(sign() != ZERO);
+    
     integer_sign old_sign = sign();
-    if (old_sign == NEGATIVE) {
-        negate();
-    }
+    
     int d = 0;
     divide_by_radix(d);
     d--;
@@ -108,7 +106,8 @@ void big_integer::decrease_magnitude() {
         decrease_magnitude();
     }
     multiply_by_radix(d);
-    if (old_sign == NEGATIVE) {
+    
+    if (old_sign == -sign()) {
         negate();
     }
 }
@@ -160,57 +159,115 @@ void big_integer::set_from_int(int n) {
     }
 }
 
+integer_sign big_integer::abs() {
+    integer_sign sign = this->sign();
+    if (sign == NEGATIVE) {
+        negate();
+    }
+    return sign;
+}
+
+void big_integer::assign_sign(integer_sign sign) {
+    assert((this->sign() == ZERO) == (sign == ZERO));
+    if (this->sign() != sign) {
+        this->negate();
+    }
+}
+
+// friend methods
+void change_magnitude_up(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    assert(y->sign() >= ZERO);
+    integer_sign old_x_sign = x->sign();
+
+    int x_low, y_low;
+    x->divide_by_radix(x_low);
+    y->divide_by_radix(y_low);
+    if (y->sign() != ZERO) {
+        add(x, y);
+    }
+    x_low += y_low;
+    if (x_low >= big_integer::RADIX) {
+        x_low -= big_integer::RADIX;
+        x->increase_magnitude();
+    }
+    x->multiply_by_radix(x_low);
+    y->multiply_by_radix(y_low);
+    
+    if (old_x_sign == -x->sign()) {
+        x->negate();
+    }
+}
+
+void change_magnitude_down(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    assert(y->sign() >= ZERO);
+    integer_sign old_x_sign = x->sign();
+
+    int x_low, y_low;
+    x->divide_by_radix(x_low);
+    y->divide_by_radix(y_low);
+    if (y->sign() != ZERO) {
+        subtract(x, y);
+    }
+    x_low -= y_low;
+    if (x_low < 0) {
+        x_low += big_integer::RADIX;
+        x->decrease_magnitude();
+    }
+    x->multiply_by_radix(x_low);
+    y->multiply_by_radix(y_low);
+
+    if (old_x_sign == -x->sign()) {
+        x->negate();
+    }
+}
+
 void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     if (x->sign() == ZERO || x->sign() == y->sign()) {
-        int x_low, y_low;
-        x->divide_by_radix(x_low);
-        y->divide_by_radix(y_low);
-        if (y->sign() != ZERO) {
-            add(x, y);
+        integer_sign old_y_sign = y->abs();
+        if (x->sign() == ZERO || old_y_sign == POSITIVE) {
+            change_magnitude_up(x, y);
+        } else if (x->sign() == old_y_sign) {
+            change_magnitude_up(x, y);
+        } else {
+            change_magnitude_down(x, y);
         }
-        x_low += y_low;
-        if (x_low >= big_integer::RADIX) {
-            x_low -= big_integer::RADIX;
-            x->increase_magnitude();
-        }
-        x->multiply_by_radix(x_low);
-        y->multiply_by_radix(y_low);
+        y->assign_sign(old_y_sign);
     } else if (y->sign() != ZERO) {
         y->negate();
         subtract(x, y);
         y->negate();
     }
+    if (y->sign() != ZERO) {
+    }
 }
 
 void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    if (x->sign() == ZERO || x->sign() == y->sign()) {
-        bool swapped = false;
-        if (compare(x, y) * y->sign() < 0) {
-            swapped = true;
-            std::swap(x, y);
-            x->negate();
+        if (x->sign() == ZERO || x->sign() == y->sign()) {
+            bool swapped = false;
+            if (compare(x, y) * y->sign() < 0) {
+                swapped = true;
+                std::swap(x, y);
+            }
+            
+            integer_sign old_y_sign = y->abs();
+            if (x->sign() == ZERO || old_y_sign == NEGATIVE) {
+                change_magnitude_up(x, y);
+            } else if (x->sign() == old_y_sign) {
+                change_magnitude_down(x, y);
+            } else {
+                change_magnitude_up(x, y);
+            }
+            y->assign_sign(old_y_sign);
+            
+            if (swapped) {
+                std::swap(x, y);
+                x->negate();
+                y->negate();
+            }
+        } else if (y->sign() != ZERO) {
+            y->negate();
+            add(x, y);
             y->negate();
         }
-        int x_low, y_low;
-        x->divide_by_radix(x_low);
-        y->divide_by_radix(y_low);
-        if (y->sign() != ZERO) {
-            subtract(x, y);
-        }
-        x_low -= y_low;
-        if (x_low < 0) {
-            x_low += big_integer::RADIX;
-            x->decrease_magnitude();
-        }
-        x->multiply_by_radix(x_low);
-        y->multiply_by_radix(y_low);
-        if (swapped) {
-            std::swap(x, y);
-        }
-    } else if (y->sign() != ZERO) {
-        y->negate();
-        add(x, y);
-        y->negate();
-    }
 }
 }
