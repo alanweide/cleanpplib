@@ -10,6 +10,19 @@
 
 namespace cleanpp {
 
+int compare_magnitude(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+        int x_low, y_low;
+        x->divide_by_radix(x_low);
+        y->divide_by_radix(y_low);
+        int comp = compare_magnitude(x, y);
+        if (comp == 0) {
+            comp = x_low - y_low;
+        }
+        x->multiply_by_radix(x_low);
+        y->multiply_by_radix(y_low);
+        return comp;
+}
+
 int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     if (x->sign() > y->sign()) {
         return 1;
@@ -18,16 +31,8 @@ int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     } else if (x->sign() == ZERO && y->sign() == ZERO) {
         return 0;
     } else {
-        int x_low, y_low;
-        x->divide_by_radix(x_low);
-        y->divide_by_radix(y_low);
-        int comp = compare(x, y);
-        if (comp == 0) {
-            comp = x_low - y_low;
-        }
-        x->multiply_by_radix(x_low);
-        y->multiply_by_radix(y_low);
-        return comp * x->sign();
+        int result = compare_magnitude(x, y);
+        return result * x->sign();
     }
 }
 
@@ -77,8 +82,6 @@ std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
 
 // big_integer
 void big_integer::increase_magnitude() {
-    integer_sign old_sign = sign();
-    
     int d;
     divide_by_radix(d);
     d++;
@@ -86,17 +89,11 @@ void big_integer::increase_magnitude() {
         d -= big_integer::RADIX;
         increase_magnitude();
     }
-    multiply_by_radix(d);
-    
-    if (old_sign == -sign()) {
-        negate();
-    }
+    multiply_by_radix(d);    
 }
 
 void big_integer::decrease_magnitude() {
     assert(sign() != ZERO);
-    
-    integer_sign old_sign = sign();
     
     int d = 0;
     divide_by_radix(d);
@@ -106,10 +103,6 @@ void big_integer::decrease_magnitude() {
         decrease_magnitude();
     }
     multiply_by_radix(d);
-    
-    if (old_sign == -sign()) {
-        negate();
-    }
 }
 
 void big_integer::increment() {
@@ -175,15 +168,18 @@ void big_integer::assign_sign(integer_sign sign) {
 }
 
 // friend methods
-void change_magnitude_up(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    assert(y->sign() >= ZERO);
-    integer_sign old_x_sign = x->sign();
+void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    //updates x
+    //require (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
+    //ensure x = #x + y  [ ie |x| = |#x| + |y| and (x >= 0 iff #x >= 0) ]
+
+    assert(x->sign() == y->sign() || x->sign() == ZERO || y->sign() == ZERO);
 
     int x_low, y_low;
     x->divide_by_radix(x_low);
     y->divide_by_radix(y_low);
     if (y->sign() != ZERO) {
-        add(x, y);
+        combine_same(x, y);
     }
     x_low += y_low;
     if (x_low >= big_integer::RADIX) {
@@ -192,21 +188,19 @@ void change_magnitude_up(std::unique_ptr<big_integer> &x, std::unique_ptr<big_in
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    
-    if (old_x_sign == -x->sign()) {
-        x->negate();
-    }
+}
 }
 
-void change_magnitude_down(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    assert(y->sign() >= ZERO);
-    integer_sign old_x_sign = x->sign();
+void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    //updates x
+    //require |x| > |y|
+    //ensure |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
 
     int x_low, y_low;
     x->divide_by_radix(x_low);
     y->divide_by_radix(y_low);
     if (y->sign() != ZERO) {
-        subtract(x, y);
+        remove(x, y);
     }
     x_low -= y_low;
     if (x_low < 0) {
@@ -215,59 +209,41 @@ void change_magnitude_down(std::unique_ptr<big_integer> &x, std::unique_ptr<big_
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
+}
+void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    //updates x
+    //require (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
+    //ensure x = #x + y  [ ie |x| = |#x| - |y| and (x >= 0 iff #x >= y) ] 
 
-    if (old_x_sign == -x->sign()) {
-        x->negate();
+    assert(x->sign() != y->sign() || x->sign() == ZERO);
+
+    if (compare_magnitude(x, y) > 0) {
+        remove(x, y);
+    } else {
+        std::swap(x, tmp);
+        copy y to x; //!!
+        remove(x, tmp);
     }
 }
 
 void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    //updates x
+    //ensure x = #x + y
+
     if (x->sign() == ZERO || x->sign() == y->sign()) {
-        integer_sign old_y_sign = y->abs();
-        if (x->sign() == ZERO || old_y_sign == POSITIVE) {
-            change_magnitude_up(x, y);
-        } else if (x->sign() == old_y_sign) {
-            change_magnitude_up(x, y);
-        } else {
-            change_magnitude_down(x, y);
-        }
-        y->assign_sign(old_y_sign);
-    } else if (y->sign() != ZERO) {
-        y->negate();
-        subtract(x, y);
-        y->negate();
-    }
-    if (y->sign() != ZERO) {
+        combine_same(x, y);
+    } else {
+        combine_different(x, y);
     }
 }
 
 void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-        if (x->sign() == ZERO || x->sign() == y->sign()) {
-            bool swapped = false;
-            if (compare(x, y) * y->sign() < 0) {
-                swapped = true;
-                std::swap(x, y);
-            }
-            
-            integer_sign old_y_sign = y->abs();
-            if (x->sign() == ZERO || old_y_sign == NEGATIVE) {
-                change_magnitude_up(x, y);
-            } else if (x->sign() == old_y_sign) {
-                change_magnitude_down(x, y);
-            } else {
-                change_magnitude_up(x, y);
-            }
-            y->assign_sign(old_y_sign);
-            
-            if (swapped) {
-                std::swap(x, y);
-                x->negate();
-                y->negate();
-            }
-        } else if (y->sign() != ZERO) {
-            y->negate();
-            add(x, y);
-            y->negate();
-        }
+    //updates x
+    //ensures x = #x - y
+
+    y->negate();
+    add(x, y);
+    y->negate();
 }
+
 }
