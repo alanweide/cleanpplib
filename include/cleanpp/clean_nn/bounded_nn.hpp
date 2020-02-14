@@ -25,7 +25,7 @@ public:
     bool operator==(const bounded_nn &other);
     
     void clear() override;
-    bool is_zero() override;
+    bool is_zero() const override;
     void multiply_by_radix(int d) override;
     void divide_by_radix(int &d) override;
     void increment() override;

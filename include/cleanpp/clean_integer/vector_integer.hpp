@@ -6,10 +6,11 @@
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef nn_integer_hpp
-#define nn_integer_hpp
+#ifndef vector_integer_hpp
+#define vector_integer_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "big_integer.hpp"
 
 #include <clean_nn/stack_nn.hpp>
@@ -30,11 +31,12 @@ public:
 	void divide_by_radix(int &d) override;
 	void negate() override;
 	integer_sign sign() const override;
+    std::unique_ptr<big_integer> new_instance() const override;
 
 private:
-	stack_nn n_;
+	std::vector<int> rep_;
 	enum integer_sign sign_;
 };
 }
 
-#endif /* nn_integer_hpp */
+#endif /* vector_integer_hpp */

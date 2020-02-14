@@ -14,13 +14,38 @@
 namespace cleanpp {
 
 class natural_number_kernel: public clean_base {
+    /*
+     type NATURAL is integer
+        exemplar   n
+        constraint n >= 0
+     
+     natural_number_kernel is modeled by NATURAL
+     */
 public:
     static const int RADIX = 10;
     
-    virtual bool is_zero() = 0;
-    virtual void multiply_by_radix(int digit) = 0;
-    virtual void divide_by_radix(int &digit) = 0;
+    /*
+     ensures is_zero = (this = 0)
+     */
+    virtual bool is_zero() const = 0;
     
+    /*
+     updates  this
+     requires 0 <= d and d < RADIX
+     ensures  this = #this * RADIX + d
+     */
+    virtual void multiply_by_radix(int d) = 0;
+    
+    /*
+     updates  this
+     ensures  #this = this * RADIX + d and
+              0 <= d and d < RADIX
+     */
+    virtual void divide_by_radix(int &d) = 0;
+    
+    /*
+     ensures `==` = (this = other)
+     */
     bool operator==(natural_number_kernel &other);
     
     friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
@@ -28,11 +53,37 @@ public:
 
 class natural_number: public natural_number_kernel {
 public:
+    /*
+     updates this
+     ensures this = #this + 1
+     */
     virtual void increment();
+    
+    /*
+     updates  this
+     requires this > 0
+     ensures  this = #this - 1
+     */
     virtual void decrement();
+    
+    /*
+     replaces this
+     requires n >= 0
+     ensures  this = n
+     */
     virtual void set_from_int(int n);
     
+    /*
+     updates x
+     ensures x = #x + y
+     */
     friend void add(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
+    
+    /*
+     updates  x
+     requires x >= y
+     ensures  x = #x - y
+     */
     friend void subtract(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
 };
 

@@ -21,6 +21,7 @@
 		8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */; };
 		86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */; };
 		86EC1E9523F2338B00A7A779 /* nn_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9423F2338B00A7A779 /* nn_integer.cpp */; };
+		86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */; };
 		E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* clean_queue.hpp */; };
 		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* linked_queue.hpp */; };
@@ -66,6 +67,7 @@
 		86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestArrayQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		86EC1E9423F2338B00A7A779 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
 		86EC1E9623F233AA00A7A779 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
+		86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVectorInteger.mm; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
 				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
+				86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */,
 				860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */,
 				E775B52E23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm */,
 				8663DF8523EB076D00DCA186 /* TestArrayStackNaturalNumber.mm */,
@@ -497,6 +500,7 @@
 			files = (
 				8663DF8223E25D8500DCA186 /* TestLinkedQueueNaturalNumber.mm in Sources */,
 				860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */,
+				86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */,
 				86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */,

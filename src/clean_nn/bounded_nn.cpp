@@ -33,7 +33,7 @@ bool bounded_nn::operator==(const bounded_nn &other) {
 void bounded_nn::clear() {
     n_ = 0;
 }
-bool bounded_nn::is_zero() {
+bool bounded_nn::is_zero() const {
     return n_ == 0;
 }
 void bounded_nn::multiply_by_radix(int d) {

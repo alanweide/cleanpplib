@@ -33,12 +33,12 @@ void stack_nn::clear() {
     rep_.clear();
 }
 
-bool stack_nn::is_zero() {
+bool stack_nn::is_zero() const {
     return rep_.is_empty();
 }
 
 void stack_nn::multiply_by_radix(int d) {
-    assert(0 <= d && d < 10);
+    assert(0 <= d && d < RADIX);
     if (!is_zero() || d != 0) {
         rep_.push(d);
     }
@@ -50,6 +50,7 @@ void stack_nn::divide_by_radix(int &d) {
     } else {
         rep_.pop(d);
     }
+    assert(0 <= d && d < RADIX);
 }
 
 }

@@ -10,18 +10,10 @@
 
 namespace cleanpp {
 vector_integer::vector_integer(int n) {
-	if (n < 0) {
-		sign_ = NEGATIVE;
-		n *= -1;
-	} else if (n == 0) {
-		sign_ = ZERO;
-	} else {
-		sign_ = POSITIVE;
-	}
-	n_ = stack_nn(n);
+    set_from_int(n);
 }
 
-vector_integer::vector_integer(vector_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
+vector_integer::vector_integer(vector_integer &&other): rep_(std::move(other.rep_)), sign_(other.sign_) {
 	other.clear();
 }
 
@@ -29,7 +21,7 @@ vector_integer& vector_integer::operator=(vector_integer &&other) {
 	if (&other == this) {
 		return *this;
 	}
-	n_ = std::move(other.n_);
+	rep_ = std::move(other.rep_);
 	sign_ = std::move(other.sign_);
 	other.clear();
 	return *this;
@@ -37,24 +29,31 @@ vector_integer& vector_integer::operator=(vector_integer &&other) {
 
 // big_integer_kernel
 void vector_integer::clear() {
-	n_.clear();
+	rep_.clear();
 	sign_ = ZERO;
 }
 
 void vector_integer::divide_by_radix(int &d) {
-	n_.divide_by_radix(d);
-	if (n_.is_zero()) {
-		sign_ = ZERO;
-	}
-	assert (0 <= d && d < RADIX);
+    if (!rep_.empty()) {
+        d = rep_.back();
+        rep_.pop_back();
+    } else {
+        d = 0;
+    }
+    if (rep_.empty()) {
+        sign_ = ZERO;
+    }
+    assert (0 <= d && d < RADIX);
 }
 
 void vector_integer::multiply_by_radix(int d) {
 	assert (0 <= d && d < RADIX);
-	if (0 < d && n_.is_zero()) {
-		sign_ = POSITIVE;
-	}
-	n_.multiply_by_radix(d);
+    if (0 < d && rep_.empty()) {
+        sign_ = POSITIVE;
+    }
+    if (!rep_.empty() || d != 0) {
+        rep_.push_back(d);
+    }
 }
 
 integer_sign vector_integer::sign() const {
@@ -67,6 +66,10 @@ void vector_integer::negate() {
 	} else if (sign_ == NEGATIVE) {
 		sign_ = POSITIVE;
 	}
+}
+
+std::unique_ptr<big_integer> vector_integer::new_instance() const {
+    return std::make_unique<vector_integer>();
 }
 
 }

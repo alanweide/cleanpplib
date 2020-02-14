@@ -23,6 +23,9 @@ class big_integer_kernel;
 class big_integer;
 
 class big_integer_kernel: public clean_base {
+    /*
+     big_integer_kernel is modeled by integer
+     */
 public:
     // The "base" of the number
 	static const int RADIX = 10;
@@ -137,9 +140,8 @@ public:
     
     /*
      updates  this
-     requires this = 0 iff sign = ZERO
      ensures  sign = NEGATIVE ==> this = -|#this| and
-              sign = ZERO     ==> this = 0 and
+              sign = ZERO     ==> this = #this and
               sign = POSITIVE ==> this = |#this|
      */
     virtual void assign_sign(integer_sign sign);
@@ -161,6 +163,12 @@ public:
      */
 	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 
+    /*
+     ensures compare > 0 ==> x > y and
+             compare = 0 ==> x = y and
+             compare < 0 ==> x < y
+     */
+    friend int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 };
 }
 

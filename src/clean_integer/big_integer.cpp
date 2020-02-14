@@ -11,30 +11,14 @@
 namespace cleanpp {
 
 /* ----------------------------
-* helper functions
+* helper function(s)
 * ---------------------------- */
 
-int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    if (x->sign() > y->sign()) {
-        return 1;
-    } else if (x->sign() < y->sign()) {
-        return -1;
-    } else if (x->sign() == ZERO && y->sign() == ZERO) {
-        return 0;
-    } else {
-        int x_low, y_low;
-        x->divide_by_radix(x_low);
-        y->divide_by_radix(y_low);
-        int comp = compare(x, y);
-        if (comp == 0) {
-            comp = x_low - y_low;
-        }
-        x->multiply_by_radix(x_low);
-        y->multiply_by_radix(y_low);
-        return comp;
-    }
-}
-
+/*
+ ensures compare > 0 ==> |x| > |y| and
+         compare = 0 ==> |x| = |y| and
+         compare < 0 ==> |x| < |y|
+ */
 int compare_magnitude(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     integer_sign x_sign = x->abs();
     integer_sign y_sign = y->abs();
@@ -108,9 +92,7 @@ void big_integer::increase_magnitude() {
     }
     multiply_by_radix(d);
     
-    if (sign != ZERO) {
-        this->assign_sign(sign);
-    }
+    this->assign_sign(sign);
 }
 
 void big_integer::decrease_magnitude() {
@@ -127,9 +109,7 @@ void big_integer::decrease_magnitude() {
     }
     multiply_by_radix(d);
     
-    if (this->sign() != ZERO) {
-        this->assign_sign(sign);
-    }
+    this->assign_sign(sign);
 }
 
 void big_integer::increment() {
@@ -187,9 +167,7 @@ integer_sign big_integer::abs() {
 }
 
 void big_integer::assign_sign(integer_sign sign) {
-    assert((this->sign() == ZERO) == (sign == ZERO));
-
-    if (this->sign() != sign) {
+    if (this->sign() == -sign) {
         this->negate();
     }
 }
@@ -222,6 +200,8 @@ std::unique_ptr<big_integer> big_integer::clone() {
 void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     assert(x->sign() == y->sign() || x->sign() == ZERO || y->sign() == ZERO);
 
+    integer_sign x_sign = x->abs(), y_sign = y->abs();
+
     int x_low, y_low;
     x->divide_by_radix(x_low);
     y->divide_by_radix(y_low);
@@ -235,13 +215,18 @@ void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> 
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
+
+    // This decision was key
+    x->assign_sign(x_sign == 0 ? y_sign : x_sign);
+    
+    y->assign_sign(y_sign);
 }
 
 void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     assert(compare_magnitude(x, y) > 0);
     
-    integer_sign sign = y->abs();
-    
+    integer_sign x_sign = x->abs(), y_sign = y->abs();
+
     int x_low, y_low;
     x->divide_by_radix(x_low);
     y->divide_by_radix(y_low);
@@ -256,7 +241,8 @@ void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
     
-    y->assign_sign(sign);
+    x->assign_sign(x_sign);
+    y->assign_sign(y_sign);
 }
 
 void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
@@ -265,8 +251,7 @@ void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_inte
     if (compare_magnitude(x, y) > 0) {
         remove(x, y);
     } else if (compare_magnitude(x, y) < 0) {
-        std::unique_ptr<big_integer> tmp = x->new_instance();
-        std::swap(x, tmp);
+        std::unique_ptr<big_integer> tmp = std::move(x);
         x = y->clone();
         remove(x, tmp);
     } else {
@@ -275,8 +260,6 @@ void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_inte
 }
 
 void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    //updates x
-    //ensure x = #x + y
 
     if (x->sign() == ZERO || x->sign() == y->sign()) {
         combine_same(x, y);
@@ -286,12 +269,34 @@ void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
 }
 
 void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
-    //updates x
-    //ensures x = #x - y
-
     y->negate();
     add(x, y);
     y->negate();
 }
 
+int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+    if (x->sign() > y->sign()) {
+        return 1;
+    } else if (x->sign() < y->sign()) {
+        return -1;
+    } else if (x->sign() == ZERO && y->sign() == ZERO) {
+        return 0;
+    } else {
+        integer_sign x_sign = x->abs(), y_sign = y->abs();
+        int x_low, y_low;
+        x->divide_by_radix(x_low);
+        y->divide_by_radix(y_low);
+        int comp = compare(x, y);
+        if (comp == 0) {
+            comp = x_low - y_low;
+        }
+        x->multiply_by_radix(x_low);
+        y->multiply_by_radix(y_low);
+        
+        x->assign_sign(x_sign);
+        y->assign_sign(y_sign);
+        
+        return comp * x_sign;
+    }
+}
 }

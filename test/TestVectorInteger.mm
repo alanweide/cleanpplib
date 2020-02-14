@@ -1,6 +1,6 @@
 //
-//  TestNNInteger.m
-//  TestNNInteger
+//  TestVectorInteger.m
+//  TestVectorInteger
 //
 //  Created by Alan Weide on 11/29/19.
 //  Copyright © 2019 Alan Weide. All rights reserved.
@@ -10,16 +10,16 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <clean_integer/nn_integer.hpp>
+#include <clean_integer/vector_integer.hpp>
 
-@interface TestNNInteger : XCTestCase
+@interface TestVectorInteger : XCTestCase
 @end
 
-@implementation TestNNInteger
+@implementation TestVectorInteger
 
 using namespace cleanpp;
 
-typedef nn_integer bigint_type;
+typedef vector_integer bigint_type;
 
 static std::string bigintToString(std::unique_ptr<big_integer> &o) {
 	std::stringstream s;
@@ -814,7 +814,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     XCTAssert(*n2 == *n2_exp, @"n = %s", n2_str.c_str());
 }
 
-- (void)testAdd57_Neg66{
+- (void)testAdd67_Neg56{
     std::unique_ptr<big_integer> n1 = std::make_unique<bigint_type>(67);
     std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-56);
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(11);

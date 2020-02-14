@@ -16,20 +16,40 @@
 #include <clean_base.hpp>
 
 namespace cleanpp {
-	template <typename T>  // template definition
-	class queue: public clean_base
-	{
-    private:
-        virtual std::string to_str() = 0;
-	public:
-		virtual void enqueue(T& x) = 0;
-		virtual void dequeue(T& x) = 0;
-		virtual bool is_empty() const = 0;
-        
-        friend std::ostream& operator<<(std::ostream& out, queue<T>& o) {
-            return out << o.to_str();
-        }
-	};
-}
+template <typename T>
+class queue: public clean_base {
+    /*
+     queue is modeled by string of T
+     */
+private:
+    virtual std::string to_str() = 0;
+public:
+    
+    /*
+     updates this
+     clears  x
+     ensures this = #this * <x>
+     */
+    virtual void enqueue(T& x) = 0;
+    
+    /*
+     updates  this
+     replaces x
+     requires |this| > 0
+     ensures  this * <x> = #this
+     */
+    virtual void dequeue(T& x) = 0;
+    
+    /*
+     ensures is_empty = (|this| = 0)
+     */
+    virtual bool is_empty() const = 0;
+    
+    friend std::ostream& operator<<(std::ostream& out, queue<T>& o) {
+        return out << o.to_str();
+    }
+};
 
+        }
+        
 #endif /* clean_queue_h */
