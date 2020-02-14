@@ -370,6 +370,114 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
 	XCTAssert(d == 5, @"d = %d", d);
 }
 
+- (void)testCloneFromZero {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>();
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>();
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromOne {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(1);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(1);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(1);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromThree {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(3);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(3);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(3);
+
+    n = n2->clone();
+    
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromFive {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(5);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(5);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(5);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFrom25 {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(25);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(25);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(25);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromNegOne {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-1);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(-1);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-1);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromNegThree {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-3);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(-3);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-3);
+
+    n = n2->clone();
+    
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromNegFive {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
+- (void)testCloneFromNeg25 {
+    std::unique_ptr<big_integer> n;
+    std::unique_ptr<big_integer> n2 = std::make_unique<bigint_type>(-25);
+    std::unique_ptr<big_integer> n_exp = std::make_unique<bigint_type>(-25);
+    std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-25);
+
+    n = n2->clone();
+
+    XCTAssert(*n == *n_exp, @"n = %s", bigintToString(n).c_str());
+    XCTAssert(*n2 == *n2_exp, @"n2 = %s", bigintToString(n2).c_str());
+}
+
 /* ----------------------------
  * friend functions
  * ---------------------------- */

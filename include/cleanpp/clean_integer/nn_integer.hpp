@@ -30,6 +30,7 @@ public:
 	void divide_by_radix(int &d) override;
 	void negate() override;
 	integer_sign sign() const override;
+    std::unique_ptr<big_integer> new_instance() const override;
 
 private:
 	stack_nn n_;

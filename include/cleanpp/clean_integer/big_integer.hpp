@@ -19,15 +19,52 @@ enum integer_sign {
 	NEGATIVE = -1, ZERO = 0, POSITIVE = 1
 };
 
+class big_integer_kernel;
+class big_integer;
+
 class big_integer_kernel: public clean_base {
 public:
+    // The "base" of the number
 	static const int RADIX = 10;
 
+    /*
+     updates  this
+     requires 0 <= d and d < 10
+     ensures  |this| = |#this| * RADIX + d and
+              this < 0 iff #this < 0
+     */
 	virtual void multiply_by_radix(int d) = 0;
-	virtual void divide_by_radix(int& d) = 0;
-	virtual void negate() = 0;
-	virtual integer_sign sign() const = 0;
 
+    /*
+     updates  this
+     replaces d
+     ensures  |#this| = |this| * RADIX + d and
+              0 <= d and d < 10 and
+              this < 0 iff #this < 0
+     */
+    virtual void divide_by_radix(int& d) = 0;
+
+    /*
+     updates this
+     ensures this = -#this
+     */
+    virtual void negate() = 0;
+	
+    /*
+     ensures  this < 0 ==> sign = NEGATIVE and
+              this = 0 ==> sign = ZERO and
+              this > 0 ==> sign = POSITIVE
+     */
+    virtual integer_sign sign() const = 0;
+    
+    /*
+     ensures new_instance = 0
+     */
+    virtual std::unique_ptr<big_integer> new_instance() const = 0;
+
+    /*
+     ensures `==` = (this = other)
+     */
 	bool operator==(big_integer_kernel &other);
 	
 	friend std::ostream& operator<<(std::ostream& out, big_integer_kernel& o);
@@ -35,19 +72,93 @@ public:
 
 class big_integer: public big_integer_kernel {
 private:
+    
+    /*
+     updates this
+     ensures |this| = |#this| + 1 and
+             this < 0 iff #this < 0
+     */
     virtual void increase_magnitude();
-	virtual void decrease_magnitude();
 
-    friend void change_magnitude_up(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
-    friend void change_magnitude_down(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    /*
+     updates  this
+     requires this != 0
+     ensures  |this| = |#this| - 1 and
+              this < 0 iff #this < 0
+     */
+    virtual void decrease_magnitude();
+    
+    /*
+     updates  x
+     requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
+     ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
+     */
+    friend void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    
+    /*
+     updates  x
+     requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
+     ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
+     */
+    friend void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    
+    /*
+     updates  x
+     requires |x| > |y|
+     ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
+     */
+    friend void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+
 public:
+    
+    /*
+     updates this
+     ensures this = #this + 1
+     */
 	virtual void increment();
-	virtual void decrement();
-	virtual void set_from_int(int n);
-    virtual integer_sign abs();
-    virtual void assign_sign(integer_sign sign);
 
-	friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    /*
+     updates this
+     ensures this = #this - 1
+     */
+    virtual void decrement();
+	
+    /*
+     replaces this
+     ensures  this = n
+     */
+    virtual void set_from_int(int n);
+    
+    /*
+     requires 0 <= d and d < 10
+     ensures  this = |#this|
+     */
+    virtual integer_sign abs();
+    
+    /*
+     updates  this
+     requires this = 0 iff sign = ZERO
+     ensures  sign = NEGATIVE ==> this = -|#this| and
+              sign = ZERO     ==> this = 0 and
+              sign = POSITIVE ==> this = |#this|
+     */
+    virtual void assign_sign(integer_sign sign);
+    
+    /*
+     ensures clone = this
+     */
+    virtual std::unique_ptr<big_integer> clone();
+
+    /*
+     updates  x
+     ensures  x = #x + y
+     */
+    friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    
+    /*
+     updates x
+     ensures x = #x - y
+     */
 	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
 
 };
