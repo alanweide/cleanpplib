@@ -18,15 +18,37 @@
 namespace cleanpp {
 
 template <class T>
-class stack: public clean_base
-{
+class stack: public clean_base {
+    /*
+     stack is modeled by string of T
+     */
 private:
 	virtual std::string to_str() = 0;
 public:
+    
+    /*
+     updates this
+     clears  x
+     ensures this = <#x> * #this
+     */
 	virtual void push(T& x) = 0;
+    
+    /*
+     updates  this
+     replaces x
+     requires |this| > 0
+     ensures  #this = <x> * this
+     */
 	virtual void pop(T& x) = 0;
+    
+    /*
+     ensures is_empty = (|this| = 0)
+     */
 	virtual bool is_empty() const = 0;
 	
+    /*
+     ensures `==` = (this = other)
+     */
 	bool operator==(stack<T> &other) {
 		bool ans;
 		if (is_empty() && other.is_empty()) {

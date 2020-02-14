@@ -78,11 +78,11 @@ public:
         rem_->pop(x);
     }
     
-    bool is_at_end() override {
+    bool is_at_end() const override  {
         return rem_->is_empty();
     }
     
-    bool is_at_front() override {
+    bool is_at_front() const override  {
         return prec_->is_empty();
     }
         

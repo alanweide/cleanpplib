@@ -17,13 +17,49 @@
 namespace cleanpp {
 template <class T>
 class list_kernel: public clean_base {
+    /*
+     list_kernel is modeled by (prec: string of T,
+                                rem:  string of T)
+     */
 public:
+    
+    /*
+     updates  this
+     requires |this.rem| > 0
+     ensures  exists A, B, x : #this = (A * <x>, B) : this = (A, <x> * B)
+     */
     virtual void advance() = 0;
+
+    /*
+     updates   this
+     requires |this.prec| > 0
+     ensures  exists A, B, x : #this = (A, <x> * B) : this = (A * <x>, B)
+     */
     virtual void retreat() = 0;
+    
+    /*
+     updates this
+     clears  x
+     ensures this = (#this.prec * <x>, #this.rem)
+     */
     virtual void insert(T& x) = 0;
+
+    /*
+     updates  this
+     replaces x
+     ensures  #this = (this.prec * <x>, this.rem)
+     */
     virtual void remove(T& x) = 0;
-    virtual bool is_at_end() = 0;
-    virtual bool is_at_front() = 0;
+    
+    /*
+     ensures is_at_end = (|this.rem| = 0)
+     */
+    virtual bool is_at_end() const = 0;
+    
+    /*
+     ensures is_at_front = (|this.prec| = 0)
+     */
+    virtual bool is_at_front() const = 0;
         
     virtual std::string to_str() {
         std::stringstream out;
@@ -76,6 +112,11 @@ public:
 template<class T>
 class list: public list_kernel<T> {
 public:
+    
+    /*
+     updates this
+     ensures this = (<>, #this.prec * #this.rem)
+     */
     virtual void reset() {
         while (!this->is_at_front()) {
             this->retreat();
