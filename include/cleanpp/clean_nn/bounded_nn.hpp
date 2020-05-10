@@ -12,9 +12,9 @@
 #include "natural_number.hpp"
 
 namespace cleanpp {
-class bounded_nn: public natural_number {
+class bounded_nn: public natural_number_secondary {
 public:
-    bounded_nn(int n = 0);
+    bounded_nn(long n = 0);
     
     bounded_nn(bounded_nn const &other) = delete;
     bounded_nn(bounded_nn&& other);
@@ -30,7 +30,7 @@ public:
     void divide_by_radix(int &d) override;
     void increment() override;
     void decrement() override;
-    void set_from_int(int n) override;
+    void set_from_long(long n) override;
     
     friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
         return out << o.n_;

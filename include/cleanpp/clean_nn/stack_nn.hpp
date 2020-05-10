@@ -16,9 +16,9 @@
 
 namespace cleanpp {
 
-class stack_nn: public natural_number {
+class stack_nn: public natural_number_secondary {
 public:
-    stack_nn(int n = 0);
+    stack_nn(long n = 0);
     
     stack_nn(stack_nn const &other) = delete;
     stack_nn(stack_nn&& other);

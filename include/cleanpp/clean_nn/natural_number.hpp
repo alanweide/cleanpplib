@@ -51,7 +51,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
 };
 
-class natural_number: public natural_number_kernel {
+class natural_number_secondary: public natural_number_kernel {
 public:
     /*
      updates this
@@ -71,20 +71,20 @@ public:
      requires n >= 0
      ensures  this = n
      */
-    virtual void set_from_int(int n);
+    virtual void set_from_long(long n);
     
     /*
      updates x
      ensures x = #x + y
      */
-    friend void add(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
+    friend void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
     
     /*
      updates  x
      requires x >= y
      ensures  x = #x - y
      */
-    friend void subtract(std::unique_ptr<natural_number> &x, std::unique_ptr<natural_number> &y);
+    friend void subtract(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
 };
 
 }

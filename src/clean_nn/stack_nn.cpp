@@ -11,8 +11,8 @@
 
 namespace cleanpp {
 
-stack_nn::stack_nn(int n): rep_() {
-    set_from_int(n);
+stack_nn::stack_nn(long n): rep_() {
+    set_from_long(n);
 }
 
 stack_nn::stack_nn(stack_nn&& other): rep_(std::move(other.rep_)) {
