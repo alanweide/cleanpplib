@@ -12,8 +12,6 @@
 #include <string>
 #include <sstream>
 #include <clean_stack/linked_stack.hpp>
-#include <clean_nn/bounded_nn.hpp>
-#include <clean_nn/stack_nn.hpp>
 
 @interface TestLinkedStackInt : XCTestCase
 
