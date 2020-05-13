@@ -10,7 +10,7 @@
 #include <bounded_nn.hpp>
 
 namespace cleanpp {
-bounded_nn::bounded_nn(int n): n_(n) {};
+bounded_nn::bounded_nn(long n): n_(n) {};
 
 bounded_nn::bounded_nn(bounded_nn&& other): n_(std::move(other.n_)) {
     other.clear();
@@ -53,7 +53,7 @@ void bounded_nn::decrement() {
     this->n_--;
 }
 
-void bounded_nn::set_from_int(int n) {
+void bounded_nn::set_from_long(long n) {
     this->n_ = n;
 }
 
