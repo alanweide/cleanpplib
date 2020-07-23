@@ -38,6 +38,8 @@
 		E775B53223F213F7007DB0C1 /* vector_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B53023F213F7007DB0C1 /* vector_integer.cpp */; };
 		E775B53323F213F7007DB0C1 /* vector_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B53123F213F7007DB0C1 /* vector_integer.hpp */; };
 		E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B53423F218CE007DB0C1 /* TestNNInteger.mm */; };
+		E7DF792224CA228000BA4381 /* template_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DF792024CA227F00BA4381 /* template_nn.cpp */; };
+		E7DF792324CA228000BA4381 /* template_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E7DF792124CA228000BA4381 /* template_nn.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		E775B53023F213F7007DB0C1 /* vector_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vector_integer.cpp; sourceTree = "<group>"; };
 		E775B53123F213F7007DB0C1 /* vector_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vector_integer.hpp; sourceTree = "<group>"; };
 		E775B53423F218CE007DB0C1 /* TestNNInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNNInteger.mm; sourceTree = "<group>"; };
+		E7DF792024CA227F00BA4381 /* template_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = template_nn.cpp; sourceTree = "<group>"; };
+		E7DF792124CA228000BA4381 /* template_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_nn.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,7 @@
 		E760A2C9239203DA00139E3D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E7DF791F24CA226C00BA4381 /* template_nn */,
 				E775B52823F2015E007DB0C1 /* clean_integer */,
 				860934AD23E20FD600D38073 /* clean_nn */,
 			);
@@ -217,6 +222,7 @@
 		E760A2CB239203DA00139E3D /* cleanpp */ = {
 			isa = PBXGroup;
 			children = (
+				E7DF791E24CA223B00BA4381 /* template_nn */,
 				E775B52D23F207F0007DB0C1 /* clean_integer */,
 				860934AC23DD08F500D38073 /* clean_queue */,
 				860934AB23DD08E300D38073 /* clean_nn */,
@@ -372,6 +378,22 @@
 			path = clean_integer;
 			sourceTree = "<group>";
 		};
+		E7DF791E24CA223B00BA4381 /* template_nn */ = {
+			isa = PBXGroup;
+			children = (
+				E7DF792124CA228000BA4381 /* template_nn.hpp */,
+			);
+			path = template_nn;
+			sourceTree = "<group>";
+		};
+		E7DF791F24CA226C00BA4381 /* template_nn */ = {
+			isa = PBXGroup;
+			children = (
+				E7DF792024CA227F00BA4381 /* template_nn.cpp */,
+			);
+			path = template_nn;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -383,6 +405,7 @@
 				E760A2FC2392049D00139E3D /* clean_stack.hpp in Headers */,
 				E760A2F82392049D00139E3D /* clean_base.hpp in Headers */,
 				8682AD9423D897C6003F4238 /* stack_nn.hpp in Headers */,
+				E7DF792324CA228000BA4381 /* template_nn.hpp in Headers */,
 				E775B52C23F20191007DB0C1 /* big_integer.hpp in Headers */,
 				8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */,
 				8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */,
@@ -483,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86EC1E9523F2338B00A7A779 /* nn_integer.cpp in Sources */,
+				E7DF792224CA228000BA4381 /* template_nn.cpp in Sources */,
 				E775B53223F213F7007DB0C1 /* vector_integer.cpp in Sources */,
 				860934AF23E2102D00D38073 /* natural_number.cpp in Sources */,
 				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,
