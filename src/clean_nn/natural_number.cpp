@@ -79,6 +79,38 @@ void natural_number_secondary::set_from_long(long n) {
     }
 }
 
+/*
+ pass-by-ref:  restores-mode
+ pass-by-move: non-restores-mode
+    pass-by-move w/corresponding return:   updates
+    pass-by-move w/o corresponding return: clears
+ returned w/o corresponding parameter: replaces
+ 
+ what about?
+    one parameter is a function call involving x
+        add(std::move(x), f(x)):
+        { $0 = std::move(x); $1 = f(x); add($0, $1); }?
+        { $1 = f(x); add(std::move(x), $1); }?
+    
+ */
+std::unique_ptr<natural_number_secondary>&& clearingAdd(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
+    int x_low;
+    x->divide_by_radix(x_low);
+    int y_low;
+    y->divide_by_radix(y_low);
+    if (!y->is_zero()) {
+        x = clearingAdd(std::move(x), y);
+    }
+    x_low += y_low;
+    if (x_low >= natural_number_secondary::RADIX) {
+        x_low -= natural_number_secondary::RADIX;
+        x->increment();
+    }
+    x->multiply_by_radix(x_low);
+    y->multiply_by_radix(y_low);
+    return std::move(x);
+}
+
 void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y) {
     int x_low;
     x->divide_by_radix(x_low);
