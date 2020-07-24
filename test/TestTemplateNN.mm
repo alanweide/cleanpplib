@@ -31,8 +31,9 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-	template_t n;
-	XCTAssert(n.is_zero());
+    template_t n;
+    n.is_zero();
+//	XCTAssert(n.is_zero());
 }
 
 - (void)tearDown {

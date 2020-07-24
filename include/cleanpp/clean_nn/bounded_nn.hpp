@@ -10,6 +10,7 @@
 #define bounded_nn_h
 
 #include "natural_number.hpp"
+//#include <template_nn/template_nn.hpp>
 
 namespace cleanpp {
 class bounded_nn: public natural_number_secondary {
@@ -38,6 +39,8 @@ public:
 private:
     long n_;
 };
+
+//template class template_nn_kernel<bounded_nn>;
 }
 
 

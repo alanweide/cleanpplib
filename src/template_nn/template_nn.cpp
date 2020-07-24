@@ -11,6 +11,11 @@
 namespace cleanpp {
 
 template<class I>
+template_nn_kernel<I>::template_nn_kernel() {
+    val_ = std::make_unique<I>();
+}
+
+template<class I>
 template_nn_kernel<I>::template_nn_kernel(template_nn_kernel<I>&& other): val_(std::move(other.val_)) {
 	other.clear();
 }
@@ -32,7 +37,7 @@ void template_nn_kernel<I>::multiply_by_radix(int d) {
 
 template<class I>
 void template_nn_kernel<I>::divide_by_radix(int &d) {
-	this->val_->divide_by_radix(&d);
+	this->val_->divide_by_radix(d);
 }
 
 template<class I>

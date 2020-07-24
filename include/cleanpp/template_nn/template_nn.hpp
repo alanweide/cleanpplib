@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <clean_base.hpp>
+#include <clean_nn/bounded_nn.hpp>
+#include <clean_nn/stack_nn.hpp>
 
 namespace cleanpp {
 
@@ -21,8 +23,10 @@ private:
 public:
 	static const int RADIX = 10;
 	
-	template_nn_kernel<I>(template_nn_kernel<I> const &other) = delete;
-	template_nn_kernel<I>(template_nn_kernel<I>&& other);
+    template_nn_kernel();
+    
+	template_nn_kernel(template_nn_kernel<I> const &other) = delete;
+	template_nn_kernel(template_nn_kernel<I>&& other);
 	
 	template_nn_kernel<I>& operator=(const template_nn_kernel<I>& other) = delete;
 	template_nn_kernel<I>& operator=(template_nn_kernel<I>&& other);
@@ -40,6 +44,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, template_nn_kernel<I>& o);
 };
 
+template class template_nn_kernel<bounded_nn>;
+template class template_nn_kernel<stack_nn>;
 
 }
 
