@@ -70,6 +70,7 @@
 		86EC1E9423F2338B00A7A779 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
 		86EC1E9623F233AA00A7A779 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
 		86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVectorInteger.mm; sourceTree = "<group>"; };
+		E7410F0224CB5EFC000C203D /* TestCleanpp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = TestCleanpp.xctestplan; path = /Users/alan/git/research/other/cleanpplib/test/TestCleanpp.xctestplan; sourceTree = "<absolute>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
@@ -243,6 +244,7 @@
 		E760A2CC239203DA00139E3D /* test */ = {
 			isa = PBXGroup;
 			children = (
+				E7410F0224CB5EFC000C203D /* TestCleanpp.xctestplan */,
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
 				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
