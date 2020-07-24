@@ -40,6 +40,7 @@
 		E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B53423F218CE007DB0C1 /* TestNNInteger.mm */; };
 		E7DF792224CA228000BA4381 /* template_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DF792024CA227F00BA4381 /* template_nn.cpp */; };
 		E7DF792324CA228000BA4381 /* template_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E7DF792124CA228000BA4381 /* template_nn.hpp */; };
+		E7DF792524CA33EC00BA4381 /* TestTemplateNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		E775B53423F218CE007DB0C1 /* TestNNInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNNInteger.mm; sourceTree = "<group>"; };
 		E7DF792024CA227F00BA4381 /* template_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = template_nn.cpp; sourceTree = "<group>"; };
 		E7DF792124CA228000BA4381 /* template_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_nn.hpp; sourceTree = "<group>"; };
+		E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateNN.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
+				E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
 				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
 				86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */,
@@ -527,6 +530,7 @@
 				86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */,
 				86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
+				E7DF792524CA33EC00BA4381 /* TestTemplateNN.mm in Sources */,
 				E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */,
 				E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */,
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,

@@ -17,10 +17,30 @@ namespace cleanpp {
 template <class I>
 class template_nn_kernel: public clean_base {
 private:
-	std::unique_ptr<template_nn_kernel> val_;
+	std::unique_ptr<I> val_;
 public:
+	static const int RADIX = 10;
 	
-}
+	template_nn_kernel<I>(template_nn_kernel<I> const &other) = delete;
+	template_nn_kernel<I>(template_nn_kernel<I>&& other);
+	
+	template_nn_kernel<I>& operator=(const template_nn_kernel<I>& other) = delete;
+	template_nn_kernel<I>& operator=(template_nn_kernel<I>&& other);
+	
+	virtual void clear() override;
+	
+	virtual bool is_zero() const;
+	
+	virtual void multiply_by_radix(int d);
+	
+	virtual void divide_by_radix(int &d);
+	
+	bool operator==(template_nn_kernel<I> &other);
+	
+	friend std::ostream& operator<<(std::ostream& out, template_nn_kernel<I>& o);
+};
+
+
 }
 
 #endif /* template_nn_hpp */
