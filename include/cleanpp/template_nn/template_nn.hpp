@@ -17,35 +17,183 @@
 namespace cleanpp {
 
 template <class I>
-class template_nn_kernel: public clean_base {
+class t_natural_number_kernel: public clean_base {
 private:
-	std::unique_ptr<I> val_;
+	std::unique_ptr<natural_number_kernel> rep_;
 public:
+	/*
+	 type NATURAL is integer
+	 exemplar   n
+	 constraint n >= 0
+	 
+	 natural_number_kernel is modeled by NATURAL
+	 */
+	
 	static const int RADIX = 10;
 	
-    template_nn_kernel();
-    
-	template_nn_kernel(template_nn_kernel<I> const &other) = delete;
-	template_nn_kernel(template_nn_kernel<I>&& other);
+	t_natural_number_kernel(long n = 0) {
+		rep_ = std::make_unique<I>(n);
+	}
 	
-	template_nn_kernel<I>& operator=(const template_nn_kernel<I>& other) = delete;
-	template_nn_kernel<I>& operator=(template_nn_kernel<I>&& other);
+	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
+	template<class I2>
+	t_natural_number_kernel(t_natural_number_kernel<I2>&& other): rep_(std::move(other.rep_)) {
+		other.clear();
+	}
 	
-	virtual void clear() override;
+	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
+	template<class I2>
+	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I2>&& other) {
+		return this->rep_ = std::move(other->rep_);
+	}
 	
-	virtual bool is_zero() const;
+	void clear() override {
+		this->rep_->clear();
+	}
 	
-	virtual void multiply_by_radix(int d);
+	/*
+	 ensures is_zero = (this = 0)
+	 */
+	virtual bool is_zero() const {
+		return this->rep_->is_zero();
+	}
 	
-	virtual void divide_by_radix(int &d);
+	/*
+	 updates  this
+	 requires 0 <= d and d < RADIX
+	 ensures  this = #this * RADIX + d
+	 */
+	virtual void multiply_by_radix(int d) {
+		this->rep_->multiply_by_radix(d);
+	}
 	
-	bool operator==(template_nn_kernel<I> &other);
+	/*
+	 updates  this
+	 ensures  #this = this * RADIX + d and
+	 0 <= d and d < RADIX
+	 */
+	virtual void divide_by_radix(int &d) {
+		this->rep_->divide_by_radix(d);
+	}
 	
-	friend std::ostream& operator<<(std::ostream& out, template_nn_kernel<I>& o);
+	/*
+	 ensures `==` = (this = other)
+	 */
+	template<class I2>
+	bool operator==(t_natural_number_kernel<I2> &other) {
+		return *this->rep_ == *other.rep_;
+	}
+	
+	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
+		return out << *o.rep_;
+	}
 };
 
-template class template_nn_kernel<bounded_nn>;
-template class template_nn_kernel<stack_nn>;
+template<class I>
+class t_natural_number_secondary: public t_natural_number_kernel<I> {
+private:
+	std::unique_ptr<natural_number_secondary> rep_;
+public:
+	
+	t_natural_number_secondary(long n = 0) {
+		rep_ = std::make_unique<I>(n);
+	}
+	
+	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
+	template<class I2>
+	t_natural_number_secondary(t_natural_number_secondary<I2>&& other): rep_(std::move(other.rep_)) {
+		other.clear();
+	}
+	
+	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
+	template<class I2>
+	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I2>&& other) {
+		return this->rep_ = std::move(other->rep_);
+	}
+	
+	/*
+	 updates this
+	 ensures this = #this + 1
+	 */
+	virtual void increment() {
+		this->rep_->increment();
+	}
+	
+	/*
+	 updates  this
+	 requires this > 0
+	 ensures  this = #this - 1
+	 */
+	virtual void decrement() {
+		this->rep_->decrement();
+	}
+	
+	/*
+	 replaces this
+	 requires n >= 0
+	 ensures  this = n
+	 */
+	virtual void set_from_long(long n) {
+		this->rep_->set_from_long(n);
+	}
+	
+//	friend std::ostream& operator<<(std::ostream& out, t_natural_number_secondary<I>& o) {
+//		return out << *o.rep_;
+//	}
+
+	/*
+	 updates x
+	 ensures x = #x + y
+	 */
+	template<class I2>
+	friend void add(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y) {
+//		int x_low;
+//		x->divide_by_radix(x_low);
+//		int y_low;
+//		y->divide_by_radix(y_low);
+//		if (!y->is_zero()) {
+//			add(x, y);
+//		}
+//		x_low += y_low;
+//		if (x_low >= natural_number_secondary::RADIX) {
+//			x_low -= natural_number_secondary::RADIX;
+//			x->increment();
+//		}
+//		x->multiply_by_radix(x_low);
+//		y->multiply_by_radix(y_low);
+		add(x->rep_, y->rep_);
+	}
+	
+	/*
+	 updates  x
+	 requires x >= y
+	 ensures  x = #x - y
+	 */
+	template<class I2>
+	friend void subtract(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y){
+//		int x_low;
+//		x->divide_by_radix(x_low);
+//		int y_low;
+//		y->divide_by_radix(y_low);
+//		if (!y->is_zero()) {
+//			subtract(x, y);
+//		}
+//		x_low -= y_low;
+//		if (x_low < 0) {
+//			x_low += natural_number_secondary::RADIX;
+//			x->decrement();
+//		}
+//		x->multiply_by_radix(x_low);
+//		y->multiply_by_radix(y_low);
+		subtract(x->rep_, y->rep_);
+	}
+};
+
+template class t_natural_number_kernel<bounded_nn>;
+template class t_natural_number_kernel<stack_nn>;
+
+template class t_natural_number_secondary<bounded_nn>;
+template class t_natural_number_secondary<stack_nn>;
 
 }
 

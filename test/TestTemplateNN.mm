@@ -21,18 +21,24 @@ using namespace cleanpp;
 
 typedef bounded_nn nn_type;
 
-typedef template_nn_kernel<bounded_nn> template_t;
+typedef t_natural_number_secondary<bounded_nn> template_t;
+
+static std::string nnToString(template_t &o) {
+    std::stringstream s;
+    s << o;
+    return s.str();
+}
 
 static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
-    std::stringstream s;
-    s << *o;
-    return s.str();
+	std::stringstream s;
+	s << *o;
+	return s.str();
 }
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    template_t n;
-    n.is_zero();
+//    template_t n;
+//    n.is_zero();
 //	XCTAssert(n.is_zero());
 }
 
@@ -41,104 +47,104 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
 }
 
 - (void)testInitializerDef {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>();
+    template_t n;
     
     std::string n_str = nnToString(n);
     XCTAssert(n_str == "0");
 }
 
 - (void)testInitializer_SingleDig {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(4);
-    
+	template_t n(4);
+
     std::string n_str = nnToString(n);
     XCTAssert(n_str == "4", @"n = %s", n_str.c_str());
 }
 
 - (void)testInitializer_TwoDig {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(45);
-    
+	template_t n(45);
+
     std::string n_str = nnToString(n);
     XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
 - (void)testClearZero {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>();
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);
-    
-    n->clear();
+	template_t n;
+	template_t expected(0);
+
+	n.clear();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testClearNonZero {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(47);
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);
-    
-    n->clear();
+	template_t n(47);
+	template_t expected(0);
+
+	n.clear();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementZero {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>();
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(1);
+	template_t n;
+	template_t expected(1);
     
-    n->increment();
+	n.increment();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementNine {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(9);
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(10);
-    
-    n->increment();
+	template_t n(9);
+	template_t expected(10);
+
+	n.increment();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testIncrementFive {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(5);
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(6);
-    
-    n->increment();
+	template_t n(5);
+	template_t expected(6);
+
+	n.increment();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementOne {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(1);
-	std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);
-    
-    n->decrement();
+	template_t n(1);
+	template_t expected(0);
+
+	n.decrement();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementTen {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(10);
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(9);
-    
-    n->decrement();
+	template_t n(10);
+	template_t expected(9);
+
+	n.decrement();
 
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testDecrementFive {
-    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(5);
-    std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(4);
-    
-    n->decrement();
+	template_t n(5);
+	template_t expected(4);
+
+	n.decrement();
     
     std::string n_str = nnToString(n);
-    XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testMultRadZero_Zero {
