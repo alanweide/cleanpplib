@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include <clean_base.hpp>
-#include <clean_nn/bounded_nn.hpp>
-#include <clean_nn/stack_nn.hpp>
+//#include <clean_nn/bounded_nn.hpp>
+//#include <clean_nn/stack_nn.hpp>
 
 namespace cleanpp {
 
@@ -86,26 +86,24 @@ public:
 	}
 	
 	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
-		return out << *o.rep_;
+		return out << *(o.rep_);
 	}
 };
 
 template<class I>
 class t_natural_number_secondary: public t_natural_number_kernel<I> {
 private:
-	std::unique_ptr<natural_number_secondary> rep_;
+//	std::unique_ptr<natural_number_secondary> rep_;
 public:
 	
-	t_natural_number_secondary(long n = 0) {
-		rep_ = std::make_unique<I>(n);
-	}
-	
+    t_natural_number_secondary(long n = 0): t_natural_number_kernel<I>(n) {}
+
 	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
 	template<class I2>
-	t_natural_number_secondary(t_natural_number_secondary<I2>&& other): rep_(std::move(other.rep_)) {
+	t_natural_number_secondary(t_natural_number_secondary<I2>&& other): t_natural_number_kernel<I>(other) {
 		other.clear();
 	}
-	
+
 	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
 	template<class I2>
 	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I2>&& other) {
@@ -117,7 +115,14 @@ public:
 	 ensures this = #this + 1
 	 */
 	virtual void increment() {
-		this->rep_->increment();
+        int d = 0;
+        this->divide_by_radix(d);
+        d++;
+        if (d == t_natural_number_kernel<I>::RADIX) {
+            d -= t_natural_number_kernel<I>::RADIX;;
+            this->increment();
+        }
+        this->multiply_by_radix(d);
 	}
 	
 	/*
@@ -126,7 +131,15 @@ public:
 	 ensures  this = #this - 1
 	 */
 	virtual void decrement() {
-		this->rep_->decrement();
+        assert(!this->is_zero());
+        int d = 0;
+        this->divide_by_radix(d);
+        d--;
+        if (d < 0) {
+            d += t_natural_number_kernel<I>::RADIX;
+            decrement();
+        }
+        this->multiply_by_radix(d);
 	}
 	
 	/*
@@ -135,16 +148,23 @@ public:
 	 ensures  this = n
 	 */
 	virtual void set_from_long(long n) {
-		this->rep_->set_from_long(n);
+        assert(n >= 0);
+        if (n == 0) {
+          this->clear();
+        } else {
+            long nLeft = n / t_natural_number_kernel<I>::RADIX;
+            this->set_from_long(nLeft);
+            this->multiply_by_radix(n % t_natural_number_kernel<I>::RADIX);
+        }
 	}
-
+	
 	/*
 	 updates x
 	 ensures x = #x + y
 	 */
 	template<class I2>
-	friend void add(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y) {
-		add(x.rep_, y.rep_);
+	friend t_natural_number_kernel<I> add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
+        return add(x.rep_, y.rep_);
 	}
 	
 	/*
@@ -153,16 +173,16 @@ public:
 	 ensures  x = #x - y
 	 */
 	template<class I2>
-	friend void subtract(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y){
-		subtract(x.rep_, y.rep_);
+	friend t_natural_number_secondary<I> subtract(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y){
+        return subtract(x.rep_, y.rep_);
 	}
 };
 
-template class t_natural_number_kernel<bounded_nn>;
-template class t_natural_number_kernel<stack_nn>;
-
-template class t_natural_number_secondary<bounded_nn>;
-template class t_natural_number_secondary<stack_nn>;
+//template class t_natural_number_kernel<bounded_nn>;
+//template class t_natural_number_kernel<stack_nn>;
+//
+//template class t_natural_number_secondary<bounded_nn>;
+//template class t_natural_number_secondary<stack_nn>;
 
 }
 

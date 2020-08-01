@@ -9,7 +9,7 @@
 #ifndef bounded_nn_h
 #define bounded_nn_h
 
-#include "natural_number.hpp"
+#include <clean_nn/natural_number.hpp>
 //#include <template_nn/template_nn.hpp>
 
 namespace cleanpp {

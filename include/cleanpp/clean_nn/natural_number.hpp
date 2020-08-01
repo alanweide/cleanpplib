@@ -77,14 +77,14 @@ public:
      updates x
      ensures x = #x + y
      */
-    friend void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<natural_number_secondary>&& add(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
     
     /*
      updates  x
      requires x >= y
      ensures  x = #x - y
      */
-    friend void subtract(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
 };
 
 }

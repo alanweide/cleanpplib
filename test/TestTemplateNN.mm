@@ -235,7 +235,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp;
 	template_t n2_exp;
     
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);

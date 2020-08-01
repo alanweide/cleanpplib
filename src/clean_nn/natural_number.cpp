@@ -79,13 +79,13 @@ void natural_number_secondary::set_from_long(long n) {
     }
 }
 
-void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y) {
+std::unique_ptr<natural_number_secondary>&& add(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
     int x_low;
     x->divide_by_radix(x_low);
     int y_low;
     y->divide_by_radix(y_low);
     if (!y->is_zero()) {
-        add(x, y);
+        x = add(std::move(x), y);
     }
     x_low += y_low;
     if (x_low >= natural_number_secondary::RADIX) {
@@ -94,6 +94,7 @@ void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_n
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
+    return std::move(x);
 }
 
 /*
@@ -111,31 +112,31 @@ void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_n
         { $1 = f(x); add(std::move(x), $1); }?
     
  */
-std::unique_ptr<natural_number_secondary>&& clearingAdd(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
-    int x_low;
-    x->divide_by_radix(x_low);
-    int y_low;
-    y->divide_by_radix(y_low);
-    if (!y->is_zero()) {
-        x = clearingAdd(std::move(x), y);
-    }
-    x_low += y_low;
-    if (x_low >= natural_number_secondary::RADIX) {
-        x_low -= natural_number_secondary::RADIX;
-        x->increment();
-    }
-    x->multiply_by_radix(x_low);
-    y->multiply_by_radix(y_low);
-    return std::move(x);
-}
+//std::unique_ptr<natural_number_secondary>&& clearingAdd(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
+//    int x_low;
+//    x->divide_by_radix(x_low);
+//    int y_low;
+//    y->divide_by_radix(y_low);
+//    if (!y->is_zero()) {
+//        x = clearingAdd(std::move(x), y);
+//    }
+//    x_low += y_low;
+//    if (x_low >= natural_number_secondary::RADIX) {
+//        x_low -= natural_number_secondary::RADIX;
+//        x->increment();
+//    }
+//    x->multiply_by_radix(x_low);
+//    y->multiply_by_radix(y_low);
+//    return std::move(x);
+//}
 
-void subtract(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y) {
+std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
     int x_low;
     x->divide_by_radix(x_low);
     int y_low;
     y->divide_by_radix(y_low);
     if (!y->is_zero()) {
-        subtract(x, y);
+        x = subtract(std::move(x), y);
     }
     x_low -= y_low;
     if (x_low < 0) {
@@ -144,6 +145,7 @@ void subtract(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natu
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
+    return std::move(x);
 }
 
 }
