@@ -97,8 +97,9 @@ void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_n
 }
 
 /*
- pass-by-ref:  restores-mode
- pass-by-move: non-restores-mode
+ const parameter: preserves
+ pass-by-ref:     restores
+ pass-by-move:    non-restores-mode
     pass-by-move w/corresponding return:   updates
     pass-by-move w/o corresponding return: clears
  returned w/o corresponding parameter: replaces

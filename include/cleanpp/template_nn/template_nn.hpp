@@ -42,6 +42,7 @@ public:
 	}
 	
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
+	
 	template<class I2>
 	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I2>&& other) {
 		return this->rep_ = std::move(other->rep_);
@@ -136,10 +137,6 @@ public:
 	virtual void set_from_long(long n) {
 		this->rep_->set_from_long(n);
 	}
-	
-//	friend std::ostream& operator<<(std::ostream& out, t_natural_number_secondary<I>& o) {
-//		return out << *o.rep_;
-//	}
 
 	/*
 	 updates x
@@ -147,21 +144,7 @@ public:
 	 */
 	template<class I2>
 	friend void add(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y) {
-//		int x_low;
-//		x->divide_by_radix(x_low);
-//		int y_low;
-//		y->divide_by_radix(y_low);
-//		if (!y->is_zero()) {
-//			add(x, y);
-//		}
-//		x_low += y_low;
-//		if (x_low >= natural_number_secondary::RADIX) {
-//			x_low -= natural_number_secondary::RADIX;
-//			x->increment();
-//		}
-//		x->multiply_by_radix(x_low);
-//		y->multiply_by_radix(y_low);
-		add(x->rep_, y->rep_);
+		add(x.rep_, y.rep_);
 	}
 	
 	/*
@@ -171,21 +154,7 @@ public:
 	 */
 	template<class I2>
 	friend void subtract(t_natural_number_secondary<I> &x, t_natural_number_secondary<I2> &y){
-//		int x_low;
-//		x->divide_by_radix(x_low);
-//		int y_low;
-//		y->divide_by_radix(y_low);
-//		if (!y->is_zero()) {
-//			subtract(x, y);
-//		}
-//		x_low -= y_low;
-//		if (x_low < 0) {
-//			x_low += natural_number_secondary::RADIX;
-//			x->decrement();
-//		}
-//		x->multiply_by_radix(x_low);
-//		y->multiply_by_radix(y_low);
-		subtract(x->rep_, y->rep_);
+		subtract(x.rep_, y.rep_);
 	}
 };
 
