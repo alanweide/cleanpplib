@@ -36,26 +36,29 @@ public:
 	}
 	
 	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
-	template<class I2>
-	t_natural_number_kernel(t_natural_number_kernel<I2>&& other): rep_(std::move(other.rep_)) {
+	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
 		other.clear();
 	}
-	
+
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
-	
-	template<class I2>
-	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I2>&& other) {
-		return this->rep_ = std::move(other->rep_);
+	virtual t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
+		if (&other == this) {
+			return *this;
+		}
+
+		rep_ = std::move(other.rep_);
+		other.clear();
+		return *this;
 	}
 	
-	void clear() override {
+	void clear() override{
 		this->rep_->clear();
 	}
 	
 	/*
 	 ensures is_zero = (this = 0)
 	 */
-	virtual bool is_zero() const {
+	virtual bool is_zero() const{
 		return this->rep_->is_zero();
 	}
 	
@@ -64,7 +67,7 @@ public:
 	 requires 0 <= d and d < RADIX
 	 ensures  this = #this * RADIX + d
 	 */
-	virtual void multiply_by_radix(int d) {
+	virtual void multiply_by_radix(int d){
 		this->rep_->multiply_by_radix(d);
 	}
 	
@@ -81,7 +84,7 @@ public:
 	 ensures `==` = (this = other)
 	 */
 	template<class I2>
-	bool operator==(t_natural_number_kernel<I2> &other) {
+	bool operator==(t_natural_number_kernel<I2> &other)	{
 		return *this->rep_ == *other.rep_;
 	}
 	
@@ -99,15 +102,15 @@ public:
     t_natural_number_secondary(long n = 0): t_natural_number_kernel<I>(n) {}
 
 	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
-	template<class I2>
-	t_natural_number_secondary(t_natural_number_secondary<I2>&& other): t_natural_number_kernel<I>(other) {
-		other.clear();
-	}
+	t_natural_number_secondary(t_natural_number_secondary<I>&& other): t_natural_number_kernel<I>(std::move(other)) { }
 
 	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
-	template<class I2>
-	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I2>&& other) {
-		return this->rep_ = std::move(other->rep_);
+	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I>&& other) {
+		if (&other == this) {
+			return *this;
+		}
+		t_natural_number_kernel<I>& this_k = std::move(dynamic_cast<t_natural_number_kernel<I>>(*this));
+		return *this_k;
 	}
 	
 	/*
@@ -163,8 +166,22 @@ public:
 	 ensures x = #x + y
 	 */
 	template<class I2>
-	friend t_natural_number_kernel<I> add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
-        return add(x.rep_, y.rep_);
+	friend t_natural_number_kernel<I>&& add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
+		int x_low;
+		x.divide_by_radix(x_low);
+		int y_low;
+		y.divide_by_radix(y_low);
+		if (!y.is_zero()) {
+			x = add(std::move(x), y);
+		}
+		x_low += y_low;
+		if (x_low >= natural_number_secondary::RADIX) {
+			x_low -= natural_number_secondary::RADIX;
+			x.increment();
+		}
+		x.multiply_by_radix(x_low);
+		y.multiply_by_radix(y_low);
+		return std::move(x);
 	}
 	
 	/*
@@ -173,8 +190,22 @@ public:
 	 ensures  x = #x - y
 	 */
 	template<class I2>
-	friend t_natural_number_secondary<I> subtract(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y){
-        return subtract(x.rep_, y.rep_);
+	friend t_natural_number_secondary<I>&& subtract(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y){
+		int x_low;
+		x.divide_by_radix(x_low);
+		int y_low;
+		y.divide_by_radix(y_low);
+		if (!y.is_zero()) {
+			x = subtract(std::move(x), y);
+		}
+		x_low -= y_low;
+		if (x_low < 0) {
+			x_low += natural_number_secondary::RADIX;
+			x.decrement();
+		}
+		x.multiply_by_radix(x_low);
+		y.multiply_by_radix(y_low);
+		return std::move(x);
 	}
 };
 

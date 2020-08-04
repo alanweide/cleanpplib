@@ -22,6 +22,7 @@
 		86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */; };
 		86EC1E9523F2338B00A7A779 /* nn_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9423F2338B00A7A779 /* nn_integer.cpp */; };
 		86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */; };
+		E74F6A2524D8D43600D11CF1 /* template_nn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74F6A2424D8D43600D11CF1 /* template_nn.cpp */; };
 		E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* clean_queue.hpp */; };
 		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* linked_queue.hpp */; };
@@ -70,6 +71,7 @@
 		86EC1E9423F2338B00A7A779 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
 		86EC1E9623F233AA00A7A779 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
 		86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVectorInteger.mm; sourceTree = "<group>"; };
+		E74F6A2424D8D43600D11CF1 /* template_nn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = template_nn.cpp; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2D2239203DA00139E3D /* 5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5b00e254f3b53ebba7b728a0453599bf-manifest.xcbuild"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		E7DF791F24CA226C00BA4381 /* template_nn */ = {
 			isa = PBXGroup;
 			children = (
+				E74F6A2424D8D43600D11CF1 /* template_nn.cpp */,
 			);
 			path = template_nn;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86EC1E9523F2338B00A7A779 /* nn_integer.cpp in Sources */,
+				E74F6A2524D8D43600D11CF1 /* template_nn.cpp in Sources */,
 				E775B53223F213F7007DB0C1 /* vector_integer.cpp in Sources */,
 				860934AF23E2102D00D38073 /* natural_number.cpp in Sources */,
 				E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */,

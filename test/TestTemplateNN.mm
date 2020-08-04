@@ -249,7 +249,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(5);
 	template_t n2_exp(5);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -263,7 +263,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(5);
 	template_t n2_exp(0);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -277,7 +277,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(8);
 	template_t n2_exp(4);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -291,7 +291,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(10);
 	template_t n2_exp(5);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -305,7 +305,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(20);
 	template_t n2_exp(10);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -319,7 +319,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(123);
 	template_t n2_exp(66);
 
-    add(n1, n2);
+	n1 = add(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -333,7 +333,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp;
 	template_t n2_exp;
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -347,7 +347,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(5);
 	template_t n2_exp(0);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -361,7 +361,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(0);
 	template_t n2_exp(4);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -375,7 +375,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(0);
 	template_t n2_exp(10);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -389,7 +389,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(11);
 	template_t n2_exp(66);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -403,7 +403,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(71);
 	template_t n2_exp(6);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -417,7 +417,7 @@ static std::string nnToString(template_t &o) {
 	template_t n1_exp(5);
 	template_t n2_exp(66);
 
-    subtract(n1, n2);
+	n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
