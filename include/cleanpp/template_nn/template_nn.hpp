@@ -16,6 +16,9 @@
 
 namespace cleanpp {
 
+template<class I>
+class t_natural_number_secondary;
+
 template <class I>
 class t_natural_number_kernel: public clean_base {
 private:
@@ -91,6 +94,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
 		return out << *(o.rep_);
 	}
+	
+	friend class t_natural_number_secondary<I>;
 };
 
 template<class I>
@@ -109,8 +114,9 @@ public:
 		if (&other == this) {
 			return *this;
 		}
-		t_natural_number_kernel<I>& this_k = std::move(dynamic_cast<t_natural_number_kernel<I>>(*this));
-		return *this_k;
+		this->rep_ = std::move(other.rep_);
+		other.clear();
+		return *this;
 	}
 	
 	/*
@@ -166,7 +172,7 @@ public:
 	 ensures x = #x + y
 	 */
 	template<class I2>
-	friend t_natural_number_kernel<I>&& add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
+	friend t_natural_number_secondary<I>&& add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
 		int x_low;
 		x.divide_by_radix(x_low);
 		int y_low;
