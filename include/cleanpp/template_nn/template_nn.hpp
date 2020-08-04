@@ -39,23 +39,28 @@ public:
 	}
 	
 	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
+//	template<class I2>
 	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
 		other.clear();
 	}
 
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
-	virtual t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
+//	template<class I2>
+	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
 		if (&other == this) {
 			return *this;
 		}
-
 		rep_ = std::move(other.rep_);
 		other.clear();
 		return *this;
 	}
 	
 	void clear() override{
-		this->rep_->clear();
+		if (!this->rep_) {
+			this->rep_ = std::make_unique<I>();
+		} else {
+			this->rep_->clear();
+		}
 	}
 	
 	/*
@@ -86,8 +91,8 @@ public:
 	/*
 	 ensures `==` = (this = other)
 	 */
-	template<class I2>
-	bool operator==(t_natural_number_kernel<I2> &other)	{
+//	template<class I2>
+	bool operator==(t_natural_number_kernel<I> &other)	{
 		return *this->rep_ == *other.rep_;
 	}
 	
@@ -107,11 +112,15 @@ public:
     t_natural_number_secondary(long n = 0): t_natural_number_kernel<I>(n) {}
 
 	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
-	t_natural_number_secondary(t_natural_number_secondary<I>&& other): t_natural_number_kernel<I>(std::move(other)) { }
+//	template<class I2>
+	t_natural_number_secondary(t_natural_number_secondary<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
+		other.clear();
+	}
 
 	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
+//	template<class I2>
 	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I>&& other) {
-		if (&other == this) {
+		if (other == *this) {
 			return *this;
 		}
 		this->rep_ = std::move(other.rep_);
