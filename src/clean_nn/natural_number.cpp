@@ -83,9 +83,10 @@ void natural_number_secondary::set_from_long(long n) {
  const parameter: preserves
  pass-by-ref:     restores
  pass-by-move:    non-restores-mode
- pass-by-move w/corresponding return:   updates
- pass-by-move w/o corresponding return: clears
+	 pass-by-move w/corresponding return:   updates
+	 pass-by-move w/o corresponding return: clears
  returned w/o corresponding parameter: replaces
+ receiver: ???
  
  what about?
  one parameter is a function call involving x

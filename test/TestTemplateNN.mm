@@ -316,8 +316,8 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 }
 
 - (void)testDiveRadFifty {
-	template_t n(50);
-	template_t expected(5);
+	t_natural_number_secondary<bounded_nn> n(50);
+	t_natural_number_secondary<bounded_nn> expected(5);
 	
 	int d = 4;
 	n.divide_by_radix(d);
@@ -333,6 +333,8 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	
 	int d = 4;
 	n.divide_by_radix(d);
+	// vs. d = n.divide_by_radix()
+	// d = n.get_last_digit(); n = n.divide_by_radix();
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n == expected, @"n = %s", n_str.c_str());
@@ -340,10 +342,10 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 }
 
 - (void)testAddZeroZero {
-	template_t n1;
-	template_t n2;
-	template_t n1_exp;
-	template_t n2_exp;
+	t_natural_number_secondary<bounded_nn> n1;
+	t_natural_number_secondary<stack_nn> n2;
+	t_natural_number_secondary<bounded_nn> n1_exp;
+	t_natural_number_secondary<stack_nn> n2_exp;
 	
 	n1 = add(std::move(n1), n2);
 	
