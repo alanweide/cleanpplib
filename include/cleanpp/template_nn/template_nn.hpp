@@ -11,8 +11,7 @@
 
 #include <stdio.h>
 #include <clean_base.hpp>
-//#include <clean_nn/bounded_nn.hpp>
-//#include <clean_nn/stack_nn.hpp>
+#include <clean_nn/natural_number.hpp>
 
 namespace cleanpp {
 
@@ -48,7 +47,7 @@ public:
 		if (&other == this) {
 			return *this;
 		}
-		rep_ = std::move(other.rep_);
+		*rep_ = std::move(*other.rep_);
 		other.clear();
 		return *this;
 	}

@@ -9,9 +9,9 @@
 #import <XCTest/XCTest.h>
 #include <stdio.h>
 #include <sstream>
+#include <template_nn/template_nn.hpp>
 #include <clean_nn/bounded_nn.hpp>
 #include <clean_nn/stack_nn.hpp>
-#include <template_nn/template_nn.hpp>
 
 @interface TestTemplateNN: XCTestCase
 @end
@@ -65,7 +65,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
-- (void)testAssignZeroZeroSameIm {
+- (void)testAssignZeroZero {
 	template_t n;
 	template_t m;
 	template_t expected;
@@ -76,7 +76,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
-- (void)testAssignZeroNonzeroSameIm {
+- (void)testAssignZeroNonzero {
 	template_t n;
 	template_t m(5);
 	template_t n_expected(5);
@@ -90,7 +90,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
 }
 
-- (void)testAssignNonzeroZeroSameIm {
+- (void)testAssignNonzeroZero {
 	template_t n(5);
 	template_t m;
 	template_t n_expected;
@@ -104,7 +104,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
 }
 
-- (void)testAssignNonzeroNonzeroSameIm {
+- (void)testAssignNonzeroNonzero {
 	template_t n(9);
 	template_t m(5);
 	template_t n_expected(5);
@@ -118,57 +118,18 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
 }
 
-- (void)testAssignZeroZeroDiffIm {
-	template_t n;
-	template_t2 m;
-	template_t expected;
-	
-	n = std::move(m);
-	
-	std::string n_str = nnToString(n);
-	XCTAssert(n == expected, @"n = %s", n_str.c_str());
-}
-
-- (void)testAssignZeroNonzeroDiffIm {
-	template_t n;
-	template_t2 m(5);
-	template_t n_expected(5);
-	template_t2 m_expected(0);
-	
-	n = std::move(m);
-	
-	std::string n_str = nnToString(n);
-	std::string m_str = nnToString(m);
-	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
-}
-
-- (void)testAssignNonzeroZeroDiffIm {
-	template_t n(5);
-	template_t2 m;
-	template_t n_expected;
-	template_t2 m_expected;
-	
-	n = std::move(m);
-	
-	std::string n_str = nnToString(n);
-	std::string m_str = nnToString(m);
-	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
-}
-
-- (void)testAssignNonzeroNonzeroDiffIm {
-	template_t n(9);
-	template_t2 m(5);
-	template_t n_expected(5);
-	template_t2 m_expected(0);
-	
-	n = std::move(m);
-	
-	std::string n_str = nnToString(n);
-	std::string m_str = nnToString(m);
-	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
+- (void)testAssignMultidigMultidig {
+    template_t n(96);
+    template_t m(43);
+    template_t n_expected(43);
+    template_t m_expected(0);
+    
+    n = std::move(m);
+    
+    std::string n_str = nnToString(n);
+    std::string m_str = nnToString(m);
+    XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
+    XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
 }
 
 - (void)testClearZero {
