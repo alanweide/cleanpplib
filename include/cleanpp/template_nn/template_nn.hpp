@@ -72,7 +72,7 @@ public:
 	 requires 0 <= d and d < RADIX
 	 ensures  this = #this * RADIX + d
 	 */
-	virtual void multiply_by_radix(int d){
+	virtual void multiply_by_radix(int&& d){
 		this->rep_->multiply_by_radix(d);
 	}
 	
@@ -82,8 +82,10 @@ public:
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
 	 */
-	virtual void divide_by_radix(int &d) {
+	virtual int&& divide_by_radix() {
+        int d = 0;
 		this->rep_->divide_by_radix(d);
+        return std::move(d);
 	}
 	
 	/*
@@ -119,8 +121,8 @@ public:
 		if (other == *this) {
 			return *this;
 		}
-		this->rep_ = std::move(other.rep_);
-		other.clear();
+		*this->rep_ = std::move(*other.rep_);
+        other.clear();
 		return *this;
 	}
 	
@@ -129,14 +131,13 @@ public:
 	 ensures this = #this + 1
 	 */
 	virtual void increment() {
-        int d = 0;
-        this->divide_by_radix(d);
+        int d = this->divide_by_radix();
         d++;
         if (d == t_natural_number_kernel<I>::RADIX) {
             d -= t_natural_number_kernel<I>::RADIX;;
             this->increment();
         }
-        this->multiply_by_radix(d);
+        this->multiply_by_radix(std::move(d));
 	}
 	
 	/*
@@ -146,14 +147,13 @@ public:
 	 */
 	virtual void decrement() {
         assert(!this->is_zero());
-        int d = 0;
-        this->divide_by_radix(d);
+        int d = this->divide_by_radix();
         d--;
         if (d < 0) {
             d += t_natural_number_kernel<I>::RADIX;
-            decrement();
+            this->decrement();
         }
-        this->multiply_by_radix(d);
+        this->multiply_by_radix(std::move(d));
 	}
 	
 	/*
@@ -178,10 +178,8 @@ public:
 	 */
 	template<class I2>
 	friend t_natural_number_secondary<I>&& add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
-		int x_low;
-		x.divide_by_radix(x_low);
-		int y_low;
-		y.divide_by_radix(y_low);
+		int x_low = x.divide_by_radix();
+		int y_low = y.divide_by_radix();
 		if (!y.is_zero()) {
 			x = add(std::move(x), y);
 		}
@@ -190,8 +188,8 @@ public:
 			x_low -= natural_number_secondary::RADIX;
 			x.increment();
 		}
-		x.multiply_by_radix(x_low);
-		y.multiply_by_radix(y_low);
+		x.multiply_by_radix(std::move(x_low));
+		y.multiply_by_radix(std::move(y_low));
 		return std::move(x);
 	}
 	
@@ -203,19 +201,19 @@ public:
 	template<class I2>
 	friend t_natural_number_secondary<I>&& subtract(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y){
 		int x_low;
-		x.divide_by_radix(x_low);
+		x_low = x.divide_by_radix();
 		int y_low;
-		y.divide_by_radix(y_low);
+		y_low = y.divide_by_radix();
 		if (!y.is_zero()) {
 			x = subtract(std::move(x), y);
 		}
 		x_low -= y_low;
 		if (x_low < 0) {
-			x_low += natural_number_secondary::RADIX;
+			x_low += t_natural_number_kernel<I>::RADIX;
 			x.decrement();
 		}
-		x.multiply_by_radix(x_low);
-		y.multiply_by_radix(y_low);
+		x.multiply_by_radix(std::move(x_low));
+		y.multiply_by_radix(std::move(y_low));
 		return std::move(x);
 	}
 };

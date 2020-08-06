@@ -3,6 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "cleanpp::t_natural_number_secondary&lt;cleanpp::stack_nn&gt;::operator=(cleanpp::t_natural_number_secondary&lt;cleanpp::stack_nn&gt;&amp;&amp;):template_nn.hpp">
+      </ContextState>
+      <ContextState
+         contextName = "cleanpp::t_natural_number_secondary&lt;cleanpp::bounded_nn&gt;&amp;&amp; cleanpp::subtract&lt;cleanpp::bounded_nn&gt;(cleanpp::t_natural_number_secondary&lt;cleanpp::bounded_nn&gt;, cleanpp::t_natural_number_secondary&lt;cleanpp::bounded_nn&gt;&amp;):template_nn.hpp">
+      </ContextState>
+      <ContextState
          contextName = "cleanpp::stack_nn::divide_by_radix(int&amp;):stack_nn.cpp">
       </ContextState>
    </ContextStates>

@@ -140,4 +140,56 @@ static std::string stackToString(t_stack<I, Item> &s) {
     XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
 }
 
+- (void)testAssignEmptyEmpty {
+    template_st s, t;
+    std::string s_exp = "<>", t_exp = "<>";
+    
+    s = std::move(t);
+    
+    std::string s_str = stackToString(s);
+    std::string t_str = stackToString(t);
+    XCTAssert(s_str == s_exp, @"%s", s_str.c_str());
+    XCTAssert(t_str == t_exp, @"%s", s_str.c_str());
+}
+
+- (void)testAssignEmptyNonempty {
+    template_st s, t;
+    std::string s_exp = "<>", t_exp = "<>";
+    s.push(1);
+    
+    s = std::move(t);
+    
+    std::string s_str = stackToString(s);
+    std::string t_str = stackToString(t);
+    XCTAssert(s_str == s_exp, @"%s", s_str.c_str());
+    XCTAssert(t_str == t_exp, @"%s", s_str.c_str());
+}
+
+- (void)testAssignNonemptyEmpty {
+    template_st s, t;
+    std::string s_exp = "<1>", t_exp = "<>";
+    t.push(1);
+    
+    s = std::move(t);
+    
+    std::string s_str = stackToString(s);
+    std::string t_str = stackToString(t);
+    XCTAssert(s_str == s_exp, @"%s", s_str.c_str());
+    XCTAssert(t_str == t_exp, @"%s", s_str.c_str());
+}
+
+- (void)testAssignNonemptyNonempty {
+    template_st s, t;
+    std::string s_exp = "<1>", t_exp = "<>";
+    s.push(2);
+    t.push(1);
+    
+    s = std::move(t);
+    
+    std::string s_str = stackToString(s);
+    std::string t_str = stackToString(t);
+    XCTAssert(s_str == s_exp, @"%s", s_str.c_str());
+    XCTAssert(t_str == t_exp, @"%s", s_str.c_str());
+}
+
 @end

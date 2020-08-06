@@ -35,9 +35,6 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 
 - (void)setUp {
 	// Put setup code here. This method is called before the invocation of each test method in the class.
-	//    template_t n;
-	//    n.is_zero();
-	//	XCTAssert(n.is_zero());
 }
 
 - (void)tearDown {
@@ -257,7 +254,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	template_t expected(0);
 	
 	int d = 4;
-	n.divide_by_radix(d);
+	d = n.divide_by_radix();
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n == expected, @"n = %s", n_str.c_str());
@@ -269,7 +266,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	template_t expected(0);
 	
 	int d = 4;
-	n.divide_by_radix(d);
+	d = n.divide_by_radix();
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n == expected, @"n = %s", n_str.c_str());
@@ -281,7 +278,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	t_natural_number_secondary<bounded_nn> expected(5);
 	
 	int d = 4;
-	n.divide_by_radix(d);
+	d = n.divide_by_radix();
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n == expected, @"n = %s", n_str.c_str());
@@ -293,7 +290,7 @@ static std::string nnToString(t_natural_number_secondary<I> &o) {
 	template_t expected(5);
 	
 	int d = 4;
-	n.divide_by_radix(d);
+	d = n.divide_by_radix();
 	// vs. d = n.divide_by_radix()
 	// d = n.get_last_digit(); n = n.divide_by_radix();
 	

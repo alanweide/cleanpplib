@@ -15,7 +15,7 @@
 
 namespace cleanpp {
 
-template<template<class> class I, class Item>
+template<template<typename> class I, typename Item>
 class t_stack: public clean_base {
 private:
     std::unique_ptr<stack<Item>> rep_;
@@ -34,7 +34,7 @@ public:
         if (&other == this) {
             return *this;
         }
-        rep_ = std::move(other.rep_);
+        *rep_ = std::move(*other.rep_);
         other.clear();
         return *this;
     }
