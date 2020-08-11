@@ -13,10 +13,13 @@ namespace cleanpp {
 
 // natural_number_kernel
 bool natural_number_kernel::operator==(natural_number_kernel &other) {
-	bool ans = false;
-	if (other.is_zero() && this->is_zero()) {
+    bool ans = false;
+    std::cout << *this;
+    bool otherZero = other.is_zero();
+    bool thisZero = (*this).is_zero();
+	if (otherZero && thisZero) {
 		ans = true;
-	} else if (other.is_zero() == this->is_zero()) {
+	} else if (otherZero == thisZero) {
 		int last_this, last_other;
 		this->divide_by_radix(last_this);
 		other.divide_by_radix(last_other);

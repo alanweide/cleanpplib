@@ -56,7 +56,7 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
-- (void)testMoveInitZero {
+- (void)testMoveInit_Zero {
 	nn_type m, m_expected;
 	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>();
 	
@@ -64,33 +64,29 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
 
 	std::string n_str = nnToString(n);
 	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(m == *m_expected, @"m = %s");
+	XCTAssert(m == m_expected);
 }
 
 - (void)testMoveInit_SingleDig {
-	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(5);
-	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(5);
-	std::unique_ptr<natural_number_secondary> m_expected = std::make_unique<nn_type>();
-	
-	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(*m));
-	
-	std::string n_str = nnToString(n);
-	std::string m_str = nnToString(m);
-	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(*m == *m_expected, @"n = %s", m_str.c_str());
+    nn_type m(5), m_expected;
+    std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(5);
+    
+    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(m));
+
+    std::string n_str = nnToString(n);
+    XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+    XCTAssert(m == m_expected);
 }
 
 - (void)testMoveInit_MultiDig {
-	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(76);
-	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(76);
-	std::unique_ptr<natural_number_secondary> m_expected = std::make_unique<nn_type>();
-	
-	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(*m));
-	
-	std::string n_str = nnToString(n);
-	std::string m_str = nnToString(m);
-	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
-	XCTAssert(*m == *m_expected, @"n = %s", m_str.c_str());
+    nn_type m(76), m_expected;
+    std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(76);
+    
+    std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(m));
+
+    std::string n_str = nnToString(n);
+    XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+    XCTAssert(m == m_expected);
 }
 
 - (void)testAssignZeroZero {

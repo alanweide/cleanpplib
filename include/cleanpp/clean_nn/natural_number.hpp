@@ -46,7 +46,7 @@ public:
     /*
      ensures `==` = (this = other)
      */
-    bool operator==(natural_number_kernel &other);
+    virtual bool operator==(natural_number_kernel &other);
     
     friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
 };
