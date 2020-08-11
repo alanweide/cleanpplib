@@ -33,17 +33,17 @@ public:
     
     t_queue(const t_queue<I, Item> &o) = delete;
     t_queue(t_queue<I, Item>&& o): rep_(std::move(o.rep_)) {
-        o.clear();
+        o.rep_ = std::make_unique<I<Item>>();
     }
     
     t_queue<I, Item>& operator=(const t_queue<I, Item>& o) = delete;
     t_queue<I, Item>& operator=(t_queue<I, Item>&& other) {
-        if (&other == this) {
-            return *this;
-        }
-        *rep_ = std::move(*other.rep_);
-        other.clear();
-        return *this;
+		if (&other == this) {
+			return *this;
+		}
+		rep_ = std::move(other.rep_);
+		other.rep_ = std::make_unique<I<Item>>();
+		return *this;
     }
     
     void clear() {
@@ -59,7 +59,7 @@ public:
      clears  x
      ensures this = #this * <x>
      */
-    virtual void enqueue(Item&& x) {
+    void enqueue(Item&& x) {
         rep_->enqueue(x);
     }
     
@@ -69,7 +69,7 @@ public:
      requires |this| > 0
      ensures  this * <x> = #this
      */
-    virtual Item&& dequeue() {
+	Item&& dequeue() {
         Item x;
         rep_->dequeue(x);
         return std::move(x);
@@ -78,7 +78,7 @@ public:
     /*
      ensures is_empty = (|this| = 0)
      */
-    virtual bool is_empty() const {
+	bool is_empty() const {
         return rep_->is_empty();
     }
     

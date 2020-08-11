@@ -56,6 +56,101 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
+- (void)testMoveInitZero {
+	nn_type m, m_expected;
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>();
+	
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(m));
+
+	std::string n_str = nnToString(n);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(m == *m_expected, @"m = %s");
+}
+
+- (void)testMoveInit_SingleDig {
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(5);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(5);
+	std::unique_ptr<natural_number_secondary> m_expected = std::make_unique<nn_type>();
+	
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(*m));
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(*m == *m_expected, @"n = %s", m_str.c_str());
+}
+
+- (void)testMoveInit_MultiDig {
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(76);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(76);
+	std::unique_ptr<natural_number_secondary> m_expected = std::make_unique<nn_type>();
+	
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(std::move(*m));
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(*m == *m_expected, @"n = %s", m_str.c_str());
+}
+
+- (void)testAssignZeroZero {
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>();
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>();
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>();
+	std::unique_ptr<natural_number_secondary> m_expected = std::make_unique<nn_type>();
+
+	*n = std::move(*m);
+
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(*m == *m_expected, @"n = %s", m_str.c_str());
+}
+
+- (void)testAssignZeroNonzero {
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(0);
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(5);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(5);
+	
+	n = std::move(m);
+
+	std::string n_str = nnToString(n);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+}
+
+- (void)testAssignNonzeroZero {
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(5);
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(0);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(0);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+}
+
+- (void)testAssignNonzeroNonzero {
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(9);
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(5);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(5);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+}
+
+- (void)testAssignMultidigMultidig {
+	std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>(96);
+	std::unique_ptr<natural_number_secondary> m = std::make_unique<nn_type>(43);
+	std::unique_ptr<natural_number_secondary> n_expected = std::make_unique<nn_type>(43);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	XCTAssert(*n == *n_expected, @"n = %s", n_str.c_str());
+}
+
 - (void)testClearZero {
     std::unique_ptr<natural_number_secondary> n = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);

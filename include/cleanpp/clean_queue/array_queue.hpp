@@ -37,7 +37,7 @@ private:
             }
         }
         if (cap_ != old_cap) {
-            auto temp_cont = std::move(contents_);
+            std::unique_ptr<T[]> temp_cont = std::move(contents_);
             contents_ = std::make_unique<T[]>(cap_);
             for (int i = 0; i < length_; i++) {
                 contents_[i] = std::move(temp_cont[(i + head_) % old_cap]);
@@ -50,9 +50,6 @@ public:
     array_queue(): cap_(MIN_CAP), head_(0), length_(0)
     {
         contents_ = std::make_unique<T[]>(cap_);
-        //		for (int i = 0; i < MAX_SIZE; i++) {
-        //			contents_[i] = std::make_unique<T>();
-        //		}
     }
     
     ~array_queue() {

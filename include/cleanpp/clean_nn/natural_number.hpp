@@ -23,7 +23,7 @@ class natural_number_kernel: public clean_base {
      */
 public:
     static const int RADIX = 10;
-    
+			
     /*
      ensures is_zero = (this = 0)
      */
@@ -53,6 +53,7 @@ public:
 
 class natural_number_secondary: public natural_number_kernel {
 public:
+
     /*
      updates this
      ensures this = #this + 1

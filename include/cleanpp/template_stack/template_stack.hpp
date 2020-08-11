@@ -26,17 +26,17 @@ public:
     
     t_stack(const t_stack<I, Item> &o) = delete;
     t_stack(t_stack<I, Item>&& o): rep_(std::move(o.rep_)) {
-        o.clear();
+		o.rep_ = std::make_unique<I<Item>>();
     }
     
     t_stack<I, Item>& operator=(const t_stack<I, Item>& o) = delete;
     t_stack<I, Item>& operator=(t_stack<I, Item>&& other) {
-        if (&other == this) {
-            return *this;
-        }
-        *rep_ = std::move(*other.rep_);
-        other.clear();
-        return *this;
+		if (&other == this) {
+			return *this;
+		}
+		rep_ = std::move(other.rep_);
+		other.rep_ = std::make_unique<I<Item>>();
+		return *this;
     }
     
     void clear() {

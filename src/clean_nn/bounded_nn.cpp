@@ -16,6 +16,10 @@ bounded_nn::bounded_nn(bounded_nn&& other): n_(std::move(other.n_)) {
     other.clear();
 }
 
+bounded_nn::~bounded_nn() {
+	n_ = 0;
+}
+
 bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
     if (&other == this) {
         return *this;

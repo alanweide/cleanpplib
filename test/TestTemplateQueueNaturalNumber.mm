@@ -28,7 +28,7 @@ using namespace cleanpp;
 
 typedef t_natural_number_secondary<stack_nn> nn_type;
 typedef array_queue<nn_type> queue_nn_type;
-typedef t_queue<array_queue, nn_type> template_q;
+typedef t_queue<linked_queue, nn_type> template_q;
 
 template<template<typename> class I, typename Item>
 static std::string queueToString(t_queue<I, Item> &q) {
@@ -139,27 +139,12 @@ static std::string queueToString(t_queue<I, Item> &q) {
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
 }
 
-- (void)testDequeueEmptyToEmpty {
-    template_q q;
-	std::string expected = "<>";
-	nn_type expected_a(1);
-	
-	nn_type a(1);
-    q.enqueue(std::move(a));
-	
-    a = q.dequeue();
-	
-    std::string q_str = queueToString(q);
-	XCTAssert(q_str == expected, @"%s", q_str.c_str());
-	XCTAssert(a == expected_a);
-}
-
-- (void)testDequeueNonEmptyToEmpty {
+- (void)testDequeueToEmpty {
     template_q q;
 	std::string expected = "<>";
 	nn_type expected_a(0), expected_b(1);
 	
-	nn_type a(1), b(2);
+	nn_type a(1), b(0);
     q.enqueue(std::move(a));
 	
     b = q.dequeue();
@@ -167,7 +152,24 @@ static std::string queueToString(t_queue<I, Item> &q) {
     std::string q_str = queueToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
 	XCTAssert(a == expected_a);
+}
+
+- (void)testDequeueNonEmptyToNonEmpty {
+    template_q q;
+	std::string expected = "<2>";
+	nn_type expected_a(0), expected_b(0), expected_c(1);
+	
+	nn_type a(1), b(2);
+    q.enqueue(std::move(a));
+	q.enqueue(std::move(b));
+	
+    nn_type c = (q.dequeue());
+	
+    std::string q_str = queueToString(q);
+	XCTAssert(q_str == expected, @"%s", q_str.c_str());
+	XCTAssert(a == expected_a);
 	XCTAssert(b == expected_b);
+	XCTAssert(c == expected_c);
 }
 
 @end

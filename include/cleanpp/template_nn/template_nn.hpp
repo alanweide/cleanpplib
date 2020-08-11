@@ -21,7 +21,7 @@ class t_natural_number_secondary;
 template <class I>
 class t_natural_number_kernel: public clean_base {
 private:
-	std::unique_ptr<natural_number_kernel> rep_;
+	std::unique_ptr<I> rep_;
 public:
 	/*
 	 type NATURAL is integer
@@ -30,7 +30,6 @@ public:
 	 
 	 natural_number_kernel is modeled by NATURAL
 	 */
-	
 	static const int RADIX = 10;
 	
 	t_natural_number_kernel(long n = 0) {
@@ -39,7 +38,7 @@ public:
 	
 	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
 	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
-		other.clear();
+		other.rep_ = std::make_unique<I>();
 	}
 
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
@@ -47,8 +46,8 @@ public:
 		if (&other == this) {
 			return *this;
 		}
-		*rep_ = std::move(*other.rep_);
-		other.clear();
+		rep_ = std::move(other.rep_);
+		other.rep_ = std::make_unique<I>();
 		return *this;
 	}
 	
@@ -63,7 +62,7 @@ public:
 	/*
 	 ensures is_zero = (this = 0)
 	 */
-	virtual bool is_zero() const{
+	bool is_zero() const{
 		return this->rep_->is_zero();
 	}
 	
@@ -72,7 +71,7 @@ public:
 	 requires 0 <= d and d < RADIX
 	 ensures  this = #this * RADIX + d
 	 */
-	virtual void multiply_by_radix(int&& d){
+	void multiply_by_radix(int&& d){
 		this->rep_->multiply_by_radix(d);
 	}
 	
@@ -82,7 +81,7 @@ public:
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
 	 */
-	virtual int&& divide_by_radix() {
+	int&& divide_by_radix() {
         int d = 0;
 		this->rep_->divide_by_radix(d);
         return std::move(d);
@@ -113,7 +112,7 @@ public:
 
 	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
 	t_natural_number_secondary(t_natural_number_secondary<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
-		other.clear();
+		other.rep_ = std::make_unique<I>();
 	}
 
 	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
@@ -121,8 +120,8 @@ public:
 		if (other == *this) {
 			return *this;
 		}
-		*this->rep_ = std::move(*other.rep_);
-        other.clear();
+		this->rep_ = std::move(other.rep_);
+        other.rep_ = std::make_unique<I>();
 		return *this;
 	}
 	
@@ -130,7 +129,7 @@ public:
 	 updates this
 	 ensures this = #this + 1
 	 */
-	virtual void increment() {
+	void increment() {
         int d = this->divide_by_radix();
         d++;
         if (d == t_natural_number_kernel<I>::RADIX) {
@@ -145,7 +144,7 @@ public:
 	 requires this > 0
 	 ensures  this = #this - 1
 	 */
-	virtual void decrement() {
+	void decrement() {
         assert(!this->is_zero());
         int d = this->divide_by_radix();
         d--;
@@ -161,7 +160,7 @@ public:
 	 requires n >= 0
 	 ensures  this = n
 	 */
-	virtual void set_from_long(long n) {
+	void set_from_long(long n) {
         assert(n >= 0);
         if (n == 0) {
           this->clear();
@@ -217,12 +216,6 @@ public:
 		return std::move(x);
 	}
 };
-
-//template class t_natural_number_kernel<bounded_nn>;
-//template class t_natural_number_kernel<stack_nn>;
-//
-//template class t_natural_number_secondary<bounded_nn>;
-//template class t_natural_number_secondary<stack_nn>;
 
 }
 
