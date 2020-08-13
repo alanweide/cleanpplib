@@ -23,6 +23,11 @@ class t_natural_number_kernel: public clean_base {
 private:
 	std::unique_ptr<I> rep_;
 public:
+	~t_natural_number_kernel() {
+		std::cout << "~t_natural_number_kernel; rep_ = " << *rep_ << "\n";
+//		rep_.reset();
+	}
+	
 	/*
 	 type NATURAL is integer
 	 exemplar   n
@@ -117,7 +122,7 @@ public:
 
 	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
 	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I>&& other) {
-		if (other == *this) {
+		if (&other == this) {
 			return *this;
 		}
 		this->rep_ = std::move(other.rep_);

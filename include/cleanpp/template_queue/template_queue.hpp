@@ -69,10 +69,10 @@ public:
      requires |this| > 0
      ensures  this * <x> = #this
      */
-	Item&& dequeue() {
+	Item dequeue() {
         Item x;
         rep_->dequeue(x);
-        return std::move(x);
+		return x;//std::move(x);
     }
     
     /*

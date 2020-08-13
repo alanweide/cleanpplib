@@ -159,16 +159,17 @@ static std::string queueToString(t_queue<I, Item> &q) {
 	std::string expected = "<2>";
 	nn_type expected_a(0), expected_b(0), expected_c(1);
 	
-	nn_type a(1), b(2);
+	nn_type a(1), b(2);//, c(6);
     q.enqueue(std::move(a));
 	q.enqueue(std::move(b));
 	
-    nn_type c = (q.dequeue());
+	nn_type c = (q.dequeue());
 	
     std::string q_str = queueToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
 	XCTAssert(a == expected_a);
 	XCTAssert(b == expected_b);
+	std::cout << "testDequeueNonEmptyToNonEmpty; c = " << c << "\n";
 	XCTAssert(c == expected_c);
 }
 
