@@ -142,9 +142,7 @@ static std::string queueToString(t_queue<I, Item> &q) {
 - (void)testDequeueToEmpty {
     template_q q;
 	std::string expected = "<>";
-	nn_type expected_a(0), expected_b(1);
-	
-	nn_type a(1), b(0);
+	nn_type a(1), expected_a(0), b(0),expected_b(1);
     q.enqueue(std::move(a));
 	
     b = q.dequeue();
@@ -157,13 +155,11 @@ static std::string queueToString(t_queue<I, Item> &q) {
 - (void)testDequeueNonEmptyToNonEmpty {
     template_q q;
 	std::string expected = "<2>";
-	nn_type expected_a(0), expected_b(0), expected_c(1);
-	
-	nn_type a(1), b(2);//, c(6);
-    q.enqueue(std::move(a));
+	nn_type a(1), expected_a(0), b(2), expected_b(0), c, expected_c(1);
+	q.enqueue(std::move(a));
 	q.enqueue(std::move(b));
 	
-	nn_type c = (q.dequeue());
+	c = q.dequeue();
 	
     std::string q_str = queueToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());

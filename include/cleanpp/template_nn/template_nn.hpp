@@ -22,12 +22,7 @@ template <class I>
 class t_natural_number_kernel: public clean_base {
 private:
 	std::unique_ptr<I> rep_;
-public:
-	~t_natural_number_kernel() {
-		std::cout << "~t_natural_number_kernel; rep_ = " << *rep_ << "\n";
-//		rep_.reset();
-	}
-	
+public:	
 	/*
 	 type NATURAL is integer
 	 exemplar   n
