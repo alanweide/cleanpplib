@@ -7,38 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "544DBD0C-14DD-4513-9F69-29C3BDD5D5A4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/clean_nn/bounded_nn.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "bounded_nn::increment()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D17B3CAB-445E-4A94-B6EC-09ECD014B44A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/clean_nn/bounded_nn.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "bounded_nn::operator=(other)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "93686E0C-DD42-4CD6-B4F9-58D4226D7A48"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -50,70 +18,6 @@
             endingLineNumber = "115"
             landmarkName = "-testAssignZeroNonzero"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "72544C80-1ADC-4F7C-A4B6-EBC70A5CB1AB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "include/cleanpp/template_queue/template_queue.hpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "dequeue()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "10CC7CAA-6FD9-424F-802E-93FCE70CFF7E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "include/cleanpp/clean_queue/array_queue.hpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "dequeue(x)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "10CC7CAA-6FD9-424F-802E-93FCE70CFF7E - 25d669b61bf228d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "cleanpp::array_queue&lt;cleanpp::stack_nn&gt;::dequeue(cleanpp::stack_nn&amp;)"
-                  moduleName = "TestCleanpp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alan/git/research/other/cleanpplib/include/cleanpp/clean_queue/array_queue.hpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "41">
-               </Location>
-               <Location
-                  uuid = "10CC7CAA-6FD9-424F-802E-93FCE70CFF7E - 12c0ceb88a07c35e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "cleanpp::array_queue&lt;cleanpp::t_natural_number_secondary&lt;cleanpp::stack_nn&gt; &gt;::dequeue(cleanpp::t_natural_number_secondary&lt;cleanpp::stack_nn&gt;&amp;)"
-                  moduleName = "TestCleanpp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alan/git/research/other/cleanpplib/include/cleanpp/clean_queue/array_queue.hpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "41">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

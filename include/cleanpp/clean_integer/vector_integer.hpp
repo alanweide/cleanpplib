@@ -28,7 +28,7 @@ public:
 
 	void clear() override;
 	void multiply_by_radix(int d) override;
-	void divide_by_radix(int &d) override;
+	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
     std::unique_ptr<big_integer> new_instance() const override;

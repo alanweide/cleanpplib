@@ -291,7 +291,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(0);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = bigintToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -303,7 +303,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(0);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = bigintToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -315,7 +315,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(5);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = bigintToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -327,7 +327,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(5);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = bigintToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -339,7 +339,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
 	std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(0);
 	
 	int d = 4;
-	n->divide_by_radix(d);
+	d = n->divide_by_radix();
 	
 	std::string n_str = bigintToString(n);
 	XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -351,7 +351,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
 	std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(-5);
 	
 	int d = 4;
-	n->divide_by_radix(d);
+	d = n->divide_by_radix();
 	
 	std::string n_str = bigintToString(n);
 	XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -363,7 +363,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
 	std::unique_ptr<big_integer> expected= std::make_unique<bigint_type>(-5);
 	
 	int d = 4;
-	n->divide_by_radix(d);
+	d = n->divide_by_radix();
 	
 	std::string n_str = bigintToString(n);
 	XCTAssert(*n == *expected, @"n = %s", n_str.c_str());

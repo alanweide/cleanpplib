@@ -42,14 +42,13 @@ public:
      clears  x
      ensures this = (#this.prec * <x>, #this.rem)
      */
-    virtual void insert(T& x) = 0;
+    virtual void insert(T&& x) = 0;
 
     /*
      updates  this
-     replaces x
-     ensures  #this = (this.prec * <x>, this.rem)
+     ensures  #this = (this.prec * <remove>, this.rem)
      */
-    virtual void remove(T& x) = 0;
+    virtual T remove() = 0;
     
     /*
      ensures is_at_end = (|this.rem| = 0)
@@ -75,9 +74,9 @@ public:
         out << "(<";
         while (!this->is_at_end() && pos > 0) {
             T x;
-            this->remove(x);
+            x = this->remove();
             out << x;
-            this->insert(x);
+            this->insert(std::move(x));
             pos--;
             if (pos != 0) {
                 out << ", ";
@@ -89,9 +88,9 @@ public:
         out << "<";
         while (!this->is_at_end()) {
             T x;
-            this->remove(x);
+            x = this->remove();
             out << x;
-            this->insert(x);
+            this->insert(std::move(x));
             pos++;
             if (!this->is_at_end()) {
                 out << ", ";

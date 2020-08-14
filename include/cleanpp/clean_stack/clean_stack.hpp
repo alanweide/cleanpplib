@@ -31,15 +31,14 @@ public:
      clears  x
      ensures this = <#x> * #this
      */
-	virtual void push(T& x) = 0;
+	virtual void push(T&& x) = 0;
     
     /*
      updates  this
-     replaces x
      requires |this| > 0
-     ensures  #this = <x> * this
+     ensures  #this = <pop> * this
      */
-	virtual void pop(T& x) = 0;
+	virtual T pop() = 0;
     
     /*
      ensures is_empty = (|this| = 0)

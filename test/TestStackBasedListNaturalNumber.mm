@@ -57,7 +57,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <>)";
     
     nn_type a(5);
-    list->insert(a);
+    list->insert(std::move(a));
     
     list->clear();
     
@@ -70,7 +70,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <>)";
     
     nn_type a(5);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
     list->clear();
@@ -84,8 +84,8 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <>)";
     
     nn_type a(5), b(3);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     list->retreat();
     
     list->clear();
@@ -110,7 +110,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
     XCTAssert(list->is_at_front());
@@ -120,7 +120,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     
     XCTAssert(!list->is_at_front());
 }
@@ -129,7 +129,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
     XCTAssert(!list->is_at_end());
@@ -139,7 +139,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::unique_ptr<list<nn_type>> list = std::make_unique<list_nn_type>();
 
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     
     XCTAssert(list->is_at_end());
 }
@@ -151,7 +151,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     
     nn_type a(1);
     
-    list->insert(a);
+    list->insert(std::move(a));
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -164,9 +164,9 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
+    list->insert(std::move(a));
     
-    list->insert(b);
+    list->insert(std::move(b));
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -180,10 +180,10 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
-    list->insert(b);
+    list->insert(std::move(b));
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -197,11 +197,11 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp, c_exp;
     
     nn_type a(1), b(2), c(3);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     list->retreat();
     
-    list->insert(c);
+    list->insert(std::move(c));
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -216,7 +216,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp;
     
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     
     list->retreat();
     
@@ -231,9 +231,9 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
-    list->insert(b);
+    list->insert(std::move(b));
     
     list->retreat();
     
@@ -249,8 +249,8 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     
     list->retreat();
     
@@ -266,10 +266,10 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp, c_exp;
 
     nn_type a(1), b(2), c(3);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     list->retreat();
-    list->insert(c);
+    list->insert(std::move(c));
     
     list->retreat();
     
@@ -286,7 +286,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp;
     
     nn_type a(1);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
     list->advance();
@@ -302,9 +302,9 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
-    list->insert(b);
+    list->insert(std::move(b));
 
     list->advance();
     
@@ -320,8 +320,8 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     list->retreat();
     list->retreat();
     
@@ -339,10 +339,10 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp, b_exp, c_exp;
 
     nn_type a(1), b(2), c(3);
-    list->insert(a);
-    list->insert(b);
+    list->insert(std::move(a));
+    list->insert(std::move(b));
     list->retreat();
-    list->insert(c);
+    list->insert(std::move(c));
     list->retreat();
     
     list->advance();
@@ -360,10 +360,10 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp(5);
     
     nn_type a, b(5);
-    list->insert(b);
+    list->insert(std::move(b));
     list->retreat();
     
-    list->remove(a);
+    a = list->remove();
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -376,12 +376,12 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp(5);
     
     nn_type a, b(5), c(1);
-    list->insert(b);
-    list->insert(c);
+    list->insert(std::move(b));
+    list->insert(std::move(c));
     list->retreat();
     list->retreat();
     
-    list->remove(a);
+    a = list->remove();
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -394,13 +394,13 @@ typedef stack_based_list<nn_type> list_nn_type;
     nn_type a_exp(5);
     
     nn_type a, b(5), c(1), d(3);
-    list->insert(c);
-    list->insert(b);
-    list->insert(d);
+    list->insert(std::move(c));
+    list->insert(std::move(b));
+    list->insert(std::move(d));
     list->retreat();
     list->retreat();
     
-    list->remove(a);
+    a = list->remove();
     
     std::string list_str = list->to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
@@ -422,7 +422,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <4>)";
     
     nn_type a(4);
-    list->insert(a);
+    list->insert(std::move(a));
     
     list->reset();
     
@@ -435,7 +435,7 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <4>)";
     
     nn_type a(4);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
     
     list->reset();
@@ -449,9 +449,9 @@ typedef stack_based_list<nn_type> list_nn_type;
     std::string expected = "(<>, <5, 4>)";
     
     nn_type a(4), b(5);
-    list->insert(a);
+    list->insert(std::move(a));
     list->retreat();
-    list->insert(b);
+    list->insert(std::move(b));
     
     list->reset();
     

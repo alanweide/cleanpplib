@@ -38,8 +38,8 @@ bool big_integer_kernel::operator==(big_integer_kernel &other) {
         ans = true;
     } else if (other.sign() == this->sign()) {
         int last_this, last_other;
-        this->divide_by_radix(last_this);
-        other.divide_by_radix(last_other);
+        last_this = this->divide_by_radix();
+        last_other = other.divide_by_radix();
         if (last_this == last_other) {
             ans = *this == other;
         }
@@ -61,7 +61,7 @@ std::ostream& operator<<(std::ostream& out, big_integer_kernel& o) {
         out << 0;
     } else {
         int d;
-        o.divide_by_radix(d);
+        d = o.divide_by_radix();
         if (o.sign() != ZERO) {
             out << o;
         }
@@ -84,7 +84,7 @@ void big_integer::increase_magnitude() {
     
     integer_sign sign = this->abs();
     
-    divide_by_radix(d);
+   d =  divide_by_radix();
     d++;
     if (d == big_integer::RADIX) {
         d -= big_integer::RADIX;
@@ -101,7 +101,7 @@ void big_integer::decrease_magnitude() {
     integer_sign sign = this->abs();
     
     int d = 0;
-    divide_by_radix(d);
+   d =  divide_by_radix();
     d--;
     if (d < 0) {
         d += big_integer::RADIX;
@@ -180,7 +180,7 @@ std::unique_ptr<big_integer> big_integer::clone() {
         integer_sign this_sign = this->abs();
         
         int d;
-        this->divide_by_radix(d);
+        d = this->divide_by_radix();
         
         clone = this->clone();
         
@@ -203,8 +203,8 @@ void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> 
     integer_sign x_sign = x->abs(), y_sign = y->abs();
 
     int x_low, y_low;
-    x->divide_by_radix(x_low);
-    y->divide_by_radix(y_low);
+    x_low = x->divide_by_radix();
+    y_low = y->divide_by_radix();
     if (y->sign() != ZERO) {
         combine_same(x, y);
     }
@@ -228,8 +228,8 @@ void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     integer_sign x_sign = x->abs(), y_sign = y->abs();
 
     int x_low, y_low;
-    x->divide_by_radix(x_low);
-    y->divide_by_radix(y_low);
+    x_low = x->divide_by_radix();
+    y_low = y->divide_by_radix();
     if (y->sign() != ZERO) {
         remove(x, y);
     }
@@ -284,8 +284,8 @@ int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     } else {
         integer_sign x_sign = x->abs(), y_sign = y->abs();
         int x_low, y_low;
-        x->divide_by_radix(x_low);
-        y->divide_by_radix(y_low);
+        x_low = x->divide_by_radix();
+        y_low = y->divide_by_radix();
         int comp = compare(x, y);
         if (comp == 0) {
             comp = x_low - y_low;

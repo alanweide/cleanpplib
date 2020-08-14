@@ -33,8 +33,9 @@ void vector_integer::clear() {
 	sign_ = ZERO;
 }
 
-void vector_integer::divide_by_radix(int &d) {
-    if (!rep_.empty()) {
+int vector_integer::divide_by_radix() {
+	int d;
+	if (!rep_.empty()) {
         d = rep_.back();
         rep_.pop_back();
     } else {
@@ -44,6 +45,7 @@ void vector_integer::divide_by_radix(int &d) {
         sign_ = ZERO;
     }
     assert (0 <= d && d < RADIX);
+	return d;
 }
 
 void vector_integer::multiply_by_radix(int d) {

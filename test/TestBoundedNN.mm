@@ -272,7 +272,7 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = nnToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -284,7 +284,7 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(0);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = nnToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -296,7 +296,7 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(5);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = nnToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());
@@ -308,7 +308,7 @@ static std::string nnToString(std::unique_ptr<natural_number_secondary> &o) {
     std::unique_ptr<natural_number_secondary> expected = std::make_unique<nn_type>(5);
 
     int d = 4;
-    n->divide_by_radix(d);
+    d = n->divide_by_radix();
     
     std::string n_str = nnToString(n);
     XCTAssert(*n == *expected, @"n = %s", n_str.c_str());

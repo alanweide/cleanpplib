@@ -59,7 +59,7 @@ public:
         length_ = 0;
     }
     
-    void enqueue(T& x) override
+    void enqueue(T&& x) override
     {
         int next_idx = (head_ + length_) % cap_;
         contents_[next_idx] = std::move(x);
@@ -68,13 +68,15 @@ public:
         this->resize_if_needed();
     }
     
-    void dequeue(T& x) override
+    T dequeue() override
     {
-        x = std::move(contents_[head_]);
+        T x = std::move(contents_[head_]);
         length_--;
         head_ = (head_ + 1) % cap_;
         
         this->resize_if_needed();
+		
+		return std::move(x);
     }
     
     bool is_empty() const override {

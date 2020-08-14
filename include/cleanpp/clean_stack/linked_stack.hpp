@@ -30,10 +30,10 @@ private:
             next_ = nullptr;
         }
         
-        stack_node(T& new_contents, std::unique_ptr<stack_node>& new_next):
+        stack_node(T&& new_contents, std::unique_ptr<stack_node>&& new_next):
 //            contents_(std::move(new_contents)),
-            next_(std::move(new_next)) {
-                contents_ = std::make_unique<T>(std::move(new_contents));
+            next_(std::forward<std::unique_ptr<stack_node>>(new_next)) {
+                contents_ = std::make_unique<T>(std::forward<T>(new_contents));
 		}
         
         stack_node(stack_node const &other) = delete;
@@ -56,7 +56,7 @@ private:
             return *this;
         }
         
-        T&& contents() {
+        T contents() {
             // return std::move(contents_);
             return std::move(*contents_);
         }
@@ -104,14 +104,15 @@ public:
     }
 
     
-    void push(T& x) override {
-        top_ptr_ = std::make_unique<stack_node>(x, top_ptr_);
+    void push(T&& x) override {
+        top_ptr_ = std::make_unique<stack_node>(std::forward<T>(x), std::move(top_ptr_));
     }
     
-    void pop(T& x) override {
+    T pop() override {
         assert(!is_empty());
-        x = top_ptr_->contents();
+		T pop = top_ptr_->contents();
         top_ptr_ = top_ptr_->next();
+		return std::move(pop);
     }
     
     bool is_empty() const override {
@@ -123,21 +124,21 @@ private:
         std::stringstream out;
         out << "<";
         linked_stack<T> temp{};
-        while (!is_empty())
+        while (!this->is_empty())
         {
             T top;
-            pop(top);
+            top = this->pop();
             out << top;
             if (!is_empty())
             {
                 out << ", ";
             }
-            temp.push(top);
+            temp.push(std::move(top));
         }
         while (!temp.is_empty()) {
             T top;
-            temp.pop(top);
-            push(top);
+            top = temp.pop();
+            this->push(std::move(top));
         }
         out << ">";
         return out.str();

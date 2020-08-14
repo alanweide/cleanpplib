@@ -47,11 +47,7 @@ public:
     }
     
     void clear() {
-        if (!this->rep_) {
-            this->rep_ = std::make_unique<I<Item>>();
-        } else {
-            this->rep_->clear();
-        }
+		this->rep_->clear();
     }
 
     /*
@@ -60,7 +56,7 @@ public:
      ensures this = #this * <x>
      */
     void enqueue(Item&& x) {
-        rep_->enqueue(x);
+        rep_->enqueue(std::forward<Item>(x));
     }
     
     /*
@@ -70,9 +66,7 @@ public:
      ensures  this * <x> = #this
      */
 	Item dequeue() {
-        Item x;
-        rep_->dequeue(x);
-		return x;//std::move(x);
+        return rep_->dequeue();
     }
     
     /*

@@ -102,20 +102,22 @@ public:
 		length_ = 0;
 	}
 	
-	void push(T& x) override {
-		contents_[length_] = std::move(x);
+	void push(T&& x) override {
+		contents_[length_] = std::forward<T>(x);
 		length_++;
 		
 		resize_if_needed();
 	}
 	
-	void pop(T& x) override {
+	T pop() override {
 		assert(!this->is_empty());
 		
 		length_--;
-		x = std::move(contents_[length_]);
+		T pop = std::move(contents_[length_]);
 		
 		resize_if_needed();
+		
+		return std::move(pop);
 	}
 	
 	bool is_empty() const override {

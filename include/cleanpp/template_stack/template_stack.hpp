@@ -40,11 +40,7 @@ public:
     }
     
     void clear() {
-        if (!this->rep_) {
-            this->rep_ = std::make_unique<I<Item>>();
-        } else {
-            this->rep_->clear();
-        }
+		this->rep_->clear();
     }
     
     /*
@@ -53,7 +49,7 @@ public:
      ensures this = <#x> * #this
      */
     virtual void push(Item&& x) {
-        rep_->push(x);
+        rep_->push(std::forward<Item>(x));
     }
     
     /*
@@ -62,10 +58,8 @@ public:
      requires |this| > 0
      ensures  #this = <x> * this
      */
-    virtual Item&& pop() {
-        Item x;
-        rep_->pop(x);
-        return std::move(x);
+    virtual Item pop() {
+        return rep_->pop();
     }
     
     /*

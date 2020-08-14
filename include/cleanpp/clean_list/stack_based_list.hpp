@@ -58,24 +58,24 @@ public:
     void advance() override {
         assert(!is_at_end());
         T x{ };
-        rem_->pop(x);
-        prec_->push(x);
+        x = rem_->pop();
+        prec_->push(std::move(x));
     }
     
     void retreat() override {
         assert(!is_at_front());
         T x{ };
-        prec_->pop(x);
-        rem_->push(x);
+        x = prec_->pop();
+        rem_->push(std::move(x));
     }
     
-    void insert(T& x) override {
-        prec_->push(x);
+    void insert(T&& x) override {
+        prec_->push(std::forward<T>(x));
     }
     
-    void remove(T& x) override {
+    T remove() override {
         assert(!is_at_end());
-        rem_->pop(x);
+        return rem_->pop();
     }
     
     bool is_at_end() const override  {
@@ -92,14 +92,14 @@ public:
         std::unique_ptr<stack<T>> rev_prec = std::make_unique<array_stack<T>>();
         while (!prec_->is_empty()) {
             T x;
-            prec_->pop(x);
-            rev_prec->push(x);
+            x = prec_->pop();
+            rev_prec->push(std::move(x));
         }
         out << *rev_prec;
         while (!rev_prec->is_empty()) {
             T x;
-            rev_prec->pop(x);
-            prec_->push(x);
+            x = rev_prec->pop();
+            prec_->push(std::move(x));
         }
         out << ", " << *rem_ << ")";
         return out.str();

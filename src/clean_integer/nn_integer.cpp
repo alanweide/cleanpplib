@@ -41,12 +41,13 @@ void nn_integer::clear() {
 	sign_ = ZERO;
 }
 
-void nn_integer::divide_by_radix(int &d) {
-	n_.divide_by_radix(d);
+int nn_integer::divide_by_radix() {
+	int d = n_.divide_by_radix();
 	if (n_.is_zero()) {
 		sign_ = ZERO;
 	}
 	assert (0 <= d && d < RADIX);
+	return d;
 }
 
 void nn_integer::multiply_by_radix(int d) {

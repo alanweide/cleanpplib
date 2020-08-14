@@ -26,7 +26,7 @@
 
 using namespace cleanpp;
 
-typedef t_natural_number_secondary<stack_nn> nn_type;
+typedef t_natural_number<stack_nn> nn_type;
 typedef t_queue<array_queue, nn_type> template_q;
 typedef array_queue<nn_type> queue_nn_type;
 

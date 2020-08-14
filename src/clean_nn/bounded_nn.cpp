@@ -44,9 +44,10 @@ void bounded_nn::multiply_by_radix(int d) {
     n_ *= RADIX;
     n_ += d;
 }
-void bounded_nn::divide_by_radix(int &d) {
-    d = n_ % RADIX;
+int&& bounded_nn::divide_by_radix() {
+    int d = n_ % RADIX;
     n_ /= RADIX;
+	return std::move(d);
 }
 
 void bounded_nn::increment() {

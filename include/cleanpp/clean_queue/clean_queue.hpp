@@ -30,15 +30,14 @@ public:
      clears  x
      ensures this = #this * <x>
      */
-    virtual void enqueue(T& x) = 0;
+    virtual void enqueue(T&& x) = 0;
     
     /*
      updates  this
-     replaces x
      requires |this| > 0
-     ensures  this * <x> = #this
+     ensures  this * <dequeue> = #this
      */
-    virtual void dequeue(T& x) = 0;
+    virtual T dequeue() = 0;
     
     /*
      ensures is_empty = (|this| = 0)

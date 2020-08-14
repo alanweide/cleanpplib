@@ -50,11 +50,7 @@ public:
     }
     
     void clear() override {
-        if (!this->rep_) {
-            this->rep_ = std::make_unique<I>();
-        } else {
-            this->rep_->clear();
-        }
+		this->rep_->clear();
     }
 
     /*
@@ -75,9 +71,7 @@ public:
               this < 0 iff #this < 0
      */
     int divide_by_radix() {
-        int d;
-        rep_->divide_by_radix(d);
-        return d;
+        return rep_->divide_by_radix();
     }
 
     /*

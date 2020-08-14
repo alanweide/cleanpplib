@@ -16,13 +16,13 @@
 namespace cleanpp {
 
 template<class I>
-class t_natural_number_secondary;
+class t_natural_number;
 
 template <class I>
 class t_natural_number_kernel: public clean_base {
 private:
 	std::unique_ptr<I> rep_;
-public:	
+public:
 	/*
 	 type NATURAL is integer
 	 exemplar   n
@@ -52,11 +52,7 @@ public:
 	}
 	
 	void clear() override{
-		if (!this->rep_) {
-			this->rep_ = std::make_unique<I>();
-		} else {
-			this->rep_->clear();
-		}
+		this->rep_->clear();
 	}
 	
 	/*
@@ -77,14 +73,11 @@ public:
 	
 	/*
 	 updates  this
-	 replaces d
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
 	 */
 	int&& divide_by_radix() {
-        int d = 0;
-		this->rep_->divide_by_radix(d);
-        return std::move(d);
+		return this->rep_->divide_by_radix();
 	}
 	
 	/*
@@ -99,24 +92,24 @@ public:
 		return out << *(o.rep_);
 	}
 	
-	friend class t_natural_number_secondary<I>;
+	friend class t_natural_number<I>;
 };
 
 template<class I>
-class t_natural_number_secondary: public t_natural_number_kernel<I> {
+class t_natural_number: public t_natural_number_kernel<I> {
 private:
 //	std::unique_ptr<natural_number_secondary> rep_;
 public:
 	
-    t_natural_number_secondary(long n = 0): t_natural_number_kernel<I>(n) {}
+    t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {}
 
-	t_natural_number_secondary(const t_natural_number_secondary<I>& other) = delete;
-	t_natural_number_secondary(t_natural_number_secondary<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
+	t_natural_number(const t_natural_number<I>& other) = delete;
+	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
 		other.rep_ = std::make_unique<I>();
 	}
 
-	t_natural_number_secondary<I>& operator=(const t_natural_number_secondary<I>& other) = delete;
-	t_natural_number_secondary<I>& operator=(t_natural_number_secondary<I>&& other) {
+	t_natural_number<I>& operator=(const t_natural_number<I>& other) = delete;
+	t_natural_number<I>& operator=(t_natural_number<I>&& other) {
 		if (&other == this) {
 			return *this;
 		}
@@ -130,13 +123,18 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-        int d = this->divide_by_radix();
-        d++;
-        if (d == t_natural_number_kernel<I>::RADIX) {
-            d -= t_natural_number_kernel<I>::RADIX;;
-            this->increment();
-        }
-        this->multiply_by_radix(std::move(d));
+		t_natural_number<I>* casted = dynamic_cast<t_natural_number<I>*>(&(*this->rep_));
+		if (casted) {
+			casted->increment();
+		} else {
+			int d = this->divide_by_radix();
+			d++;
+			if (d == t_natural_number_kernel<I>::RADIX) {
+				d -= t_natural_number_kernel<I>::RADIX;;
+				this->increment();
+			}
+			this->multiply_by_radix(std::move(d));
+		}
 	}
 	
 	/*
@@ -172,11 +170,10 @@ public:
 	}
 	
 	/*
-	 updates x
-	 ensures x = #x + y
+	 ensures add = #x + y
 	 */
 	template<class I2>
-	friend t_natural_number_secondary<I>&& add(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y) {
+	friend t_natural_number<I> add(t_natural_number<I>&& x, t_natural_number<I2> &y) {
 		int x_low = x.divide_by_radix();
 		int y_low = y.divide_by_radix();
 		if (!y.is_zero()) {
@@ -193,12 +190,11 @@ public:
 	}
 	
 	/*
-	 updates  x
 	 requires x >= y
-	 ensures  x = #x - y
+	 ensures  add = #x - y
 	 */
 	template<class I2>
-	friend t_natural_number_secondary<I>&& subtract(t_natural_number_secondary<I> x, t_natural_number_secondary<I2> &y){
+	friend t_natural_number<I> subtract(t_natural_number<I>&& x, t_natural_number<I2> &y) {
 		int x_low;
 		x_low = x.divide_by_radix();
 		int y_low;

@@ -40,12 +40,11 @@ public:
 
     /*
      updates  this
-     replaces d
-     ensures  |#this| = |this| * RADIX + d and
-              0 <= d and d < 10 and
+     ensures  |#this| = |this| * RADIX + divide_by_radix and
+              0 <= divide_by_radix and divide_by_radix < 10 and
               this < 0 iff #this < 0
      */
-    virtual void divide_by_radix(int& d) = 0;
+    virtual int divide_by_radix() = 0;
 
     /*
      updates this

@@ -38,10 +38,10 @@ public:
     
     /*
      updates  this
-     ensures  #this = this * RADIX + d and
-              0 <= d and d < RADIX
+     ensures  #this = this * RADIX + divide_by_radix and
+              0 <= divide_by_radix and divide_by_radix < RADIX
      */
-    virtual void divide_by_radix(int &d) = 0;
+    virtual int&& divide_by_radix() = 0;
     
     /*
      ensures `==` = (this = other)
@@ -75,15 +75,13 @@ public:
     virtual void set_from_long(long n);
     
     /*
-     updates x
-     ensures x = #x + y
+     ensures add = #x + y
      */
     friend std::unique_ptr<natural_number_secondary>&& add(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
     
     /*
-     updates  x
      requires x >= y
-     ensures  x = #x - y
+     ensures  add = #x - y
      */
     friend std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
 };

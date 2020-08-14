@@ -29,7 +29,7 @@ public:
     void clear() override;
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
-    void divide_by_radix(int &d) override;
+    int&& divide_by_radix() override;
     void increment() override;
     void decrement() override;
     void set_from_long(long n) override;

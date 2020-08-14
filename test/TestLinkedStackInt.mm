@@ -55,15 +55,15 @@ static std::string stackNNToString(std::unique_ptr<stack<int>> &s) {
 - (void)testIsEmpty_NonEmpty {
     std::unique_ptr<stack<int>> s = std::make_unique<stack_type>();
     int a(1);
-    s->push(a);
+    s->push(std::move(a));
     XCTAssert(!s->is_empty());
 }
 
 - (void)testIsEmpty_Empty_PushPop {
     std::unique_ptr<stack<int>> s = std::make_unique<stack_type>();
     int a(1), b(2);
-    s->push(a);
-    s->pop(b);
+    s->push(std::move(a));
+    b = s->pop();
     XCTAssert(s->is_empty());
 }
 
@@ -72,7 +72,7 @@ static std::string stackNNToString(std::unique_ptr<stack<int>> &s) {
     std::string expected_stack = "<1>";
     
     int a(1);
-    s->push(a);
+    s->push(std::move(a));
     
     std::string s_str = stackNNToString(s);
     XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
@@ -83,8 +83,8 @@ static std::string stackNNToString(std::unique_ptr<stack<int>> &s) {
     std::string expected_stack = "<2, 1>";
     
     int a(1), b(2);
-    s->push(a);
-    s->push(b);
+    s->push(std::move(a));
+    s->push(std::move(b));
     
     std::string s_str = stackNNToString(s);
     XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
@@ -96,8 +96,8 @@ static std::string stackNNToString(std::unique_ptr<stack<int>> &s) {
     int expected_a(1);
     
     int a(1), b(2);
-    s->push(a);
-    s->pop(b);
+    s->push(std::move(a));
+    b = s->pop();
     
     std::string s_str = stackNNToString(s);
     XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
@@ -110,8 +110,8 @@ static std::string stackNNToString(std::unique_ptr<stack<int>> &s) {
     int expected_b(1);
     
     int a(1), b(2);
-    s->push(a);
-    s->pop(b);
+    s->push(std::move(a));
+    b = s->pop();
     
     std::string s_str = stackNNToString(s);
     XCTAssert(s_str == expected_stack, @"%s", s_str.c_str());
