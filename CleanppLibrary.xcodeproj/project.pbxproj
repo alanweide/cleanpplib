@@ -43,6 +43,8 @@
 		E775B53223F213F7007DB0C1 /* vector_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E775B53023F213F7007DB0C1 /* vector_integer.cpp */; };
 		E775B53323F213F7007DB0C1 /* vector_integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E775B53123F213F7007DB0C1 /* vector_integer.hpp */; };
 		E775B53523F218CE007DB0C1 /* TestNNInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = E775B53423F218CE007DB0C1 /* TestNNInteger.mm */; };
+		E7DE6BD024E71EA100873580 /* template_list.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E7DE6BCF24E71EA100873580 /* template_list.hpp */; };
+		E7DE6BD324E7213500873580 /* TestTemplateListNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7DE6BD224E7213500873580 /* TestTemplateListNaturalNumber.mm */; };
 		E7DF792324CA228000BA4381 /* template_nn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E7DF792124CA228000BA4381 /* template_nn.hpp */; };
 		E7DF792524CA33EC00BA4381 /* TestTemplateNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */; };
 /* End PBXBuildFile section */
@@ -119,6 +121,8 @@
 		E775B53023F213F7007DB0C1 /* vector_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vector_integer.cpp; sourceTree = "<group>"; };
 		E775B53123F213F7007DB0C1 /* vector_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vector_integer.hpp; sourceTree = "<group>"; };
 		E775B53423F218CE007DB0C1 /* TestNNInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNNInteger.mm; sourceTree = "<group>"; };
+		E7DE6BCF24E71EA100873580 /* template_list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_list.hpp; sourceTree = "<group>"; };
+		E7DE6BD224E7213500873580 /* TestTemplateListNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateListNaturalNumber.mm; sourceTree = "<group>"; };
 		E7DF792124CA228000BA4381 /* template_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_nn.hpp; sourceTree = "<group>"; };
 		E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateNN.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,6 +270,7 @@
 				860934AA23DD08D700D38073 /* clean_stack */,
 				860934A923DD08BF00D38073 /* clean_list */,
 				E760A2EF2392049D00139E3D /* clean_base.hpp */,
+				E7DE6BD124E71EA500873580 /* template_list */,
 			);
 			path = cleanpp;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				86B9E6CA23EB873D00907698 /* TestArrayQueueNaturalNumber.mm */,
 				86577C8F24DC6E6000CB7637 /* TestTemplateQueueNaturalNumber.mm */,
 				8663DF8323E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm */,
+				E7DE6BD224E7213500873580 /* TestTemplateListNaturalNumber.mm */,
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
@@ -419,6 +425,14 @@
 			path = clean_integer;
 			sourceTree = "<group>";
 		};
+		E7DE6BD124E71EA500873580 /* template_list */ = {
+			isa = PBXGroup;
+			children = (
+				E7DE6BCF24E71EA100873580 /* template_list.hpp */,
+			);
+			path = template_list;
+			sourceTree = "<group>";
+		};
 		E7DF791E24CA223B00BA4381 /* template_nn */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +457,7 @@
 				E775B52C23F20191007DB0C1 /* big_integer.hpp in Headers */,
 				8682AD8923D6668E003F4238 /* natural_number.hpp in Headers */,
 				8682AD9923D89837003F4238 /* linked_stack.hpp in Headers */,
+				E7DE6BD024E71EA100873580 /* template_list.hpp in Headers */,
 				86577C8824DB8B6C00CB7637 /* template_stack.hpp in Headers */,
 				E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */,
 				E760A2FA2392049D00139E3D /* clean_list.hpp in Headers */,
@@ -569,6 +584,7 @@
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,
 				8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */,
 				8663DF8623EB076E00DCA186 /* TestArrayStackNaturalNumber.mm in Sources */,
+				E7DE6BD324E7213500873580 /* TestTemplateListNaturalNumber.mm in Sources */,
 				86577C9024DC6E6000CB7637 /* TestTemplateQueueNaturalNumber.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
