@@ -30,8 +30,8 @@ public:
     // The "base" of the number
     static const int RADIX = 10;
 
-    t_big_integer_kernel() {
-        rep_ = std::make_unique<I>();
+    t_big_integer_kernel(long n = 0) {
+        rep_ = std::make_unique<I>(n);
     }
     
     t_big_integer_kernel(const t_big_integer_kernel<I> &other) = delete;
@@ -49,7 +49,7 @@ public:
         return *this;
     }
     
-    void clear() override{
+    void clear() override {
         if (!this->rep_) {
             this->rep_ = std::make_unique<I>();
         } else {
@@ -107,10 +107,12 @@ public:
     friend std::ostream& operator<<(std::ostream& out, t_big_integer_kernel<I>& o) {
         return out << *o.rep_;
     }
+	
+	friend class t_big_integer<I>;
 };
 
 template<typename I>
-class t_big_integer: public big_integer_kernel {
+class t_big_integer: public t_big_integer_kernel<I> {
 private:
     
     friend int compare_magnitude(t_big_integer<I> &x, t_big_integer<I> &y) {
@@ -148,7 +150,7 @@ private:
               this < 0 iff #this < 0
      */
     void decrease_magnitude() {
-        assert(sign() != ZERO);
+        assert(this->sign() != ZERO);
         
         integer_sign sign = this->abs();
         
@@ -191,7 +193,7 @@ private:
         
         y.assign_sign(y_sign);
         
-        return x;
+		return std::move(x);
     }
 
     
@@ -214,7 +216,7 @@ private:
             x.clear();
         }
         
-        return x;
+		return std::move(x);
     }
     
     /*
@@ -228,7 +230,7 @@ private:
         integer_sign x_sign = x.abs(), y_sign = y.abs();
 
         int x_low = x.divide_by_radix();
-        int y_low = y->divide_by_radix();
+		int y_low = y.divide_by_radix();
         if (y.sign() != ZERO) {
             x = remove(std::move(x), y);
         }
@@ -243,7 +245,7 @@ private:
         x.assign_sign(x_sign);
         y.assign_sign(y_sign);
         
-        return x;
+		return std::move(x);
     }
 
 public:
@@ -292,7 +294,7 @@ public:
                 break;
             case ZERO:
                 increase_magnitude();
-                negate();
+                this->negate();
                 break;
             case POSITIVE:
                 decrease_magnitude();
@@ -311,11 +313,11 @@ public:
         }
         
         if (n == 0) {
-            clear();
+            this->clear();
         } else {
-            int nLeft = n / RADIX;
-            set_from_int(nLeft);
-            multiply_by_radix(n % RADIX);
+            int nLeft = n / t_big_integer_kernel<I>::RADIX;
+            this->set_from_int(nLeft);
+            this->multiply_by_radix(n % t_big_integer_kernel<I>::RADIX);
         }
         
         if (shouldNegate) {
@@ -330,7 +332,7 @@ public:
     integer_sign abs() {
         integer_sign sign = this->sign();
         if (sign == NEGATIVE) {
-            negate();
+            this->negate();
         }
         return sign;
     }
@@ -352,13 +354,10 @@ public:
      */
     t_big_integer<I> clone() {
         t_big_integer<I> clone;
-        if (this->sign() == ZERO) {
-            clone = this->new_instance();
-        } else {
+        if (this->sign() != ZERO) {
             integer_sign this_sign = this->abs();
             
-            int d;
-            this->divide_by_radix(d);
+            int d = this->divide_by_radix();
             
             clone = this->clone();
             
@@ -377,7 +376,7 @@ public:
      */
     friend t_big_integer<I> add(t_big_integer<I>&& x, t_big_integer<I> &y) {
 
-        if (x.sign() == ZERO || x.sign() == y->sign()) {
+		if (x.sign() == ZERO || x.sign() == y.sign()) {
             return combine_same(std::move(x), y);
         } else {
             return combine_different(std::move(x), y);
@@ -390,7 +389,7 @@ public:
      */
     friend t_big_integer<I> subtract(t_big_integer<I>&& x, t_big_integer<I> &y){
         y.negate();
-        t_big_integer<I> sum = add(x, y);
+        t_big_integer<I> sum = add(std::move(x), y);
         y.negate();
         
         return sum;
@@ -413,7 +412,7 @@ public:
             x_sign = x.abs();
             y_sign = y.abs();
             int x_low = x.divide_by_radix();
-            int y_low = y->divide_by_radix();
+			int y_low = y.divide_by_radix();
             int comp = compare(x, y);
             if (comp == 0) {
                 comp = x_low - y_low;
