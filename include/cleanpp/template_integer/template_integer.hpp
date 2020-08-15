@@ -303,23 +303,10 @@ public:
 	 ensures clone = this
 	 */
 	t_big_integer<I> clone() {
-		
-		// Tried to do dynamic casting here, but could not figure out how to do it...
-		
 		t_big_integer<I> clone;
-		if (this->sign() != ZERO) {
-			integer_sign this_sign = this->abs();
-			
-			int d = this->divide_by_radix();
-			
-			clone = this->clone();
-			
-			clone.multiply_by_radix(d);
-			this->multiply_by_radix(d);
-			
-			clone.assign_sign(this_sign);
-			this->assign_sign(this_sign);
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		clone.rep_ = casted->clone();
+		this->rep_ = std::move(casted);
 		return clone;
 	}
 	
