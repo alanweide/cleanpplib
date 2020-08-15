@@ -638,7 +638,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -652,7 +652,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(5);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -666,7 +666,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -680,7 +680,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(4);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -694,7 +694,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(5);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -708,7 +708,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(20);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(10);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -722,7 +722,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(123);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(66);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -736,7 +736,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -750,7 +750,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -764,7 +764,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -778,7 +778,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-8);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -792,7 +792,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-5);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -806,7 +806,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-20);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-10);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -820,7 +820,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-56);
 
-    add(n1, n2);
+    n1 = add(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -834,7 +834,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -848,7 +848,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -862,7 +862,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(4);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -876,7 +876,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(10);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -890,7 +890,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(66);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -904,7 +904,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(71);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(6);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -918,7 +918,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(66);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -932,7 +932,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(4);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -946,7 +946,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>();
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -960,7 +960,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -974,7 +974,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-4);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -988,7 +988,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(143);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(-66);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1002,7 +1002,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-143);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(66);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1016,7 +1016,7 @@ static std::string bigintToString(std::unique_ptr<big_integer> &o) {
     std::unique_ptr<big_integer> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<big_integer> n2_exp = std::make_unique<bigint_type>(2);
 
-    subtract(n1, n2);
+    n1 = subtract(std::move(n1), n2);
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);

@@ -97,8 +97,6 @@ public:
 
 template<class I>
 class t_natural_number: public t_natural_number_kernel<I> {
-private:
-	//	std::unique_ptr<natural_number_secondary> rep_;
 public:
 	
 	t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
@@ -160,19 +158,15 @@ public:
 	 */
 	template<class I2>
 	friend t_natural_number<I> add(t_natural_number<I>&& x, t_natural_number<I2> &y) {
-		int x_low = x.divide_by_radix();
-		int y_low = y.divide_by_radix();
-		if (!y.is_zero()) {
-			x = add(std::move(x), y);
-		}
-		x_low += y_low;
-		if (x_low >= t_natural_number_kernel<I>::RADIX) {
-			x_low -= t_natural_number_kernel<I>::RADIX;
-			x.increment();
-		}
-		x.multiply_by_radix(std::move(x_low));
-		y.multiply_by_radix(std::move(y_low));
-		return std::move(x);
+		t_natural_number<I> sum;
+		
+		std::unique_ptr<natural_number_secondary> x_casted(dynamic_cast<natural_number_secondary*>(x.rep_.release()));
+		std::unique_ptr<natural_number_secondary> y_casted(dynamic_cast<natural_number_secondary*>(y.rep_.release()));
+		sum.rep_ = add(std::move(x_casted), y_casted);
+		y.rep_ = std::move(y_casted);
+		x.rep_ = std::move(x_casted);
+		
+		return sum;
 	}
 	
 	/*
@@ -181,21 +175,15 @@ public:
 	 */
 	template<class I2>
 	friend t_natural_number<I> subtract(t_natural_number<I>&& x, t_natural_number<I2> &y) {
-		int x_low;
-		x_low = x.divide_by_radix();
-		int y_low;
-		y_low = y.divide_by_radix();
-		if (!y.is_zero()) {
-			x = subtract(std::move(x), y);
-		}
-		x_low -= y_low;
-		if (x_low < 0) {
-			x_low += t_natural_number_kernel<I>::RADIX;
-			x.decrement();
-		}
-		x.multiply_by_radix(std::move(x_low));
-		y.multiply_by_radix(std::move(y_low));
-		return std::move(x);
+		t_natural_number<I> sum;
+		
+		std::unique_ptr<natural_number_secondary> x_casted(dynamic_cast<natural_number_secondary*>(x.rep_.release()));
+		std::unique_ptr<natural_number_secondary> y_casted(dynamic_cast<natural_number_secondary*>(y.rep_.release()));
+		sum.rep_ = subtract(std::move(x_casted), y_casted);
+		y.rep_ = std::move(y_casted);
+		x.rep_ = std::move(x_casted);
+		
+		return sum;
 	}
 };
 

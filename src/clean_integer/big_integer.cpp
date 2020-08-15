@@ -197,7 +197,7 @@ std::unique_ptr<big_integer> big_integer::clone() {
  * friend functions
  * ---------------------------- */
 
-void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+std::unique_ptr<big_integer> combine_same(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y) {
     assert(x->sign() == y->sign() || x->sign() == ZERO || y->sign() == ZERO);
 
     integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -206,7 +206,7 @@ void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> 
     x_low = x->divide_by_radix();
     y_low = y->divide_by_radix();
     if (y->sign() != ZERO) {
-        combine_same(x, y);
+        x = combine_same(std::move(x), y);
     }
     x_low += y_low;
     if (x_low >= big_integer::RADIX) {
@@ -220,9 +220,11 @@ void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> 
     x->assign_sign(x_sign == 0 ? y_sign : x_sign);
     
     y->assign_sign(y_sign);
+	
+	return std::move(x);
 }
 
-void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+std::unique_ptr<big_integer> remove(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y) {
     assert(compare_magnitude(x, y) > 0);
     
     integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -231,7 +233,7 @@ void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     x_low = x->divide_by_radix();
     y_low = y->divide_by_radix();
     if (y->sign() != ZERO) {
-        remove(x, y);
+        x = remove(std::move(x), y);
     }
     x_low -= y_low;
     if (x_low < 0) {
@@ -243,35 +245,41 @@ void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
     
     x->assign_sign(x_sign);
     y->assign_sign(y_sign);
+	
+	return std::move(x);
 }
 
-void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+std::unique_ptr<big_integer> combine_different(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y) {
     assert(x->sign() != y->sign() || x->sign() == ZERO);
 
     if (compare_magnitude(x, y) > 0) {
-        remove(x, y);
+        x = remove(std::move(x), y);
     } else if (compare_magnitude(x, y) < 0) {
         std::unique_ptr<big_integer> tmp = std::move(x);
         x = y->clone();
-        remove(x, tmp);
+		x = remove(std::move(x), tmp);
     } else {
         x->clear();
     }
+	
+	return std::move(x);
 }
 
-void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+std::unique_ptr<big_integer> add(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y) {
 
     if (x->sign() == ZERO || x->sign() == y->sign()) {
-        combine_same(x, y);
+        return combine_same(std::move(x), y);
     } else {
-        combine_different(x, y);
+        return combine_different(std::move(x), y);
     }
 }
 
-void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {
+std::unique_ptr<big_integer> subtract(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y) {
     y->negate();
-    add(x, y);
+    x = add(std::move(x), y);
     y->negate();
+	
+	return std::move(x);
 }
 
 int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y) {

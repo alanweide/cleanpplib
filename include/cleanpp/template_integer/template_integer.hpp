@@ -106,133 +106,138 @@ public:
 template<typename I>
 class t_big_integer: public t_big_integer_kernel<I> {
 private:
-	
-	friend int compare_magnitude(t_big_integer<I> &x, t_big_integer<I> &y) {
-		integer_sign x_sign = x.abs();
-		integer_sign y_sign = y.abs();
-		int comp = compare(x, y);
-		x.assign_sign(x_sign);
-		y.assign_sign(y_sign);
-		return comp;
-	}
-	
-	/*
-	 updates this
-	 ensures |this| = |#this| + 1 and
-	 this < 0 iff #this < 0
-	 */
-	void increase_magnitude() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
-		casted->increase_magnitude();
-		this->rep_ = std::move(casted);
-	}
-	
-	/*
-	 updates  this
-	 requires this != 0
-	 ensures  |this| = |#this| - 1 and
-	 this < 0 iff #this < 0
-	 */
-	void decrease_magnitude() {
-		assert(this->sign() != ZERO);
-		
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
-		casted->decrease_magnitude();
-		this->rep_ = std::move(casted);
-	}
-	
-	/*
-	 updates  x
-	 requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
-	 ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
-	 */
-	friend t_big_integer<I> combine_same(t_big_integer<I>&& x, t_big_integer<I> &y) {
-		assert(x.sign() == y.sign() || x.sign() == ZERO || y.sign() == ZERO);
-		
-		integer_sign x_sign = x.abs(), y_sign = y.abs();
-		
-		int x_low = x.divide_by_radix();
-		int y_low = y.divide_by_radix();
-		if (y.sign() != ZERO) {
-			x = combine_same(std::move(x), y);
-		}
-		x_low += y_low;
-		if (x_low >= t_big_integer::RADIX) {
-			x_low -= t_big_integer::RADIX;
-			x.increase_magnitude();
-		}
-		x.multiply_by_radix(x_low);
-		y.multiply_by_radix(y_low);
-		
-		integer_sign new_x_sign = (x_sign == 0 ? y_sign : x_sign);
-		x.assign_sign(new_x_sign);
-		
-		y.assign_sign(y_sign);
-		
-		return std::move(x);
-	}
-	
-	
-	/*
-	 updates  x
-	 requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
-	 ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
-	 */
-	friend t_big_integer<I> combine_different(t_big_integer<I>&& x, t_big_integer<I> &y) {
-		assert(x.sign() != y.sign() || x.sign() == ZERO);
-		
-		int mag_comp = compare_magnitude(x, y);
-		if (mag_comp > 0) {
-			x = remove(std::move(x), y);
-		} else if (mag_comp < 0) {
-			t_big_integer<I> tmp = std::move(x);
-			x = y.clone();
-			x = remove(std::move(x), tmp);
-		} else {
-			x.clear();
-		}
-		
-		return std::move(x);
-	}
-	
-	/*
-	 updates  x
-	 requires |x| > |y|
-	 ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
-	 */
-	friend t_big_integer<I> remove(t_big_integer<I>&& x, t_big_integer<I> &y) {
-		assert(compare_magnitude(x, y) > 0);
-		
-		integer_sign x_sign = x.abs(), y_sign = y.abs();
-		
-		int x_low = x.divide_by_radix();
-		int y_low = y.divide_by_radix();
-		if (y.sign() != ZERO) {
-			x = remove(std::move(x), y);
-		}
-		x_low -= y_low;
-		if (x_low < 0) {
-			x_low += big_integer::RADIX;
-			x.decrease_magnitude();
-		}
-		x.multiply_by_radix(x_low);
-		y.multiply_by_radix(y_low);
-		
-		x.assign_sign(x_sign);
-		y.assign_sign(y_sign);
-		
-		return std::move(x);
-	}
-	
+//	template<typename I2>
+//	friend int compare_magnitude(t_big_integer<I> &x, t_big_integer<I2> &y) {
+//		integer_sign x_sign = x.abs();
+//		integer_sign y_sign = y.abs();
+//		int comp = compare(x, y);
+//		x.assign_sign(x_sign);
+//		y.assign_sign(y_sign);
+//		return comp;
+//	}
+//
+//	/*
+//	 updates this
+//	 ensures |this| = |#this| + 1 and
+//	 this < 0 iff #this < 0
+//	 */
+//	void increase_magnitude() {
+//		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+//		casted->increase_magnitude();
+//		this->rep_ = std::move(casted);
+//	}
+//
+//	/*
+//	 updates  this
+//	 requires this != 0
+//	 ensures  |this| = |#this| - 1 and
+//	 this < 0 iff #this < 0
+//	 */
+//	void decrease_magnitude() {
+//		assert(this->sign() != ZERO);
+//
+//		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+//		casted->decrease_magnitude();
+//		this->rep_ = std::move(casted);
+//	}
+//
+//	/*
+//	 updates  x
+//	 requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
+//	 ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
+//	 */
+//	template<typename I2>
+//	friend t_big_integer<I> combine_same(t_big_integer<I>&& x, t_big_integer<I2> &y) {
+//		assert(x.sign() == y.sign() || x.sign() == ZERO || y.sign() == ZERO);
+//
+//		integer_sign x_sign = x.abs(), y_sign = y.abs();
+//
+//		int x_low = x.divide_by_radix();
+//		int y_low = y.divide_by_radix();
+//		if (y.sign() != ZERO) {
+//			x = combine_same(std::move(x), y);
+//		}
+//		x_low += y_low;
+//		if (x_low >= t_big_integer::RADIX) {
+//			x_low -= t_big_integer::RADIX;
+//			x.increase_magnitude();
+//		}
+//		x.multiply_by_radix(x_low);
+//		y.multiply_by_radix(y_low);
+//
+//		integer_sign new_x_sign = (x_sign == 0 ? y_sign : x_sign);
+//		x.assign_sign(new_x_sign);
+//
+//		y.assign_sign(y_sign);
+//
+//		return std::move(x);
+//	}
+//
+//
+//	/*
+//	 updates  x
+//	 requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
+//	 ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
+//	 */
+//	template<typename I2>
+//	friend t_big_integer<I> combine_different(t_big_integer<I>&& x, t_big_integer<I2> &y) {
+//		assert(x.sign() != y.sign() || x.sign() == ZERO);
+//
+//		int mag_comp = compare_magnitude(x, y);
+//		if (mag_comp > 0) {
+//			x = remove(std::move(x), y);
+//		} else if (mag_comp < 0) {
+//			t_big_integer<I> tmp = std::move(x);
+//			x = y.clone();
+//			x = remove(std::move(x), tmp);
+//		} else {
+//			x.clear();
+//		}
+//
+//		return std::move(x);
+//	}
+//
+//	/*
+//	 updates  x
+//	 requires |x| > |y|
+//	 ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
+//	 */
+//	template<typename I2>
+//	friend t_big_integer<I> remove(t_big_integer<I>&& x, t_big_integer<I2> &y) {
+//		assert(compare_magnitude(x, y) > 0);
+//
+//		integer_sign x_sign = x.abs(), y_sign = y.abs();
+//
+//		int x_low = x.divide_by_radix();
+//		int y_low = y.divide_by_radix();
+//		if (y.sign() != ZERO) {
+//			x = remove(std::move(x), y);
+//		}
+//		x_low -= y_low;
+//		if (x_low < 0) {
+//			x_low += big_integer::RADIX;
+//			x.decrease_magnitude();
+//		}
+//		x.multiply_by_radix(x_low);
+//		y.multiply_by_radix(y_low);
+//
+//		x.assign_sign(x_sign);
+//		y.assign_sign(y_sign);
+//
+//		return std::move(x);
+//	}
+
 public:
 	
 	t_big_integer(long n = 0): t_big_integer_kernel<I>(n) {
-		static_assert(std::is_base_of<big_integer, I>::value, "Template parameter I must derive from big_integer");
+		static_assert(std::is_base_of<big_integer, I>::value,
+					  "Template parameter I must derive from big_integer");
 	}
 	
 	t_big_integer(const t_big_integer<I>& other) = delete;
 	t_big_integer(t_big_integer<I>&& other): t_big_integer_kernel<I>(std::move(other)) {
-		static_assert(std::is_base_of<big_integer, I>::value, "Template parameter I must derive from big_integer");
+		static_assert(std::is_base_of<big_integer, I>::value,
+					  "Template parameter I must derive from big_integer");
 		other.rep_ = std::make_unique<I>();
 	}
 	
@@ -314,23 +319,32 @@ public:
 	 updates  x
 	 ensures  x = #x + y
 	 */
-	friend t_big_integer<I> add(t_big_integer<I>&& x, t_big_integer<I> &y) {
+	template<typename I2>
+	friend t_big_integer<I> add(t_big_integer<I>&& x, t_big_integer<I2> &y) {
+		t_big_integer<I> sum;
 		
-		if (x.sign() == ZERO || x.sign() == y.sign()) {
-			return combine_same(std::move(x), y);
-		} else {
-			return combine_different(std::move(x), y);
-		}
+		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		sum.rep_ = add(std::move(x_casted), y_casted);
+		y.rep_ = std::move(y_casted);
+		x.rep_ = std::move(x_casted);
+
+		return sum;
 	}
 	
 	/*
 	 updates x
 	 ensures x = #x - y
 	 */
-	friend t_big_integer<I> subtract(t_big_integer<I>&& x, t_big_integer<I> &y){
-		y.negate();
-		t_big_integer<I> sum = add(std::move(x), y);
-		y.negate();
+	template<typename I2>
+	friend t_big_integer<I> subtract(t_big_integer<I>&& x, t_big_integer<I2> &y){
+		t_big_integer<I> sum;
+		
+		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		sum.rep_ = subtract(std::move(x_casted), y_casted);
+		y.rep_ = std::move(y_casted);
+		x.rep_ = std::move(x_casted);
 		
 		return sum;
 	}
@@ -340,31 +354,17 @@ public:
 	 compare = 0 ==> x = y and
 	 compare < 0 ==> x < y
 	 */
-	friend int compare(t_big_integer<I> &x, t_big_integer<I> &y) {
-		integer_sign x_sign = x.sign(), y_sign = y.sign();
-		if (x_sign > y_sign) {
-			return 1;
-		} else if (x_sign < y_sign) {
-			return -1;
-		} else if (x_sign == ZERO && y_sign == ZERO) {
-			return 0;
-		} else {
-			x_sign = x.abs();
-			y_sign = y.abs();
-			int x_low = x.divide_by_radix();
-			int y_low = y.divide_by_radix();
-			int comp = compare(x, y);
-			if (comp == 0) {
-				comp = x_low - y_low;
-			}
-			x.multiply_by_radix(x_low);
-			y.multiply_by_radix(y_low);
-			
-			x.assign_sign(x_sign);
-			y.assign_sign(y_sign);
-			
-			return comp * x_sign;
-		}
+	template<typename I2>
+	friend int compare(t_big_integer<I> &x, t_big_integer<I2> &y) {
+		int comp;
+		
+		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		comp = compare(x_casted, y_casted);
+		y.rep_ = std::move(y_casted);
+		x.rep_ = std::move(x_casted);
+		
+		return comp;
 	}
 };
 

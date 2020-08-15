@@ -95,21 +95,21 @@ private:
      requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
      ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
      */
-    friend void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<big_integer> combine_same(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y);
     
     /*
      updates  x
      requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
      */
-    friend void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	friend std::unique_ptr<big_integer> combine_different(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y);
     
     /*
      updates  x
      requires |x| > |y|
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
-    friend void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<big_integer> remove(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y);
 
 public:
     
@@ -154,13 +154,13 @@ public:
      updates  x
      ensures  x = #x + y
      */
-    friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<big_integer> add(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y);
     
     /*
      updates x
      ensures x = #x - y
      */
-	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	friend std::unique_ptr<big_integer> subtract(std::unique_ptr<big_integer> &&x, std::unique_ptr<big_integer> &y);
 
     /*
      ensures compare > 0 ==> x > y and
