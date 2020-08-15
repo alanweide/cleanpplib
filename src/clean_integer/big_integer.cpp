@@ -139,7 +139,7 @@ void big_integer::decrement() {
     }
 }
 
-void big_integer::set_from_int(int n) {
+void big_integer::set_from_long(long n) {
     bool shouldNegate = n < 0;
     if (shouldNegate) {
         n *= -1;
@@ -148,8 +148,8 @@ void big_integer::set_from_int(int n) {
     if (n == 0) {
         clear();
     } else {
-        int nLeft = n / RADIX;
-        set_from_int(nLeft);
+        long nLeft = n / RADIX;
+        set_from_long(nLeft);
         multiply_by_radix(n % RADIX);
     }
     

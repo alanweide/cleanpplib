@@ -129,7 +129,7 @@ public:
      replaces this
      ensures  this = n
      */
-    virtual void set_from_int(int n);
+    virtual void set_from_long(long n);
     
     /*
      requires 0 <= d and d < 10
@@ -168,6 +168,9 @@ public:
              compare < 0 ==> x < y
      */
     friend int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	
+	template<typename I>
+	friend class t_big_integer;
 };
 }
 

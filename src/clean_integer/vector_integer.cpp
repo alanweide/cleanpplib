@@ -10,7 +10,7 @@
 
 namespace cleanpp {
 vector_integer::vector_integer(int n) {
-    set_from_int(n);
+    set_from_long(n);
 }
 
 vector_integer::vector_integer(vector_integer &&other): rep_(std::move(other.rep_)), sign_(other.sign_) {

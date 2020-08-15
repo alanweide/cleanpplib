@@ -101,10 +101,13 @@ private:
 //	std::unique_ptr<natural_number_secondary> rep_;
 public:
 	
-    t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {}
+    t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
+		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
+	}
 
 	t_natural_number(const t_natural_number<I>& other) = delete;
 	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
+		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
 		other.rep_ = std::make_unique<I>();
 	}
 
@@ -123,8 +126,8 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		t_natural_number<I>* casted = dynamic_cast<t_natural_number<I>*>(&(*this->rep_));
-		if (casted) {
+		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
+		if (true) {
 			casted->increment();
 		} else {
 			int d = this->divide_by_radix();
@@ -144,6 +147,10 @@ public:
 	 */
 	void decrement() {
         assert(!this->is_zero());
+		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
+		if (true) {
+			casted->decrement();
+		} else {
         int d = this->divide_by_radix();
         d--;
         if (d < 0) {
@@ -151,6 +158,7 @@ public:
             this->decrement();
         }
         this->multiply_by_radix(std::move(d));
+		}
 	}
 	
 	/*
@@ -160,6 +168,10 @@ public:
 	 */
 	void set_from_long(long n) {
         assert(n >= 0);
+		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
+		if (true) {
+			casted->set_from_long(n);
+		} else {
         if (n == 0) {
           this->clear();
         } else {
@@ -167,6 +179,7 @@ public:
             this->set_from_long(nLeft);
             this->multiply_by_radix(n % t_natural_number_kernel<I>::RADIX);
         }
+		}
 	}
 	
 	/*
@@ -180,8 +193,8 @@ public:
 			x = add(std::move(x), y);
 		}
 		x_low += y_low;
-		if (x_low >= natural_number_secondary::RADIX) {
-			x_low -= natural_number_secondary::RADIX;
+		if (x_low >= t_natural_number_kernel<I>::RADIX) {
+			x_low -= t_natural_number_kernel<I>::RADIX;
 			x.increment();
 		}
 		x.multiply_by_radix(std::move(x_low));
