@@ -22,7 +22,7 @@ class t_big_integer;
 template<typename I>
 class t_big_integer_kernel: public clean_base {
 private:
-	std::unique_ptr<I> rep_;
+	std::unique_ptr<big_integer_kernel> rep_;
 public:
 	/*
 	 big_integer_kernel is modeled by integer
@@ -122,22 +122,9 @@ private:
 	 this < 0 iff #this < 0
 	 */
 	void increase_magnitude() {
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (casted) {
-			casted->increase_magnitude();
-		} else {
-			integer_sign sign = this->abs();
-			
-			int d = this->divide_by_radix();
-			d++;
-			if (d == big_integer::RADIX) {
-				d -= big_integer::RADIX;
-				this->increase_magnitude();
-			}
-			this->multiply_by_radix(d);
-			
-			this->assign_sign(sign);
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->increase_magnitude();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -149,22 +136,9 @@ private:
 	void decrease_magnitude() {
 		assert(this->sign() != ZERO);
 		
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (casted) {
-			casted->decrease_magnitude();
-		} else {
-			integer_sign sign = this->abs();
-			
-			int d = this->divide_by_radix();
-			d--;
-			if (d < 0) {
-				d += big_integer::RADIX;
-				this->decrease_magnitude();
-			}
-			this->multiply_by_radix(d);
-			
-			this->assign_sign(sign);
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->decrease_magnitude();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -277,20 +251,9 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (true) {
-			casted->increment();
-		} else {
-			switch (this->sign()) {
-				case NEGATIVE:
-					decrease_magnitude();
-					break;
-				case ZERO:
-				case POSITIVE:
-					increase_magnitude();
-					break;
-			}
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->increment();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -298,23 +261,9 @@ public:
 	 ensures this = #this - 1
 	 */
 	void decrement() {
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (true) {
-			casted->decrement();
-		} else {
-			switch (this->sign()) {
-				case NEGATIVE:
-					increase_magnitude();
-					break;
-				case ZERO:
-					increase_magnitude();
-					this->negate();
-					break;
-				case POSITIVE:
-					decrease_magnitude();
-					break;
-			}
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->decrement();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -322,27 +271,9 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (true) {
-			casted->set_from_long(n);
-		} else {
-			bool shouldNegate = n < 0;
-			if (shouldNegate) {
-				n *= -1;
-			}
-			
-			if (n == 0) {
-				this->clear();
-			} else {
-				int nLeft = n / t_big_integer_kernel<I>::RADIX;
-				this->set_from_int(nLeft);
-				this->multiply_by_radix(n % t_big_integer_kernel<I>::RADIX);
-			}
-			
-			if (shouldNegate) {
-				this->negate();
-			}
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->set_from_long(n);
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -350,16 +281,10 @@ public:
 	 ensures  this = |#this| and abs = [POSITIVE, ZERO, or NEGATIVE as this > 0, = 0, or < 0]
 	 */
 	integer_sign abs() {
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (true) {
-			return casted->abs();
-		} else {
-			integer_sign sign = this->sign();
-			if (sign == NEGATIVE) {
-				this->negate();
-			}
-			return sign;
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		integer_sign sign = casted->abs();
+		this->rep_ = std::move(casted);
+		return sign;
 	}
 	
 	/*
@@ -369,14 +294,9 @@ public:
 	 sign = POSITIVE ==> this = |#this|
 	 */
 	void assign_sign(integer_sign sign){
-		big_integer* casted = dynamic_cast<big_integer*>(&(*this->rep_));
-		if (true) {
-			casted->assign_sign(sign);
-		} else {
-			if (this->sign() == -sign) {
-				this->negate();
-			}
-		}
+		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		casted->assign_sign(sign);
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -384,7 +304,7 @@ public:
 	 */
 	t_big_integer<I> clone() {
 		
-		// Tried to do the same dynamic casting here, but could not figure out how to do it...
+		// Tried to do dynamic casting here, but could not figure out how to do it...
 		
 		t_big_integer<I> clone;
 		if (this->sign() != ZERO) {

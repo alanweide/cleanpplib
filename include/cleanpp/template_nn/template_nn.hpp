@@ -21,7 +21,7 @@ class t_natural_number;
 template <class I>
 class t_natural_number_kernel: public clean_base {
 private:
-	std::unique_ptr<I> rep_;
+	std::unique_ptr<natural_number_kernel> rep_;
 public:
 	/*
 	 type NATURAL is integer
@@ -40,7 +40,7 @@ public:
 	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<I>();
 	}
-
+	
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
 	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
 		if (&other == this) {
@@ -98,26 +98,26 @@ public:
 template<class I>
 class t_natural_number: public t_natural_number_kernel<I> {
 private:
-//	std::unique_ptr<natural_number_secondary> rep_;
+	//	std::unique_ptr<natural_number_secondary> rep_;
 public:
 	
-    t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
+	t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
 		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
 	}
-
+	
 	t_natural_number(const t_natural_number<I>& other) = delete;
 	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
 		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
 		other.rep_ = std::make_unique<I>();
 	}
-
+	
 	t_natural_number<I>& operator=(const t_natural_number<I>& other) = delete;
 	t_natural_number<I>& operator=(t_natural_number<I>&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		this->rep_ = std::move(other.rep_);
-        other.rep_ = std::make_unique<I>();
+		other.rep_ = std::make_unique<I>();
 		return *this;
 	}
 	
@@ -126,18 +126,9 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
-		if (true) {
-			casted->increment();
-		} else {
-			int d = this->divide_by_radix();
-			d++;
-			if (d == t_natural_number_kernel<I>::RADIX) {
-				d -= t_natural_number_kernel<I>::RADIX;;
-				this->increment();
-			}
-			this->multiply_by_radix(std::move(d));
-		}
+		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
+		casted->increment();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -146,19 +137,10 @@ public:
 	 ensures  this = #this - 1
 	 */
 	void decrement() {
-        assert(!this->is_zero());
-		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
-		if (true) {
-			casted->decrement();
-		} else {
-        int d = this->divide_by_radix();
-        d--;
-        if (d < 0) {
-            d += t_natural_number_kernel<I>::RADIX;
-            this->decrement();
-        }
-        this->multiply_by_radix(std::move(d));
-		}
+		assert(!this->is_zero());
+		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
+		casted->decrement();
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -167,19 +149,10 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-        assert(n >= 0);
-		natural_number_secondary* casted = dynamic_cast<natural_number_secondary*>(&(*this->rep_));
-		if (true) {
-			casted->set_from_long(n);
-		} else {
-        if (n == 0) {
-          this->clear();
-        } else {
-            long nLeft = n / t_natural_number_kernel<I>::RADIX;
-            this->set_from_long(nLeft);
-            this->multiply_by_radix(n % t_natural_number_kernel<I>::RADIX);
-        }
-		}
+		assert(n >= 0);
+		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
+		casted->set_from_long(n);
+		this->rep_ = std::move(casted);
 	}
 	
 	/*
