@@ -167,10 +167,7 @@ public:
              compare = 0 ==> x = y and
              compare < 0 ==> x < y
      */
-    friend int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
-	
-	template<typename I>
-	friend class t_big_integer;
+    friend int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);	
 };
 }
 
