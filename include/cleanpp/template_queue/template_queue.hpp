@@ -30,8 +30,9 @@ public:
 	/*
 	 ensures this = <>
 	 */
-	t_queue() {
-		rep_ = std::make_unique<I<Item>>();
+	t_queue(): rep_(std::make_unique<I<Item>>()) {
+		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
+					  "Template parameter I must derive from queue");
 	}
 	
 	t_queue(const t_queue<I, Item> &o) = delete;
@@ -40,6 +41,8 @@ public:
 	 ensures this = #other
 	 */
 	t_queue(t_queue<I, Item>&& other): rep_(std::move(other.rep_)) {
+		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
+					  "Template parameter I must derive from queue");
 		other.rep_ = std::make_unique<I<Item>>();
 	}
 	
