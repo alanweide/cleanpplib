@@ -129,8 +129,10 @@ public:
 	 */
 	void reset() {
 		std::unique_ptr<list<Item>> casted(dynamic_cast<list<Item>*>(this->rep_.release()));
-		casted->reset();
-		this->rep_ = std::move(casted);
+		
+        casted->reset();
+		
+        this->rep_ = std::move(casted);
 	}
 };
 }

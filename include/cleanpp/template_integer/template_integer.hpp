@@ -140,8 +140,10 @@ public:
 	 */
 	void increment() {
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
-		casted->increment();
-		this->rep_ = std::move(casted);
+		
+        casted->increment();
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -150,8 +152,10 @@ public:
 	 */
 	void decrement() {
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
-		casted->decrement();
-		this->rep_ = std::move(casted);
+		
+        casted->decrement();
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -160,8 +164,10 @@ public:
 	 */
 	void set_from_long(long n) {
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+        
 		casted->set_from_long(n);
-		this->rep_ = std::move(casted);
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -170,8 +176,10 @@ public:
 	 */
 	integer_sign abs() {
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+        
 		integer_sign sign = casted->abs();
-		this->rep_ = std::move(casted);
+		
+        this->rep_ = std::move(casted);
 		return sign;
 	}
 	
@@ -183,8 +191,10 @@ public:
 	 */
 	void assign_sign(integer_sign sign){
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+        
 		casted->assign_sign(sign);
-		this->rep_ = std::move(casted);
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -193,8 +203,10 @@ public:
 	t_big_integer<I> clone() {
 		t_big_integer<I> clone;
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+        
 		clone.rep_ = casted->clone();
-		this->rep_ = std::move(casted);
+		
+        this->rep_ = std::move(casted);
 		return clone;
 	}
 	
@@ -208,8 +220,10 @@ public:
 		
 		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
 		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+        
 		sum.rep_ = add(std::move(x_casted), y_casted);
-		y.rep_ = std::move(y_casted);
+		
+        y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 
 		return sum;
@@ -225,8 +239,10 @@ public:
 		
 		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
 		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+        
 		sum.rep_ = subtract(std::move(x_casted), y_casted);
-		y.rep_ = std::move(y_casted);
+		
+        y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 
 		return sum;
@@ -243,8 +259,10 @@ public:
 		
 		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
 		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+        
 		comp = compare(x_casted, y_casted);
-		y.rep_ = std::move(y_casted);
+		
+        y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 		
 		return comp;

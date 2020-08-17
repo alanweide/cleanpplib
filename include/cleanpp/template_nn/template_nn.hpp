@@ -125,8 +125,10 @@ public:
 	 */
 	void increment() {
 		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
-		casted->increment();
-		this->rep_ = std::move(casted);
+		
+        casted->increment();
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -137,8 +139,10 @@ public:
 	void decrement() {
 		assert(!this->is_zero());
 		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
-		casted->decrement();
-		this->rep_ = std::move(casted);
+		
+        casted->decrement();
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -149,8 +153,10 @@ public:
 	void set_from_long(long n) {
 		assert(n >= 0);
 		std::unique_ptr<natural_number_secondary> casted(dynamic_cast<natural_number_secondary*>(this->rep_.release()));
-		casted->set_from_long(n);
-		this->rep_ = std::move(casted);
+		
+        casted->set_from_long(n);
+		
+        this->rep_ = std::move(casted);
 	}
 	
 	/*
@@ -162,8 +168,10 @@ public:
 		
 		std::unique_ptr<natural_number_secondary> x_casted(dynamic_cast<natural_number_secondary*>(x.rep_.release()));
 		std::unique_ptr<natural_number_secondary> y_casted(dynamic_cast<natural_number_secondary*>(y.rep_.release()));
-		sum.rep_ = add(std::move(x_casted), y_casted);
-		y.rep_ = std::move(y_casted);
+		
+        sum.rep_ = add(std::move(x_casted), y_casted);
+		
+        y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 		
 		return sum;
@@ -179,8 +187,10 @@ public:
 		
 		std::unique_ptr<natural_number_secondary> x_casted(dynamic_cast<natural_number_secondary*>(x.rep_.release()));
 		std::unique_ptr<natural_number_secondary> y_casted(dynamic_cast<natural_number_secondary*>(y.rep_.release()));
-		sum.rep_ = subtract(std::move(x_casted), y_casted);
-		y.rep_ = std::move(y_casted);
+		
+        sum.rep_ = subtract(std::move(x_casted), y_casted);
+		
+        y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 		
 		return sum;
