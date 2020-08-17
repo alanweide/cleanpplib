@@ -41,12 +41,16 @@ public:
 	}
 	
 	t_list_kernel& operator=(const t_list_kernel<I, Item>& other) = delete;
-	t_list_kernel& operator=(t_list_kernel<I, Item>&& other) {
-		if (&other == this) {
+    
+//    template<template<typename> class I2>
+//	t_list_kernel<I2, Item>& operator=(t_list_kernel<I2, Item>&& other) {
+    t_list_kernel& operator=(t_list_kernel<I, Item>&& other) {
+    if (&other == this) {
 			return this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I<Item>>();
+//		other.rep_ = std::make_unique<I2<Item>>();
+        other.rep_ = std::make_unique<I<Item>>();
 		return this;
 	}
 	
@@ -107,8 +111,7 @@ public:
 		return this->rep_->to_str();
 	}
 	
-	template<template<typename> class I2>
-	bool operator==(t_list_kernel<I2, Item> &other) {
+	bool operator==(t_list_kernel<I, Item> &other) {
 		return *this->rep_ == *other.rep_;
 	}
 	

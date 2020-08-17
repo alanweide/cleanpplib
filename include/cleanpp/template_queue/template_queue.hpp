@@ -32,7 +32,7 @@ public:
 	 */
 	t_queue(): rep_(std::make_unique<I<Item>>()) {
 		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
-					  "Template parameter I must derive from queue");
+					  "Template parameter I must derive from cleanpp::queue");
 	}
 	
 	t_queue(const t_queue<I, Item> &o) = delete;
@@ -42,7 +42,7 @@ public:
 	 */
 	t_queue(t_queue<I, Item>&& other): rep_(std::move(other.rep_)) {
 		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
-					  "Template parameter I must derive from queue");
+					  "Template parameter I must derive from cleanpp::queue");
 		other.rep_ = std::make_unique<I<Item>>();
 	}
 	
@@ -92,7 +92,14 @@ public:
 		return rep_->is_empty();
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, t_queue<I, Item>& o) {
+    /*
+     ensures `==` = (this = other)
+     */
+    bool operator==(t_queue<I, Item>& other) {
+        return *this->rep_ == *other.rep_;
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, t_queue<I, Item>& o) {
 		return out << *o.rep_;
 	}
 };

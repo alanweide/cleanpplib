@@ -72,8 +72,7 @@ public:
     /*
      ensures `==` = (this = other)
      */
-    template<template<class> class I2>
-    bool operator==(t_stack<I2, Item>& other) {
+    bool operator==(t_stack<I, Item>& other) {
         return *this->rep_ == *other.rep_;
     }
     

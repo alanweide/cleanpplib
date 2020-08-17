@@ -20,8 +20,8 @@ class t_natural_number;
 
 template <class I>
 class t_natural_number_kernel: public clean_base {
-private:
-	std::unique_ptr<natural_number_kernel> rep_;
+protected:
+    std::unique_ptr<natural_number_kernel> rep_;
 public:
 	/*
 	 type NATURAL is integer
@@ -32,22 +32,26 @@ public:
 	 */
 	static const int RADIX = 10;
 	
-	t_natural_number_kernel(long n = 0) {
-		rep_ = std::make_unique<I>(n);
+	t_natural_number_kernel(long n = 0): rep_(std::make_unique<I>(n)) {
+        static_assert(std::is_base_of<natural_number_kernel, I>::value,
+                      "Template parameter I must derive from cleanpp::natural_number_kernel");
 	}
 	
 	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
 	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
+        static_assert(std::is_base_of<natural_number_kernel, I>::value,
+                      "Template parameter I must derive from cleanpp::natural_number_kernel");
 		other.rep_ = std::make_unique<I>();
 	}
 	
 	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
-	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
+    template<typename I2>
+	t_natural_number_kernel<I2>& operator=(t_natural_number_kernel<I2>&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I>();
+		other.rep_ = std::make_unique<I2>();
 		return *this;
 	}
 	
@@ -79,13 +83,19 @@ public:
 	int&& divide_by_radix() {
 		return this->rep_->divide_by_radix();
 	}
+    
+    /*
+     ensures new_instance = 0
+     */
+    t_natural_number_kernel<I> new_instance() const {
+        return t_natural_number_kernel<I>();
+    }
 	
 	/*
 	 ensures `==` = (this = other)
 	 */
-	template<class I2>
-	bool operator==(t_natural_number_kernel<I2> &other)	{
-		return *this->rep_ == *other.rep_;
+    bool operator==(t_natural_number_kernel<I> &other)	{
+        return *this->rep_ == *other.rep_;
 	}
 	
 	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
@@ -159,6 +169,13 @@ public:
         this->rep_ = std::move(casted);
 	}
 	
+    /*
+     ensures new_instance = 0
+     */
+    t_natural_number<I> new_instance() const {
+        return t_natural_number<I>();
+    }
+    
 	/*
 	 ensures add = #x + y
 	 */

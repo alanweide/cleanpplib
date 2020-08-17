@@ -24,7 +24,7 @@ typedef bounded_nn nn_type;
 typedef stack_nn nn_type2;
 
 typedef t_natural_number<nn_type> template_t;
-typedef t_natural_number<nn_type> template_t2;
+typedef t_natural_number<nn_type2> template_t2;
 
 template<class I>
 static std::string nnToString(t_natural_number<I> &o) {
@@ -63,14 +63,14 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAssignZeroZero {
-	template_t n;
-	template_t m;
-	template_t expected;
-	
-	n = std::move(m);
-	
-	std::string n_str = nnToString(n);
-	XCTAssert(n == expected, @"n = %s", n_str.c_str());
+    template_t n;
+    template_t m;
+    template_t expected;
+    
+    n = std::move(m);
+    
+    std::string n_str = nnToString(n);
+    XCTAssert(n == expected, @"n = %s", n_str.c_str());
 }
 
 - (void)testAssignZeroNonzero {
