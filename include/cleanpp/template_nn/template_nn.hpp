@@ -110,12 +110,12 @@ class t_natural_number: public t_natural_number_kernel<I> {
 public:
 	
 	t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
-		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
+		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 	}
 	
 	t_natural_number(const t_natural_number<I>& other) = delete;
 	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::move(other)) {
-		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from natural_number_secondary");
+		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 		other.rep_ = std::make_unique<I>();
 	}
 	
