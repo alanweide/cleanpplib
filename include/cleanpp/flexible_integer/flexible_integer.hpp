@@ -10,8 +10,11 @@
 #define flexible_integer_h
 
 #include <clean_integer/big_integer.hpp>
+#include <clean_integer/nn_integer.hpp>
 
 namespace cleanpp {
+
+typedef nn_integer _flex_int_def_t;
 
 class flex_big_integer_kernel: public clean_base {
 protected:
@@ -23,29 +26,29 @@ public:
 	// The "base" of the number
 	static const int RADIX = 10;
 	
+    flex_big_integer_kernel(long n = 0) {
+        rep_ = std::make_unique<_flex_int_def_t>(n);
+    }
+
     template<typename I>
-    flex_big_integer_kernel(const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
+    flex_big_integer_kernel(__attribute__((unused)) const I& impl, long n = 0) {
 		static_assert(std::is_base_of<big_integer_kernel, I>::value,
                       "Type of impl must derive from big_integer_kernel");
+        rep_ = std::make_unique<I>(n);
 	}
 	
 	flex_big_integer_kernel(const flex_big_integer_kernel &other) = delete;
-    template<typename I>
-	flex_big_integer_kernel(flex_big_integer_kernel&& other): rep_(std::move(other.rep_)) {
-		static_assert(std::is_base_of<big_integer_kernel, I>::value,
-                      "Type of impl must derive from big_integer_kernel");
-		other.rep_ = std::make_unique<I>();
+    flex_big_integer_kernel(flex_big_integer_kernel&& other) : rep_(std::move(other.rep_)) {
+		other.rep_ = std::make_unique<_flex_int_def_t>();
 	}
 	
 	flex_big_integer_kernel& operator=(const flex_big_integer_kernel& other) = delete;
-    
-    template<typename I>
 	flex_big_integer_kernel& operator=(flex_big_integer_kernel&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I>();
+		other.rep_ = std::make_unique<_flex_int_def_t>();
 		return *this;
 	}
 	
@@ -105,31 +108,25 @@ public:
 
 class flex_big_integer: public flex_big_integer_kernel {
 public:
-	
+    flex_big_integer(long n = 0): flex_big_integer_kernel(n) {}
+
     template<typename I>
-	flex_big_integer(const I& impl, long n = 0): flex_big_integer_kernel(impl, n) {
+    flex_big_integer(__attribute__((unused)) const I& impl, long n = 0): flex_big_integer_kernel(impl, n) {
 		static_assert(std::is_base_of<big_integer, I>::value,
 					  "Type of impl must derive from big_integer");
 	}
 	
 	flex_big_integer(const flex_big_integer& other) = delete;
-    
-    template<typename I>
-	flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(std::move(other)) {
-		static_assert(std::is_base_of<big_integer, I>::value,
-                      "Type of impl must derive from big_integer");
-		other.rep_ = std::make_unique<I>();
+    flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(static_cast<flex_big_integer_kernel&&>(std::move(other))) {
 	}
 	
 	flex_big_integer& operator=(const flex_big_integer& other) = delete;
-    
-    template<typename I>
 	flex_big_integer& operator=(flex_big_integer&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		this->rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I>();
+        other.rep_ = std::make_unique<_flex_int_def_t>();
 		return *this;
 	}
 	
@@ -200,7 +197,7 @@ public:
 	 ensures clone = this
 	 */
 	flex_big_integer clone() {
-		flex_big_integer clone(new decltype(*this->rep_));
+        flex_big_integer clone(_flex_int_def_t{});
 		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
         
 		clone.rep_ = casted->clone();
@@ -213,15 +210,15 @@ public:
 	 ensures  add = #x + y
 	 */
 	friend flex_big_integer add(flex_big_integer&& x, flex_big_integer &y) {
-		flex_big_integer sum;
+        flex_big_integer sum(_flex_int_def_t{});
 		
 		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
 		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
         
-		sum.rep_ = add(std::move(x_casted), y_casted);
+		x_casted = add(std::move(x_casted), y_casted);
 		
         y.rep_ = std::move(y_casted);
-		x.rep_ = std::move(x_casted);
+		sum.rep_ = std::move(x_casted);
 
 		return sum;
 	}
@@ -230,15 +227,15 @@ public:
 	 ensures subtract = #x - y
 	 */
     friend flex_big_integer subtract(flex_big_integer&& x, flex_big_integer &y) {
-        flex_big_integer diff;
+        flex_big_integer diff(_flex_int_def_t{});
 
 		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
 		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
         
-		diff.rep_ = subtract(std::move(x_casted), y_casted);
+		x_casted = subtract(std::move(x_casted), y_casted);
 		
         y.rep_ = std::move(y_casted);
-		x.rep_ = std::move(x_casted);
+		diff.rep_ = std::move(x_casted);
 
 		return diff;
 	}
