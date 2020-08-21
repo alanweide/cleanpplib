@@ -117,7 +117,7 @@ public:
 	}
 	
 	flex_big_integer(const flex_big_integer& other) = delete;
-    flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(static_cast<flex_big_integer_kernel&&>(std::move(other))) {
+    flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(std::forward<flex_big_integer_kernel>(other)) {
 	}
 	
 	flex_big_integer& operator=(const flex_big_integer& other) = delete;
@@ -135,7 +135,7 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
 		
         casted->increment();
 		
@@ -147,7 +147,7 @@ public:
 	 ensures this = #this - 1
 	 */
 	void decrement() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
 		
         casted->decrement();
 		
@@ -159,7 +159,7 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		casted->set_from_long(n);
 		
@@ -171,7 +171,7 @@ public:
 	 ensures  this = |#this| and abs = [POSITIVE, ZERO, or NEGATIVE as this > 0, = 0, or < 0]
 	 */
 	integer_sign abs() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		integer_sign sign = casted->abs();
 		
@@ -186,7 +186,7 @@ public:
               assign_sign = POSITIVE ==> this = |#this|
 	 */
 	void assign_sign(integer_sign sign){
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		casted->assign_sign(sign);
 		
@@ -198,7 +198,7 @@ public:
 	 */
 	flex_big_integer clone() {
         flex_big_integer clone(_flex_int_def_t{});
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		clone.rep_ = casted->clone();
 		
@@ -210,15 +210,15 @@ public:
 	 ensures  add = #x + y
 	 */
 	friend flex_big_integer add(flex_big_integer&& x, flex_big_integer &y) {
-        flex_big_integer sum(_flex_int_def_t{});
+        flex_big_integer sum(std::forward<flex_big_integer>(x));
 		
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<big_integer> sum_casted(static_cast<big_integer*>(sum.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
         
-		x_casted = add(std::move(x_casted), y_casted);
+		sum_casted = add(std::move(sum_casted), y_casted);
 		
         y.rep_ = std::move(y_casted);
-		sum.rep_ = std::move(x_casted);
+		sum.rep_ = std::move(sum_casted);
 
 		return sum;
 	}
@@ -227,15 +227,15 @@ public:
 	 ensures subtract = #x - y
 	 */
     friend flex_big_integer subtract(flex_big_integer&& x, flex_big_integer &y) {
-        flex_big_integer diff(_flex_int_def_t{});
-
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+        flex_big_integer diff(std::forward<flex_big_integer>(x));
         
-		x_casted = subtract(std::move(x_casted), y_casted);
-		
+        std::unique_ptr<big_integer> diff_casted(static_cast<big_integer*>(diff.rep_.release()));
+        std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
+        
+        diff_casted = subtract(std::move(diff_casted), y_casted);
+        
         y.rep_ = std::move(y_casted);
-		diff.rep_ = std::move(x_casted);
+        diff.rep_ = std::move(diff_casted);
 
 		return diff;
 	}
@@ -248,8 +248,8 @@ public:
     friend int compare(flex_big_integer& x, flex_big_integer &y) {
         int comp;
 
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<big_integer> x_casted(static_cast<big_integer*>(x.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
         
 		comp = compare(x_casted, y_casted);
 		

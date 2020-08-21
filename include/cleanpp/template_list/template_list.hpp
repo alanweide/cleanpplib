@@ -131,7 +131,7 @@ public:
 	 ensures this = (<>, #this.prec * #this.rem)
 	 */
 	void reset() {
-		std::unique_ptr<list<Item>> casted(dynamic_cast<list<Item>*>(this->rep_.release()));
+		std::unique_ptr<list<Item>> casted(static_cast<list<Item>*>(this->rep_.release()));
 		
         casted->reset();
 		

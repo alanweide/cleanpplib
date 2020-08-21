@@ -1,25 +1,24 @@
 //
-//  template_nn.hpp
+//  flexible_nn.hpp
 //  Cleanpp
 //
 //  Created by Alan Weide on 7/23/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef template_nn_hpp
-#define template_nn_hpp
+#ifndef flex_nn_hpp
+#define flex_nn_hpp
 
 #include <stdio.h>
 #include <clean_base.hpp>
 #include <clean_nn/natural_number.hpp>
+#include <clean_nn/stack_nn.hpp>
 
 namespace cleanpp {
 
-template<class I>
-class t_natural_number;
+typedef stack_nn _flex_nn_def_t;
 
-template <class I>
-class t_natural_number_kernel: public clean_base {
+class flex_natural_number_kernel: public clean_base {
 protected:
     std::unique_ptr<natural_number_kernel> rep_;
 public:
@@ -32,25 +31,26 @@ public:
 	 */
 	static const int RADIX = 10;
 	
-	t_natural_number_kernel(long n = 0): rep_(std::make_unique<I>(n)) {
+    flex_natural_number_kernel(long n = 0): rep_(std::make_unique<_flex_nn_def_t>(n)) {}
+    
+    template<typename I>
+	flex_natural_number_kernel(__attribute__((unused)) const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
         static_assert(std::is_base_of<natural_number_kernel, I>::value,
                       "Template parameter I must derive from cleanpp::natural_number_kernel");
 	}
 	
-	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
-	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
-        static_assert(std::is_base_of<natural_number_kernel, I>::value,
-                      "Template parameter I must derive from cleanpp::natural_number_kernel");
-		other.rep_ = std::make_unique<I>();
+	flex_natural_number_kernel(const flex_natural_number_kernel& other) = delete;
+	flex_natural_number_kernel(flex_natural_number_kernel&& other): rep_(std::move(other.rep_)) {
+		other.rep_ = std::make_unique<_flex_nn_def_t>();
 	}
 	
-	t_natural_number_kernel<I>& operator=(const t_natural_number_kernel<I>& other) = delete;
-	t_natural_number_kernel<I>& operator=(t_natural_number_kernel<I>&& other) {
+	flex_natural_number_kernel& operator=(const flex_natural_number_kernel& other) = delete;
+    flex_natural_number_kernel& operator=(flex_natural_number_kernel&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I>();
+		other.rep_ = std::make_unique<_flex_nn_def_t>();
 		return *this;
 	}
 	
@@ -83,48 +83,42 @@ public:
 		return this->rep_->divide_by_radix();
 	}
     
-    /*
-     ensures new_instance = 0
-     */
-    t_natural_number_kernel<I> new_instance() const {
-        return t_natural_number_kernel<I>();
-    }
-	
 	/*
 	 ensures `==` = (this = other)
 	 */
-    bool operator==(t_natural_number_kernel<I> &other)	{
+    bool operator==(flex_natural_number_kernel &other)	{
         return *this->rep_ == *other.rep_;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
+	friend std::ostream& operator<<(std::ostream& out, flex_natural_number_kernel& o) {
 		return out << *(o.rep_);
 	}
 	
-	friend class t_natural_number<I>;
+	friend class flex_natural_number;
 };
 
-template<class I>
-class t_natural_number: public t_natural_number_kernel<I> {
+class flex_natural_number: public flex_natural_number_kernel {
 public:
 	
-	t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
+    flex_natural_number(long n = 0): flex_natural_number_kernel(n) {}
+    
+    template<typename I>
+	flex_natural_number(__attribute__((unused)) const I& impl, long n = 0): flex_natural_number_kernel(impl, n) {
 		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 	}
 	
-	t_natural_number(const t_natural_number<I>& other) = delete;
-	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::forward<t_natural_number_kernel<I>&&>(other)) {
-		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
-		other.rep_ = std::make_unique<I>();
+	flex_natural_number(const flex_natural_number& other) = delete;
+	flex_natural_number(flex_natural_number&& other): flex_natural_number_kernel(std::forward<flex_natural_number_kernel>(other)) {
+		other.rep_ = std::make_unique<_flex_nn_def_t>();
 	}
 	
-	t_natural_number<I>& operator=(const t_natural_number<I>& other) = delete;
-	t_natural_number<I>& operator=(t_natural_number<I>&& other) {
+	flex_natural_number& operator=(const flex_natural_number& other) = delete;
+	flex_natural_number& operator=(flex_natural_number&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		this->rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I>();
+		other.rep_ = std::make_unique<_flex_nn_def_t>();
 		return *this;
 	}
 	
@@ -167,20 +161,12 @@ public:
 		
         this->rep_ = std::move(casted);
 	}
-	
-    /*
-     ensures new_instance = 0
-     */
-    t_natural_number<I> new_instance() const {
-        return t_natural_number<I>();
-    }
-    
+	    
 	/*
 	 ensures add = #x + y
 	 */
-	template<class I2>
-	friend t_natural_number<I> add(t_natural_number<I>&& x, t_natural_number<I2> &y) {
-        t_natural_number<I> sum(std::forward<t_natural_number<I>>(x));
+	friend flex_natural_number add(flex_natural_number&& x, flex_natural_number &y) {
+        flex_natural_number sum(std::forward<flex_natural_number>(x));
         
         std::unique_ptr<natural_number_secondary> sum_casted(static_cast<natural_number_secondary*>(sum.rep_.release()));
         std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
@@ -197,9 +183,8 @@ public:
 	 requires x >= y
 	 ensures  add = #x - y
 	 */
-	template<class I2>
-	friend t_natural_number<I> subtract(t_natural_number<I>&& x, t_natural_number<I2> &y) {
-		t_natural_number<I> diff(std::forward<t_natural_number<I>>(x));
+	friend flex_natural_number subtract(flex_natural_number&& x, flex_natural_number &y) {
+		flex_natural_number diff(std::forward<flex_natural_number>(x));
 		
 		std::unique_ptr<natural_number_secondary> diff_casted(static_cast<natural_number_secondary*>(diff.rep_.release()));
 		std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
@@ -215,4 +200,4 @@ public:
 
 }
 
-#endif /* template_nn_hpp */
+#endif /* flex_nn_hpp */

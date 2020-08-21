@@ -10,6 +10,7 @@
 		860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */; };
 		860934AF23E2102D00D38073 /* natural_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934AE23E2102D00D38073 /* natural_number.cpp */; };
 		863809A924ED801C00F30C8F /* TestFlexInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 863809A824ED801C00F30C8F /* TestFlexInteger.mm */; };
+		863809AD24EF2CAD00F30C8F /* TestFlexNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 863809AC24EF2CAD00F30C8F /* TestFlexNN.mm */; };
 		86577C8824DB8B6C00CB7637 /* template_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 86577C8724DB8B6C00CB7637 /* template_stack.hpp */; };
 		86577C8C24DB8CEE00CB7637 /* TestTemplateStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86577C8B24DB8CEE00CB7637 /* TestTemplateStackInt.mm */; };
 		86577C9024DC6E6000CB7637 /* TestTemplateQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86577C8F24DC6E6000CB7637 /* TestTemplateQueueNaturalNumber.mm */; };
@@ -65,6 +66,8 @@
 		860934AE23E2102D00D38073 /* natural_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number.cpp; sourceTree = "<group>"; };
 		863809A624ED7DE000F30C8F /* flexible_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flexible_integer.hpp; sourceTree = "<group>"; };
 		863809A824ED801C00F30C8F /* TestFlexInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexInteger.mm; sourceTree = "<group>"; };
+		863809AA24EF2ACD00F30C8F /* flexible_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flexible_nn.hpp; sourceTree = "<group>"; };
+		863809AC24EF2CAD00F30C8F /* TestFlexNN.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexNN.mm; sourceTree = "<group>"; };
 		86577C8724DB8B6C00CB7637 /* template_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_stack.hpp; sourceTree = "<group>"; };
 		86577C8B24DB8CEE00CB7637 /* TestTemplateStackInt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateStackInt.mm; sourceTree = "<group>"; };
 		86577C8E24DC6C8700CB7637 /* template_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = template_queue.hpp; sourceTree = "<group>"; };
@@ -206,6 +209,14 @@
 			path = flexible_integer;
 			sourceTree = "<group>";
 		};
+		863809AB24EF2ADC00F30C8F /* flexible_nn */ = {
+			isa = PBXGroup;
+			children = (
+				863809AA24EF2ACD00F30C8F /* flexible_nn.hpp */,
+			);
+			path = flexible_nn;
+			sourceTree = "<group>";
+		};
 		86577C8624DB8B3C00CB7637 /* template_stack */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +289,7 @@
 				860934A923DD08BF00D38073 /* clean_list */,
 				E7DE6BD124E71EA500873580 /* template_list */,
 				860934AB23DD08E300D38073 /* clean_nn */,
+				863809AB24EF2ADC00F30C8F /* flexible_nn */,
 				E7DF791E24CA223B00BA4381 /* template_nn */,
 				860934AA23DD08D700D38073 /* clean_stack */,
 				86577C8624DB8B3C00CB7637 /* template_stack */,
@@ -292,6 +304,7 @@
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
 				E7DF792424CA33EC00BA4381 /* TestTemplateNN.mm */,
+				863809AC24EF2CAD00F30C8F /* TestFlexNN.mm */,
 				8682AD9D23D8D8F7003F4238 /* TestStackNN.mm */,
 				E775B53423F218CE007DB0C1 /* TestNNInteger.mm */,
 				86577C9624E5F17100CB7637 /* TestTemplateInteger.mm */,
@@ -598,6 +611,7 @@
 				8682AD9E23D8D8F7003F4238 /* TestStackNN.mm in Sources */,
 				8663DF8423E3C01600DCA186 /* TestStackBasedListNaturalNumber.mm in Sources */,
 				8663DF8623EB076E00DCA186 /* TestArrayStackNaturalNumber.mm in Sources */,
+				863809AD24EF2CAD00F30C8F /* TestFlexNN.mm in Sources */,
 				E7DE6BD324E7213500873580 /* TestTemplateListNaturalNumber.mm in Sources */,
 				86577C9024DC6E6000CB7637 /* TestTemplateQueueNaturalNumber.mm in Sources */,
 			);

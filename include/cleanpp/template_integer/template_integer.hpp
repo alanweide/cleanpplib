@@ -118,7 +118,7 @@ public:
 	}
 	
 	t_big_integer(const t_big_integer<I>& other) = delete;
-	t_big_integer(t_big_integer<I>&& other): t_big_integer_kernel<I>(std::move(other)) {
+	t_big_integer(t_big_integer<I>&& other): t_big_integer_kernel<I>(std::forward<t_big_integer_kernel<I>&&>(other)) {
 		static_assert(std::is_base_of<big_integer, I>::value,
 					  "Template parameter I must derive from big_integer");
 		other.rep_ = std::make_unique<I>();
@@ -139,7 +139,7 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
 		
         casted->increment();
 		
@@ -151,7 +151,7 @@ public:
 	 ensures this = #this - 1
 	 */
 	void decrement() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
 		
         casted->decrement();
 		
@@ -163,7 +163,7 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		casted->set_from_long(n);
 		
@@ -175,7 +175,7 @@ public:
 	 ensures  this = |#this| and abs = [POSITIVE, ZERO, or NEGATIVE as this > 0, = 0, or < 0]
 	 */
 	integer_sign abs() {
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		integer_sign sign = casted->abs();
 		
@@ -190,7 +190,7 @@ public:
 	 sign = POSITIVE ==> this = |#this|
 	 */
 	void assign_sign(integer_sign sign){
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		casted->assign_sign(sign);
 		
@@ -202,7 +202,7 @@ public:
 	 */
 	t_big_integer<I> clone() {
 		t_big_integer<I> clone;
-		std::unique_ptr<big_integer> casted(dynamic_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
         
 		clone.rep_ = casted->clone();
 		
@@ -216,17 +216,17 @@ public:
 	 */
 	template<typename I2>
 	friend t_big_integer<I> add(t_big_integer<I>&& x, t_big_integer<I2> &y) {
-		t_big_integer<I> sum;
-		
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+        t_big_integer<I> sum(std::forward<t_big_integer<I>>(x));
         
-		sum.rep_ = add(std::move(x_casted), y_casted);
-		
+        std::unique_ptr<big_integer> sum_casted(static_cast<big_integer*>(sum.rep_.release()));
+        std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
+        
+        sum_casted = add(std::move(sum_casted), y_casted);
+        
         y.rep_ = std::move(y_casted);
-		x.rep_ = std::move(x_casted);
+        sum.rep_ = std::move(sum_casted);
 
-		return sum;
+        return sum;
 	}
 	
 	/*
@@ -235,17 +235,17 @@ public:
 	 */
 	template<typename I2>
 	friend t_big_integer<I> subtract(t_big_integer<I>&& x, t_big_integer<I2> &y){
-		t_big_integer<I> sum;
+		t_big_integer<I> diff(std::forward<t_big_integer<I>>(x));
 		
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<big_integer> diff_casted(static_cast<big_integer*>(diff.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
         
-		sum.rep_ = subtract(std::move(x_casted), y_casted);
+		diff_casted = subtract(std::move(diff_casted), y_casted);
 		
         y.rep_ = std::move(y_casted);
-		x.rep_ = std::move(x_casted);
+		diff.rep_ = std::move(diff_casted);
 
-		return sum;
+		return diff;
 	}
 	
 	/*
@@ -257,8 +257,8 @@ public:
 	friend int compare(t_big_integer<I> &x, t_big_integer<I2> &y) {
 		int comp;
 		
-		std::unique_ptr<big_integer> x_casted(dynamic_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(dynamic_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<big_integer> x_casted(static_cast<big_integer*>(x.rep_.release()));
+		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
         
 		comp = compare(x_casted, y_casted);
 		
