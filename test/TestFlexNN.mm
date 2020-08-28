@@ -125,6 +125,75 @@ static std::string nnToString(flex_natural_number &o) {
     XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
 }
 
+
+- (void)testAssignZeroZeroMultiImpl {
+	flex_natural_number n(nn_type{});
+	flex_natural_number m(nn_type2{});
+	flex_natural_number expected(nn_type{});
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	XCTAssert(n == expected, @"n = %s", n_str.c_str());
+}
+
+- (void)testAssignZeroNonzeroMultiImpl {
+	flex_natural_number n(nn_type{});
+	flex_natural_number m(nn_type2{}, 5);
+	flex_natural_number n_expected(nn_type2{}, 5);
+	flex_natural_number m_expected(nn_type{}, 0);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
+}
+
+- (void)testAssignNonzeroZeroMultiImpl {
+	flex_natural_number n(nn_type2{}, 5);
+	flex_natural_number m(nn_type{});
+	flex_natural_number n_expected(nn_type2{});
+	flex_natural_number m_expected(nn_type{});
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
+}
+
+- (void)testAssignNonzeroNonzeroMultiImpl {
+	flex_natural_number n(nn_type2{}, 9);
+	flex_natural_number m(nn_type{}, 5);
+	flex_natural_number n_expected(nn_type2{}, 5);
+	flex_natural_number m_expected(nn_type{}, 0);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
+}
+
+- (void)testAssignMultidigMultidigMultiImpl {
+	flex_natural_number n(nn_type2{}, 96);
+	flex_natural_number m(nn_type{}, 43);
+	flex_natural_number n_expected(nn_type2{}, 43);
+	flex_natural_number m_expected(nn_type{}, 0);
+	
+	n = std::move(m);
+	
+	std::string n_str = nnToString(n);
+	std::string m_str = nnToString(m);
+	XCTAssert(n == n_expected, @"n = %s", n_str.c_str());
+	XCTAssert(m == m_expected, @"m = %s", m_str.c_str());
+}
+
+
 - (void)testClearZero {
 	flex_natural_number n(nn_type{});
 	flex_natural_number expected(nn_type{}, 0);

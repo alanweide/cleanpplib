@@ -112,7 +112,7 @@ public:
 
     template<typename I>
     flex_big_integer(__attribute__((unused)) const I& impl, long n = 0): flex_big_integer_kernel(impl, n) {
-		static_assert(std::is_base_of<big_integer, I>::value,
+		static_assert(std::is_base_of_v<big_integer, I>,
 					  "Type of impl must derive from big_integer");
 	}
 	

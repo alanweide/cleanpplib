@@ -21,10 +21,9 @@
 
 using namespace cleanpp;
 
-typedef nn_integer bigint_type;
-typedef flex_big_integer bigint_t;
+typedef nn_integer bigint_kernel_impl;
 
-static std::string bigintToString(bigint_t &o) {
+static std::string bigintToString(flex_big_integer &o) {
 	std::stringstream s;
     s << o;
     return s.str();
@@ -39,7 +38,7 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testInitializerDef {
-    bigint_t n(bigint_type{});
+    flex_big_integer n(bigint_kernel_impl{});
     
     std::string n_str = bigintToString(n);
     XCTAssert(n_str == "0");
@@ -47,7 +46,7 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testInitializer_SingleDig {
-	bigint_t n(bigint_type{}, 4);
+	flex_big_integer n(bigint_kernel_impl{}, 4);
 
     std::string n_str = bigintToString(n);
     XCTAssert(n_str == "4", @"n = %s", n_str.c_str());
@@ -55,7 +54,7 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testInitializer_TwoDig {
-	bigint_t n(bigint_type{}, 45);
+	flex_big_integer n(bigint_kernel_impl{}, 45);
 
     std::string n_str = bigintToString(n);
     XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
@@ -64,7 +63,7 @@ static std::string bigintToString(bigint_t &o) {
 
 
 - (void)testInitializer_SingleDigNeg {
-	bigint_t n(bigint_type{}, -4);
+	flex_big_integer n(bigint_kernel_impl{}, -4);
 
 	std::string n_str = bigintToString(n);
 	XCTAssert(n_str == "-4", @"n = %s", n_str.c_str());
@@ -72,7 +71,7 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testInitializer_TwoDigNeg {
-	bigint_t n(bigint_type{}, -45);
+	flex_big_integer n(bigint_kernel_impl{}, -45);
 
 	std::string n_str = bigintToString(n);
 	XCTAssert(n_str == "-45", @"n = %s", n_str.c_str());
@@ -80,8 +79,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testClearZero {
-	bigint_t n(bigint_type{});
-	bigint_t expected(bigint_type{});
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer expected(bigint_kernel_impl{});
 
 	n.clear();
     
@@ -90,8 +89,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testClearPositive {
-	bigint_t n(bigint_type{}, 47);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, 47);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	n.clear();
     
@@ -100,8 +99,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testClearNegative {
-	bigint_t n(bigint_type{}, -47);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, -47);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	n.clear();
 	
@@ -110,8 +109,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementZero {
-	bigint_t n(bigint_type{}, 0);
-	bigint_t expected(bigint_type{}, 1);
+	flex_big_integer n(bigint_kernel_impl{}, 0);
+	flex_big_integer expected(bigint_kernel_impl{}, 1);
 
 	n.increment();
     
@@ -120,8 +119,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementNine {
-	bigint_t n(bigint_type{}, 9);
-	bigint_t expected(bigint_type{}, 10);
+	flex_big_integer n(bigint_kernel_impl{}, 9);
+	flex_big_integer expected(bigint_kernel_impl{}, 10);
 
 	n.increment();
     
@@ -130,8 +129,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementFive {
-	bigint_t n(bigint_type{}, 5);
-	bigint_t expected(bigint_type{}, 6);
+	flex_big_integer n(bigint_kernel_impl{}, 5);
+	flex_big_integer expected(bigint_kernel_impl{}, 6);
 
 	n.increment();
     
@@ -140,8 +139,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementNegTen {
-	bigint_t n(bigint_type{}, -10);
-	bigint_t expected(bigint_type{}, -9);
+	flex_big_integer n(bigint_kernel_impl{}, -10);
+	flex_big_integer expected(bigint_kernel_impl{}, -9);
 
 	n.increment();
 	
@@ -150,8 +149,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementNegFive {
-	bigint_t n(bigint_type{}, -5);
-	bigint_t expected(bigint_type{}, -4);
+	flex_big_integer n(bigint_kernel_impl{}, -5);
+	flex_big_integer expected(bigint_kernel_impl{}, -4);
 
 	n.increment();
 	
@@ -160,8 +159,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testIncrementNegOne {
-	bigint_t n(bigint_type{}, -1);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, -1);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	n.increment();
 	
@@ -170,8 +169,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementOne {
-	bigint_t n(bigint_type{}, 1);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, 1);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	n.decrement();
     
@@ -180,8 +179,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementTen {
-	bigint_t n(bigint_type{}, 10);
-	bigint_t expected(bigint_type{}, 9);
+	flex_big_integer n(bigint_kernel_impl{}, 10);
+	flex_big_integer expected(bigint_kernel_impl{}, 9);
 
 	n.decrement();
 
@@ -190,8 +189,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementFive {
-	bigint_t n(bigint_type{}, 5);
-	bigint_t expected(bigint_type{}, 4);
+	flex_big_integer n(bigint_kernel_impl{}, 5);
+	flex_big_integer expected(bigint_kernel_impl{}, 4);
 
 	n.decrement();
     
@@ -200,8 +199,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementZero {
-	bigint_t n(bigint_type{}, 0);
-	bigint_t expected(bigint_type{}, -1);
+	flex_big_integer n(bigint_kernel_impl{}, 0);
+	flex_big_integer expected(bigint_kernel_impl{}, -1);
 
 	n.decrement();
 	
@@ -210,8 +209,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementNegNine {
-	bigint_t n(bigint_type{}, -9);
-	bigint_t expected(bigint_type{}, -10);
+	flex_big_integer n(bigint_kernel_impl{}, -9);
+	flex_big_integer expected(bigint_kernel_impl{}, -10);
 
 	n.decrement();
 	
@@ -220,8 +219,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDecrementNegFive {
-	bigint_t n(bigint_type{}, -5);
-	bigint_t expected(bigint_type{}, -6);
+	flex_big_integer n(bigint_kernel_impl{}, -5);
+	flex_big_integer expected(bigint_kernel_impl{}, -6);
 
 	n.decrement();
 	
@@ -230,8 +229,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadZero_Zero {
-	bigint_t n(bigint_type{}, 0);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, 0);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	n.multiply_by_radix(0);
     
@@ -240,8 +239,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadZero_Five {
-	bigint_t n(bigint_type{}, 0);
-	bigint_t expected(bigint_type{}, 5);
+	flex_big_integer n(bigint_kernel_impl{}, 0);
+	flex_big_integer expected(bigint_kernel_impl{}, 5);
 
 	n.multiply_by_radix(5);
     
@@ -250,8 +249,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadFive_Zero {
-	bigint_t n(bigint_type{}, 5);
-	bigint_t expected(bigint_type{}, 50);
+	flex_big_integer n(bigint_kernel_impl{}, 5);
+	flex_big_integer expected(bigint_kernel_impl{}, 50);
 
 	n.multiply_by_radix(0);
     
@@ -260,8 +259,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadFive_Five {
-	bigint_t n(bigint_type{}, 5);
-	bigint_t expected(bigint_type{}, 55);
+	flex_big_integer n(bigint_kernel_impl{}, 5);
+	flex_big_integer expected(bigint_kernel_impl{}, 55);
 
 	n.multiply_by_radix(5);
     
@@ -270,8 +269,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadNegFive_Zero {
-	bigint_t n(bigint_type{}, -5);
-	bigint_t expected(bigint_type{}, -50);
+	flex_big_integer n(bigint_kernel_impl{}, -5);
+	flex_big_integer expected(bigint_kernel_impl{}, -50);
 
 	n.multiply_by_radix(0);
 	
@@ -280,8 +279,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testMultRadNegFive_Five {
-	bigint_t n(bigint_type{}, -5);
-	bigint_t expected(bigint_type{}, -55);
+	flex_big_integer n(bigint_kernel_impl{}, -5);
+	flex_big_integer expected(bigint_kernel_impl{}, -55);
 
 	n.multiply_by_radix(5);
 	
@@ -290,8 +289,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDivRadZero {
-	bigint_t n(bigint_type{}, 0);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, 0);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
     int d = n.divide_by_radix();
     
@@ -301,8 +300,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDivRadFive {
-	bigint_t n(bigint_type{}, 5);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, 5);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
     int d = n.divide_by_radix();
     
@@ -312,8 +311,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDiveRadFifty {
-	bigint_t n(bigint_type{}, 50);
-	bigint_t expected(bigint_type{}, 5);
+	flex_big_integer n(bigint_kernel_impl{}, 50);
+	flex_big_integer expected(bigint_kernel_impl{}, 5);
 
     int d = n.divide_by_radix();
     
@@ -323,8 +322,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDivRadFiftyFive {
-	bigint_t n(bigint_type{}, 55);
-	bigint_t expected(bigint_type{}, 5);
+	flex_big_integer n(bigint_kernel_impl{}, 55);
+	flex_big_integer expected(bigint_kernel_impl{}, 5);
 
     int d = n.divide_by_radix();
     
@@ -334,8 +333,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDivRadNegFive {
-	bigint_t n(bigint_type{}, -5);
-	bigint_t expected(bigint_type{}, 0);
+	flex_big_integer n(bigint_kernel_impl{}, -5);
+	flex_big_integer expected(bigint_kernel_impl{}, 0);
 
 	int d = n.divide_by_radix();
 	
@@ -345,8 +344,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDiveRadNegFifty {
-	bigint_t n(bigint_type{}, -50);
-	bigint_t expected(bigint_type{}, -5);
+	flex_big_integer n(bigint_kernel_impl{}, -50);
+	flex_big_integer expected(bigint_kernel_impl{}, -5);
 
 	int d = n.divide_by_radix();
 	
@@ -356,8 +355,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testDivRadNegFiftyFive {
-	bigint_t n(bigint_type{}, -55);
-	bigint_t expected(bigint_type{}, -5);
+	flex_big_integer n(bigint_kernel_impl{}, -55);
+	flex_big_integer expected(bigint_kernel_impl{}, -5);
 
 	int d = n.divide_by_radix();
 	
@@ -367,10 +366,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromZero {
-    bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{});
-    bigint_t n_exp(bigint_type{});
-    bigint_t n2_exp(bigint_type{});
+    flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{});
+    flex_big_integer n_exp(bigint_kernel_impl{});
+    flex_big_integer n2_exp(bigint_kernel_impl{});
 
 	n = n2.clone();
 
@@ -379,10 +378,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromOne {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, 1);
-	bigint_t n_exp(bigint_type{}, 1);
-	bigint_t n2_exp(bigint_type{}, 1);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, 1);
+	flex_big_integer n_exp(bigint_kernel_impl{}, 1);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 1);
 
 	n = n2.clone();
 
@@ -391,10 +390,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromThree {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, 3);
-	bigint_t n_exp(bigint_type{}, 3);
-	bigint_t n2_exp(bigint_type{}, 3);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, 3);
+	flex_big_integer n_exp(bigint_kernel_impl{}, 3);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 3);
 
 	n = n2.clone();
     
@@ -403,10 +402,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromFive {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, 5);
-	bigint_t n_exp(bigint_type{}, 5);
-	bigint_t n2_exp(bigint_type{}, 5);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, 5);
+	flex_big_integer n_exp(bigint_kernel_impl{}, 5);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 5);
 
 	n = n2.clone();
 
@@ -415,10 +414,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFrom25 {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, 25);
-	bigint_t n_exp(bigint_type{}, 25);
-	bigint_t n2_exp(bigint_type{}, 25);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, 25);
+	flex_big_integer n_exp(bigint_kernel_impl{}, 25);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 25);
 
 	n = n2.clone();
 
@@ -427,10 +426,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromNegOne {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, -1);
-	bigint_t n_exp(bigint_type{}, -1);
-	bigint_t n2_exp(bigint_type{}, -1);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, -1);
+	flex_big_integer n_exp(bigint_kernel_impl{}, -1);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -1);
 
 	n = n2.clone();
 
@@ -439,10 +438,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromNegThree {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, -3);
-	bigint_t n_exp(bigint_type{}, -3);
-	bigint_t n2_exp(bigint_type{}, -3);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, -3);
+	flex_big_integer n_exp(bigint_kernel_impl{}, -3);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -3);
 
 	n = n2.clone();
     
@@ -451,10 +450,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromNegFive {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, -5);
-	bigint_t n_exp(bigint_type{}, -5);
-	bigint_t n2_exp(bigint_type{}, -5);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, -5);
+	flex_big_integer n_exp(bigint_kernel_impl{}, -5);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -5);
 
 	n = n2.clone();
 
@@ -463,10 +462,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCloneFromNeg25 {
-	bigint_t n(bigint_type{});
-	bigint_t n2(bigint_type{}, -25);
-	bigint_t n_exp(bigint_type{}, -25);
-	bigint_t n2_exp(bigint_type{}, -25);
+	flex_big_integer n(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, -25);
+	flex_big_integer n_exp(bigint_kernel_impl{}, -25);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -25);
 
 	n = n2.clone();
 
@@ -479,10 +478,10 @@ static std::string bigintToString(bigint_t &o) {
  * ---------------------------- */
 
 - (void)testCompareZeroZero {
-	bigint_t n1(bigint_type{});
-	bigint_t n2(bigint_type{});
-	bigint_t n1_exp(bigint_type{});
-	bigint_t n2_exp(bigint_type{});
+	flex_big_integer n1(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{});
+	flex_big_integer n1_exp(bigint_kernel_impl{});
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     int comp = compare(n1, n2);
 
@@ -494,10 +493,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareZeroOne {
-	bigint_t n1(bigint_type{});
-	bigint_t n2(bigint_type{}, 1);
-	bigint_t n1_exp(bigint_type{});
-	bigint_t n2_exp(bigint_type{}, 1);
+	flex_big_integer n1(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{}, 1);
+	flex_big_integer n1_exp(bigint_kernel_impl{});
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 1);
 
     int comp = compare(n1, n2);
 
@@ -509,10 +508,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareOneZero {
-	bigint_t n1(bigint_type{}, 1);
-	bigint_t n2(bigint_type{}, 0);
-	bigint_t n1_exp(bigint_type{}, 1);
-	bigint_t n2_exp(bigint_type{}, 0);
+	flex_big_integer n1(bigint_kernel_impl{}, 1);
+	flex_big_integer n2(bigint_kernel_impl{}, 0);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, 1);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 0);
 
     int comp = compare(n1, n2);
 
@@ -524,10 +523,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareFiveTwo {
-	bigint_t n1(bigint_type{}, 5);
-	bigint_t n2(bigint_type{}, 2);
-	bigint_t n1_exp(bigint_type{}, 5);
-	bigint_t n2_exp(bigint_type{}, 2);
+	flex_big_integer n1(bigint_kernel_impl{}, 5);
+	flex_big_integer n2(bigint_kernel_impl{}, 2);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 2);
 
     int comp = compare(n1, n2);
 
@@ -539,10 +538,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareFiveNeg4 {
-	bigint_t n1(bigint_type{}, 5);
-	bigint_t n2(bigint_type{}, -4);
-	bigint_t n1_exp(bigint_type{}, 5);
-	bigint_t n2_exp(bigint_type{}, -4);
+	flex_big_integer n1(bigint_kernel_impl{}, 5);
+	flex_big_integer n2(bigint_kernel_impl{}, -4);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -4);
 
     int comp = compare(n1, n2);
 
@@ -554,10 +553,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareNegFourFive {
-	bigint_t n1(bigint_type{}, -4);
-	bigint_t n2(bigint_type{}, 5);
-	bigint_t n1_exp(bigint_type{}, -4);
-	bigint_t n2_exp(bigint_type{}, 5);
+	flex_big_integer n1(bigint_kernel_impl{}, -4);
+	flex_big_integer n2(bigint_kernel_impl{}, 5);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, -4);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 5);
 
     int comp = compare(n1, n2);
 
@@ -569,10 +568,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareTenSix {
-	bigint_t n1(bigint_type{}, 10);
-	bigint_t n2(bigint_type{}, 6);
-	bigint_t n1_exp(bigint_type{}, 10);
-	bigint_t n2_exp(bigint_type{}, 6);
+	flex_big_integer n1(bigint_kernel_impl{}, 10);
+	flex_big_integer n2(bigint_kernel_impl{}, 6);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, 10);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, 6);
 
     int comp = compare(n1, n2);
 
@@ -584,10 +583,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareNegTenNegSix {
-	bigint_t n1(bigint_type{}, -10);
-	bigint_t n2(bigint_type{}, -6);
-	bigint_t n1_exp(bigint_type{}, -10);
-	bigint_t n2_exp(bigint_type{}, -6);
+	flex_big_integer n1(bigint_kernel_impl{}, -10);
+	flex_big_integer n2(bigint_kernel_impl{}, -6);
+	flex_big_integer n1_exp(bigint_kernel_impl{}, -10);
+	flex_big_integer n2_exp(bigint_kernel_impl{}, -6);
 
     int comp = compare(n1, n2);
 
@@ -599,10 +598,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareTenNegTen {
-    bigint_t n1(bigint_type{}, 10);
-	bigint_t n2(bigint_type{}, -10);
-    bigint_t n1_exp(bigint_type{}, 10);
-    bigint_t n2_exp(bigint_type{}, -10);
+    flex_big_integer n1(bigint_kernel_impl{}, 10);
+	flex_big_integer n2(bigint_kernel_impl{}, -10);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 10);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -10);
     
     int comp = compare(n1, n2);
 
@@ -614,10 +613,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testCompareNegTenTen {
-    bigint_t n1(bigint_type{}, -10);
-    bigint_t n2(bigint_type{}, 10);
-    bigint_t n1_exp(bigint_type{}, -10);
-    bigint_t n2_exp(bigint_type{}, 10);
+    flex_big_integer n1(bigint_kernel_impl{}, -10);
+    flex_big_integer n2(bigint_kernel_impl{}, 10);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -10);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 10);
     
     int comp = compare(n1, n2);
 
@@ -629,10 +628,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddZeroZero {
-	bigint_t n1(bigint_type{});
-	bigint_t n2(bigint_type{});
-	bigint_t n1_exp(bigint_type{});
-	bigint_t n2_exp(bigint_type{});
+	flex_big_integer n1(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{});
+	flex_big_integer n1_exp(bigint_kernel_impl{});
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = add(std::move(n1), n2);
 
@@ -643,10 +642,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddZeroFive {
-	bigint_t n1(bigint_type{});
-    bigint_t n2(bigint_type{}, 5);
-    bigint_t n1_exp(bigint_type{}, 5);
-    bigint_t n2_exp(bigint_type{}, 5);
+	flex_big_integer n1(bigint_kernel_impl{});
+    flex_big_integer n2(bigint_kernel_impl{}, 5);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 5);
 
     n1 = add(std::move(n1), n2);
 
@@ -657,10 +656,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddFiveZero {
-    bigint_t n1(bigint_type{}, 5);
-	bigint_t n2(bigint_type{});
-    bigint_t n1_exp(bigint_type{}, 5);
-	bigint_t n2_exp(bigint_type{});
+    flex_big_integer n1(bigint_kernel_impl{}, 5);
+	flex_big_integer n2(bigint_kernel_impl{});
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = add(std::move(n1), n2);
 
@@ -671,10 +670,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddFourFour {
-    bigint_t n1(bigint_type{}, 4);
-    bigint_t n2(bigint_type{}, 4);
-    bigint_t n1_exp(bigint_type{}, 8);
-    bigint_t n2_exp(bigint_type{}, 4);
+    flex_big_integer n1(bigint_kernel_impl{}, 4);
+    flex_big_integer n2(bigint_kernel_impl{}, 4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 8);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 4);
 
     n1 = add(std::move(n1), n2);
 
@@ -685,10 +684,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddFiveFive {
-    bigint_t n1(bigint_type{}, 5);
-    bigint_t n2(bigint_type{}, 5);
-    bigint_t n1_exp(bigint_type{}, 10);
-    bigint_t n2_exp(bigint_type{}, 5);
+    flex_big_integer n1(bigint_kernel_impl{}, 5);
+    flex_big_integer n2(bigint_kernel_impl{}, 5);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 10);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 5);
 
     n1 = add(std::move(n1), n2);
 
@@ -699,10 +698,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddTenTen {
-    bigint_t n1(bigint_type{}, 10);
-    bigint_t n2(bigint_type{}, 10);
-    bigint_t n1_exp(bigint_type{}, 20);
-    bigint_t n2_exp(bigint_type{}, 10);
+    flex_big_integer n1(bigint_kernel_impl{}, 10);
+    flex_big_integer n2(bigint_kernel_impl{}, 10);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 20);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 10);
 
     n1 = add(std::move(n1), n2);
 
@@ -713,10 +712,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAdd57_66{
-    bigint_t n1(bigint_type{}, 57);
-    bigint_t n2(bigint_type{}, 66);
-    bigint_t n1_exp(bigint_type{}, 123);
-    bigint_t n2_exp(bigint_type{}, 66);
+    flex_big_integer n1(bigint_kernel_impl{}, 57);
+    flex_big_integer n2(bigint_kernel_impl{}, 66);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 123);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 66);
 
     n1 = add(std::move(n1), n2);
 
@@ -727,10 +726,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddZeroNegFive {
-	bigint_t n1(bigint_type{});
-    bigint_t n2(bigint_type{}, -5);
-    bigint_t n1_exp(bigint_type{}, -5);
-    bigint_t n2_exp(bigint_type{}, -5);
+	flex_big_integer n1(bigint_kernel_impl{});
+    flex_big_integer n2(bigint_kernel_impl{}, -5);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -5);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -5);
 
     n1 = add(std::move(n1), n2);
 
@@ -741,10 +740,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddNegFiveZero {
-    bigint_t n1(bigint_type{}, -5);
-	bigint_t n2(bigint_type{});
-    bigint_t n1_exp(bigint_type{}, -5);
-	bigint_t n2_exp(bigint_type{});
+    flex_big_integer n1(bigint_kernel_impl{}, -5);
+	flex_big_integer n2(bigint_kernel_impl{});
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -5);
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = add(std::move(n1), n2);
 
@@ -755,10 +754,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddFourNegFour {
-    bigint_t n1(bigint_type{}, 4);
-    bigint_t n2(bigint_type{}, -4);
-    bigint_t n1_exp(bigint_type{}, 0);
-    bigint_t n2_exp(bigint_type{}, -4);
+    flex_big_integer n1(bigint_kernel_impl{}, 4);
+    flex_big_integer n2(bigint_kernel_impl{}, -4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 0);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -4);
 
     n1 = add(std::move(n1), n2);
 
@@ -769,10 +768,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddNegFourNegFour {
-    bigint_t n1(bigint_type{}, -4);
-    bigint_t n2(bigint_type{}, -4);
-    bigint_t n1_exp(bigint_type{}, -8);
-    bigint_t n2_exp(bigint_type{}, -4);
+    flex_big_integer n1(bigint_kernel_impl{}, -4);
+    flex_big_integer n2(bigint_kernel_impl{}, -4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -8);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -4);
 
     n1 = add(std::move(n1), n2);
 
@@ -783,10 +782,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddNegFiveNegFive {
-    bigint_t n1(bigint_type{}, -5);
-    bigint_t n2(bigint_type{}, -5);
-    bigint_t n1_exp(bigint_type{}, -10);
-    bigint_t n2_exp(bigint_type{}, -5);
+    flex_big_integer n1(bigint_kernel_impl{}, -5);
+    flex_big_integer n2(bigint_kernel_impl{}, -5);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -10);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -5);
 
     n1 = add(std::move(n1), n2);
 
@@ -797,10 +796,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAddNegTenNegTen {
-    bigint_t n1(bigint_type{}, -10);
-    bigint_t n2(bigint_type{}, -10);
-    bigint_t n1_exp(bigint_type{}, -20);
-    bigint_t n2_exp(bigint_type{}, -10);
+    flex_big_integer n1(bigint_kernel_impl{}, -10);
+    flex_big_integer n2(bigint_kernel_impl{}, -10);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -20);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -10);
 
     n1 = add(std::move(n1), n2);
 
@@ -811,10 +810,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testAdd57_Neg66{
-    bigint_t n1(bigint_type{}, 67);
-    bigint_t n2(bigint_type{}, -56);
-    bigint_t n1_exp(bigint_type{}, 11);
-    bigint_t n2_exp(bigint_type{}, -56);
+    flex_big_integer n1(bigint_kernel_impl{}, 67);
+    flex_big_integer n2(bigint_kernel_impl{}, -56);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 11);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -56);
 
     n1 = add(std::move(n1), n2);
 
@@ -825,10 +824,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractZeroZero {
-	bigint_t n1(bigint_type{});
-	bigint_t n2(bigint_type{});
-	bigint_t n1_exp(bigint_type{});
-	bigint_t n2_exp(bigint_type{});
+	flex_big_integer n1(bigint_kernel_impl{});
+	flex_big_integer n2(bigint_kernel_impl{});
+	flex_big_integer n1_exp(bigint_kernel_impl{});
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = subtract(std::move(n1), n2);
 
@@ -839,10 +838,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractFiveZero {
-    bigint_t n1(bigint_type{}, 5);
-	bigint_t n2(bigint_type{});
-    bigint_t n1_exp(bigint_type{}, 5);
-	bigint_t n2_exp(bigint_type{});
+    flex_big_integer n1(bigint_kernel_impl{}, 5);
+	flex_big_integer n2(bigint_kernel_impl{});
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = subtract(std::move(n1), n2);
 
@@ -853,10 +852,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractFourFour {
-    bigint_t n1(bigint_type{}, 4);
-    bigint_t n2(bigint_type{}, 4);
-    bigint_t n1_exp(bigint_type{}, 0);
-    bigint_t n2_exp(bigint_type{}, 4);
+    flex_big_integer n1(bigint_kernel_impl{}, 4);
+    flex_big_integer n2(bigint_kernel_impl{}, 4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 0);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 4);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -867,10 +866,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractTenTen {
-    bigint_t n1(bigint_type{}, 10);
-    bigint_t n2(bigint_type{}, 10);
-    bigint_t n1_exp(bigint_type{}, 0);
-    bigint_t n2_exp(bigint_type{}, 10);
+    flex_big_integer n1(bigint_kernel_impl{}, 10);
+    flex_big_integer n2(bigint_kernel_impl{}, 10);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 0);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 10);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -881,10 +880,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract77_66{
-    bigint_t n1(bigint_type{}, 77);
-    bigint_t n2(bigint_type{}, 66);
-    bigint_t n1_exp(bigint_type{}, 11);
-    bigint_t n2_exp(bigint_type{}, 66);
+    flex_big_integer n1(bigint_kernel_impl{}, 77);
+    flex_big_integer n2(bigint_kernel_impl{}, 66);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 11);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 66);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -895,10 +894,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract77_6{
-    bigint_t n1(bigint_type{}, 77);
-    bigint_t n2(bigint_type{}, 6);
-    bigint_t n1_exp(bigint_type{}, 71);
-    bigint_t n2_exp(bigint_type{}, 6);
+    flex_big_integer n1(bigint_kernel_impl{}, 77);
+    flex_big_integer n2(bigint_kernel_impl{}, 6);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 71);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 6);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -909,10 +908,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract71_66{
-    bigint_t n1(bigint_type{}, 71);
-    bigint_t n2(bigint_type{}, 66);
-    bigint_t n1_exp(bigint_type{}, 5);
-    bigint_t n2_exp(bigint_type{}, 66);
+    flex_big_integer n1(bigint_kernel_impl{}, 71);
+    flex_big_integer n2(bigint_kernel_impl{}, 66);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 5);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 66);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -923,10 +922,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract3_4 {
-    bigint_t n1(bigint_type{}, 3);
-    bigint_t n2(bigint_type{}, 4);
-    bigint_t n1_exp(bigint_type{}, -1);
-    bigint_t n2_exp(bigint_type{}, 4);
+    flex_big_integer n1(bigint_kernel_impl{}, 3);
+    flex_big_integer n2(bigint_kernel_impl{}, 4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -1);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 4);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -937,10 +936,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractNegFiveZero {
-    bigint_t n1(bigint_type{}, -5);
-	bigint_t n2(bigint_type{});
-    bigint_t n1_exp(bigint_type{}, -5);
-	bigint_t n2_exp(bigint_type{});
+    flex_big_integer n1(bigint_kernel_impl{}, -5);
+	flex_big_integer n2(bigint_kernel_impl{});
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -5);
+	flex_big_integer n2_exp(bigint_kernel_impl{});
 
     n1 = subtract(std::move(n1), n2);
 
@@ -951,10 +950,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractFourNegFour {
-    bigint_t n1(bigint_type{}, 4);
-    bigint_t n2(bigint_type{}, -4);
-    bigint_t n1_exp(bigint_type{}, 8);
-    bigint_t n2_exp(bigint_type{}, -4);
+    flex_big_integer n1(bigint_kernel_impl{}, 4);
+    flex_big_integer n2(bigint_kernel_impl{}, -4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 8);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -4);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -965,10 +964,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractNegFourNegFour {
-    bigint_t n1(bigint_type{}, -4);
-    bigint_t n2(bigint_type{}, -4);
-    bigint_t n1_exp(bigint_type{}, 0);
-    bigint_t n2_exp(bigint_type{}, -4);
+    flex_big_integer n1(bigint_kernel_impl{}, -4);
+    flex_big_integer n2(bigint_kernel_impl{}, -4);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 0);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -4);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -979,10 +978,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract77_Neg66{
-    bigint_t n1(bigint_type{}, 77);
-    bigint_t n2(bigint_type{}, -66);
-    bigint_t n1_exp(bigint_type{}, 143);
-    bigint_t n2_exp(bigint_type{}, -66);
+    flex_big_integer n1(bigint_kernel_impl{}, 77);
+    flex_big_integer n2(bigint_kernel_impl{}, -66);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, 143);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, -66);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -993,10 +992,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtractNeg77_66{
-    bigint_t n1(bigint_type{}, -77);
-    bigint_t n2(bigint_type{}, 66);
-    bigint_t n1_exp(bigint_type{}, -143);
-    bigint_t n2_exp(bigint_type{}, 66);
+    flex_big_integer n1(bigint_kernel_impl{}, -77);
+    flex_big_integer n2(bigint_kernel_impl{}, 66);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -143);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 66);
 
     n1 = subtract(std::move(n1), n2);
 
@@ -1007,10 +1006,10 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testSubtract1_2{
-    bigint_t n1(bigint_type{}, 1);
-    bigint_t n2(bigint_type{}, 2);
-    bigint_t n1_exp(bigint_type{}, -1);
-    bigint_t n2_exp(bigint_type{}, 2);
+    flex_big_integer n1(bigint_kernel_impl{}, 1);
+    flex_big_integer n2(bigint_kernel_impl{}, 2);
+    flex_big_integer n1_exp(bigint_kernel_impl{}, -1);
+    flex_big_integer n2_exp(bigint_kernel_impl{}, 2);
 
     n1 = subtract(std::move(n1), n2);
 
