@@ -102,7 +102,7 @@ public:
 	
     flex_natural_number(long n = 0): flex_natural_number_kernel(n) {}
     
-    template<typename I>
+    template<class I>
 	flex_natural_number(__attribute__((unused)) const I& impl, long n = 0): flex_natural_number_kernel(impl, n) {
 		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 	}
