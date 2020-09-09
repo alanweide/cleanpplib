@@ -42,30 +42,30 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testInitializerDef {
-	template_t n;
+	t_natural_number<nn_type> n;
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "0");
 }
 
 - (void)testInitializer_SingleDig {
-	template_t n(4);
+	t_natural_number<nn_type> n(4);
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "4", @"n = %s", n_str.c_str());
 }
 
 - (void)testInitializer_TwoDig {
-	template_t n(45);
+	t_natural_number<nn_type> n(45);
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
 - (void)testAssignZeroZero {
-    template_t n;
-    template_t m;
-    template_t expected;
+    t_natural_number<nn_type> n;
+    t_natural_number<nn_type> m;
+    t_natural_number<nn_type> expected;
     
     n = std::move(m);
     
@@ -74,10 +74,10 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAssignZeroNonzero {
-	template_t n;
-	template_t m(5);
-	template_t n_expected(5);
-	template_t m_expected(0);
+	t_natural_number<nn_type> n;
+	t_natural_number<nn_type> m(5);
+	t_natural_number<nn_type> n_expected(5);
+	t_natural_number<nn_type> m_expected(0);
 	
 	n = std::move(m);
 	
@@ -88,10 +88,10 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAssignNonzeroZero {
-	template_t n(5);
-	template_t m;
-	template_t n_expected;
-	template_t m_expected;
+	t_natural_number<nn_type> n(5);
+	t_natural_number<nn_type> m;
+	t_natural_number<nn_type> n_expected;
+	t_natural_number<nn_type> m_expected;
 	
 	n = std::move(m);
 	
@@ -102,10 +102,10 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAssignNonzeroNonzero {
-	template_t n(9);
-	template_t m(5);
-	template_t n_expected(5);
-	template_t m_expected(0);
+	t_natural_number<nn_type> n(9);
+	t_natural_number<nn_type> m(5);
+	t_natural_number<nn_type> n_expected(5);
+	t_natural_number<nn_type> m_expected(0);
 	
 	n = std::move(m);
 	
@@ -116,10 +116,10 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAssignMultidigMultidig {
-    template_t n(96);
-    template_t m(43);
-    template_t n_expected(43);
-    template_t m_expected(0);
+    t_natural_number<nn_type> n(96);
+    t_natural_number<nn_type> m(43);
+    t_natural_number<nn_type> n_expected(43);
+    t_natural_number<nn_type> m_expected(0);
     
     n = std::move(m);
     
@@ -130,8 +130,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testClearZero {
-	template_t n;
-	template_t expected(0);
+	t_natural_number<nn_type> n;
+	t_natural_number<nn_type> expected(0);
 	
 	n.clear();
 	
@@ -140,8 +140,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testClearNonZero {
-	template_t n(47);
-	template_t expected(0);
+	t_natural_number<nn_type> n(47);
+	t_natural_number<nn_type> expected(0);
 	
 	n.clear();
 	
@@ -150,8 +150,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testIncrementZero {
-	template_t n;
-	template_t expected(1);
+	t_natural_number<nn_type> n;
+	t_natural_number<nn_type> expected(1);
 	
 	n.increment();
 	
@@ -160,8 +160,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testIncrementNine {
-	template_t n(9);
-	template_t expected(10);
+	t_natural_number<nn_type> n(9);
+	t_natural_number<nn_type> expected(10);
 	
 	n.increment();
 	
@@ -170,8 +170,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testIncrementFive {
-	template_t n(5);
-	template_t expected(6);
+	t_natural_number<nn_type> n(5);
+	t_natural_number<nn_type> expected(6);
 	
 	n.increment();
 	
@@ -180,8 +180,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testDecrementOne {
-	template_t n(1);
-	template_t expected(0);
+	t_natural_number<nn_type> n(1);
+	t_natural_number<nn_type> expected(0);
 	
 	n.decrement();
 	
@@ -190,8 +190,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testDecrementTen {
-	template_t n(10);
-	template_t expected(9);
+	t_natural_number<nn_type> n(10);
+	t_natural_number<nn_type> expected(9);
 	
 	n.decrement();
 	
@@ -200,8 +200,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testDecrementFive {
-	template_t n(5);
-	template_t expected(4);
+	t_natural_number<nn_type> n(5);
+	t_natural_number<nn_type> expected(4);
 	
 	n.decrement();
 	
@@ -210,8 +210,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testMultRadZero_Zero {
-	template_t n(0);
-	template_t expected(0);
+	t_natural_number<nn_type> n(0);
+	t_natural_number<nn_type> expected(0);
 	
 	n.multiply_by_radix(0);
 	
@@ -220,8 +220,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testMultRadZero_Five {
-	template_t n(0);
-	template_t expected(5);
+	t_natural_number<nn_type> n(0);
+	t_natural_number<nn_type> expected(5);
 	
 	n.multiply_by_radix(5);
 	
@@ -230,8 +230,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testMultRadFive_Zero {
-	template_t n(5);
-	template_t expected(50);
+	t_natural_number<nn_type> n(5);
+	t_natural_number<nn_type> expected(50);
 	
 	n.multiply_by_radix(0);
 	
@@ -240,8 +240,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testMultRadFive_Five {
-	template_t n(5);
-	template_t expected(55);
+	t_natural_number<nn_type> n(5);
+	t_natural_number<nn_type> expected(55);
 	
 	n.multiply_by_radix(5);
 	
@@ -250,8 +250,8 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testDivRadZero {
-	template_t n(0);
-	template_t expected(0);
+	t_natural_number<nn_type> n(0);
+	t_natural_number<nn_type> expected(0);
 	
 	int d = 4;
 	d = n.divide_by_radix();

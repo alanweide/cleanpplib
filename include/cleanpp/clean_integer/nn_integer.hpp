@@ -13,6 +13,8 @@
 #include "big_integer.hpp"
 
 #include <clean_nn/stack_nn.hpp>
+#include <template_nn/template_nn.hpp>
+#include <flexible_nn/flexible_nn.hpp>
 
 namespace cleanpp {
 class nn_integer: public big_integer {
@@ -33,7 +35,7 @@ public:
     std::unique_ptr<big_integer> new_instance() const override;
 
 private:
-	stack_nn n_;
+	t_natural_number<stack_nn> n_;
 	enum integer_sign sign_;
 };
 }
