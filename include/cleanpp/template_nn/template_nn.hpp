@@ -79,7 +79,7 @@ public:
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
 	 */
-	int&& divide_by_radix() {
+	int divide_by_radix() {
 		return this->rep_->divide_by_radix();
 	}
     

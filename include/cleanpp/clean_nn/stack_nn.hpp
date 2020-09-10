@@ -31,7 +31,7 @@ public:
     void clear() override;
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
-    int&& divide_by_radix() override;
+    int divide_by_radix() override;
 private:
     t_stack<array_stack, int> rep_;
 };

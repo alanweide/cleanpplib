@@ -41,7 +41,7 @@ public:
      ensures  #this = this * RADIX + divide_by_radix and
               0 <= divide_by_radix and divide_by_radix < RADIX
      */
-    virtual int&& divide_by_radix() = 0;
+    virtual int divide_by_radix() = 0;
     
     /*
      ensures `==` = (this = other)

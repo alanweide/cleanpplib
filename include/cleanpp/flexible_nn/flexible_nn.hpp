@@ -16,10 +16,10 @@
 
 namespace cleanpp {
 
-typedef stack_nn _flex_nn_def_t;
-
 class flex_natural_number_kernel: public clean_base {
 protected:
+    typedef stack_nn _flex_nn_def_t;
+    
     std::unique_ptr<natural_number_kernel> rep_;
 public:
 	/*
@@ -79,7 +79,7 @@ public:
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
 	 */
-	int&& divide_by_radix() {
+	int divide_by_radix() {
 		return this->rep_->divide_by_radix();
 	}
     

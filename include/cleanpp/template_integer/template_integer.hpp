@@ -14,14 +14,8 @@
 namespace cleanpp {
 
 template<typename I>
-class t_big_integer_kernel;
-
-template<typename I>
-class t_big_integer;
-
-template<typename I>
 class t_big_integer_kernel: public clean_base {
-private:
+protected:
 	std::unique_ptr<big_integer_kernel> rep_;
 public:
 	/*
@@ -32,13 +26,13 @@ public:
 	
 	t_big_integer_kernel(long n = 0): rep_(std::make_unique<I>(n)) {
 		static_assert(std::is_base_of<big_integer_kernel, I>::value,
-					  "Template parameter I must derive from big_integer_kernel");
+                      "Implementation type of t_big_integer_kernel must derive from big_integer_kernel");
 	}
 	
 	t_big_integer_kernel(const t_big_integer_kernel<I> &other) = delete;
 	t_big_integer_kernel(t_big_integer_kernel<I>&& other): rep_(std::move(other.rep_)) {
 		static_assert(std::is_base_of<big_integer_kernel, I>::value,
-					  "Template parameter I must derive from big_integer_kernel");
+                      "Implementation type of t_big_integer_kernel must derive from big_integer_kernel");
 		other.rep_ = std::make_unique<I>();
 	}
 	
@@ -104,8 +98,6 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, t_big_integer_kernel<I>& o) {
 		return out << *o.rep_;
 	}
-	
-	friend class t_big_integer<I>;
 };
 
 template<typename I>
@@ -114,13 +106,13 @@ public:
 	
 	t_big_integer(long n = 0): t_big_integer_kernel<I>(n) {
 		static_assert(std::is_base_of<big_integer, I>::value,
-					  "Template parameter I must derive from big_integer");
+                      "Implementation type of t_big_integer must derive from big_integer");
 	}
 	
 	t_big_integer(const t_big_integer<I>& other) = delete;
 	t_big_integer(t_big_integer<I>&& other): t_big_integer_kernel<I>(std::forward<t_big_integer_kernel<I>&&>(other)) {
 		static_assert(std::is_base_of<big_integer, I>::value,
-					  "Template parameter I must derive from big_integer");
+					  "Implementation type of t_big_integer must derive from big_integer");
 		other.rep_ = std::make_unique<I>();
 	}
 	

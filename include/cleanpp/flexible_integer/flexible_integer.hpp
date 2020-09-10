@@ -14,18 +14,22 @@
 
 namespace cleanpp {
 
-typedef nn_integer _flex_int_def_t;
 
 class flex_big_integer_kernel: public clean_base {
 protected:
+    typedef nn_integer _flex_int_def_t;
 	std::unique_ptr<big_integer_kernel> rep_;
 public:
 	/*
 	 big_integer_kernel is modeled by integer
 	 */
+    
 	// The "base" of the number
 	static const int RADIX = 10;
 	
+    /*
+     initialization ensures this = n
+     */
     flex_big_integer_kernel(long n = 0) {
         rep_ = std::make_unique<_flex_int_def_t>(n);
     }
@@ -38,11 +42,19 @@ public:
 	}
 	
 	flex_big_integer_kernel(const flex_big_integer_kernel &other) = delete;
+    /*
+     clears other
+     initialization ensures this = #other
+     */
     flex_big_integer_kernel(flex_big_integer_kernel&& other) : rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_flex_int_def_t>();
 	}
 	
 	flex_big_integer_kernel& operator=(const flex_big_integer_kernel& other) = delete;
+    /*
+     clears other
+     ensures this = #other
+     */
 	flex_big_integer_kernel& operator=(flex_big_integer_kernel&& other) {
 		if (&other == this) {
 			return *this;
@@ -108,6 +120,9 @@ public:
 
 class flex_big_integer: public flex_big_integer_kernel {
 public:
+    /*
+     initialization ensures this = n
+     */
     flex_big_integer(long n = 0): flex_big_integer_kernel(n) {}
 
     template<typename I>
@@ -117,10 +132,18 @@ public:
 	}
 	
 	flex_big_integer(const flex_big_integer& other) = delete;
+    /*
+     clears other
+     initialization ensures this = #other
+     */
     flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(std::forward<flex_big_integer_kernel>(other)) {
 	}
 	
 	flex_big_integer& operator=(const flex_big_integer& other) = delete;
+    /*
+     clears this
+     ensures this = #other
+     */
 	flex_big_integer& operator=(flex_big_integer&& other) {
 		if (&other == this) {
 			return *this;

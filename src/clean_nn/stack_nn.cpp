@@ -44,7 +44,7 @@ void stack_nn::multiply_by_radix(int d) {
     }
 }
 
-int&& stack_nn::divide_by_radix() {
+int stack_nn::divide_by_radix() {
 	int d = 0;
     if (!is_zero()) {
         d = rep_.pop();
