@@ -34,9 +34,9 @@ public:
     flex_natural_number_kernel(long n = 0): rep_(std::make_unique<_flex_nn_def_t>(n)) {}
     
     template<typename I>
-	flex_natural_number_kernel(__attribute__((unused)) const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
+    flex_natural_number_kernel(__attribute__((unused)) const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
         static_assert(std::is_base_of<natural_number_kernel, I>::value,
-                      "Template parameter I must derive from cleanpp::natural_number_kernel");
+                      "Type of impl must derive from cleanpp::natural_number_kernel");
 	}
 	
 	flex_natural_number_kernel(const flex_natural_number_kernel& other) = delete;
