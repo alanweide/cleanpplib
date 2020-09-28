@@ -9,16 +9,16 @@
 #ifndef flexible_integer_h
 #define flexible_integer_h
 
-#include <clean_integer/big_integer.hpp>
+#include <clean_integer/clean_integer.hpp>
 #include <clean_integer/nn_integer.hpp>
 
 namespace cleanpp {
 
 
-class flex_big_integer_kernel: public clean_base {
+class flex_integer_kernel: public clean_base {
 protected:
     typedef nn_integer _flex_int_def_t;
-	std::unique_ptr<big_integer_kernel> rep_;
+	std::unique_ptr<clean_integer_kernel> rep_;
 public:
 	/*
 	 big_integer_kernel is modeled by integer
@@ -30,32 +30,32 @@ public:
     /*
      initialization ensures this = n
      */
-    flex_big_integer_kernel(long n = 0) {
+    flex_integer_kernel(long n = 0) {
         rep_ = std::make_unique<_flex_int_def_t>(n);
     }
 
     template<typename I>
-    flex_big_integer_kernel(__attribute__((unused)) const I& impl, long n = 0) {
-		static_assert(std::is_base_of<big_integer_kernel, I>::value,
+    flex_integer_kernel(__attribute__((unused)) const I& impl, long n = 0) {
+		static_assert(std::is_base_of<clean_integer_kernel, I>::value,
                       "Type of impl must derive from big_integer_kernel");
         rep_ = std::make_unique<I>(n);
 	}
 	
-	flex_big_integer_kernel(const flex_big_integer_kernel &other) = delete;
+	flex_integer_kernel(const flex_integer_kernel &other) = delete;
     /*
      clears other
      initialization ensures this = #other
      */
-    flex_big_integer_kernel(flex_big_integer_kernel&& other) : rep_(std::move(other.rep_)) {
+    flex_integer_kernel(flex_integer_kernel&& other) : rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_flex_int_def_t>();
 	}
 	
-	flex_big_integer_kernel& operator=(const flex_big_integer_kernel& other) = delete;
+	flex_integer_kernel& operator=(const flex_integer_kernel& other) = delete;
     /*
      clears other
      ensures this = #other
      */
-	flex_big_integer_kernel& operator=(flex_big_integer_kernel&& other) {
+	flex_integer_kernel& operator=(flex_integer_kernel&& other) {
 		if (&other == this) {
 			return *this;
 		}
@@ -109,42 +109,42 @@ public:
 	/*
 	 ensures `==` = (this = other)
 	 */
-	bool operator==(flex_big_integer_kernel &other) {
+	bool operator==(flex_integer_kernel &other) {
 		return *this->rep_ == *other.rep_;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, flex_big_integer_kernel& o) {
+	friend std::ostream& operator<<(std::ostream& out, flex_integer_kernel& o) {
 		return out << *o.rep_;
 	}
 };
 
-class flex_big_integer: public flex_big_integer_kernel {
+class flex_integer: public flex_integer_kernel {
 public:
     /*
      initialization ensures this = n
      */
-    flex_big_integer(long n = 0): flex_big_integer_kernel(n) {}
+    flex_integer(long n = 0): flex_integer_kernel(n) {}
 
     template<typename I>
-    flex_big_integer(__attribute__((unused)) const I& impl, long n = 0): flex_big_integer_kernel(impl, n) {
-		static_assert(std::is_base_of_v<big_integer, I>,
+    flex_integer(__attribute__((unused)) const I& impl, long n = 0): flex_integer_kernel(impl, n) {
+		static_assert(std::is_base_of_v<clean_integer, I>,
 					  "Type of impl must derive from big_integer");
 	}
 	
-	flex_big_integer(const flex_big_integer& other) = delete;
+	flex_integer(const flex_integer& other) = delete;
     /*
      clears other
      initialization ensures this = #other
      */
-    flex_big_integer(flex_big_integer&& other): flex_big_integer_kernel(std::forward<flex_big_integer_kernel>(other)) {
+    flex_integer(flex_integer&& other): flex_integer_kernel(std::forward<flex_integer_kernel>(other)) {
 	}
 	
-	flex_big_integer& operator=(const flex_big_integer& other) = delete;
+	flex_integer& operator=(const flex_integer& other) = delete;
     /*
      clears this
      ensures this = #other
      */
-	flex_big_integer& operator=(flex_big_integer&& other) {
+	flex_integer& operator=(flex_integer&& other) {
 		if (&other == this) {
 			return *this;
 		}
@@ -158,7 +158,7 @@ public:
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
 		
         casted->increment();
 		
@@ -170,7 +170,7 @@ public:
 	 ensures this = #this - 1
 	 */
 	void decrement() {
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
 		
         casted->decrement();
 		
@@ -182,7 +182,7 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
         
 		casted->set_from_long(n);
 		
@@ -194,7 +194,7 @@ public:
 	 ensures  this = |#this| and abs = [POSITIVE, ZERO, or NEGATIVE as this > 0, = 0, or < 0]
 	 */
 	integer_sign abs() {
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
         
 		integer_sign sign = casted->abs();
 		
@@ -209,7 +209,7 @@ public:
               assign_sign = POSITIVE ==> this = |#this|
 	 */
 	void assign_sign(integer_sign sign){
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
         
 		casted->assign_sign(sign);
 		
@@ -219,9 +219,9 @@ public:
 	/*
 	 ensures clone = this
 	 */
-	flex_big_integer clone() {
-        flex_big_integer clone(_flex_int_def_t{});
-		std::unique_ptr<big_integer> casted(static_cast<big_integer*>(this->rep_.release()));
+	flex_integer clone() {
+        flex_integer clone(_flex_int_def_t{});
+		std::unique_ptr<clean_integer> casted(static_cast<clean_integer*>(this->rep_.release()));
         
 		clone.rep_ = casted->clone();
 		
@@ -232,11 +232,11 @@ public:
 	/*
 	 ensures  add = #x + y
 	 */
-	friend flex_big_integer add(flex_big_integer&& x, flex_big_integer &y) {
-        flex_big_integer sum(std::forward<flex_big_integer>(x));
+	friend flex_integer add(flex_integer&& x, flex_integer &y) {
+        flex_integer sum(std::forward<flex_integer>(x));
 		
-		std::unique_ptr<big_integer> sum_casted(static_cast<big_integer*>(sum.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<clean_integer> sum_casted(static_cast<clean_integer*>(sum.rep_.release()));
+		std::unique_ptr<clean_integer> y_casted(static_cast<clean_integer*>(y.rep_.release()));
         
 		sum_casted = add(std::move(sum_casted), y_casted);
 		
@@ -249,11 +249,11 @@ public:
 	/*
 	 ensures subtract = #x - y
 	 */
-    friend flex_big_integer subtract(flex_big_integer&& x, flex_big_integer &y) {
-        flex_big_integer diff(std::forward<flex_big_integer>(x));
+    friend flex_integer subtract(flex_integer&& x, flex_integer &y) {
+        flex_integer diff(std::forward<flex_integer>(x));
         
-        std::unique_ptr<big_integer> diff_casted(static_cast<big_integer*>(diff.rep_.release()));
-        std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
+        std::unique_ptr<clean_integer> diff_casted(static_cast<clean_integer*>(diff.rep_.release()));
+        std::unique_ptr<clean_integer> y_casted(static_cast<clean_integer*>(y.rep_.release()));
         
         diff_casted = subtract(std::move(diff_casted), y_casted);
         
@@ -268,11 +268,11 @@ public:
 	 compare = 0 ==> x = y and
 	 compare < 0 ==> x < y
 	 */
-    friend int compare(flex_big_integer& x, flex_big_integer &y) {
+    friend int compare(flex_integer& x, flex_integer &y) {
         int comp;
 
-		std::unique_ptr<big_integer> x_casted(static_cast<big_integer*>(x.rep_.release()));
-		std::unique_ptr<big_integer> y_casted(static_cast<big_integer*>(y.rep_.release()));
+		std::unique_ptr<clean_integer> x_casted(static_cast<clean_integer*>(x.rep_.release()));
+		std::unique_ptr<clean_integer> y_casted(static_cast<clean_integer*>(y.rep_.release()));
         
 		comp = compare(x_casted, y_casted);
 		

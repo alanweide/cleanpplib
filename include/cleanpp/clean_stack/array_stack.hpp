@@ -20,7 +20,7 @@
 namespace cleanpp {
 
 template <typename T>
-class array_stack: public stack<T>
+class array_stack: public clean_stack<T>
 {
 private:
 	static const int MIN_CAP = 1;

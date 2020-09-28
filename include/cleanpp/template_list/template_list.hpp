@@ -24,7 +24,7 @@ class t_list;
 template <template<typename> class I, typename Item>
 class t_list_kernel: public clean_base {
 private:
-	std::unique_ptr<list_kernel<Item>> rep_;
+	std::unique_ptr<clean_list_kernel<Item>> rep_;
 	/*
 	 list_kernel is modeled by (prec: string of T,
 	 rem:  string of T)
@@ -131,7 +131,7 @@ public:
 	 ensures this = (<>, #this.prec * #this.rem)
 	 */
 	void reset() {
-		std::unique_ptr<list<Item>> casted(static_cast<list<Item>*>(this->rep_.release()));
+		std::unique_ptr<clean_list<Item>> casted(static_cast<clean_list<Item>*>(this->rep_.release()));
 		
         casted->reset();
 		

@@ -18,7 +18,7 @@ namespace cleanpp {
 template<template<typename> class I, typename Item>
 class t_stack: public clean_base {
 private:
-    std::unique_ptr<stack<Item>> rep_;
+    std::unique_ptr<clean_stack<Item>> rep_;
 public:
     t_stack() {
         rep_ = std::make_unique<I<Item>>();

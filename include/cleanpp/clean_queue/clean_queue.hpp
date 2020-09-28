@@ -17,7 +17,7 @@
 
 namespace cleanpp {
 template <typename T>
-class queue: public clean_base {
+class clean_queue: public clean_base {
     /*
      queue is modeled by string of T
      */
@@ -44,7 +44,7 @@ public:
      */
     virtual bool is_empty() const = 0;
     
-    friend std::ostream& operator<<(std::ostream& out, queue<T>& o) {
+    friend std::ostream& operator<<(std::ostream& out, clean_queue<T>& o) {
         return out << o.to_str();
     }
 };

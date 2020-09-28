@@ -22,7 +22,7 @@
 using namespace cleanpp;
 
 typedef nn_integer bigint_type;
-typedef t_big_integer<bigint_type> bigint_t;
+typedef t_integer<bigint_type> bigint_t;
 
 static std::string bigintToString(bigint_t &o) {
 	std::stringstream s;

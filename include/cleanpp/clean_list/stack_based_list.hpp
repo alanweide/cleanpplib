@@ -18,7 +18,7 @@
 namespace cleanpp {
 
 template <typename T>
-class stack_based_list: public list<T> {
+class stack_based_list: public clean_list<T> {
 public:
     stack_based_list<T>() {
         prec_ = std::make_unique<array_stack<T>>();
@@ -91,7 +91,7 @@ public:
     std::string to_str() override {
         std::stringstream out;
         out << "(";
-        std::unique_ptr<stack<T>> rev_prec = std::make_unique<array_stack<T>>();
+        std::unique_ptr<clean_stack<T>> rev_prec = std::make_unique<array_stack<T>>();
         while (!prec_->is_empty()) {
             T x;
             x = prec_->pop();
@@ -107,8 +107,8 @@ public:
         return out.str();
     }
 private:
-    std::unique_ptr<stack<T>> prec_;
-    std::unique_ptr<stack<T>> rem_;
+    std::unique_ptr<clean_stack<T>> prec_;
+    std::unique_ptr<clean_stack<T>> rem_;
 };
 
 }

@@ -24,14 +24,14 @@ class t_queue: public clean_base {
 	 queue is modeled by string of Item
 	 */
 private:
-	std::unique_ptr<queue<Item>> rep_;
+	std::unique_ptr<clean_queue<Item>> rep_;
 public:
 	
 	/*
 	 ensures this = <>
 	 */
 	t_queue(): rep_(std::make_unique<I<Item>>()) {
-		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
+		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 	}
 	
@@ -41,7 +41,7 @@ public:
 	 ensures this = #other
 	 */
 	t_queue(t_queue<I, Item>&& other): rep_(std::move(other.rep_)) {
-		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
+		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 		other.rep_ = std::make_unique<I<Item>>();
 	}

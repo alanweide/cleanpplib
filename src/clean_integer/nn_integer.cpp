@@ -70,7 +70,7 @@ void nn_integer::negate() {
 	}
 }
 
-std::unique_ptr<big_integer> nn_integer::new_instance() const {
+std::unique_ptr<clean_integer> nn_integer::new_instance() const {
     return std::make_unique<nn_integer>();
 }
 

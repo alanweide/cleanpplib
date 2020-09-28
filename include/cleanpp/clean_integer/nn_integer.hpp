@@ -10,14 +10,14 @@
 #define nn_integer_hpp
 
 #include <stdio.h>
-#include "big_integer.hpp"
+#include "clean_integer.hpp"
 
 #include <clean_nn/stack_nn.hpp>
 #include <template_nn/template_nn.hpp>
 #include <flexible_nn/flexible_nn.hpp>
 
 namespace cleanpp {
-class nn_integer: public big_integer {
+class nn_integer: public clean_integer {
 public:
 	nn_integer(int n = 0);
 	
@@ -32,7 +32,7 @@ public:
 	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
-    std::unique_ptr<big_integer> new_instance() const override;
+    std::unique_ptr<clean_integer> new_instance() const override;
 
 private:
 	t_natural_number<stack_nn> n_;

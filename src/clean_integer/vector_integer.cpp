@@ -70,7 +70,7 @@ void vector_integer::negate() {
 	}
 }
 
-std::unique_ptr<big_integer> vector_integer::new_instance() const {
+std::unique_ptr<clean_integer> vector_integer::new_instance() const {
     return std::make_unique<vector_integer>();
 }
 

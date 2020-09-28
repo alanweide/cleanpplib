@@ -16,7 +16,7 @@
 
 namespace cleanpp {
 template <class T>
-class list_kernel: public clean_base {
+class clean_list_kernel: public clean_base {
     /*
      list_kernel is modeled by (prec: string of T,
                                 rem:  string of T)
@@ -109,7 +109,7 @@ public:
 };
 
 template<class T>
-class list: public list_kernel<T> {
+class clean_list: public clean_list_kernel<T> {
 public:
     
     /*

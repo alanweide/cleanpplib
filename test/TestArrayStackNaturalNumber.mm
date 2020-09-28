@@ -27,7 +27,7 @@ using namespace cleanpp;
 typedef stack_nn nn_type;
 typedef array_stack<nn_type> stack_nn_type;
 
-static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
+static std::string stackNNToString(std::unique_ptr<clean_stack<nn_type>> &s) {
     std::stringstream s_stm;
     s_stm << *s;
     std::string s_str = s_stm.str();
@@ -43,26 +43,26 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testInitializerDef {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string empty_stack = "<>";
     std::string s_str = stackNNToString(s);
     XCTAssert(s_str == empty_stack, @"%s", s_str.c_str());
 }
 
 - (void)testIsEmpty_Empty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     XCTAssert(s->is_empty());
 }
 
 - (void)testIsEmpty_NonEmpty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     nn_type a(1);
     s->push(std::move(a));
     XCTAssert(!s->is_empty());
 }
 
 - (void)testIsEmpty_Empty_PushPop {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     nn_type a(1), b(2);
     s->push(std::move(a));
     b = s->pop();
@@ -70,7 +70,7 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testPushToEmpty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<1>";
     
     nn_type a(1);
@@ -81,7 +81,7 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testPushToNonEmpty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<2, 1>";
     
     nn_type a(1), b(2);
@@ -93,7 +93,7 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testPopEmptyToEmpty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_a(0);
     
@@ -107,7 +107,7 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testPopNonEmptyToEmpty {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_b(1);
     
@@ -121,7 +121,7 @@ static std::string stackNNToString(std::unique_ptr<stack<nn_type>> &s) {
 }
 
 - (void)testNonMonotonicResizing {
-    std::unique_ptr<stack<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::unique_ptr<clean_stack<nn_type>> s = std::make_unique<stack_nn_type>();
     nn_type expected_b(1);
     
     const int cap = 100;

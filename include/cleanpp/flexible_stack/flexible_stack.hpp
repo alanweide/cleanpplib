@@ -21,18 +21,18 @@ class flex_stack: public clean_base {
 protected:
     template <typename I>
     using _flex_stack_def_t = array_stack<I>;
-    static_assert(std::is_base_of<stack<int>, _flex_stack_def_t<int>>::value,
+    static_assert(std::is_base_of<clean_stack<int>, _flex_stack_def_t<int>>::value,
                   "_flex_stack_def_t must derive from stack<Item>");
     
 
-    std::unique_ptr<stack<Item>> rep_;
+    std::unique_ptr<clean_stack<Item>> rep_;
 public:
 	flex_stack() : rep_(std::make_unique<_flex_stack_def_t<Item>>()) {
     }
     
 	template<template<typename> class I>
 	flex_stack(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
-		static_assert(std::is_base_of<stack<Item>, I<Item>>::value,
+		static_assert(std::is_base_of<clean_stack<Item>, I<Item>>::value,
 					  "Template parameter I must derive from stack<Item>");
 	}
 	

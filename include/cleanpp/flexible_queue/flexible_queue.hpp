@@ -28,7 +28,7 @@ class flex_queue: public clean_base {
 	 queue is modeled by string of Item
 	 */
 protected:
-	std::unique_ptr<queue<Item>> rep_;
+	std::unique_ptr<clean_queue<Item>> rep_;
 public:
 	
 	/*
@@ -39,7 +39,7 @@ public:
 	
 	template<template<typename> class I>
 	flex_queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
-		static_assert(std::is_base_of<queue<Item>, I<Item>>::value,
+		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 	}
 	

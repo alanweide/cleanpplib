@@ -328,10 +328,10 @@ static std::string nnToString(t_natural_number<I> &o) {
 }
 
 - (void)testAddFiveZero {
-	template_t n1(5);
-	template_t n2(0);
-	template_t n1_exp(5);
-	template_t n2_exp(0);
+    t_natural_number<nn_type> n1(5);
+    t_natural_number<nn_type> n2(0);
+    t_natural_number<nn_type> n1_exp(5);
+    t_natural_number<nn_type> n2_exp(0);
 	
 	n1 = add(std::move(n1), n2);
 	
