@@ -10,9 +10,9 @@
 #define flexible_stack_h
 
 #include <stdio.h>
-#include <clean_base.hpp>
-#include <clean_stack/clean_stack.hpp>
-#include <clean_stack/array_stack.hpp>
+#include "clean_base.hpp"
+#include "clean_stack.hpp"
+#include "array_stack.hpp"
 
 namespace cleanpp {
 

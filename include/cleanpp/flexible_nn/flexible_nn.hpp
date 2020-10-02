@@ -10,9 +10,9 @@
 #define flex_nn_hpp
 
 #include <stdio.h>
-#include <clean_base.hpp>
-#include <clean_nn/natural_number.hpp>
-#include <clean_nn/stack_nn.hpp>
+#include "clean_base.hpp"
+#include "natural_number.hpp"
+#include "stack_nn.hpp"
 
 namespace cleanpp {
 

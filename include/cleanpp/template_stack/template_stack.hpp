@@ -10,8 +10,8 @@
 #define template_stack_h
 
 #include <stdio.h>
-#include <clean_base.hpp>
-#include <clean_stack/clean_stack.hpp>
+#include "clean_base.hpp"
+#include "clean_stack.hpp"
 
 namespace cleanpp {
 

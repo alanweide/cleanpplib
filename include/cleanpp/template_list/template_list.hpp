@@ -13,8 +13,8 @@
 #include <memory.h>
 #include <iostream>
 #include <sstream>
-#include <clean_base.hpp>
-#include <clean_list/clean_list.hpp>
+#include "clean_base.hpp"
+#include "clean_list.hpp"
 
 namespace cleanpp {
 

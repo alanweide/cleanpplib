@@ -12,9 +12,9 @@
 #include <stdio.h>
 #include "clean_integer.hpp"
 
-#include <clean_nn/stack_nn.hpp>
-#include <template_nn/template_nn.hpp>
-#include <flexible_nn/flexible_nn.hpp>
+#include "stack_nn.hpp"
+#include "template_nn.hpp"
+#include "flexible_nn.hpp"
 
 namespace cleanpp {
 class nn_integer: public clean_integer {

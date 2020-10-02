@@ -13,7 +13,7 @@
 #include <vector>
 #include "clean_integer.hpp"
 
-#include <clean_nn/stack_nn.hpp>
+#include "stack_nn.hpp"
 
 namespace cleanpp {
 class vector_integer: public clean_integer {

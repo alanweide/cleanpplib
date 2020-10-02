@@ -9,8 +9,8 @@
 #ifndef flexible_integer_h
 #define flexible_integer_h
 
-#include <clean_integer/clean_integer.hpp>
-#include <clean_integer/nn_integer.hpp>
+#include "clean_integer.hpp"
+#include "nn_integer.hpp"
 
 namespace cleanpp {
 
@@ -127,7 +127,7 @@ public:
 
     template<typename I>
     flex_integer(__attribute__((unused)) const I& impl, long n = 0): flex_integer_kernel(impl, n) {
-		static_assert(std::is_base_of_v<clean_integer, I>,
+		static_assert(std::is_base_of<clean_integer, I>::value,
 					  "Type of impl must derive from big_integer");
 	}
 	

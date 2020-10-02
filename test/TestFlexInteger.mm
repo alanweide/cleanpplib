@@ -139,8 +139,8 @@ static std::string bigintToString(flex_integer &o) {
 }
 
 - (void)testIncrementNegTen {
-	flex_integer n(bigint_kernel_impl{}, -10);
-	flex_integer expected(bigint_kernel_impl{}, -9);
+	flex_integer n(nn_integer{}, -10);
+	flex_integer expected(nn_integer{}, -9);
 
 	n.increment();
 	

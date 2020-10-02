@@ -9,7 +9,7 @@
 #ifndef bounded_nn_h
 #define bounded_nn_h
 
-#include <clean_nn/natural_number.hpp>
+#include "natural_number.hpp"
 
 namespace cleanpp {
 class bounded_nn: public natural_number_secondary {

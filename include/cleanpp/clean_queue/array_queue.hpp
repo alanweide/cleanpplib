@@ -9,7 +9,7 @@
 #ifndef array_queue_h
 #define array_queue_h
 
-#include <clean_queue/clean_queue.hpp>
+#include "clean_queue.hpp"
 
 namespace cleanpp {
 

@@ -9,7 +9,7 @@
 #ifndef template_integer_h
 #define template_integer_h
 
-#include <clean_integer/clean_integer.hpp>
+#include "clean_integer.hpp"
 
 namespace cleanpp {
 

@@ -90,8 +90,8 @@ static std::string bigintToString(bigint_t &o) {
 }
 
 - (void)testClearPositive {
-	bigint_t n(47);
-	bigint_t expected(0);
+	t_integer<nn_integer> n(47);
+	t_integer<nn_integer> expected(0);
 
 	n.clear();
     
