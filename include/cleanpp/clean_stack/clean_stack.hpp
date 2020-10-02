@@ -13,12 +13,12 @@
 #include <iostream>
 #include <memory>
 
-#include <clean_base.hpp>
+#include "clean_base.hpp"
 
 namespace cleanpp {
 
 template <class T>
-class stack: public clean_base {
+class clean_stack: public clean_base {
     /*
      stack is modeled by string of T
      */
@@ -31,15 +31,14 @@ public:
      clears  x
      ensures this = <#x> * #this
      */
-	virtual void push(T& x) = 0;
+	virtual void push(T&& x) = 0;
     
     /*
      updates  this
-     replaces x
      requires |this| > 0
-     ensures  #this = <x> * this
+     ensures  #this = <pop> * this
      */
-	virtual void pop(T& x) = 0;
+	virtual T pop() = 0;
     
     /*
      ensures is_empty = (|this| = 0)
@@ -49,7 +48,7 @@ public:
     /*
      ensures `==` = (this = other)
      */
-	bool operator==(stack<T> &other) {
+	bool operator==(clean_stack<T> &other) {
 		bool ans;
 		if (is_empty() && other.is_empty()) {
 			ans = true;
@@ -66,7 +65,7 @@ public:
 		return ans;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, stack<T>& o) {
+	friend std::ostream& operator<<(std::ostream& out, clean_stack<T>& o) {
 		return out << o.to_str();
 	}
 };

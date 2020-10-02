@@ -16,6 +16,10 @@ bounded_nn::bounded_nn(bounded_nn&& other): n_(std::move(other.n_)) {
     other.clear();
 }
 
+bounded_nn::~bounded_nn() {
+	n_ = 0;
+}
+
 bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
     if (&other == this) {
         return *this;
@@ -40,9 +44,10 @@ void bounded_nn::multiply_by_radix(int d) {
     n_ *= RADIX;
     n_ += d;
 }
-void bounded_nn::divide_by_radix(int &d) {
-    d = n_ % RADIX;
+int bounded_nn::divide_by_radix() {
+    int d = n_ % RADIX;
     n_ /= RADIX;
+	return d;
 }
 
 void bounded_nn::increment() {

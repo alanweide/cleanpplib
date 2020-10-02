@@ -11,12 +11,12 @@
 
 #include <stdio.h>
 #include <vector>
-#include "big_integer.hpp"
+#include "clean_integer.hpp"
 
-#include <clean_nn/stack_nn.hpp>
+#include "stack_nn.hpp"
 
 namespace cleanpp {
-class vector_integer: public big_integer {
+class vector_integer: public clean_integer {
 public:
 	vector_integer(int n = 0);
 	
@@ -28,10 +28,10 @@ public:
 
 	void clear() override;
 	void multiply_by_radix(int d) override;
-	void divide_by_radix(int &d) override;
+	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
-    std::unique_ptr<big_integer> new_instance() const override;
+    std::unique_ptr<clean_integer> new_instance() const override;
 
 private:
 	std::vector<int> rep_;

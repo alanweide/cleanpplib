@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/alan/git/research/other/cleanpplib/test/TestCleanpp.xctestplan">
-   </FileRef>
-   <FileRef
-      location = "self:CleanppLibrary.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

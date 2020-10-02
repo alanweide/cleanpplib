@@ -1,3 +1,4 @@
 Build/**
 **/*.xcuserstate
 **/.DS_Store
+CleanppLibrary.xcodeproj/**

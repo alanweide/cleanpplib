@@ -16,7 +16,7 @@
 namespace cleanpp {
 
 template <typename T>
-class linked_queue: public queue<T> {
+class linked_queue: public clean_queue<T> {
 private:
     class queue_node: public clean_base {
     private:
@@ -100,7 +100,7 @@ public:
         tail_ptr_.reset();
     }
     
-    void enqueue(T& x) {
+    void enqueue(T&& x) {
         auto new_tail = std::make_shared<queue_node>(x);
         if (tail_ptr_ != nullptr) {
             tail_ptr_->set_next(new_tail);
@@ -112,9 +112,10 @@ public:
         tail_ptr_ = new_tail;
     }
     
-    void dequeue(T& x) {
-        x = top_ptr_->contents();
+    T dequeue() {
+        T x = top_ptr_->contents();
         top_ptr_ = top_ptr_->next();
+		return std::move(x);
     }
     
     bool is_empty() const {
@@ -125,24 +126,24 @@ private:
     std::string to_str() {
         std::stringstream out;
         out << "<";
-        std::unique_ptr<queue<T>> temp = std::make_unique<linked_queue<T>>();
-        while (!is_empty())
+        std::unique_ptr<clean_queue<T>> temp = std::make_unique<linked_queue<T>>();
+        while (!this->is_empty())
         {
             T elem;
-            dequeue(elem);
+            elem = this->dequeue();
             out << elem;
-            if (!is_empty())
+            if (!this->is_empty())
             {
                 out << ", ";
             }
-            temp->enqueue(elem);
+            temp->enqueue(std::move(elem));
         }
 //        this(std::move(*temp));
         while (!temp->is_empty())
         {
             T elem;
-            temp->dequeue(elem);
-            enqueue(elem);
+            elem = temp->dequeue();
+            this->enqueue(std::move(elem));
         }
         out << ">";
         return out.str();

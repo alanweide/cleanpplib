@@ -18,6 +18,8 @@ public:
     
     bounded_nn(bounded_nn const &other) = delete;
     bounded_nn(bounded_nn&& other);
+	
+	~bounded_nn();
     
     bounded_nn& operator=(const bounded_nn& other) = delete;
     bounded_nn& operator=(bounded_nn&& other);
@@ -27,7 +29,7 @@ public:
     void clear() override;
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
-    void divide_by_radix(int &d) override;
+    int divide_by_radix() override;
     void increment() override;
     void decrement() override;
     void set_from_long(long n) override;
@@ -38,6 +40,7 @@ public:
 private:
     long n_;
 };
+
 }
 
 

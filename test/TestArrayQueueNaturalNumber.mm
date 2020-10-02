@@ -27,7 +27,7 @@ using namespace cleanpp;
 typedef stack_nn nn_type;
 typedef array_queue<nn_type> queue_nn_type;
 
-static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
+static std::string queueNNToString(std::unique_ptr<clean_queue<nn_type>> &s) {
 	std::stringstream s_stm;
 	s_stm << *s;
 	std::string s_str = s_stm.str();
@@ -43,14 +43,14 @@ static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
 }
 
 - (void)testInitializerDef {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
 	std::string q_str = queueNNToString(q);
 	XCTAssert(q_str == empty_stack, @"%s", q_str.c_str());
 }
 
 - (void)testClearEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
 	
 	q->clear();
@@ -60,11 +60,11 @@ static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
 }
 
 - (void)testClearSingleElement {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
 	
 	nn_type a(5);
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	
 	q->clear();
 	
@@ -73,13 +73,13 @@ static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
 }
 
 - (void)testClearManyElements {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
 	
 	int numElem = 12;
 	for (int i = 0; i < numElem; i++) {
 		nn_type n(i);
-		q->enqueue(n);
+		q->enqueue(std::move(n));
 	}
 	
 	q->clear();
@@ -89,61 +89,61 @@ static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
 }
 
 - (void)testIsEmpty_Empty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	XCTAssert(q->is_empty());
 }
 
 - (void)testIsEmpty_NonEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	nn_type a(1);
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	XCTAssert(!q->is_empty());
 }
 
 - (void)testIsEmpty_Empty_EnqDeq {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	nn_type a(1), b(2);
 	
-	q->enqueue(a);
-	q->dequeue(b);
+	q->enqueue(std::move(a));
+	b = q->dequeue();
 	
 	XCTAssert(q->is_empty());
 }
 
 - (void)testEnqueueToEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<1>";
 	
 	nn_type a(1);
 	
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	
 	std::string q_str = queueNNToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
 }
 
 - (void)testEnqueueToNonEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<1, 2>";
 	
 	nn_type a(1), b(2);
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	
-	q->enqueue(b);
+	q->enqueue(std::move(b));
 	
 	std::string q_str = queueNNToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
 }
 
 - (void)testDequeueEmptyToEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<>";
 	nn_type expected_a(1);
 	
 	nn_type a(1);
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	
-	q->dequeue(a);
+	a = q->dequeue();
 	
 	std::string q_str = queueNNToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());
@@ -151,14 +151,14 @@ static std::string queueNNToString(std::unique_ptr<queue<nn_type>> &s) {
 }
 
 - (void)testDequeueNonEmptyToEmpty {
-	std::unique_ptr<queue<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<>";
 	nn_type expected_a(0), expected_b(1);
 	
 	nn_type a(1), b(2);
-	q->enqueue(a);
+	q->enqueue(std::move(a));
 	
-	q->dequeue(b);
+	b = q->dequeue();
 	
 	std::string q_str = queueNNToString(q);
 	XCTAssert(q_str == expected, @"%s", q_str.c_str());

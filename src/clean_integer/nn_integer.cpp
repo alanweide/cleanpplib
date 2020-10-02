@@ -18,7 +18,7 @@ nn_integer::nn_integer(int n) {
 	} else {
 		sign_ = POSITIVE;
 	}
-	n_ = stack_nn(n);
+	n_ = t_natural_number<stack_nn>(n);
 }
 
 nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
@@ -41,12 +41,13 @@ void nn_integer::clear() {
 	sign_ = ZERO;
 }
 
-void nn_integer::divide_by_radix(int &d) {
-	n_.divide_by_radix(d);
+int nn_integer::divide_by_radix() {
+	int d = n_.divide_by_radix();
 	if (n_.is_zero()) {
 		sign_ = ZERO;
 	}
 	assert (0 <= d && d < RADIX);
+	return d;
 }
 
 void nn_integer::multiply_by_radix(int d) {
@@ -54,7 +55,7 @@ void nn_integer::multiply_by_radix(int d) {
 	if (0 < d && n_.is_zero()) {
 		sign_ = POSITIVE;
 	}
-	n_.multiply_by_radix(d);
+	n_.multiply_by_radix(std::move(d));
 }
 
 integer_sign nn_integer::sign() const {
@@ -69,7 +70,7 @@ void nn_integer::negate() {
 	}
 }
 
-std::unique_ptr<big_integer> nn_integer::new_instance() const {
+std::unique_ptr<clean_integer> nn_integer::new_instance() const {
     return std::make_unique<nn_integer>();
 }
 

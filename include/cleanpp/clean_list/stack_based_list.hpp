@@ -11,12 +11,14 @@
 
 #include "clean_list.hpp"
 
-#include <clean_stack/array_stack.hpp>
+#include "array_stack.hpp"
+#include "template_stack.hpp"
+#include "flexible_stack.hpp"
 
 namespace cleanpp {
 
 template <typename T>
-class stack_based_list: public list<T> {
+class stack_based_list: public clean_list<T> {
 public:
     stack_based_list<T>() {
         prec_ = std::make_unique<array_stack<T>>();
@@ -58,24 +60,24 @@ public:
     void advance() override {
         assert(!is_at_end());
         T x{ };
-        rem_->pop(x);
-        prec_->push(x);
+        x = rem_->pop();
+        prec_->push(std::move(x));
     }
     
     void retreat() override {
         assert(!is_at_front());
         T x{ };
-        prec_->pop(x);
-        rem_->push(x);
+        x = prec_->pop();
+        rem_->push(std::move(x));
     }
     
-    void insert(T& x) override {
-        prec_->push(x);
+    void insert(T&& x) override {
+        prec_->push(std::forward<T>(x));
     }
     
-    void remove(T& x) override {
+    T remove() override {
         assert(!is_at_end());
-        rem_->pop(x);
+        return rem_->pop();
     }
     
     bool is_at_end() const override  {
@@ -89,24 +91,24 @@ public:
     std::string to_str() override {
         std::stringstream out;
         out << "(";
-        std::unique_ptr<stack<T>> rev_prec = std::make_unique<array_stack<T>>();
+        std::unique_ptr<clean_stack<T>> rev_prec = std::make_unique<array_stack<T>>();
         while (!prec_->is_empty()) {
             T x;
-            prec_->pop(x);
-            rev_prec->push(x);
+            x = prec_->pop();
+            rev_prec->push(std::move(x));
         }
         out << *rev_prec;
         while (!rev_prec->is_empty()) {
             T x;
-            rev_prec->pop(x);
-            prec_->push(x);
+            x = rev_prec->pop();
+            prec_->push(std::move(x));
         }
         out << ", " << *rem_ << ")";
         return out.str();
     }
 private:
-    std::unique_ptr<stack<T>> prec_;
-    std::unique_ptr<stack<T>> rem_;
+    std::unique_ptr<clean_stack<T>> prec_;
+    std::unique_ptr<clean_stack<T>> rem_;
 };
 
 }

@@ -9,12 +9,12 @@
 #ifndef array_queue_h
 #define array_queue_h
 
-#include <clean_queue/clean_queue.hpp>
+#include "clean_queue.hpp"
 
 namespace cleanpp {
 
 template <class T>
-class array_queue: public queue<T>
+class array_queue: public clean_queue<T>
 {
 private:
     static const int MIN_CAP = 6;
@@ -37,7 +37,7 @@ private:
             }
         }
         if (cap_ != old_cap) {
-            auto temp_cont = std::move(contents_);
+            std::unique_ptr<T[]> temp_cont = std::move(contents_);
             contents_ = std::make_unique<T[]>(cap_);
             for (int i = 0; i < length_; i++) {
                 contents_[i] = std::move(temp_cont[(i + head_) % old_cap]);
@@ -50,9 +50,6 @@ public:
     array_queue(): cap_(MIN_CAP), head_(0), length_(0)
     {
         contents_ = std::make_unique<T[]>(cap_);
-        //		for (int i = 0; i < MAX_SIZE; i++) {
-        //			contents_[i] = std::make_unique<T>();
-        //		}
     }
     
     ~array_queue() {
@@ -62,7 +59,7 @@ public:
         length_ = 0;
     }
     
-    void enqueue(T& x) override
+    void enqueue(T&& x) override
     {
         int next_idx = (head_ + length_) % cap_;
         contents_[next_idx] = std::move(x);
@@ -71,13 +68,15 @@ public:
         this->resize_if_needed();
     }
     
-    void dequeue(T& x) override
+    T dequeue() override
     {
-        x = std::move(contents_[head_]);
+        T x = std::move(contents_[head_]);
         length_--;
         head_ = (head_ + 1) % cap_;
         
         this->resize_if_needed();
+		
+		return std::move(x);
     }
     
     bool is_empty() const override {

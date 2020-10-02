@@ -10,7 +10,7 @@
 
 namespace cleanpp {
 vector_integer::vector_integer(int n) {
-    set_from_int(n);
+    set_from_long(n);
 }
 
 vector_integer::vector_integer(vector_integer &&other): rep_(std::move(other.rep_)), sign_(other.sign_) {
@@ -33,8 +33,9 @@ void vector_integer::clear() {
 	sign_ = ZERO;
 }
 
-void vector_integer::divide_by_radix(int &d) {
-    if (!rep_.empty()) {
+int vector_integer::divide_by_radix() {
+	int d;
+	if (!rep_.empty()) {
         d = rep_.back();
         rep_.pop_back();
     } else {
@@ -44,6 +45,7 @@ void vector_integer::divide_by_radix(int &d) {
         sign_ = ZERO;
     }
     assert (0 <= d && d < RADIX);
+	return d;
 }
 
 void vector_integer::multiply_by_radix(int d) {
@@ -68,7 +70,7 @@ void vector_integer::negate() {
 	}
 }
 
-std::unique_ptr<big_integer> vector_integer::new_instance() const {
+std::unique_ptr<clean_integer> vector_integer::new_instance() const {
     return std::make_unique<vector_integer>();
 }
 

@@ -9,7 +9,7 @@
 #ifndef natural_number_h
 #define natural_number_h
 
-#include <clean_base.hpp>
+#include "clean_base.hpp"
 
 namespace cleanpp {
 
@@ -23,7 +23,7 @@ class natural_number_kernel: public clean_base {
      */
 public:
     static const int RADIX = 10;
-    
+			
     /*
      ensures is_zero = (this = 0)
      */
@@ -38,21 +38,22 @@ public:
     
     /*
      updates  this
-     ensures  #this = this * RADIX + d and
-              0 <= d and d < RADIX
+     ensures  #this = this * RADIX + divide_by_radix and
+              0 <= divide_by_radix and divide_by_radix < RADIX
      */
-    virtual void divide_by_radix(int &d) = 0;
+    virtual int divide_by_radix() = 0;
     
     /*
      ensures `==` = (this = other)
      */
-    bool operator==(natural_number_kernel &other);
+    virtual bool operator==(natural_number_kernel &other);
     
     friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
 };
 
 class natural_number_secondary: public natural_number_kernel {
 public:
+
     /*
      updates this
      ensures this = #this + 1
@@ -74,17 +75,15 @@ public:
     virtual void set_from_long(long n);
     
     /*
-     updates x
-     ensures x = #x + y
+     ensures add = #x + y
      */
-    friend void add(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<natural_number_secondary>&& add(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
     
     /*
-     updates  x
      requires x >= y
-     ensures  x = #x - y
+     ensures  add = #x - y
      */
-    friend void subtract(std::unique_ptr<natural_number_secondary> &x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
 };
 
 }

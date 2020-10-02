@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#include <clean_base.hpp>
+#include "clean_base.hpp"
 
 namespace cleanpp {
 
@@ -19,10 +19,10 @@ enum integer_sign {
 	NEGATIVE = -1, ZERO = 0, POSITIVE = 1
 };
 
-class big_integer_kernel;
-class big_integer;
+class clean_integer_kernel;
+class clean_integer;
 
-class big_integer_kernel: public clean_base {
+class clean_integer_kernel: public clean_base {
     /*
      big_integer_kernel is modeled by integer
      */
@@ -40,12 +40,11 @@ public:
 
     /*
      updates  this
-     replaces d
-     ensures  |#this| = |this| * RADIX + d and
-              0 <= d and d < 10 and
+     ensures  |#this| = |this| * RADIX + divide_by_radix and
+              0 <= divide_by_radix and divide_by_radix < 10 and
               this < 0 iff #this < 0
      */
-    virtual void divide_by_radix(int& d) = 0;
+    virtual int divide_by_radix() = 0;
 
     /*
      updates this
@@ -63,17 +62,17 @@ public:
     /*
      ensures new_instance = 0
      */
-    virtual std::unique_ptr<big_integer> new_instance() const = 0;
+    virtual std::unique_ptr<clean_integer> new_instance() const = 0;
 
     /*
      ensures `==` = (this = other)
      */
-	bool operator==(big_integer_kernel &other);
+	bool operator==(clean_integer_kernel &other);
 	
-	friend std::ostream& operator<<(std::ostream& out, big_integer_kernel& o);
+	friend std::ostream& operator<<(std::ostream& out, clean_integer_kernel& o);
 };
 
-class big_integer: public big_integer_kernel {
+class clean_integer: public clean_integer_kernel {
 private:
     
     /*
@@ -96,21 +95,21 @@ private:
      requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
      ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
      */
-    friend void combine_same(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<clean_integer> combine_same(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
     
     /*
      updates  x
      requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
      */
-    friend void combine_different(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	friend std::unique_ptr<clean_integer> combine_different(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
     
     /*
      updates  x
      requires |x| > |y|
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
-    friend void remove(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<clean_integer> remove(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
 
 public:
     
@@ -130,7 +129,7 @@ public:
      replaces this
      ensures  this = n
      */
-    virtual void set_from_int(int n);
+    virtual void set_from_long(long n);
     
     /*
      requires 0 <= d and d < 10
@@ -149,26 +148,26 @@ public:
     /*
      ensures clone = this
      */
-    virtual std::unique_ptr<big_integer> clone();
+    virtual std::unique_ptr<clean_integer> clone();
 
     /*
      updates  x
      ensures  x = #x + y
      */
-    friend void add(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend std::unique_ptr<clean_integer> add(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
     
     /*
      updates x
      ensures x = #x - y
      */
-	friend void subtract(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+	friend std::unique_ptr<clean_integer> subtract(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
 
     /*
      ensures compare > 0 ==> x > y and
              compare = 0 ==> x = y and
              compare < 0 ==> x < y
      */
-    friend int compare(std::unique_ptr<big_integer> &x, std::unique_ptr<big_integer> &y);
+    friend int compare(std::unique_ptr<clean_integer> &x, std::unique_ptr<clean_integer> &y);	
 };
 }
 

@@ -40,17 +40,17 @@ bool stack_nn::is_zero() const {
 void stack_nn::multiply_by_radix(int d) {
     assert(0 <= d && d < RADIX);
     if (!is_zero() || d != 0) {
-        rep_.push(d);
+        rep_.push(std::move(d));
     }
 }
 
-void stack_nn::divide_by_radix(int &d) {
-    if (is_zero()) {
-        d = 0;
-    } else {
-        rep_.pop(d);
+int stack_nn::divide_by_radix() {
+	int d = 0;
+    if (!is_zero()) {
+        d = rep_.pop();
     }
     assert(0 <= d && d < RADIX);
+	return std::move(d);
 }
 
 }

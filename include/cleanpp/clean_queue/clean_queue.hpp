@@ -13,11 +13,11 @@
 #include <iostream>
 #include <memory>
 
-#include <clean_base.hpp>
+#include "clean_base.hpp"
 
 namespace cleanpp {
 template <typename T>
-class queue: public clean_base {
+class clean_queue: public clean_base {
     /*
      queue is modeled by string of T
      */
@@ -30,22 +30,21 @@ public:
      clears  x
      ensures this = #this * <x>
      */
-    virtual void enqueue(T& x) = 0;
+    virtual void enqueue(T&& x) = 0;
     
     /*
      updates  this
-     replaces x
      requires |this| > 0
-     ensures  this * <x> = #this
+     ensures  this * <dequeue> = #this
      */
-    virtual void dequeue(T& x) = 0;
+    virtual T dequeue() = 0;
     
     /*
      ensures is_empty = (|this| = 0)
      */
     virtual bool is_empty() const = 0;
     
-    friend std::ostream& operator<<(std::ostream& out, queue<T>& o) {
+    friend std::ostream& operator<<(std::ostream& out, clean_queue<T>& o) {
         return out << o.to_str();
     }
 };
