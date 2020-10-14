@@ -43,6 +43,8 @@ public:
      */
     virtual int divide_by_radix() = 0;
     
+    virtual std::unique_ptr<natural_number_kernel> new_instance() = 0;
+    
     /*
      ensures `==` = (this = other)
      */
@@ -52,8 +54,7 @@ public:
 };
 
 class natural_number_secondary: public natural_number_kernel {
-public:
-
+public:    
     /*
      updates this
      ensures this = #this + 1
@@ -84,6 +85,11 @@ public:
      ensures  add = #x - y
      */
     friend std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
+    
+    /*
+     ensures multiply = #x * y
+     */
+    friend std::unique_ptr<natural_number_secondary>&& multiply(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
 };
 
 }

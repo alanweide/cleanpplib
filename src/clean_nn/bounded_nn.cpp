@@ -50,6 +50,10 @@ int bounded_nn::divide_by_radix() {
 	return d;
 }
 
+std::unique_ptr<natural_number_kernel> bounded_nn::new_instance() {
+    return std::make_unique<bounded_nn>();
+}
+
 void bounded_nn::increment() {
     this->n_++;
 }

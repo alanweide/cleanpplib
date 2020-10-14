@@ -560,4 +560,102 @@ static std::string nnToString(flex_natural_number &o) {
 	XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
 }
 
+- (void)testMultiplyZeroZero {
+    flex_natural_number n1(nn_type{});
+    flex_natural_number n2(nn_type{});
+    flex_natural_number n1_exp(nn_type{});
+    flex_natural_number n2_exp(nn_type{});
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyFiveZero {
+    flex_natural_number n1(nn_type{}, 5);
+    flex_natural_number n2(nn_type{});
+    flex_natural_number n1_exp(nn_type{}, 0);
+    flex_natural_number n2_exp(nn_type{});
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyFourFour {
+    flex_natural_number n1(nn_type{}, 4);
+    flex_natural_number n2(nn_type{}, 4);
+    flex_natural_number n1_exp(nn_type{}, 16);
+    flex_natural_number n2_exp(nn_type{}, 4);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyTenTen {
+    flex_natural_number n1(nn_type{}, 10);
+    flex_natural_number n2(nn_type{}, 10);
+    flex_natural_number n1_exp(nn_type{}, 100);
+    flex_natural_number n2_exp(nn_type{}, 10);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply77_66{
+    flex_natural_number n1(nn_type{}, 77);
+    flex_natural_number n2(nn_type{}, 66);
+    flex_natural_number n1_exp(nn_type{}, 5082);
+    flex_natural_number n2_exp(nn_type{}, 66);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply77_6{
+    flex_natural_number n1(nn_type{}, 77);
+    flex_natural_number n2(nn_type{}, 6);
+    flex_natural_number n1_exp(nn_type{}, 462);
+    flex_natural_number n2_exp(nn_type{}, 6);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply71_66{
+    flex_natural_number n1(nn_type{}, 71);
+    flex_natural_number n2(nn_type{}, 66);
+    flex_natural_number n1_exp(nn_type{}, 4686);
+    flex_natural_number n2_exp(nn_type{}, 66);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
 @end

@@ -495,4 +495,103 @@ static std::string nnToString(t_natural_number<I> &o) {
 	XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
 }
 
+
+- (void)testMultiplyZeroZero {
+    template_t n1;
+    template_t n2;
+    template_t n1_exp;
+    template_t n2_exp;
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyFiveZero {
+    template_t n1(5);
+    template_t n2;
+    template_t n1_exp(0);
+    template_t n2_exp;
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyFourFour {
+    template_t n1(4);
+    template_t n2(4);
+    template_t n1_exp(16);
+    template_t n2_exp(4);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiplyTenTen {
+    template_t n1(10);
+    template_t n2(10);
+    template_t n1_exp(100);
+    template_t n2_exp(10);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply77_66{
+    template_t n1(77);
+    template_t n2(66);
+    template_t n1_exp(5082);
+    template_t n2_exp(66);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply77_6{
+    template_t n1(77);
+    template_t n2(6);
+    template_t n1_exp(462);
+    template_t n2_exp(6);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
+- (void)testMultiply71_66{
+    template_t n1(71);
+    template_t n2(66);
+    template_t n1_exp(4686);
+    template_t n2_exp(66);
+    
+    n1 = multiply(std::move(n1), n2);
+
+    std::string n1_str = nnToString(n1);
+    std::string n2_str = nnToString(n2);
+    XCTAssert(n1 == n1_exp, @"n = %s", n1_str.c_str());
+    XCTAssert(n2 == n2_exp, @"n = %s", n2_str.c_str());
+}
+
 @end

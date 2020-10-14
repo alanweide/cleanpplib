@@ -53,4 +53,9 @@ int stack_nn::divide_by_radix() {
 	return std::move(d);
 }
 
+
+std::unique_ptr<natural_number_kernel> stack_nn::new_instance() {
+    return std::make_unique<stack_nn>();
+}
+
 }

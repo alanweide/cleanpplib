@@ -196,6 +196,23 @@ public:
 		
 		return diff;
 	}
+
+    /*
+     ensures  add = #x * y
+     */
+    friend flex_natural_number multiply(flex_natural_number&& x, flex_natural_number &y) {
+        flex_natural_number product(std::forward<flex_natural_number>(x));
+        
+        std::unique_ptr<natural_number_secondary> product_casted(static_cast<natural_number_secondary*>(product.rep_.release()));
+        std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
+        
+        product_casted = multiply(std::move(product_casted), y_casted);
+        
+        y.rep_ = std::move(y_casted);
+        product.rep_ = std::move(product_casted);
+        
+        return product;
+    }
 };
 
 }

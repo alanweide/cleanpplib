@@ -17,58 +17,58 @@ bool natural_number_kernel::operator==(natural_number_kernel &other) {
     std::cout << *this;
     bool otherZero = other.is_zero();
     bool thisZero = (*this).is_zero();
-	if (otherZero && thisZero) {
-		ans = true;
-	} else if (otherZero == thisZero) {
-		int last_this, last_other;
-		last_this = this->divide_by_radix();
-		last_other = other.divide_by_radix();
-		if (last_this == last_other) {
-			ans = *this == other;
-		}
-		this->multiply_by_radix(last_this);
-		other.multiply_by_radix(last_other);
-	}
-	return ans;
+    if (otherZero && thisZero) {
+        ans = true;
+    } else if (otherZero == thisZero) {
+        int last_this, last_other;
+        last_this = this->divide_by_radix();
+        last_other = other.divide_by_radix();
+        if (last_this == last_other) {
+            ans = *this == other;
+        }
+        this->multiply_by_radix(last_this);
+        other.multiply_by_radix(last_other);
+    }
+    return ans;
 }
 
 std::ostream& operator<<(std::ostream& out, natural_number_kernel& o) {
-	if (o.is_zero()) {
-		out << 0;
-	} else {
-		int d;
-		d = o.divide_by_radix();
-		if (!o.is_zero()) {
-			out << o;
-		}
-		out << d;
-		o.multiply_by_radix(d);
-	}
-	return out;
+    if (o.is_zero()) {
+        out << 0;
+    } else {
+        int d;
+        d = o.divide_by_radix();
+        if (!o.is_zero()) {
+            out << o;
+        }
+        out << d;
+        o.multiply_by_radix(d);
+    }
+    return out;
 }
 
 // natural_number_secondary
 void natural_number_secondary::increment() {
-	int d = 0;
-	d = this->divide_by_radix();
-	d++;
-	if (d == RADIX) {
-		d -= RADIX;
-		increment();
-	}
-	multiply_by_radix(d);
+    int d = 0;
+    d = this->divide_by_radix();
+    d++;
+    if (d == RADIX) {
+        d -= RADIX;
+        increment();
+    }
+    multiply_by_radix(d);
 }
 
 void natural_number_secondary::decrement() {
-	assert(!is_zero());
-	int d = 0;
-	d = this->divide_by_radix();
-	d--;
-	if (d < 0) {
-		d += RADIX;
-		decrement();
-	}
-	multiply_by_radix(d);
+    assert(!is_zero());
+    int d = 0;
+    d = this->divide_by_radix();
+    d--;
+    if (d < 0) {
+        d += RADIX;
+        decrement();
+    }
+    multiply_by_radix(d);
 }
 
 void natural_number_secondary::set_from_long(long n) {
@@ -86,8 +86,8 @@ void natural_number_secondary::set_from_long(long n) {
  const parameter: preserves
  pass-by-ref:     restores
  pass-by-move:    non-restores-mode
-	 pass-by-move w/corresponding return:   updates
-	 pass-by-move w/o corresponding return: clears
+ pass-by-move w/corresponding return:   updates
+ pass-by-move w/o corresponding return: clears
  returned w/o corresponding parameter: replaces
  receiver: ???
  
@@ -132,6 +132,36 @@ std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_num
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
+    return std::move(x);
+}
+
+std::unique_ptr<natural_number_secondary>&& multiply_by_digit(std::unique_ptr<natural_number_secondary> x, int d) {
+    int last_dig = x->divide_by_radix();
+    last_dig *= d;
+    if (!x->is_zero()) {
+        x = multiply_by_digit(std::move(x), d);
+        x->multiply_by_radix(0);
+    }
+    std::unique_ptr<natural_number_secondary> nn_last_dig(static_cast<natural_number_secondary*>(x->new_instance().release()));
+    nn_last_dig = add(std::move(nn_last_dig), x);
+    nn_last_dig->set_from_long(last_dig);
+    x = add(std::move(x), nn_last_dig);
+    return std::move(x);
+}
+
+std::unique_ptr<natural_number_secondary>&& multiply(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y) {
+    if (y->is_zero()) {
+        x->clear();
+    } else {
+        int y_ones = y->divide_by_radix();
+        std::unique_ptr<natural_number_secondary> x_copy(static_cast<natural_number_secondary*>(x->new_instance().release()));
+        x_copy = add(std::move(x_copy), x);
+        x_copy = multiply_by_digit(std::move(x_copy), y_ones);
+        x = multiply(std::move(x), y);
+        x->multiply_by_radix(0);
+        x = add(std::move(x), x_copy);
+        y->multiply_by_radix(y_ones);
+    }
     return std::move(x);
 }
 

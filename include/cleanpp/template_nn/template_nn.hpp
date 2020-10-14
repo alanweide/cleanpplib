@@ -211,6 +211,25 @@ public:
 		
 		return diff;
 	}
+
+
+    /*
+     ensures  add = #x * y
+     */
+    template<class I2>
+    friend t_natural_number<I> multiply(t_natural_number<I>&& x, t_natural_number<I2> &y) {
+        t_natural_number<I> product(std::forward<t_natural_number<I>>(x));
+        
+        std::unique_ptr<natural_number_secondary> product_casted(static_cast<natural_number_secondary*>(product.rep_.release()));
+        std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
+        
+        product_casted = multiply(std::move(product_casted), y_casted);
+        
+        y.rep_ = std::move(y_casted);
+        product.rep_ = std::move(product_casted);
+        
+        return product;
+    }
 };
 
 }
