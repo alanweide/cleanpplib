@@ -5,7 +5,7 @@
 //  Created by Alan Weide on 1/22/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
-
+#include <assert.h>
 #include <stack_nn.hpp>
 #include <clean_stack/linked_stack.hpp>
 
