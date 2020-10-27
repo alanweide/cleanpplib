@@ -160,7 +160,7 @@ public:
 	 ensures  this = n
 	 */
 	void set_from_long(long n) {
-		assert(n >= 0);
+		this->assert(n >= 0);
 		std::unique_ptr<natural_number_secondary> casted(static_cast<natural_number_secondary*>(this->rep_.release()));
 		
         casted->set_from_long(n);

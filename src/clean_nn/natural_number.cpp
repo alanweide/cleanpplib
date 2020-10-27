@@ -5,7 +5,8 @@
 //  Created by Alan Weide on 1/29/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
-
+#include <memory>
+#include <assert.h>
 #include <stdio.h>
 #include <clean_nn/natural_number.hpp>
 
