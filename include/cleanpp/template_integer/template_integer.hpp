@@ -161,7 +161,7 @@ public:
 		
         this->rep_ = std::move(casted);
 	}
-	
+    
 	/*
 	 requires 0 <= d and d < 10
 	 ensures  this = |#this| and abs = [POSITIVE, ZERO, or NEGATIVE as this > 0, = 0, or < 0]

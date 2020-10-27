@@ -21,7 +21,7 @@ class t_natural_number;
 template <class I>
 class t_natural_number_kernel: public clean_base {
 protected:
-    std::unique_ptr<natural_number_kernel> rep_;
+    std::unique_ptr<clean_natural_number_kernel> rep_;
 public:
 	/*
 	 type NATURAL is integer
@@ -33,13 +33,13 @@ public:
 	static const int RADIX = 10;
 	
 	t_natural_number_kernel(long n = 0): rep_(std::make_unique<I>(n)) {
-        static_assert(std::is_base_of<natural_number_kernel, I>::value,
+        static_assert(std::is_base_of<clean_natural_number_kernel, I>::value,
                       "Template parameter I must derive from cleanpp::natural_number_kernel");
 	}
 	
 	t_natural_number_kernel(const t_natural_number_kernel<I>& other) = delete;
 	t_natural_number_kernel(t_natural_number_kernel<I>&& other): rep_(std::move(other.rep_)) {
-        static_assert(std::is_base_of<natural_number_kernel, I>::value,
+        static_assert(std::is_base_of<clean_natural_number_kernel, I>::value,
                       "Template parameter I must derive from cleanpp::natural_number_kernel");
 		other.rep_ = std::make_unique<I>();
 	}
@@ -96,8 +96,8 @@ public:
     bool operator==(t_natural_number_kernel<I> &other)	{
         return *this->rep_ == *other.rep_;
 	}
-	
-	friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
+
+    friend std::ostream& operator<<(std::ostream& out, t_natural_number_kernel<I>& o) {
 		return out << *(o.rep_);
 	}
 	
@@ -109,12 +109,12 @@ class t_natural_number: public t_natural_number_kernel<I> {
 public:
 	
 	t_natural_number(long n = 0): t_natural_number_kernel<I>(n) {
-		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
+		static_assert(std::is_base_of<clean_natural_number, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 	}
 	
 	t_natural_number(const t_natural_number<I>& other) = delete;
 	t_natural_number(t_natural_number<I>&& other): t_natural_number_kernel<I>(std::forward<t_natural_number_kernel<I>&&>(other)) {
-		static_assert(std::is_base_of<natural_number_secondary, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
+		static_assert(std::is_base_of<clean_natural_number, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 		other.rep_ = std::make_unique<I>();
 	}
 	
@@ -128,12 +128,12 @@ public:
 		return *this;
 	}
 	
-	/*
+    /*
 	 updates this
 	 ensures this = #this + 1
 	 */
 	void increment() {
-		std::unique_ptr<natural_number_secondary> casted(static_cast<natural_number_secondary*>(this->rep_.release()));
+		std::unique_ptr<clean_natural_number> casted(static_cast<clean_natural_number*>(this->rep_.release()));
 		
         casted->increment();
 		
@@ -147,7 +147,7 @@ public:
 	 */
 	void decrement() {
 		assert(!this->is_zero());
-		std::unique_ptr<natural_number_secondary> casted(static_cast<natural_number_secondary*>(this->rep_.release()));
+		std::unique_ptr<clean_natural_number> casted(static_cast<clean_natural_number*>(this->rep_.release()));
 		
         casted->decrement();
 		
@@ -161,13 +161,25 @@ public:
 	 */
 	void set_from_long(long n) {
 		assert(n >= 0);
-		std::unique_ptr<natural_number_secondary> casted(static_cast<natural_number_secondary*>(this->rep_.release()));
+		std::unique_ptr<clean_natural_number> casted(static_cast<clean_natural_number*>(this->rep_.release()));
 		
         casted->set_from_long(n);
 		
         this->rep_ = std::move(casted);
 	}
 	
+    /*
+     updates this
+     ensures this = #this / 2
+     */
+    void divide_by_two() {
+        std::unique_ptr<clean_natural_number> casted(static_cast<clean_natural_number*>(this->rep_.release()));
+        
+        casted->divide_by_two();
+        
+        this->rep_ = std::move(casted);
+    }
+
     /*
      ensures new_instance = 0
      */
@@ -178,12 +190,11 @@ public:
 	/*
 	 ensures add = #x + y
 	 */
-	template<class I2>
-	friend t_natural_number<I> add(t_natural_number<I>&& x, t_natural_number<I2> &y) {
+	friend t_natural_number<I> add(t_natural_number<I>&& x, t_natural_number<I> &y) {
         t_natural_number<I> sum(std::forward<t_natural_number<I>>(x));
         
-        std::unique_ptr<natural_number_secondary> sum_casted(static_cast<natural_number_secondary*>(sum.rep_.release()));
-        std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
+        std::unique_ptr<clean_natural_number> sum_casted(static_cast<clean_natural_number*>(sum.rep_.release()));
+        std::unique_ptr<clean_natural_number> y_casted(static_cast<clean_natural_number*>(y.rep_.release()));
         
         sum_casted = add(std::move(sum_casted), y_casted);
         
@@ -192,17 +203,16 @@ public:
         
         return sum;
 	}
-	
+	    
 	/*
 	 requires x >= y
 	 ensures  add = #x - y
 	 */
-	template<class I2>
-	friend t_natural_number<I> subtract(t_natural_number<I>&& x, t_natural_number<I2> &y) {
+	friend t_natural_number<I> subtract(t_natural_number<I>&& x, t_natural_number<I> &y) {
 		t_natural_number<I> diff(std::forward<t_natural_number<I>>(x));
 		
-		std::unique_ptr<natural_number_secondary> diff_casted(static_cast<natural_number_secondary*>(diff.rep_.release()));
-		std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
+		std::unique_ptr<clean_natural_number> diff_casted(static_cast<clean_natural_number*>(diff.rep_.release()));
+		std::unique_ptr<clean_natural_number> y_casted(static_cast<clean_natural_number*>(y.rep_.release()));
 		
         diff_casted = subtract(std::move(diff_casted), y_casted);
 		
@@ -216,12 +226,11 @@ public:
     /*
      ensures  add = #x * y
      */
-    template<class I2>
-    friend t_natural_number<I> multiply(t_natural_number<I>&& x, t_natural_number<I2> &y) {
+    friend t_natural_number<I> multiply(t_natural_number<I>&& x, t_natural_number<I> &y) {
         t_natural_number<I> product(std::forward<t_natural_number<I>>(x));
         
-        std::unique_ptr<natural_number_secondary> product_casted(static_cast<natural_number_secondary*>(product.rep_.release()));
-        std::unique_ptr<natural_number_secondary> y_casted(static_cast<natural_number_secondary*>(y.rep_.release()));
+        std::unique_ptr<clean_natural_number> product_casted(static_cast<clean_natural_number*>(product.rep_.release()));
+        std::unique_ptr<clean_natural_number> y_casted(static_cast<clean_natural_number*>(y.rep_.release()));
         
         product_casted = multiply(std::move(product_casted), y_casted);
         
