@@ -10,6 +10,7 @@
 #define flex_nn_hpp
 
 #include <stdio.h>
+#include <assert.h>
 #include "clean_base.hpp"
 #include "natural_number.hpp"
 #include "stack_nn.hpp"

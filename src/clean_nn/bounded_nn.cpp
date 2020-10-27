@@ -6,8 +6,10 @@
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
+#include <memory>
 #include <stdio.h>
 #include <bounded_nn.hpp>
+
 
 namespace cleanpp {
 bounded_nn::bounded_nn(long n): n_(n) {};

@@ -5,7 +5,7 @@
 //  Created by Alan Weide on 10/2/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
-
+#include <memory>
 #include <iostream>
 #include "template_integer.hpp"
 #include "flexible_integer.hpp"

@@ -5,7 +5,8 @@
 //  Created by Alan Weide on 2/10/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
-
+#include <memory>
+#include <assert.h>
 #include <clean_integer/vector_integer.hpp>
 
 namespace cleanpp {

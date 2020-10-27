@@ -566,11 +566,15 @@ static std::string nn_k_ToString(std::unique_ptr<clean_natural_number_kernel> &o
 }
 
 - (void)testMultiplyFourFour {
-    std::unique_ptr<clean_natural_number> n1 = std::make_unique<nn_type>(4);
-    std::unique_ptr<clean_natural_number> n2 = std::make_unique<nn_type>(4);
-    std::unique_ptr<clean_natural_number> n1_exp = std::make_unique<nn_type>(16);
-    std::unique_ptr<clean_natural_number> n2_exp = std::make_unique<nn_type>(4);
-    
+//    std::unique_ptr<clean_natural_number> n1 = std::make_unique<nn_type>(4);
+//    std::unique_ptr<clean_natural_number> n2 = std::make_unique<nn_type>(4);
+//    std::unique_ptr<clean_natural_number> n1_exp = std::make_unique<nn_type>(16);
+//    std::unique_ptr<clean_natural_number> n2_exp = std::make_unique<nn_type>(4);
+    std::unique_ptr<clean_natural_number> n1(new nn_type(4));
+    std::unique_ptr<clean_natural_number> n2(new nn_type(4));
+    std::unique_ptr<clean_natural_number> n1_exp(new nn_type(16));
+    std::unique_ptr<clean_natural_number> n2_exp(new nn_type(4));
+
     n1 = multiply(std::move(n1), n2);
 
     std::string n1_str = nnToString(n1);
