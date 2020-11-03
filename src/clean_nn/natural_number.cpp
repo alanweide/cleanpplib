@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <clean_nn/natural_number.hpp>
 
+
 namespace cleanpp {
 
 // natural_number_kernel

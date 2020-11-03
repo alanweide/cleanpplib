@@ -3,8 +3,7 @@ headerfiles = -I ../include/cleanpp -I ../include/cleanpp/clean_integer -I ../in
 
 main.exe: main.o libCleanpp.a
 	g++ -o $@ $^
-	make clean
-
+	
 libCleanpp.a: $(objects)
 	ar rv libCleanpp.a $^
 
