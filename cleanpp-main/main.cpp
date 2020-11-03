@@ -29,5 +29,13 @@ int main(int argc, const char * argv[]) {
     t_queue<array_queue, t_integer<nn_integer>> q;
     q.enqueue(std::move(x));
     std::cout << "Hello, World! " << q << "\n";
+
+    std::unique_ptr<natural_number_secondary> n1 = std::make_unique<bounded_nn>();
+    std::unique_ptr<natural_number_secondary> n2 = std::make_unique<bounded_nn>(5);
+    
+    n1 = add(std::move(n1), n2);
+
+    std::cout << *n1 << ", " << *n2 << "\n";
+
     return 0;
 }
