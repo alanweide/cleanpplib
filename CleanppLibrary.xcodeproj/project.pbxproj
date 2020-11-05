@@ -32,6 +32,7 @@
 		E717C03F24F9BFCC00F61B0F /* TestFlexibleStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = E717C03E24F9BFCC00F61B0F /* TestFlexibleStackInt.mm */; };
 		E717C04324F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E717C04224F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm */; };
 		E71D16FE24F9ACBA00B3B6EE /* TestFlexListNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E71D16FD24F9ACB900B3B6EE /* TestFlexListNaturalNumber.mm */; };
+		E759151B2548B36F00E8D654 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = E759151A2548B36F00E8D654 /* makefile */; };
 		E760A2F72392049D00139E3D /* clean_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* clean_queue.hpp */; };
 		E760A2F82392049D00139E3D /* clean_base.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EF2392049D00139E3D /* clean_base.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		E760A2F92392049D00139E3D /* linked_queue.hpp in Sources */ = {isa = PBXBuildFile; fileRef = E760A2F02392049D00139E3D /* linked_queue.hpp */; };
@@ -119,6 +120,7 @@
 		E717C04224F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexibleQueueNaturalNumber.mm; sourceTree = "<group>"; };
 		E71D16FC24F9AB2800B3B6EE /* flexible_list.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flexible_list.hpp; sourceTree = "<group>"; };
 		E71D16FD24F9ACB900B3B6EE /* TestFlexListNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexListNaturalNumber.mm; sourceTree = "<group>"; };
+		E759151A2548B36F00E8D654 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		E760A2BB239203A200139E3D /* libCleanpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCleanpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E760A2CD239203DA00139E3D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E760A2EE2392049D00139E3D /* clean_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clean_queue.hpp; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 		E7744EB625278F43000A5CC9 /* cleanpp-main */ = {
 			isa = PBXGroup;
 			children = (
+				E759151A2548B36F00E8D654 /* makefile */,
 				E7744EB725278F43000A5CC9 /* main.cpp */,
 			);
 			path = "cleanpp-main";
@@ -608,6 +611,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E759151B2548B36F00E8D654 /* makefile in Sources */,
 				E7744EB825278F43000A5CC9 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

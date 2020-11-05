@@ -10,6 +10,8 @@
 #define clean_base_h
 
 #include <iostream>
+#include <memory>
+#include <assert.h>
 
 namespace cleanpp {
 

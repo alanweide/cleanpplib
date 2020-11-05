@@ -13,7 +13,7 @@
 
 namespace cleanpp {
 
-class natural_number_kernel: public clean_base {
+class clean_natural_number_kernel: public clean_base {
     /*
      type NATURAL is integer
         exemplar   n
@@ -43,17 +43,17 @@ public:
      */
     virtual int divide_by_radix() = 0;
     
-    virtual std::unique_ptr<natural_number_kernel> new_instance() = 0;
+    virtual std::unique_ptr<clean_natural_number_kernel> new_instance() = 0;
     
     /*
      ensures `==` = (this = other)
      */
-    virtual bool operator==(natural_number_kernel &other);
+    virtual bool operator==(clean_natural_number_kernel &other);
     
-    friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o);
+    friend std::ostream& operator<<(std::ostream& out, clean_natural_number_kernel& o);
 };
 
-class natural_number_secondary: public natural_number_kernel {
+class clean_natural_number: public clean_natural_number_kernel {
 public:    
     /*
      updates this
@@ -76,20 +76,26 @@ public:
     virtual void set_from_long(long n);
     
     /*
+     updates this
+     ensures this = #this / 2
+     */
+    virtual void divide_by_two();
+    
+    /*
      ensures add = #x + y
      */
-    friend std::unique_ptr<natural_number_secondary>&& add(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<clean_natural_number>&& add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
     
     /*
      requires x >= y
      ensures  add = #x - y
      */
-    friend std::unique_ptr<natural_number_secondary>&& subtract(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
     
     /*
      ensures multiply = #x * y
      */
-    friend std::unique_ptr<natural_number_secondary>&& multiply(std::unique_ptr<natural_number_secondary> x, std::unique_ptr<natural_number_secondary> &y);
+    friend std::unique_ptr<clean_natural_number>&& multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
 };
 
 }

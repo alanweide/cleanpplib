@@ -5,6 +5,7 @@
 //  Created by Alan Weide on 1/22/20.
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
+#include <memory>
 #include <assert.h>
 #include <stack_nn.hpp>
 #include <clean_stack/linked_stack.hpp>
@@ -54,7 +55,7 @@ int stack_nn::divide_by_radix() {
 }
 
 
-std::unique_ptr<natural_number_kernel> stack_nn::new_instance() {
+std::unique_ptr<clean_natural_number_kernel> stack_nn::new_instance() {
     return std::make_unique<stack_nn>();
 }
 
