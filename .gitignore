@@ -5,3 +5,4 @@ CleanppLibrary.xcodeproj/**
 **/*.exe
 .vscode
 **/*.a
+**/*.o
