@@ -150,7 +150,7 @@ std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_n
     return std::move(x);
 }
 
-std::unique_ptr<clean_natural_number>&& multiply_by_digit(std::unique_ptr<clean_natural_number> x, int d) {
+std::unique_ptr<clean_natural_number> multiply_by_digit(std::unique_ptr<clean_natural_number> x, int d) {
     int last_dig = x->divide_by_radix();
     last_dig *= d;
     if (!x->is_zero()) {
@@ -161,7 +161,7 @@ std::unique_ptr<clean_natural_number>&& multiply_by_digit(std::unique_ptr<clean_
     nn_last_dig = add(std::move(nn_last_dig), x);
     nn_last_dig->set_from_long(last_dig);
     x = add(std::move(x), nn_last_dig);
-    return std::move(x);
+    return x;
 }
 
 std::unique_ptr<clean_natural_number>&& multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {

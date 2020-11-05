@@ -7,6 +7,7 @@
 //
 
 #include <memory>
+#include <assert.h>
 #include <stdio.h>
 #include <bounded_nn.hpp>
 

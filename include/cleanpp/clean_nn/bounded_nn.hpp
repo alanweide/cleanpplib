@@ -9,6 +9,8 @@
 #ifndef bounded_nn_h
 #define bounded_nn_h
 
+#include <memory>
+#include <assert.h>
 #include "natural_number.hpp"
 
 namespace cleanpp {
