@@ -4,3 +4,4 @@ Build/**
 CleanppLibrary.xcodeproj/**
 **/*.exe
 .vscode
+**/*.a
