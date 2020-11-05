@@ -46,8 +46,8 @@ void divideBy2(bounded_nn& nn){
 
 void power(bounded_nn nn, int p){
     int i = 0; 
-    std::unique_ptr<natural_number_secondary> x(new bounded_nn(std::move(nn)));
-    std::unique_ptr<natural_number_secondary> y(new bounded_nn(std::move(p)));
+    std::unique_ptr<clean_natural_number> x(new bounded_nn(std::move(nn)));
+    std::unique_ptr<clean_natural_number> y(new bounded_nn(std::move(p)));
     while(i < p - 1){
         multiply(std::move(x), y);
         i++;
@@ -56,18 +56,18 @@ void power(bounded_nn nn, int p){
 }
 
 
-std::unique_ptr<natural_number_secondary> multiply_by_digit(std::unique_ptr<natural_number_secondary> x, int d) {
+std::unique_ptr<clean_natural_number> multiply_by_digit(std::unique_ptr<clean_natural_number> x, int d) {
     int last_dig = x->divide_by_radix();
     last_dig *= d;
     if (!x->is_zero()) {
         x = multiply_by_digit(std::move(x), d);
         x->multiply_by_radix(0);
     }
-    std::unique_ptr<natural_number_secondary> nn_last_dig(static_cast<natural_number_secondary*>(x->new_instance().release()));
+    std::unique_ptr<clean_natural_number> nn_last_dig(static_cast<clean_natural_number*>(x->new_instance().release()));
     nn_last_dig = add(std::move(nn_last_dig), x);
     nn_last_dig->set_from_long(last_dig);
     x = add(std::move(x), nn_last_dig);
-    return std::move(x);
+    return x;
 }
 
 
@@ -92,9 +92,9 @@ int main(int argc, const char * argv[]) {
 
 
     //std::unique_ptr<natural_number_secondary> x1(new bounded_nn(5));
-    std::unique_ptr<natural_number_secondary> x1 = std::make_unique<bounded_nn>(5);
+    std::unique_ptr<clean_natural_number> x1 = std::make_unique<bounded_nn>(5);
     //std::cout<<*x1<<std::endl;
-    std::unique_ptr<natural_number_secondary> y = std::make_unique<bounded_nn>(6);
+    std::unique_ptr<clean_natural_number> y = std::make_unique<bounded_nn>(6);
     //std::cout<<*y<<std::endl;
     
 
@@ -103,7 +103,7 @@ int main(int argc, const char * argv[]) {
     } else {
         int y_ones = y->divide_by_radix();
         
-        std::unique_ptr<natural_number_secondary> x_copy(static_cast<natural_number_secondary*>(x1->new_instance().release()));
+        std::unique_ptr<clean_natural_number> x_copy(static_cast<clean_natural_number*>(x1->new_instance().release()));
         std::cout<<"yuh"<<std::endl;
         std::cout<<*x_copy<<std::endl;
         x_copy = add(std::move(x_copy), x1);
