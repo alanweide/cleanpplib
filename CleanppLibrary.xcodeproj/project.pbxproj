@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */; };
 		860934AF23E2102D00D38073 /* natural_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860934AE23E2102D00D38073 /* natural_number.cpp */; };
+		860A16BC2564687E000F5942 /* minimal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860A16B32564662A000F5942 /* minimal.cpp */; };
+		860A16C02564687E000F5942 /* libCleanpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E760A2BB239203A200139E3D /* libCleanpp.a */; };
 		863809A924ED801C00F30C8F /* TestFlexInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 863809A824ED801C00F30C8F /* TestFlexInteger.mm */; };
 		863809AD24EF2CAD00F30C8F /* TestFlexNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 863809AC24EF2CAD00F30C8F /* TestFlexNN.mm */; };
 		86577C8824DB8B6C00CB7637 /* template_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 86577C8724DB8B6C00CB7637 /* template_stack.hpp */; };
@@ -58,6 +60,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		860A16BA2564687E000F5942 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E760A2B3239203A200139E3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E760A2BA239203A200139E3D;
+			remoteInfo = Cleanpp;
+		};
 		E760A309239204DC00139E3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E760A2B3239203A200139E3D /* Project object */;
@@ -75,6 +84,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		860A16C12564687E000F5942 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		E7744EB325278F43000A5CC9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +107,8 @@
 /* Begin PBXFileReference section */
 		860934A523DA40CD00D38073 /* TestLinkedStackInt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedStackInt.mm; sourceTree = "<group>"; };
 		860934AE23E2102D00D38073 /* natural_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = natural_number.cpp; sourceTree = "<group>"; };
+		860A16B32564662A000F5942 /* minimal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = minimal.cpp; sourceTree = "<group>"; };
+		860A16C52564687E000F5942 /* cleanpp-minimal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cleanpp-minimal"; sourceTree = BUILT_PRODUCTS_DIR; };
 		863809A624ED7DE000F30C8F /* flexible_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flexible_integer.hpp; sourceTree = "<group>"; };
 		863809A824ED801C00F30C8F /* TestFlexInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexInteger.mm; sourceTree = "<group>"; };
 		863809AA24EF2ACD00F30C8F /* flexible_nn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flexible_nn.hpp; sourceTree = "<group>"; };
@@ -149,6 +169,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		860A16BF2564687E000F5942 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				860A16C02564687E000F5942 /* libCleanpp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E760A2B9239203A200139E3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +335,7 @@
 				E760A2BB239203A200139E3D /* libCleanpp.a */,
 				E760A303239204DC00139E3D /* TestCleanpp.xctest */,
 				E7744EB525278F43000A5CC9 /* cleanpp-main */,
+				860A16C52564687E000F5942 /* cleanpp-minimal */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -383,6 +412,7 @@
 		E7744EB625278F43000A5CC9 /* cleanpp-main */ = {
 			isa = PBXGroup;
 			children = (
+				860A16B32564662A000F5942 /* minimal.cpp */,
 				E759151A2548B36F00E8D654 /* makefile */,
 				E7744EB725278F43000A5CC9 /* main.cpp */,
 			);
@@ -460,6 +490,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		860A16B82564687E000F5942 /* cleanpp-minimal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 860A16C22564687E000F5942 /* Build configuration list for PBXNativeTarget "cleanpp-minimal" */;
+			buildPhases = (
+				860A16BB2564687E000F5942 /* Sources */,
+				860A16BF2564687E000F5942 /* Frameworks */,
+				860A16C12564687E000F5942 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				860A16B92564687E000F5942 /* PBXTargetDependency */,
+			);
+			name = "cleanpp-minimal";
+			productName = "cleanpp-main";
+			productReference = 860A16C52564687E000F5942 /* cleanpp-minimal */;
+			productType = "com.apple.product-type.tool";
+		};
 		E760A2BA239203A200139E3D /* Cleanpp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E760A2C6239203A200139E3D /* Build configuration list for PBXNativeTarget "Cleanpp" */;
@@ -549,6 +597,7 @@
 				E760A2BA239203A200139E3D /* Cleanpp */,
 				E760A302239204DC00139E3D /* TestCleanpp */,
 				E7744EB425278F43000A5CC9 /* cleanpp-main */,
+				860A16B82564687E000F5942 /* cleanpp-minimal */,
 			);
 		};
 /* End PBXProject section */
@@ -564,6 +613,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		860A16BB2564687E000F5942 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				860A16BC2564687E000F5942 /* minimal.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E760A2B8239203A200139E3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -619,6 +676,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		860A16B92564687E000F5942 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E760A2BA239203A200139E3D /* Cleanpp */;
+			targetProxy = 860A16BA2564687E000F5942 /* PBXContainerItemProxy */;
+		};
 		E760A30A239204DC00139E3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E760A2BA239203A200139E3D /* Cleanpp */;
@@ -632,6 +694,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		860A16C32564687E000F5942 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		860A16C42564687E000F5942 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		E760A2C4239203A200139E3D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -868,6 +948,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		860A16C22564687E000F5942 /* Build configuration list for PBXNativeTarget "cleanpp-minimal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				860A16C32564687E000F5942 /* Debug */,
+				860A16C42564687E000F5942 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E760A2B6239203A200139E3D /* Build configuration list for PBXProject "CleanppLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
