@@ -24,121 +24,161 @@
 
 using namespace cleanpp;
 
-void divideBy2(bounded_nn& nn){
-    int rem = nn.divide_by_radix();
-    if(!nn.is_zero() || rem != 0){
-        if(rem % 2 == 0){
-            divideBy2(nn);
-            nn.multiply_by_radix(rem / 2);
-        } else {
-            int rem2 = nn.divide_by_radix();
-            nn.multiply_by_radix(rem2);
-            if(rem2 % 2 == 0){
-                divideBy2(nn);
-                nn.multiply_by_radix(rem / 2);
-            } else{
-                divideBy2(nn);
-                nn.multiply_by_radix((rem / 2) + 5);
+std::unique_ptr<clean_natural_number> divideBy2(std::unique_ptr<clean_natural_number> nn){
+
+    int rem = nn->divide_by_radix();
+
+    if(!nn->is_zero() || rem != 0){
+        
+        int rem2 = nn->divide_by_radix();
+    
+        nn->multiply_by_radix(rem2);
+
+        if(rem2 % 2 == 0){
+            
+            nn = divideBy2(std::move(nn));
+            nn->multiply_by_radix(rem / 2);
+
+        } else{
+            
+            nn = divideBy2(std::move(nn));
+            nn->multiply_by_radix((rem / 2) + 5);
+        }
+        
+    }
+    return nn;
+}
+
+int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_natural_number>& nn2){
+
+    int rem1 = nn1->divide_by_radix();
+    int rem2 = nn2->divide_by_radix();
+    
+    int result = 0;
+
+    if(nn1->is_zero()){
+        if(nn2->is_zero()){
+            if(rem1 > rem2){
+                result = 1;
+            }
+            else if(rem1 == rem2){
+                result = 0;
+            }
+            else{
+                result = -1;
             }
         }
+        else{
+            result = -1;
+        }
     }
+    else if(nn2->is_zero()){
+        result = 1;
+    }
+    else{
+        if(compare(nn1, nn2) == 0){
+            if(rem1 > rem2){
+                result = 1;
+            }
+            else if(rem1 < rem2){
+                result = -1;
+            }
+            else{
+                result = 0;
+            }
+        }
+        else if(compare(nn1, nn2) == -1){
+            result = -1;
+        }
+        else{
+            result = 1;
+        }
+    }
+
+    nn1->multiply_by_radix(rem1);
+    nn2->multiply_by_radix(rem2);
+
+    return result;
 }
 
-void power(bounded_nn nn, int p){
+std::unique_ptr<clean_natural_number> power(std::unique_ptr<clean_natural_number> nn, int p){
+    
     int i = 0; 
-    std::unique_ptr<natural_number_secondary> x(new bounded_nn(std::move(nn)));
-    std::unique_ptr<natural_number_secondary> y(new bounded_nn(std::move(p)));
-    while(i < p - 1){
-        multiply(std::move(x), y);
+    std::unique_ptr<clean_natural_number> base(static_cast<clean_natural_number*>(nn->new_instance().release()));
+    base = add(std::move(base), nn);
+
+    std::unique_ptr<clean_natural_number> y = std::make_unique<bounded_nn>(p);
+    
+    while(i < p - 1){ 
+        base = multiply(std::move(base), nn);
         i++;
     }
-    std::cout<<nn<<std::endl;
+
+    nn = std::move(base);
+    return nn;
 }
 
+std::unique_ptr<clean_natural_number> root(std::unique_ptr<clean_natural_number> nn, int r){
 
-std::unique_ptr<natural_number_secondary> multiply_by_digit(std::unique_ptr<natural_number_secondary> x, int d) {
-    int last_dig = x->divide_by_radix();
-    last_dig *= d;
-    if (!x->is_zero()) {
-        x = multiply_by_digit(std::move(x), d);
-        x->multiply_by_radix(0);
+    std::unique_ptr<clean_natural_number> lowEnough = std::make_unique<bounded_nn>(0);
+    std::unique_ptr<clean_natural_number> highEnough(static_cast<clean_natural_number*>(nn->new_instance().release()));
+    
+    highEnough = add(std::move(highEnough), nn);
+
+    std::unique_ptr<clean_natural_number> one = std::make_unique<bounded_nn>(1);
+    bounded_nn powerTemp;
+
+    lowEnough->increment();
+    while(compare(highEnough, lowEnough) > 0){
+        lowEnough->decrement();
+
+        std::unique_ptr<clean_natural_number> root  = std::make_unique<bounded_nn>(0);
+
+        root = add(std::move(root), lowEnough);
+        root = add(std::move(root), highEnough);
+        root->divide_by_two();
+
+        std::unique_ptr<clean_natural_number> powerTemp = std::make_unique<bounded_nn>();
+        powerTemp = add(std::move(powerTemp), root);
+
+        powerTemp = power(std::move(powerTemp), r);
+
+        if(compare(nn, powerTemp) == -1){
+            highEnough = std::move(root);
+        }
+        else{
+            lowEnough = std::move(root);
+        }
+
+        lowEnough->increment();
     }
-    std::unique_ptr<natural_number_secondary> nn_last_dig(static_cast<natural_number_secondary*>(x->new_instance().release()));
-    nn_last_dig = add(std::move(nn_last_dig), x);
-    nn_last_dig->set_from_long(last_dig);
-    x = add(std::move(x), nn_last_dig);
-    return std::move(x);
-}
+    if(compare(nn, one) != 0){
+        lowEnough->decrement();
+        nn = std::move(lowEnough);
+    }
 
+    return nn;
+}
 
 int main(int argc, const char * argv[]) {
     t_integer<nn_integer> x;
     x.increment();
     t_queue<array_queue, t_integer<nn_integer>> q;
     q.enqueue(std::move(x));
-    std::cout << "Hello, World! " << q << "\n";
+    std::cout << "Hello, World!" << q << "\n";
     
-    bounded_nn nn(5);
-    
-    nn.multiply_by_radix(5);
-    std::cout<<nn<<std::endl;
-    divideBy2(nn);
-    std::cout<<nn<<std::endl;
-    bounded_nn nn2(4);
-    
-    std::cout<<nn2<<std::endl;
-    
-    int p = 44;
+    long unsigned int input;
+    int r;
+   
+    while(input != -1){
+        std::cout<<"Please enter a number: ";
+        std::cin>>input;
+        std::cout<<"Please enter the root to take: ";
+        std::cin>>r;
 
+        std::unique_ptr<clean_natural_number> x3 = std::make_unique<bounded_nn>(input);
+        std::cout<<"result of root is: "<<std::endl;
+        std::cout<<*root(std::move(x3), r)<<std::endl;
 
-    //std::unique_ptr<natural_number_secondary> x1(new bounded_nn(5));
-    std::unique_ptr<natural_number_secondary> x1 = std::make_unique<bounded_nn>(5);
-    //std::cout<<*x1<<std::endl;
-    std::unique_ptr<natural_number_secondary> y = std::make_unique<bounded_nn>(6);
-    //std::cout<<*y<<std::endl;
-    
-
-    if (y->is_zero()) {
-            x1->clear();
-    } else {
-        int y_ones = y->divide_by_radix();
-        
-        std::unique_ptr<natural_number_secondary> x_copy(static_cast<natural_number_secondary*>(x1->new_instance().release()));
-        std::cout<<"yuh"<<std::endl;
-        std::cout<<*x_copy<<std::endl;
-        x_copy = add(std::move(x_copy), x1);
-        std::cout<<*x_copy<<" 110"<<std::endl;
-        x_copy = multiply_by_digit(std::move(x_copy), y_ones);
-        std::cout<<*x_copy<<" 112"<<std::endl;
-        x1 = multiply(std::move(x1), y);
-        std::cout<<*x_copy<<"114"<<std::endl;
-        x1->multiply_by_radix(0);
-        x1 = add(std::move(x1), x_copy);
-        y->multiply_by_radix(y_ones);
     }
-
-    
-    
-    
-    return 0;
 }
-
-
-/*int x_low;
-    x_low = x1->divide_by_radix();
-    int y_low;
-    y_low = y->divide_by_radix();
-    if (!y->is_zero()) {
-        x1 = add(std::move(x1), y);  
-    }
-    x_low += y_low;
-    if (x_low >= natural_number_secondary::RADIX) {
-        x_low -= natural_number_secondary::RADIX;
-        x1->increment();
-    }
-    x1->multiply_by_radix(x_low);
-    y->multiply_by_radix(y_low);
-    std::unique_ptr<natural_number_secondary> x2(new bounded_nn(5));
-    std::unique_ptr<natural_number_secondary> x3(new bounded_nn(6));
-    add(std::move(x2), x3);
-    */
