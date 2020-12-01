@@ -169,7 +169,7 @@ int main(int argc, const char * argv[]) {
     
     long unsigned int input;
     int r;
-    std::cout<<"testing, one two"<<std::endl;
+    
     while(input != -1){
         std::cout<<"Please enter a number: ";
         std::cin>>input;
