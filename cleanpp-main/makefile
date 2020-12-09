@@ -3,13 +3,13 @@ headerfiles = -I ../include/cleanpp -I ../include/cleanpp/clean_integer -I ../in
 version = -std=c++14
 
 
-main.exe: main.o libCleanpp.a
+main2.exe: main2.o libCleanpp.a
 	g++ -o $@ $^
 
 libCleanpp.a: $(objects)
 	ar rv libCleanpp.a $^
 
-main.o: main.cpp 
+main2.o: main2.cpp 
 	g++ $(version) -c $< -o $@ -I ../include/cleanpp/flexible_nn -I ../include/cleanpp/template_nn -I ../include/cleanpp/flexible_stack -I ../include/cleanpp/template_stack -I ../include/cleanpp -I ../include/cleanpp/template_integer -I ../include/cleanpp/flexible_integer -I ../include/cleanpp/nn_integer -I ../include/cleanpp/bounded_nn -I ../include/cleanpp/vector_integer -I ../include/cleanpp/template_queue -I ../include/cleanpp/flexible_queue -I ../include/cleanpp/clean_queue -I ../include/cleanpp/clean_stack -I ../include/cleanpp/template_list -I ../include/cleanpp/flexible_list -I ../include/cleanpp/clean_list -I ../include/cleanpp/clean_integer -I ../include/cleanpp/clean_nn
 
 bounded_nn.o: ../src/clean_nn/bounded_nn.cpp 

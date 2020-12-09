@@ -24,40 +24,42 @@
 
 using namespace cleanpp;
 
-std::unique_ptr<clean_natural_number> divideBy2(std::unique_ptr<clean_natural_number> nn){
+flex_natural_number divideBy2(flex_natural_number nn){
 
-    int rem = nn->divide_by_radix();
+    int rem = nn.divide_by_radix();
 
-    if(!nn->is_zero() || rem != 0){
+    if(!nn.is_zero() || rem != 0){
         
-        int rem2 = nn->divide_by_radix();
+        int rem2 = nn.divide_by_radix();
     
-        nn->multiply_by_radix(rem2);
+        int tempRem2 = rem2;
+
+        nn.multiply_by_radix(std::move(tempRem2));
 
         if(rem2 % 2 == 0){
             
             nn = divideBy2(std::move(nn));
-            nn->multiply_by_radix(rem / 2);
+            nn.multiply_by_radix(rem / 2);
 
         } else{
             
             nn = divideBy2(std::move(nn));
-            nn->multiply_by_radix((rem / 2) + 5);
+            nn.multiply_by_radix((rem / 2) + 5);
         }
         
     }
     return nn;
 }
 
-int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_natural_number>& nn2){
+int compare(flex_natural_number& nn1, flex_natural_number& nn2){
 
-    int rem1 = nn1->divide_by_radix();
-    int rem2 = nn2->divide_by_radix();
+    int rem1 = nn1.divide_by_radix();
+    int rem2 = nn2.divide_by_radix();
     
     int result = 0;
 
-    if(nn1->is_zero()){
-        if(nn2->is_zero()){
+    if(nn1.is_zero()){
+        if(nn2.is_zero()){
             if(rem1 > rem2){
                 result = 1;
             }
@@ -72,7 +74,7 @@ int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_na
             result = -1;
         }
     }
-    else if(nn2->is_zero()){
+    else if(nn2.is_zero()){
         result = 1;
     }
     else{
@@ -98,18 +100,20 @@ int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_na
         }
     }
 
-    nn1->multiply_by_radix(rem1);
-    nn2->multiply_by_radix(rem2);
+    nn1.multiply_by_radix(rem1 * 1);
+    nn2.multiply_by_radix(rem2 * 1);
 
     return result;
 }
 
-std::unique_ptr<clean_natural_number> power(std::unique_ptr<clean_natural_number> nn, int p){
+flex_natural_number power(flex_natural_number nn, int p){
     
     int i = 0; 
-    std::unique_ptr<clean_natural_number> base(static_cast<clean_natural_number*>(nn->new_instance().release()));
-    base = add(std::move(base), nn);
 
+    flex_natural_number base(stack_nn{}, 0);
+
+    base = add(std::move(base), nn);
+    
     while(i < p - 1){ 
         base = multiply(std::move(base), nn);
         i++;
@@ -119,28 +123,29 @@ std::unique_ptr<clean_natural_number> power(std::unique_ptr<clean_natural_number
     return nn;
 }
 
-std::unique_ptr<clean_natural_number> root(std::unique_ptr<clean_natural_number> nn, int r){
 
-    std::unique_ptr<clean_natural_number> lowEnough = std::make_unique<bounded_nn>(0);
-    std::unique_ptr<clean_natural_number> tooHigh(static_cast<clean_natural_number*>(nn->new_instance().release()));
+
+flex_natural_number root(flex_natural_number nn, int r){
+
+    flex_natural_number lowEnough(stack_nn{}, 0);
+    flex_natural_number tooHigh(stack_nn{}, 0);
     
     tooHigh = add(std::move(tooHigh), nn);
 
-    std::unique_ptr<clean_natural_number> one = std::make_unique<bounded_nn>(1);
+    flex_natural_number one(stack_nn{}, 1);
 
-    lowEnough->increment();
+    lowEnough.increment();
     while(compare(tooHigh, lowEnough) > 0){
-        lowEnough->decrement();
+        lowEnough.decrement();
 
-        std::unique_ptr<clean_natural_number> root  = std::make_unique<bounded_nn>(0);
+        flex_natural_number root(stack_nn{}, 0);
 
         root = add(std::move(root), lowEnough);
         root = add(std::move(root), tooHigh);
-        root->divide_by_two();
+        root.divide_by_two();
 
-        std::unique_ptr<clean_natural_number> powerTemp = std::make_unique<bounded_nn>();
+        flex_natural_number powerTemp(stack_nn{}, 0);
         powerTemp = add(std::move(powerTemp), root);
-
         powerTemp = power(std::move(powerTemp), r);
 
         if(compare(nn, powerTemp) == -1){
@@ -150,13 +155,13 @@ std::unique_ptr<clean_natural_number> root(std::unique_ptr<clean_natural_number>
             lowEnough = std::move(root);
         }
 
-        lowEnough->increment();
+        lowEnough.increment();
     }
     if(compare(nn, one) != 0){
-        lowEnough->decrement();
+        lowEnough.decrement();
         nn = std::move(lowEnough);
     }
-
+    
     return nn;
 }
 
@@ -176,9 +181,12 @@ int main(int argc, const char * argv[]) {
         std::cout<<"Please enter the root to take: ";
         std::cin>>r;
 
-        std::unique_ptr<clean_natural_number> x3 = std::make_unique<bounded_nn>(input);
-        std::cout<<"result of root is: "<<std::endl;
-        std::cout<<*root(std::move(x3), r)<<std::endl;
+        flex_natural_number x3(stack_nn{}, input);
 
-    }
+        std::cout<<"result of root is: "<<std::endl;
+        x3 = root(std::move(x3), r);
+
+        std::cout<<x3<<std::endl;
+
+    }   
 }
