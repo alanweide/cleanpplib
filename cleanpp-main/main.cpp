@@ -45,7 +45,7 @@ void divideBy2(bounded_nn& nn){
 }
 
 void power(bounded_nn nn, int p){
-    int i = 0; 
+    int i = 0;
     std::unique_ptr<clean_natural_number> x(new bounded_nn(std::move(nn)));
     std::unique_ptr<clean_natural_number> y(new bounded_nn(std::move(p)));
     while(i < p - 1){
@@ -89,17 +89,17 @@ int main(int argc, const char * argv[]) {
     std::cout<<nn2<<std::endl;
     
     int p = 44;
-
-
+    
+    
     //std::unique_ptr<natural_number_secondary> x1(new bounded_nn(5));
     std::unique_ptr<clean_natural_number> x1 = std::make_unique<bounded_nn>(5);
     //std::cout<<*x1<<std::endl;
     std::unique_ptr<clean_natural_number> y = std::make_unique<bounded_nn>(6);
     //std::cout<<*y<<std::endl;
     
-
+    
     if (y->is_zero()) {
-            x1->clear();
+        x1->clear();
     } else {
         int y_ones = y->divide_by_radix();
         
@@ -116,7 +116,7 @@ int main(int argc, const char * argv[]) {
         x1 = add(std::move(x1), x_copy);
         y->multiply_by_radix(y_ones);
     }
-
+    
     
     
     
@@ -125,20 +125,20 @@ int main(int argc, const char * argv[]) {
 
 
 /*int x_low;
-    x_low = x1->divide_by_radix();
-    int y_low;
-    y_low = y->divide_by_radix();
-    if (!y->is_zero()) {
-        x1 = add(std::move(x1), y);  
-    }
-    x_low += y_low;
-    if (x_low >= natural_number_secondary::RADIX) {
-        x_low -= natural_number_secondary::RADIX;
-        x1->increment();
-    }
-    x1->multiply_by_radix(x_low);
-    y->multiply_by_radix(y_low);
-    std::unique_ptr<natural_number_secondary> x2(new bounded_nn(5));
-    std::unique_ptr<natural_number_secondary> x3(new bounded_nn(6));
-    add(std::move(x2), x3);
-    */
+ x_low = x1->divide_by_radix();
+ int y_low;
+ y_low = y->divide_by_radix();
+ if (!y->is_zero()) {
+ x1 = add(std::move(x1), y);
+ }
+ x_low += y_low;
+ if (x_low >= natural_number_secondary::RADIX) {
+ x_low -= natural_number_secondary::RADIX;
+ x1->increment();
+ }
+ x1->multiply_by_radix(x_low);
+ y->multiply_by_radix(y_low);
+ std::unique_ptr<natural_number_secondary> x2(new bounded_nn(5));
+ std::unique_ptr<natural_number_secondary> x3(new bounded_nn(6));
+ add(std::move(x2), x3);
+ */
