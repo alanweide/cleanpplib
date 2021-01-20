@@ -121,24 +121,24 @@ std::unique_ptr<clean_natural_number> power(std::unique_ptr<clean_natural_number
 
 std::unique_ptr<clean_natural_number> root(std::unique_ptr<clean_natural_number> nn, int r){
 
-    std::unique_ptr<clean_natural_number> lowEnough = std::make_unique<bounded_nn>(0);
+    std::unique_ptr<clean_natural_number> lowEnough = std::make_unique<stack_nn>(0);
     std::unique_ptr<clean_natural_number> tooHigh(static_cast<clean_natural_number*>(nn->new_instance().release()));
     
     tooHigh = add(std::move(tooHigh), nn);
 
-    std::unique_ptr<clean_natural_number> one = std::make_unique<bounded_nn>(1);
+    std::unique_ptr<clean_natural_number> one = std::make_unique<stack_nn>(1);
 
     lowEnough->increment();
     while(compare(tooHigh, lowEnough) > 0){
         lowEnough->decrement();
 
-        std::unique_ptr<clean_natural_number> root  = std::make_unique<bounded_nn>(0);
+        std::unique_ptr<clean_natural_number> root  = std::make_unique<stack_nn>(0);
 
         root = add(std::move(root), lowEnough);
         root = add(std::move(root), tooHigh);
         root->divide_by_two();
 
-        std::unique_ptr<clean_natural_number> powerTemp = std::make_unique<bounded_nn>();
+        std::unique_ptr<clean_natural_number> powerTemp = std::make_unique<stack_nn>();
         powerTemp = add(std::move(powerTemp), root);
 
         powerTemp = power(std::move(powerTemp), r);
@@ -176,7 +176,7 @@ int main(int argc, const char * argv[]) {
         std::cout<<"Please enter the root to take: ";
         std::cin>>r;
 
-        std::unique_ptr<clean_natural_number> x3 = std::make_unique<bounded_nn>(input);
+        std::unique_ptr<clean_natural_number> x3 = std::make_unique<stack_nn>(input);
         std::cout<<"result of root is: "<<std::endl;
         std::cout<<*root(std::move(x3), r)<<std::endl;
 
