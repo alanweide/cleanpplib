@@ -36,7 +36,7 @@ int toInt(T nn){
     result = onesPlace + 10 * toInt(std::move(nn));
 
   }
-  
+
   return result;
 
 }
@@ -94,35 +94,29 @@ bool operator<(flex_natural_number& nn1, flex_natural_number& nn2){
 }
 
 
-//This function violates the Clean++ discipline rule that a function that updates a parameter must return said parameter. 
-//The queue that is passed into the function is updated (the minimum value is removed), but not returned. 
-//Instead, the minimum value of the queue is returned.
 
 /**
- * Removes and returns the minimum value from {@code q}.
+ * Places the minimum value of {@code q} at front of queue.
  * 
  * @param q
  *            the queue
- * @return the minimum value from {@code q}
+ * @return the {@code q} with minimum value at front
  * @updates q
  * @requires <pre>
  * q /= empty_string
  * </pre>
- * @ensures <pre>
- * perms(q * <removeMin>, #q)  and
- *  for all x: template type
- *      where (x is in entries (q))
- *    ( <removeMin> <= x )
- * </pre>
+ * @ensures minimum value is at front of queue
+ * 
  */
 template<typename T>
-T removeMin(flex_queue<T>& q) {
+flex_queue<T> placeMinAtFront(flex_queue<T> q) {
 
     T min = q.dequeue();
     flex_queue<T> temp( linked_queue<T>{} );
     
     while(!q.is_empty()){
       T element = q.dequeue();
+      
 
       if(compare<T>(element, min) < 0){
         
@@ -134,8 +128,14 @@ T removeMin(flex_queue<T>& q) {
       }
     }
     
-    q = std::move(temp);
-    return std::move(min); 
+    flex_queue<T> result( linked_queue<T>{} );
+    result.enqueue(std::move(min));
+
+    while( !temp.is_empty() ){
+        result.enqueue(temp.dequeue());
+    }
+    
+    return result; 
 }
 
 
@@ -152,8 +152,9 @@ flex_queue<T> sort(flex_queue<T> q){
     flex_queue<T> result( linked_queue<T>{} );
 
     while(!q.is_empty()){
-        
-        result.enqueue(removeMin<T>(q));
+        q = placeMinAtFront<T>(std::move(q));
+
+       result.enqueue( q.dequeue() );
 
     }
     
@@ -167,20 +168,22 @@ int main(int argc, const char* argv[]) {
   flex_queue<stack_nn> qnn( linked_queue<stack_nn>{} );
   
   qnn.enqueue(stack_nn(2));
-  qnn.enqueue(stack_nn(3));
-  qnn.enqueue(stack_nn(4));
+  qnn.enqueue(stack_nn(1));
+  qnn.enqueue(stack_nn(6));
   qnn.enqueue(stack_nn(4));
   
+  
+ 
+  qnn = placeMinAtFront<stack_nn>(std::move(qnn));
+  
   std::cout<<"Minimum element is: ";
-  std::cout<<toInt<stack_nn>(removeMin<stack_nn>(qnn))<<std::endl<<std::endl;
+  std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
   
   qnn = sort<stack_nn>(std::move(qnn));
 
-  std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
-  
   while( !qnn.is_empty() ){
-    std::cout<<toInt<stack_nn>(qnn.dequeue())<<", ";
+        std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
   }
-  std::cout<<std::endl;
+    
 
 }

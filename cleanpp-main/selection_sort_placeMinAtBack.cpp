@@ -1,5 +1,5 @@
 //
-//  selection_sort2.cpp
+//  selection_sort3.cpp
 //  cleanpp-main
 //
 //  Created by Will Janning on 1/2/21.
@@ -36,20 +36,23 @@ int toInt(T nn){
     result = onesPlace + 10 * toInt(std::move(nn));
 
   }
-  
+
   return result;
 
 }
 
 
-bool operator<(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_natural_number>& nn2){
-  int rem1 = nn1->divide_by_radix();
-  int rem2 = nn2->divide_by_radix();
+template <typename T>
+int compare(T& nn1,
+            T& nn2) {
+
+  int rem1 = nn1.divide_by_radix();
+  int rem2 = nn2.divide_by_radix();
 
   int result = 0;
 
-  if (nn1->is_zero()) {
-    if (nn2->is_zero()) {
+  if (nn1.is_zero()) {
+    if (nn2.is_zero()) {
       if (rem1 > rem2) {
         result = 1;
       } else if (rem1 == rem2) {
@@ -60,10 +63,10 @@ bool operator<(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean
     } else {
       result = -1;
     }
-  } else if (nn2->is_zero()) {
+  } else if (nn2.is_zero()) {
     result = 1;
   } else {
-    int compareResult = nn1 < nn2;
+    int compareResult = compare(nn1, nn2);
 
     if (compareResult == 0) {
       if (rem1 > rem2) {
@@ -80,12 +83,15 @@ bool operator<(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean
     }
   }
 
-  nn1->multiply_by_radix(rem1);
-  nn2->multiply_by_radix(rem2);
+  nn1.multiply_by_radix(std::move(rem1));
+  nn2.multiply_by_radix(std::move(rem2));
 
   return result;
 }
 
+bool operator<(flex_natural_number& nn1, flex_natural_number& nn2){
+  return compare(nn1, nn2) < 0;
+}
 
 
 //This function violates the Clean++ discipline rule that a function that updates a parameter must return said parameter. 
@@ -110,26 +116,33 @@ bool operator<(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean
  * </pre>
  */
 template<typename T>
-T removeMin(std::unique_ptr<clean_queue<T>>& q) {
+flex_queue<T> placeMinAtFront(flex_queue<T> q) {
 
-    std::unique_ptr<T> min = std::make_unique<T>(q->dequeue());
-    std::unique_ptr<clean_queue<T>> temp = std::make_unique<linked_queue<T>>();
+    T min = q.dequeue();
+    flex_queue<T> temp( linked_queue<T>{} );
+    
+    while(!q.is_empty()){
+      T element = q.dequeue();
+      
 
-    while(!q->is_empty()){
-      std::unique_ptr<T> element = std::make_unique<T>(q->dequeue());
-
-      if( element < min ){
+      if(compare<T>(element, min) < 0){
         
-        temp->enqueue(std::move(*min));
+        temp.enqueue(std::move(min));
         min = std::move(element);
 
       } else{
-        temp->enqueue(std::move(*element));
+        temp.enqueue(std::move(element));
       }
     }
     
-    q = std::move(temp);
-    return std::move(*min); 
+    flex_queue<T> result( linked_queue<T>{} );
+    result.enqueue(std::move(min));
+
+    while( !temp.is_empty() ){
+        result.enqueue(temp.dequeue());
+    }
+    
+    return result; 
 }
 
 
@@ -142,12 +155,13 @@ T removeMin(std::unique_ptr<clean_queue<T>>& q) {
  * @ensures q = [#q in nondecreasing order]
  */
 template<typename T>
-std::unique_ptr<clean_queue<T>> sort(std::unique_ptr<clean_queue<T>> q){
-    std::unique_ptr<clean_queue<T>> result = std::make_unique<linked_queue<T>>();
+flex_queue<T> sort(flex_queue<T> q){
+    flex_queue<T> result( linked_queue<T>{} );
 
-    while(!q->is_empty()){
-        
-        result->enqueue(removeMin<T>(q));
+    while(!q.is_empty()){
+        q = placeMinAtFront<T>(std::move(q));
+
+       result.enqueue( q.dequeue() );
 
     }
     
@@ -158,24 +172,25 @@ std::unique_ptr<clean_queue<T>> sort(std::unique_ptr<clean_queue<T>> q){
 
 int main(int argc, const char* argv[]) {
 
-  std::unique_ptr<clean_queue<stack_nn>> qnn = std::make_unique<linked_queue<stack_nn>>();
+  flex_queue<stack_nn> qnn( linked_queue<stack_nn>{} );
   
-  qnn->enqueue(stack_nn(2));
-  qnn->enqueue(stack_nn(3));
-  qnn->enqueue(stack_nn(4));
-  qnn->enqueue(stack_nn(4));
+  qnn.enqueue(stack_nn(2));
+  qnn.enqueue(stack_nn(1));
+  qnn.enqueue(stack_nn(6));
+  qnn.enqueue(stack_nn(4));
+  
+  
+ 
+  qnn = placeMinAtFront<stack_nn>(std::move(qnn));
   
   std::cout<<"Minimum element is: ";
-  std::cout<<toInt<stack_nn>(removeMin<stack_nn>(qnn))<<std::endl<<std::endl;
+  std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
   
   qnn = sort<stack_nn>(std::move(qnn));
 
-  std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
-  
-  while( !qnn->is_empty() ){
-    std::cout<<toInt<stack_nn>(qnn->dequeue())<<", ";
+  while( !qnn.is_empty() ){
+        std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
   }
-  std::cout<<std::endl;
+    
 
 }
-
