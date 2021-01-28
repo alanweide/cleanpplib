@@ -24,8 +24,7 @@
 
 using namespace cleanpp;
 
-template<typename T>
-int toInt(T nn){
+int toInt(stack_nn nn){
 
   int result = 0;
 
@@ -42,9 +41,9 @@ int toInt(T nn){
 }
 
 
-template <typename T>
-int compare(T& nn1,
-            T& nn2) {
+
+int compare(stack_nn& nn1,
+            stack_nn& nn2) {
 
   int rem1 = nn1.divide_by_radix();
   int rem2 = nn2.divide_by_radix();
@@ -89,11 +88,23 @@ int compare(T& nn1,
   return result;
 }
 
-bool operator<(flex_natural_number& nn1, flex_natural_number& nn2){
+bool operator<(stack_nn& nn1, stack_nn& nn2){
   return compare(nn1, nn2) < 0;
 }
 
 
+/**
+ * Appends q2 to the end of q1
+ * 
+ * @param q1 
+ *          the first queue
+ * @param q2 
+ *          the second queue
+ * @return the concatenated queues
+ * @clears q1, q2
+ * @ensures <append> = #q1 * #q2 
+ *    and | q1 * q2 | = 0
+ */
 template<typename T>
 flex_queue<T> append(flex_queue<T> q1, flex_queue<T> q2){
 
@@ -106,21 +117,17 @@ flex_queue<T> append(flex_queue<T> q1, flex_queue<T> q2){
 
 
 /**
- * Removes and returns the minimum value from {@code q}.
+ * Places the minimum value of {@code q} at front of queue.
  * 
  * @param q
  *            the queue
- * @return the minimum value from {@code q}
+ * @return the {@code q} with minimum value at front
  * @updates q
  * @requires <pre>
  * q /= empty_string
  * </pre>
- * @ensures <pre>
- * perms(q * <removeMin>, #q)  and
- *  for all x: template type
- *      where (x is in entries (q))
- *    ( <removeMin> <= x )
- * </pre>
+ * @ensures minimum value is at front of queue
+ * 
  */
 template<typename T>
 flex_queue<T> placeMinAtFront(flex_queue<T> q) {
@@ -132,7 +139,7 @@ flex_queue<T> placeMinAtFront(flex_queue<T> q) {
       T element = q.dequeue();
       
 
-      if(compare<T>(element, min) < 0){
+      if(element < min){
         
         temp.enqueue(std::move(min));
         min = std::move(element);
@@ -180,8 +187,8 @@ int main(int argc, const char* argv[]) {
   flex_queue<stack_nn> qnn( linked_queue<stack_nn>{} );
   
   qnn.enqueue(stack_nn(2));
-  qnn.enqueue(stack_nn(1));
-  qnn.enqueue(stack_nn(6));
+  qnn.enqueue(stack_nn(3));
+  qnn.enqueue(stack_nn(5));
   qnn.enqueue(stack_nn(4));
   
   
@@ -189,12 +196,12 @@ int main(int argc, const char* argv[]) {
   qnn = placeMinAtFront<stack_nn>(std::move(qnn));
   
   std::cout<<"Minimum element is: ";
-  std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
+  std::cout<<toInt(qnn.dequeue())<<std::endl;
   
   qnn = sort<stack_nn>(std::move(qnn));
 
   while( !qnn.is_empty() ){
-        std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
+        std::cout<<toInt(qnn.dequeue())<<std::endl;
   }
     
 

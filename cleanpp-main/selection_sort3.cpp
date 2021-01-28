@@ -24,17 +24,7 @@
 
 using namespace cleanpp;
 
-template <typename T>
-struct minAndQueue{
-    
-    T min;
-    flex_queue<T> q;
-     
-
-};
-
-template<typename T>
-int toInt(T nn){
+int toInt(stack_nn nn){
 
   int result = 0;
 
@@ -51,9 +41,9 @@ int toInt(T nn){
 }
 
 
-template <typename T>
-int compare(T& nn1,
-            T& nn2) {
+
+int compare(stack_nn& nn1,
+            stack_nn& nn2) {
 
   int rem1 = nn1.divide_by_radix();
   int rem2 = nn2.divide_by_radix();
@@ -99,19 +89,25 @@ int compare(T& nn1,
 }
 
 bool operator<(stack_nn& nn1, stack_nn& nn2){
-    return compare<stack_nn>(nn1, nn2) < 0;   
+    return compare(nn1, nn2) < 0;   
 }
 
-//This function violates the Clean++ discipline rule that a function that updates a parameter must return said parameter. 
-//The queue that is passed into the function is updated (the minimum value is removed), but not returned. 
-//Instead, the minimum value of the queue is returned.
+template <typename T>
+struct minAndQueue{
+    
+    T min;
+    flex_queue<T> q;
+    int integer;
+     
+
+};
 
 /**
- * Removes and returns the minimum value from {@code q}.
+ * Removes and returns the minimum value from {@code q}, as well as the updated queue.
  * 
  * @param q
  *            the queue
- * @return the minimum value from {@code q}
+ * @return the minimum value from {@code q} and the updated {@code q}
  * @updates q
  * @requires <pre>
  * q /= empty_string
@@ -124,7 +120,7 @@ bool operator<(stack_nn& nn1, stack_nn& nn2){
  * </pre>
  */
 template<typename T>
-struct minAndQueue<T> removeMin(flex_queue<T> q) {
+std::tuple<T , flex_queue<T>> removeMin(flex_queue<T> q) {
 
     T min = q.dequeue();
     flex_queue<T> temp( linked_queue<T>{} );
@@ -132,7 +128,7 @@ struct minAndQueue<T> removeMin(flex_queue<T> q) {
     while(!q.is_empty()){
       T element = q.dequeue();
 
-      if(compare<T>(element, min) < 0){
+      if(element < min){
         
         temp.enqueue(std::move(min));
         min = std::move(element);
@@ -142,12 +138,14 @@ struct minAndQueue<T> removeMin(flex_queue<T> q) {
       }
     }
 
-    struct minAndQueue<T> result;
+    // struct minAndQueue<T> result;
 
-    result.min = std::move(min);
-    result.q = std::move(temp);
+    // result.min = std::move(min);
+    // result.q = std::move(temp);
     
-    return std::move(result); 
+    // struct minAndQueue<T> result2 = result;
+    
+    return std::make_tuple(std::move(min), std::move(temp)); 
 }
 
 
@@ -164,10 +162,12 @@ flex_queue<T> sort(flex_queue<T> q){
     flex_queue<T> result( linked_queue<T>{} );
 
     while(!q.is_empty()){
-        struct minAndQueue<T> temp = removeMin<T>(std::move(q));
-
-        q = std::move(temp.q);
-        result.enqueue(std::move(temp.min));
+        // struct minAndQueue<T> temp = removeMin<T>(std::move(q));
+        T min;
+        std::tie(min, q) = removeMin<T>(std::move(q));
+        
+        // q = std::move(temp.q);
+        result.enqueue(std::move(min));
 
     }
     
@@ -182,22 +182,26 @@ int main(int argc, const char* argv[]) {
   
   qnn.enqueue(stack_nn(2));
   qnn.enqueue(stack_nn(3));
-  qnn.enqueue(stack_nn(4));
+  qnn.enqueue(stack_nn(5));
   qnn.enqueue(stack_nn(4));
   
-  struct minAndQueue<stack_nn> result = removeMin<stack_nn>(std::move(qnn)); 
-  qnn = std::move(result.q);
+  // struct minAndQueue<stack_nn> result = removeMin<stack_nn>(std::move(qnn)); 
+  // qnn = std::move(result.q);
+  stack_nn min;
+  std::tie(min, qnn) = removeMin<stack_nn>(std::move(qnn));
+  
   
 
   std::cout<<"Minimum element is: ";
-  std::cout<<toInt<stack_nn>(std::move(result.min))<<std::endl<<std::endl;
+  // std::cout<<toInt(std::move(result.min))<<std::endl<<std::endl;
+  std::cout<<toInt(std::move(min))<<std::endl<<std::endl;
   
   qnn = sort<stack_nn>(std::move(qnn));
 
   std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
   
   while( !qnn.is_empty() ){
-    std::cout<<toInt<stack_nn>(qnn.dequeue())<<", ";
+    std::cout<<toInt(qnn.dequeue())<<", ";
   }
   std::cout<<std::endl;
 
