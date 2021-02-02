@@ -67,36 +67,39 @@ int toInt(T& nn){
  * @ensures q = rev(#q)
  */
 template<typename T>
-std::unique_ptr<clean_queue<T>> flip(std::unique_ptr<clean_queue<T>> q){
+linked_queue<T> flip(linked_queue<T> q){
 
-    if( !q->is_empty() ){
+    linked_queue<T> temp(linked_queue<T>{});
 
-      std::unique_ptr<T> front = std::make_unique<T>(  q->dequeue() );
-      q = flip<stack_nn>( std::move(q) );
-      q->enqueue( std::move(*front) );
+    if( !q.is_empty() ){
+
+      T front = q.dequeue();
+      temp = flip<stack_nn>( std::move(q) );
       
-        
+      std::cout<<toInt<stack_nn>(front)<<std::endl;
+      temp.enqueue(std::move(front));
+      
     }
 
-    return q;
+    return std::move(temp);
 }
 
 
 int main(int argc, const char* argv[]) {
     
-    std::unique_ptr<clean_queue<stack_nn>> qnn = std::make_unique<linked_queue<stack_nn>>();
+    linked_queue<stack_nn> qnn(linked_queue<stack_nn>{});
 
-    qnn->enqueue(stack_nn(2));
-    qnn->enqueue(stack_nn(3));
-    qnn->enqueue(stack_nn(4));
-    qnn->enqueue(stack_nn(5));
+    qnn.enqueue(stack_nn(2));
+    qnn.enqueue(stack_nn(3));
+    qnn.enqueue(stack_nn(4));
+    qnn.enqueue(stack_nn(5));
 
     qnn = flip<stack_nn>( std::move(qnn) );
 
     std::cout<<"Flipped queue (from left to right):"<<std::endl;
 
-    while( !qnn->is_empty() ){
-        std::cout<<toInt<stack_nn>(qnn->dequeue())<<std::endl;
+    while( !qnn.is_empty() ){
+        std::cout<<toInt<stack_nn>(qnn.dequeue())<<std::endl;
     }
  
 }
