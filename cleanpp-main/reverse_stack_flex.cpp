@@ -74,13 +74,12 @@ int main(int argc, const char* argv[]) {
     snn.push(stack_nn(4));
     snn.push(stack_nn(5));
 
+    std::cout<<"Original stack: ";
+    std::cout<<snn<<std::endl;
+
     snn = flip<stack_nn>(std::move(snn));
 
-    std::cout<<"Flipped stack (from top to bottom):"<<std::endl;
-
-    while( !snn.is_empty() ){
-        std::cout<<toInt<stack_nn>(snn.pop())<<std::endl;
-    }
+    std::cout<<"Flipped stack: ";
+    std::cout<<snn<<std::endl;
     
- 
 }

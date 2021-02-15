@@ -175,7 +175,7 @@ int main(int argc, const char* argv[]) {
   while( !qnn->is_empty() ){
     std::cout<<toInt<stack_nn>(qnn->dequeue())<<", ";
   }
-  std::cout<<std::endl;
+  
 
 }
 

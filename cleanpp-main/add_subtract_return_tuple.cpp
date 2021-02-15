@@ -24,39 +24,6 @@
 
 using namespace cleanpp;
 
-template<typename T>
-int toInt(T&& nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
-
-template<typename T>
-int toInt(T& nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
 
 std::tuple<stack_nn, stack_nn> add(stack_nn x, stack_nn y){
     int x_low;
@@ -95,25 +62,18 @@ std::tuple<stack_nn, stack_nn> subtract(stack_nn x, stack_nn y){
     return std::make_tuple<stack_nn, stack_nn>(std::move(x), std::move(y));
 
 }
+
 int main(int argc, const char * argv[]) {
-    // flex_natural_number x(stack_nn(5));
-    // flex_natural_number y(stack_nn(6));
+
     stack_nn x(5);
     stack_nn y(6);
 
-
     std::tie<stack_nn, stack_nn>(x, y) = add(std::move(x), std::move(y));
-    std::cout<<toInt<stack_nn>(std::move(x))<<std::endl;
-    std::cout<<toInt<stack_nn>(std::move(y))<<std::endl;
-
-    stack_nn x2(11);
-    stack_nn y2(6);
-    std::tie<stack_nn, stack_nn>(x2, y2) = subtract(std::move(x2), std::move(y2));
-    std::cout<<toInt<stack_nn>(std::move(x2))<<std::endl;
-    std::cout<<toInt<stack_nn>(std::move(y2))<<std::endl;
-
+    std::cout<<x<<std::endl;
+    std::cout<<y<<std::endl;
     
-
-    
+    std::tie<stack_nn, stack_nn>(x, y) = subtract(std::move(x), std::move(y));
+    std::cout<<x<<std::endl;
+    std::cout<<y<<std::endl;
    
 }

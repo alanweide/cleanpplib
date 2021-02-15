@@ -41,6 +41,7 @@ int toInt(T&& nn){
 
 }
 
+
 template<typename T>
 int toInt(T& nn){
 
@@ -58,13 +59,14 @@ int toInt(T& nn){
 
 }
 
-std::tuple<stack_nn, stack_nn> add(stack_nn x, stack_nn y){
+
+std::tuple<flex_natural_number, flex_natural_number> add(flex_natural_number x, flex_natural_number y){
     int x_low;
     x_low = x.divide_by_radix();
     int y_low;
     y_low = y.divide_by_radix();
     if (!y.is_zero()) {
-        std::tie<stack_nn, stack_nn>(x, y) = add(std::move(x), std::move(y));
+        std::tie<flex_natural_number, flex_natural_number>(x, y) = add(std::move(x), std::move(y));
     }
     x_low += y_low;
     if (x_low >= clean_natural_number::RADIX) {
@@ -73,60 +75,48 @@ std::tuple<stack_nn, stack_nn> add(stack_nn x, stack_nn y){
     }
     x.multiply_by_radix(std::move(x_low));
     y.multiply_by_radix(std::move(y_low));
-    std::tuple<stack_nn, stack_nn> result = std::make_tuple<stack_nn, stack_nn>(std::move(x), std::move(y));
+    std::tuple<flex_natural_number, flex_natural_number> result = std::make_tuple<flex_natural_number, flex_natural_number>(std::move(x), std::move(y));
     return result;
 }
 
-std::tuple<stack_nn, stack_nn> subtract(stack_nn x, stack_nn y){
+
+std::tuple<flex_natural_number, flex_natural_number> subtract(flex_natural_number x, flex_natural_number y){
     int x_low;
     x_low = x.divide_by_radix();
     int y_low;
     y_low = y.divide_by_radix();
     if (!y.is_zero()) {
-        std::tie<stack_nn, stack_nn>(x, y) = subtract(std::move(x), std::move(y));
+        std::tie<flex_natural_number, flex_natural_number>(x, y) = subtract(std::move(x), std::move(y));
     }
     x_low -= y_low;
     if(x_low < 0){
         x_low += clean_natural_number::RADIX;
         x.decrement();
     }
-    x.multiply_by_radix(x_low);
-    y.multiply_by_radix(y_low);
-    return std::make_tuple<stack_nn, stack_nn>(std::move(x), std::move(y));
+    x.multiply_by_radix(std::move(x_low));
+    y.multiply_by_radix(std::move(y_low));
+    return std::make_tuple<flex_natural_number, flex_natural_number>(std::move(x), std::move(y));
+    // return std::tuple<flex_natural_number, flex_natural_number>{ std::move(x), std::move(y) };
 
 }
 
-// std::tuple<stack_nn, stack_nn> multiply(stack_nn x, stack_nn y){
-//     if(y.is_zero()){
-//         x.clear();
-//     } else{
-//         int y_ones = y.divide_by_radix();
-//         stack_nn x_copy(0);
-//         std::tie(x_copy, x) = add(std::move(x_copy), std::move(x));
-        
-//     }
-// }
-
 
 int main(int argc, const char * argv[]) {
-    // flex_natural_number x(stack_nn(5));
-    // flex_natural_number y(stack_nn(6));
-    stack_nn x(5);
-    stack_nn y(6);
+
+    flex_natural_number x(stack_nn{}, 5);
+    flex_natural_number y(stack_nn{}, 6);
+
+    std::tie<flex_natural_number, flex_natural_number>(x, y) = add(std::move(x), std::move(y));
+    std::cout<<toInt<flex_natural_number>(std::move(x))<<std::endl;
+    std::cout<<toInt<flex_natural_number>(std::move(y))<<std::endl;
 
 
-    std::tie<stack_nn, stack_nn>(x, y) = add(std::move(x), std::move(y));
-    std::cout<<toInt<stack_nn>(std::move(x))<<std::endl;
-    std::cout<<toInt<stack_nn>(std::move(y))<<std::endl;
 
-    stack_nn x2(11);
-    stack_nn y2(6);
-    std::tie<stack_nn, stack_nn>(x2, y2) = subtract(std::move(x2), std::move(y2));
-    std::cout<<toInt<stack_nn>(std::move(x2))<<std::endl;
-    std::cout<<toInt<stack_nn>(std::move(y2))<<std::endl;
+    flex_natural_number x2(stack_nn{}, 6);
+    flex_natural_number y2(stack_nn{}, 5);
 
+    std::tie<flex_natural_number, flex_natural_number>(x2, y2) = subtract(std::move(x2), std::move(y2));
+    std::cout<<toInt<flex_natural_number>(std::move(x2))<<std::endl;
+    std::cout<<toInt<flex_natural_number>(std::move(y2))<<std::endl;
     
-
-    
-   
 }

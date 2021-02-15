@@ -24,24 +24,6 @@
 
 using namespace cleanpp;
 
-int toInt(stack_nn nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
-
-
-
 int compare(stack_nn& nn1,
             stack_nn& nn2) {
 
@@ -185,24 +167,20 @@ int main(int argc, const char* argv[]) {
   qnn.enqueue(stack_nn(5));
   qnn.enqueue(stack_nn(4));
   
-  // struct minAndQueue<stack_nn> result = removeMin<stack_nn>(std::move(qnn)); 
-  // qnn = std::move(result.q);
+  
   stack_nn min;
   std::tie(min, qnn) = removeMin<stack_nn>(std::move(qnn));
   
-  
-
   std::cout<<"Minimum element is: ";
-  // std::cout<<toInt(std::move(result.min))<<std::endl<<std::endl;
-  std::cout<<toInt(std::move(min))<<std::endl<<std::endl;
+
+  std::cout<<min<<std::endl<<std::endl;
   
   qnn = sort<stack_nn>(std::move(qnn));
 
   std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
+
+  std::cout<<qnn<<std::endl;
   
-  while( !qnn.is_empty() ){
-    std::cout<<toInt(qnn.dequeue())<<", ";
-  }
-  std::cout<<std::endl;
+ 
 
 }

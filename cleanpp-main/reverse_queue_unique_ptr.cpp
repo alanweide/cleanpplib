@@ -24,40 +24,6 @@
 
 using namespace cleanpp;
 
-template<typename T>
-int toInt(T&& nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
-
-template<typename T>
-int toInt(T& nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
-
 /**
  * Reverses ("flips") input {@code Queue<T>} type
  *
@@ -68,6 +34,7 @@ int toInt(T& nn){
  */
 template<typename T>
 std::unique_ptr<clean_queue<T>> flip(std::unique_ptr<clean_queue<T>> q){
+
 
     if( !q->is_empty() ){
 
@@ -85,18 +52,18 @@ std::unique_ptr<clean_queue<T>> flip(std::unique_ptr<clean_queue<T>> q){
 int main(int argc, const char* argv[]) {
     
     std::unique_ptr<clean_queue<stack_nn>> qnn = std::make_unique<linked_queue<stack_nn>>();
-
-    qnn->enqueue(stack_nn(2));
+    qnn->enqueue(stack_nn(5));
     qnn->enqueue(stack_nn(3));
     qnn->enqueue(stack_nn(4));
-    qnn->enqueue(stack_nn(5));
+    qnn->enqueue(stack_nn(2));
+
+    std::cout<<"Original queue: ";
+    std::cout<<*qnn<<std::endl;
 
     qnn = flip<stack_nn>( std::move(qnn) );
 
-    std::cout<<"Flipped queue (from left to right):"<<std::endl;
-
-    while( !qnn->is_empty() ){
-        std::cout<<toInt<stack_nn>(qnn->dequeue())<<std::endl;
-    }
+    std::cout<<"Flipped queue: ";
+    std::cout<<*qnn<<std::endl;
+    
  
 }

@@ -188,7 +188,10 @@ int main(int argc, const char* argv[]) {
   std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
   
   while( !qnn->is_empty() ){
-    std::cout<<toInt<stack_nn>(qnn->dequeue())<<", ";
+
+    stack_nn element(qnn->dequeue());
+    std::cout<<element<<std::endl;
+    // std::cout<<toInt<stack_nn>(qnn->dequeue())<<", ";
   }
   std::cout<<std::endl;
 
