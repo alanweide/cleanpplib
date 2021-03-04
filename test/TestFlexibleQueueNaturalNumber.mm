@@ -169,6 +169,7 @@ static std::string queueToString(queue_type &q) {
 	XCTAssert(c == expected_c);
 }
 
+// Test case because Will identified a bug
 - (void)testDequeueNonEmptyToEmptyAfterNonEmpty {
     queue_type q;
     std::string expected = "<>";
