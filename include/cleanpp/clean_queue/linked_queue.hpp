@@ -101,6 +101,7 @@ public:
     }
     
     void enqueue(T&& x) {
+
         auto new_tail = std::make_shared<queue_node>(x);
         if (tail_ptr_ != nullptr) {
             tail_ptr_->set_next(new_tail);
@@ -110,17 +111,27 @@ public:
         
         // Potential alias (tail_ptr_ & top_ptr_)
         tail_ptr_ = new_tail;
+
     }
     
     T dequeue() {
+
         T x = top_ptr_->contents();
         top_ptr_ = top_ptr_->next();
+
+        // Add this to fix enq_deq_enq_deq problem
+        if (top_ptr_ == nullptr){
+            tail_ptr_ = nullptr;
+        }
+
 		return std::move(x);
     }
     
     bool is_empty() const {
         return top_ptr_ == nullptr;
     }
+
+
     
 private:
     std::string to_str() {

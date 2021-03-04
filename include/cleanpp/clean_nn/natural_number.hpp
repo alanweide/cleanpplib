@@ -12,7 +12,7 @@
 #include "clean_base.hpp"
 
 namespace cleanpp {
-
+    
 class clean_natural_number_kernel: public clean_base {
     /*
      type NATURAL is integer
@@ -55,6 +55,7 @@ public:
 
 class clean_natural_number: public clean_natural_number_kernel {
 public:    
+    
     /*
      updates this
      ensures this = #this + 1
@@ -84,7 +85,7 @@ public:
     /*
      ensures add = #x + y
      */
-    friend std::unique_ptr<clean_natural_number>&& add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
+    friend std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
     
     /*
      requires x >= y
@@ -95,7 +96,10 @@ public:
     /*
      ensures multiply = #x * y
      */
-    friend std::unique_ptr<clean_natural_number>&& multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
+    friend std::unique_ptr<clean_natural_number> multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y);
+
+    
+
 };
 
 }

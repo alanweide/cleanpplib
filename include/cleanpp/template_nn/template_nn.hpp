@@ -8,7 +8,8 @@
 
 #ifndef template_nn_hpp
 #define template_nn_hpp
-
+#include <assert.h>
+#include <cassert>
 #include <stdio.h>
 #include "clean_base.hpp"
 #include "natural_number.hpp"
