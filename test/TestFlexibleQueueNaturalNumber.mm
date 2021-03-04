@@ -28,7 +28,8 @@ using namespace cleanpp;
 
 typedef flex_natural_number nn_type;
 typedef flex_queue<nn_type> queue_type;
-typedef array_queue<nn_type> impl_type;
+//typedef array_queue<nn_type> impl_type;
+typedef flex_queue<nn_type> impl_type;
 
 static std::string queueToString(queue_type &q) {
 	std::stringstream s_stm;
@@ -46,7 +47,7 @@ static std::string queueToString(queue_type &q) {
 }
 
 - (void)testInitializerDef {
-    queue_type q;
+    queue_type q{impl_type{}};
 	std::string empty_stack = "<>";
 	std::string q_str = queueToString(q);
 	XCTAssert(q_str == empty_stack, @"%s", q_str.c_str());
@@ -166,6 +167,23 @@ static std::string queueToString(queue_type &q) {
 	XCTAssert(b == expected_b);
 	std::cout << "testDequeueNonEmptyToNonEmpty; c = " << c << "\n";
 	XCTAssert(c == expected_c);
+}
+
+- (void)testDequeueNonEmptyToEmptyAfterNonEmpty {
+    queue_type q;
+    std::string expected = "<>";
+    nn_type a(1L), expected_a, b, expected_b(1L);
+
+    q.enqueue(std::move(a));
+    a = q.dequeue();
+    q.enqueue(std::move(a));
+    
+    b = q.dequeue();
+    
+    std::string q_str = queueToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+    XCTAssert(a == expected_a);
+    XCTAssert(b == expected_b);
 }
 
 @end

@@ -165,4 +165,22 @@ static std::string queueNNToString(std::unique_ptr<clean_queue<nn_type>> &s) {
     XCTAssert(b == expected_b);
 }
 
+- (void)testDequeueNonEmptyToEmptyAfterNonEmpty {
+    std::unique_ptr<clean_queue<nn_type>> q = std::make_unique<queue_nn_type>();
+    std::string expected = "<>";
+    nn_type expected_a(0), expected_b(1);
+    
+    nn_type a(1), b(2);
+    q->enqueue(std::move(a));
+    a = q->dequeue();
+    q->enqueue(std::move(a));
+    
+    b = q->dequeue();
+    
+    std::string q_str = queueNNToString(q);
+    XCTAssert(q_str == expected, @"%s", q_str.c_str());
+    XCTAssert(a == expected_a);
+    XCTAssert(b == expected_b);
+}
+
 @end
