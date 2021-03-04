@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <clean_nn/natural_number.hpp>
+#include <bounded_nn.hpp>
 
 
 namespace cleanpp {
@@ -115,7 +116,7 @@ void clean_natural_number::divide_by_two() {
  
  */
 
-std::unique_ptr<clean_natural_number>&& add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
+std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -165,7 +166,7 @@ std::unique_ptr<clean_natural_number> multiply_by_digit(std::unique_ptr<clean_na
     return x;
 }
 
-std::unique_ptr<clean_natural_number>&& multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
+std::unique_ptr<clean_natural_number> multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
     if (y->is_zero()) {
         x->clear();
     } else {
@@ -178,7 +179,9 @@ std::unique_ptr<clean_natural_number>&& multiply(std::unique_ptr<clean_natural_n
         x = add(std::move(x), x_copy);
         y->multiply_by_radix(y_ones);
     }
-    return std::move(x);
+    return x;
 }
+
+
 
 }
