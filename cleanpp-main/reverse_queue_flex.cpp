@@ -34,15 +34,11 @@ using namespace cleanpp;
  */
 template<typename T>
 flex_queue<T> flip(flex_queue<T> q){
-
     if( !q.is_empty() ){
-
       T front = q.dequeue();
       q = flip<T>( std::move(q) );
       q.enqueue(std::move(front));
-      
     }
-
     return q;
 }
 

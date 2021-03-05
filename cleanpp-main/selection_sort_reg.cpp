@@ -1,5 +1,5 @@
 //
-//  selection_sort3.cpp
+//  selection_sort_reg.cpp
 //  cleanpp-main
 //
 //  Created by Will Janning on 1/2/21.
@@ -90,13 +90,11 @@ int main(int argc, const char* argv[]) {
   q.push(5);
   q.push(4);
   
-  // struct minAndQueue<stack_nn> result = removeMin<stack_nn>(std::move(qnn)); 
-  // qnn = std::move(result.q);
   int min = removeMin<int>(q);
 
 
   std::cout<<"Minimum element is: ";
-  // std::cout<<toInt(std::move(result.min))<<std::endl<<std::endl;
+ 
   cout<<min<<endl<<endl;
   
   sort<int>(q);

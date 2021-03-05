@@ -16,11 +16,12 @@
 #include "clean_base.hpp"
 #include "clean_queue.hpp"
 #include "array_queue.hpp"
+#include "linked_queue.hpp"
 
 namespace cleanpp {
 
 template <typename I>
-using _flex_queue_def_t = array_queue<I>;
+using _flex_queue_def_t = linked_queue<I>;
 
 template <typename Item>
 class flex_queue: public clean_base {

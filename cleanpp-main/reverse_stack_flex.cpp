@@ -24,24 +24,6 @@
 
 using namespace cleanpp;
 
-template<typename T>
-int toInt(T nn){
-
-  int result = 0;
-
-  if( !nn.is_zero() ){
-
-    int onesPlace = nn.divide_by_radix();
-
-    result = onesPlace + 10 * toInt(std::move(nn));
-
-  }
-  
-  return result;
-
-}
-
-
 /**
  * Reverses ("flips") {@code this}.
  * 

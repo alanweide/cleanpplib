@@ -75,68 +75,57 @@ bool operator<(stack_nn& nn1, stack_nn& nn2){
 }
 
 
-/**
- * Removes and returns the minimum value from {@code q}, as well as the updated queue.
- * 
- * @param q
- *            the queue
- * @return the minimum value from {@code q} and the updated {@code q}
- * @updates q
- * @requires <pre>
- * q /= empty_string
- * </pre>
- * @ensures <pre>
- * perms(q * <removeMin>, #q)  and
- *  for all x: template type
- *      where (x is in entries (q))
- *    ( <removeMin> <= x )
- * </pre>
- */
+
 template<typename T>
-std::tuple<T , flex_queue<T>> removeMin(flex_queue<T> q) {
-
-    T min = q.dequeue();
-    flex_queue<T> temp( linked_queue<T>{} );
-    
-    while(!q.is_empty()){
-      T element = q.dequeue();
-
-      if(element < min){
-        
-        temp.enqueue(std::move(min));
-        min = std::move(element);
-
-      } else{
-        temp.enqueue(std::move(element));
-      }
+std::tuple<T, flex_queue<T>, flex_queue<T>> partition(flex_queue<T> q, T partition){
+    flex_queue<T> front, back;
+    while( !q.is_empty() ){
+        T element = q.dequeue();
+        if(partition < element){
+            back.enqueue(std::move(element));
+        } else {
+            front.enqueue(std::move(element));
+        }
     }
-    
-    return std::make_tuple(std::move(min), std::move(temp)); 
+    return std::make_tuple( std::move(partition), std::move(front), std::move(back) );
 }
 
-
-/**
- * Sorts {@code q}.
- * 
- * @param q
- *            the queue
- * @updates q
- * @ensures q = [#q in nondecreasing order]
- */
 template<typename T>
-flex_queue<T> sort(flex_queue<T> q){
-    flex_queue<T> result( linked_queue<T>{} );
+flex_queue<T> quickSort(flex_queue<T> q){
+    T element;
+    if(!q.is_empty() ){
+        element = q.dequeue();
 
-    while(!q.is_empty()){
-        
-        T min;
-        std::tie(min, q) = removeMin<T>(std::move(q));
-        
-        result.enqueue(std::move(min));
+        if( !q.is_empty() ){
 
+            q.enqueue(std::move(element));
+            
+            flex_queue<T> front, back;
+
+            T partitioner = q.dequeue();
+            
+
+            std::tie(partitioner, front, back) = partition(std::move(q), std::move(partitioner));
+            
+            front = quickSort(std::move(front));
+            back = quickSort(std::move(back));
+        
+            front.enqueue(std::move(partitioner));
+
+            while( !back.is_empty() ){
+
+                front.enqueue(back.dequeue());
+
+            }
+            
+            q = std::move(front);
+        
+        } else{
+            q.enqueue(std::move(element));
+        }
     }
-    
-    return result;
+     
+    return q;
 
 }
 
@@ -149,18 +138,10 @@ int main(int argc, const char* argv[]) {
   qnn.enqueue(stack_nn(3));
   qnn.enqueue(stack_nn(5));
   qnn.enqueue(stack_nn(4));
-  
-  
-  stack_nn min;
-  std::tie(min, qnn) = removeMin<stack_nn>(std::move(qnn));
-  
-  std::cout<<"Minimum element is: ";
 
-  std::cout<<min<<std::endl<<std::endl;
-  
-  qnn = sort<stack_nn>(std::move(qnn));
+  qnn = quickSort<stack_nn>(std::move(qnn));
 
-  std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
+  std::cout<<"Sorted queue: "<<std::endl;
 
   std::cout<<qnn<<std::endl;
   
