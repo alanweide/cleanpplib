@@ -11,12 +11,12 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <clean_queue/linked_queue.hpp>
-#include <clean_queue/array_queue.hpp>
-#include <clean_nn/bounded_nn.hpp>
-#include <clean_nn/stack_nn.hpp>
-#include <flexible_queue/flexible_queue.hpp>
-#include <flexible_nn/flexible_nn.hpp>
+#include <queue_impls/linked_queue.hpp>
+#include <queue_impls/array_queue.hpp>
+#include <natural_number_impls/bounded_nn.hpp>
+#include <natural_number_impls/stack_nn.hpp>
+#include <clean_queue/queue.hpp>
+#include <clean_nn/natural_number.hpp>
 
 @interface TestFlexibleQueueNaturalNumber : XCTestCase
 
@@ -26,10 +26,10 @@
 
 using namespace cleanpp;
 
-typedef flex_natural_number nn_type;
-typedef flex_queue<nn_type> queue_type;
+typedef natural_number nn_type;
+typedef queue<nn_type> queue_type;
 //typedef array_queue<nn_type> impl_type;
-typedef flex_queue<nn_type> impl_type;
+typedef queue<nn_type> impl_type;
 
 static std::string queueToString(queue_type &q) {
 	std::stringstream s_stm;

@@ -11,10 +11,10 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <clean_list/stack_based_list.hpp>
-#include <clean_nn/bounded_nn.hpp>
-#include <clean_nn/stack_nn.hpp>
-#include <flexible_list/flexible_list.hpp>
+#include <list_impls/stack_based_list.hpp>
+#include <natural_number_impls/bounded_nn.hpp>
+#include <natural_number_impls/stack_nn.hpp>
+#include <clean_list/list.hpp>
 
 @interface TestFlexListNaturalNumber : XCTestCase
 
@@ -36,158 +36,158 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testInitializerDef {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
-    list.clear();
+    my_list.clear();
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmptyRem {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
     nn_type a(5);
-    list.insert(std::move(a));
+    my_list.insert(std::move(a));
     
-    list.clear();
+    my_list.clear();
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromEmptyPrec {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
     nn_type a(5);
-    list.insert(std::move(a));
-    list.retreat();
+    my_list.insert(std::move(a));
+    my_list.retreat();
     
-    list.clear();
+    my_list.clear();
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testClearFromNonEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
     nn_type a(5), b(3);
-    list.insert(std::move(a));
-    list.insert(std::move(b));
-    list.retreat();
+    my_list.insert(std::move(a));
+    my_list.insert(std::move(b));
+    my_list.retreat();
     
-    list.clear();
+    my_list.clear();
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testAssignEmptyEmpty {
-	flex_list<nn_type> list(stack_based_list<nn_type>{});
-	flex_list<nn_type> list_2(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
+    list<nn_type> my_list2(stack_based_list<nn_type>{});
 	std::string expected = "(<>, <>)";
 	
-	list = std::move(list_2);
+	my_list = std::move(my_list2);
 	
-	std::string list_str = list.to_str();
+	std::string list_str = my_list.to_str();
 	XCTAssert(list_str == expected, @"%s", list_str.c_str());
 }
 
 - (void)testIsAtFrontEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
-    XCTAssert(list.is_at_front());
+    XCTAssert(my_list.is_at_front());
 }
 
 - (void)testIsAtEndEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
-    XCTAssert(list.is_at_end());
+    XCTAssert(my_list.is_at_end());
 }
 
 - (void)testIsAtFrontNonemptyTrue {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
     nn_type a(1);
-    list.insert(std::move(a));
-    list.retreat();
+    my_list.insert(std::move(a));
+    my_list.retreat();
     
-    XCTAssert(list.is_at_front());
+    XCTAssert(my_list.is_at_front());
 }
 
 - (void)testIsAtFrontNonemptyFalse {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
     nn_type a(1);
-    list.insert(std::move(a));
+    my_list.insert(std::move(a));
     
-    XCTAssert(!list.is_at_front());
+    XCTAssert(!my_list.is_at_front());
 }
 
 - (void)testIsAtEndNonemptyTrue {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
     nn_type a(1);
-    list.insert(std::move(a));
-    list.retreat();
+    my_list.insert(std::move(a));
+    my_list.retreat();
     
-    XCTAssert(!list.is_at_end());
+    XCTAssert(!my_list.is_at_end());
 }
 
 - (void)testIsAtEndNonemptyFalse {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
 
     nn_type a(1);
-    list.insert(std::move(a));
+    my_list.insert(std::move(a));
     
-    XCTAssert(list.is_at_end());
+    XCTAssert(my_list.is_at_end());
 }
 
 - (void)testInsertFromEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <>)";
     nn_type a_exp;
     
     nn_type a(1);
     
-    list.insert(std::move(a));
+    my_list.insert(std::move(a));
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
 }
 
 - (void)testInsertFromNonemptyAtEnd {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> my_list(stack_based_list<nn_type>{});
     std::string expected = "(<1, 2>, <>)";
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
-    list.insert(std::move(a));
+    my_list.insert(std::move(a));
     
-    list.insert(std::move(b));
+    my_list.insert(std::move(b));
     
-    std::string list_str = list.to_str();
+    std::string list_str = my_list.to_str();
     XCTAssert(list_str == expected, @"%s", list_str.c_str());
     XCTAssert(a == a_exp);
     XCTAssert(b == b_exp);
 }
 
 - (void)testInsertFromNonemptyAtFront {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<2>, <1>)";
     nn_type a_exp, b_exp;
     
@@ -204,7 +204,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testInsertNonemptyInMiddle {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
     
@@ -223,7 +223,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRetreatFromEndToFront {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <1>)";
     nn_type a_exp;
     
@@ -238,7 +238,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRetreatFromMiddleToFront {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <2, 1>)";
     nn_type a_exp, b_exp;
     
@@ -256,7 +256,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRetreatFromEndToMiddle {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
@@ -273,7 +273,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRetreatMiddle {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <3, 2>)";
     nn_type a_exp, b_exp, c_exp;
 
@@ -293,7 +293,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testAdvanceFrontToEnd {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <>)";
     nn_type a_exp;
     
@@ -309,7 +309,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testAdvanceFromMiddleToEnd {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<2, 1>, <>)";
     nn_type a_exp, b_exp;
     
@@ -327,7 +327,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testAdvanceFromFrontToMiddle {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <2>)";
     nn_type a_exp, b_exp;
     
@@ -346,7 +346,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testAdvanceMiddle {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1, 3>, <2>)";
     nn_type a_exp, b_exp, c_exp;
 
@@ -367,7 +367,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRemoveToEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     nn_type a_exp(5);
     
@@ -383,7 +383,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRemoveToNonEmptyRem {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <1>)";
     nn_type a_exp(5);
     
@@ -401,7 +401,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testRemoveToNonEmptyPrecRem {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<1>, <3>)";
     nn_type a_exp(5);
     
@@ -420,7 +420,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testResetFromEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <>)";
     
     list.reset();
@@ -430,7 +430,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testResetFromEmptyRem {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <4>)";
     
     nn_type a(4);
@@ -443,7 +443,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testResetFromEmptyPrec {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <4>)";
     
     nn_type a(4);
@@ -457,7 +457,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 }
 
 - (void)testResetFromNonEmpty {
-    flex_list<nn_type> list(stack_based_list<nn_type>{});
+    list<nn_type> list(stack_based_list<nn_type>{});
     std::string expected = "(<>, <5, 4>)";
     
     nn_type a(4), b(5);

@@ -12,12 +12,12 @@
 #include <stdio.h>
 #include "linked_stack.hpp"
 #include "array_stack.hpp"
-#include "flexible_stack.hpp"
-#include "natural_number.hpp"
+#include "stack.hpp"
+#include "natural_number_impl.hpp"
 
 namespace cleanpp {
 
-class stack_nn: public clean_natural_number {
+class stack_nn: public natural_number_impl {
 public:
     stack_nn(long n = 0);
     
@@ -31,9 +31,9 @@ public:
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
     int divide_by_radix() override;
-    std::unique_ptr<clean_natural_number_kernel> new_instance() override;
+    std::unique_ptr<natural_number_kernel_impl> new_instance() override;
 private:
-    flex_stack<int> rep_;
+    stack<int> rep_;
 };
 
 }

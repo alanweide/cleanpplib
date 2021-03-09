@@ -10,13 +10,13 @@
 #define nn_integer_hpp
 
 #include <stdio.h>
-#include "clean_integer.hpp"
+#include "integer_impl.hpp"
 
 #include "stack_nn.hpp"
-#include "flexible_nn.hpp"
+#include "natural_number.hpp"
 
 namespace cleanpp {
-class nn_integer: public clean_integer {
+class nn_integer: public integer_impl {
 public:
 	nn_integer(int n = 0);
 	
@@ -31,10 +31,10 @@ public:
 	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
-    std::unique_ptr<clean_integer> new_instance() const override;
+    std::unique_ptr<integer_impl> new_instance() const override;
 
 private:
-	flex_natural_number n_;
+	natural_number n_;
 	enum integer_sign sign_;
 };
 }

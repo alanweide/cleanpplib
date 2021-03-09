@@ -14,55 +14,55 @@
 #include <memory>
 
 #include "clean_base.hpp"
-#include "clean_queue.hpp"
+#include "queue_impl.hpp"
 #include "array_queue.hpp"
 
 namespace cleanpp {
 
 template <typename I>
-using _flex_queue_def_t = array_queue<I>;
+using _queue_def_t = array_queue<I>;
 
 template <typename Item>
-class flex_queue: public clean_base {
+class queue: public clean_base {
 	/*
 	 queue is modeled by string of Item
 	 */
 protected:
-	std::unique_ptr<clean_queue<Item>> rep_;
+	std::unique_ptr<queue_impl<Item>> rep_;
 public:
 	
 	/*
 	 ensures this = <>
 	 */
-	flex_queue(): rep_(std::make_unique<_flex_queue_def_t<Item>>()) {
+	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
 	}
 	
 	template<template<typename> class I>
-	flex_queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
-		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
+	queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
+		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 	}
 	
-	flex_queue(const flex_queue<Item> &o) = delete;
+	queue(const queue<Item> &o) = delete;
 	/*
 	 clears  other
 	 ensures this = #other
 	 */
-	flex_queue(flex_queue<Item>&& other): rep_(std::move(other.rep_)) {
-		other.rep_ = std::make_unique<_flex_queue_def_t<Item>>();
+	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
+		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
 	
-	flex_queue<Item>& operator=(const flex_queue<Item>& other) = delete;
+	queue<Item>& operator=(const queue<Item>& other) = delete;
 	/*
 	 clears  other
 	 ensures this = #other
 	 */
-	flex_queue<Item>& operator=(flex_queue<Item>&& other) {
+	queue<Item>& operator=(queue<Item>&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<_flex_queue_def_t<Item>>();
+		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 		return *this;
 	}
 	
@@ -101,11 +101,11 @@ public:
     /*
      ensures `==` = (this = other)
      */
-    bool operator==(flex_queue<Item>& other) {
+    bool operator==(queue<Item>& other) {
         return *this->rep_ == *other.rep_;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, flex_queue<Item>& o) {
+    friend std::ostream& operator<<(std::ostream& out, queue<Item>& o) {
 		return out << *o.rep_;
 	}
 };

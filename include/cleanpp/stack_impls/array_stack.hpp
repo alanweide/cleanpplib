@@ -15,12 +15,12 @@
 #include <sstream>
 #include <iostream>
 
-#include "clean_stack.hpp"
+#include "stack_impl.hpp"
 
 namespace cleanpp {
 
 template <typename T>
-class array_stack: public clean_stack<T>
+class array_stack: public stack_impl<T>
 {
 private:
 	static const int MIN_CAP = 1;

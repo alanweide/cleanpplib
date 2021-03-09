@@ -19,10 +19,10 @@ enum integer_sign {
 	NEGATIVE = -1, ZERO = 0, POSITIVE = 1
 };
 
-class clean_integer_kernel;
-class clean_integer;
+class integer_kernel_impl;
+class integer_impl;
 
-class clean_integer_kernel: public clean_base {
+class integer_kernel_impl: public clean_base {
     /*
      big_integer_kernel is modeled by integer
      */
@@ -62,17 +62,17 @@ public:
     /*
      ensures new_instance = 0
      */
-    virtual std::unique_ptr<clean_integer> new_instance() const = 0;
+    virtual std::unique_ptr<integer_impl> new_instance() const = 0;
 
     /*
      ensures `==` = (this = other)
      */
-	bool operator==(clean_integer_kernel &other);
+	bool operator==(integer_kernel_impl &other);
 	
-	friend std::ostream& operator<<(std::ostream& out, clean_integer_kernel& o);
+	friend std::ostream& operator<<(std::ostream& out, integer_kernel_impl& o);
 };
 
-class clean_integer: public clean_integer_kernel {
+class integer_impl: public integer_kernel_impl {
 private:
     
     /*
@@ -95,21 +95,21 @@ private:
      requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
      ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<clean_integer> combine_same(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
+    friend std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
     
     /*
      updates  x
      requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
      */
-	friend std::unique_ptr<clean_integer> combine_different(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
+	friend std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
     
     /*
      updates  x
      requires |x| > |y|
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<clean_integer> remove(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
+    friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
 
 public:
     
@@ -148,26 +148,26 @@ public:
     /*
      ensures clone = this
      */
-    virtual std::unique_ptr<clean_integer> clone();
+    virtual std::unique_ptr<integer_impl> clone();
 
     /*
      updates  x
      ensures  x = #x + y
      */
-    friend std::unique_ptr<clean_integer> add(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
+    friend std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
     
     /*
      updates x
      ensures x = #x - y
      */
-	friend std::unique_ptr<clean_integer> subtract(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y);
+	friend std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
 
     /*
      ensures compare > 0 ==> x > y and
              compare = 0 ==> x = y and
              compare < 0 ==> x < y
      */
-    friend int compare(std::unique_ptr<clean_integer> &x, std::unique_ptr<clean_integer> &y);	
+    friend int compare(std::unique_ptr<integer_impl> &x, std::unique_ptr<integer_impl> &y);	
 };
 }
 

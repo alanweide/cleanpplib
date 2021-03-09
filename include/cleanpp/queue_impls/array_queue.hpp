@@ -9,12 +9,12 @@
 #ifndef array_queue_h
 #define array_queue_h
 
-#include "clean_queue.hpp"
+#include "queue_impl.hpp"
 
 namespace cleanpp {
 
 template <class T>
-class array_queue: public clean_queue<T>
+class array_queue: public queue_impl<T>
 {
 private:
     static const int MIN_CAP = 6;

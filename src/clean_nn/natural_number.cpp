@@ -15,7 +15,7 @@
 namespace cleanpp {
 
 // natural_number_kernel
-bool clean_natural_number_kernel::operator==(clean_natural_number_kernel &other) {
+bool natural_number_kernel_impl::operator==(natural_number_kernel_impl &other) {
     bool ans = false;
     std::cout << *this;
     bool otherZero = other.is_zero();
@@ -35,7 +35,7 @@ bool clean_natural_number_kernel::operator==(clean_natural_number_kernel &other)
     return ans;
 }
 
-std::ostream& operator<<(std::ostream& out, clean_natural_number_kernel& o) {
+std::ostream& operator<<(std::ostream& out, natural_number_kernel_impl& o) {
     if (o.is_zero()) {
         out << 0;
     } else {
@@ -51,7 +51,7 @@ std::ostream& operator<<(std::ostream& out, clean_natural_number_kernel& o) {
 }
 
 // natural_number_secondary
-void clean_natural_number::increment() {
+void natural_number_impl::increment() {
     int d = 0;
     d = this->divide_by_radix();
     d++;
@@ -62,7 +62,7 @@ void clean_natural_number::increment() {
     multiply_by_radix(d);
 }
 
-void clean_natural_number::decrement() {
+void natural_number_impl::decrement() {
     assert(!is_zero());
     int d = 0;
     d = this->divide_by_radix();
@@ -74,7 +74,7 @@ void clean_natural_number::decrement() {
     multiply_by_radix(d);
 }
 
-void clean_natural_number::set_from_long(long n) {
+void natural_number_impl::set_from_long(long n) {
     assert(n >= 0);
     if (n == 0) {
         clear();
@@ -85,7 +85,7 @@ void clean_natural_number::set_from_long(long n) {
     }
 }
 
-void clean_natural_number::divide_by_two() {
+void natural_number_impl::divide_by_two() {
     if (!this->is_zero()) {
         int d = this->divide_by_radix();
         int parityChecker = this->divide_by_radix();
@@ -116,7 +116,7 @@ void clean_natural_number::divide_by_two() {
  
  */
 
-std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
+std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -125,8 +125,8 @@ std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> 
         x = add(std::move(x), y);
     }
     x_low += y_low;
-    if (x_low >= clean_natural_number::RADIX) {
-        x_low -= clean_natural_number::RADIX;
+    if (x_low >= natural_number_impl::RADIX) {
+        x_low -= natural_number_impl::RADIX;
         x->increment();
     }
     x->multiply_by_radix(x_low);
@@ -134,7 +134,7 @@ std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> 
     return x;
 }
 
-std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
+std::unique_ptr<natural_number_impl>&& subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -144,7 +144,7 @@ std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_n
     }
     x_low -= y_low;
     if (x_low < 0) {
-        x_low += clean_natural_number::RADIX;
+        x_low += natural_number_impl::RADIX;
         x->decrement();
     }
     x->multiply_by_radix(x_low);
@@ -152,26 +152,26 @@ std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_n
     return std::move(x);
 }
 
-std::unique_ptr<clean_natural_number> multiply_by_digit(std::unique_ptr<clean_natural_number> x, int d) {
+std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_number_impl> x, int d) {
     int last_dig = x->divide_by_radix();
     last_dig *= d;
     if (!x->is_zero()) {
         x = multiply_by_digit(std::move(x), d);
         x->multiply_by_radix(0);
     }
-    std::unique_ptr<clean_natural_number> nn_last_dig(static_cast<clean_natural_number*>(x->new_instance().release()));
+    std::unique_ptr<natural_number_impl> nn_last_dig(static_cast<natural_number_impl*>(x->new_instance().release()));
     nn_last_dig = add(std::move(nn_last_dig), x);
     nn_last_dig->set_from_long(last_dig);
     x = add(std::move(x), nn_last_dig);
     return x;
 }
 
-std::unique_ptr<clean_natural_number> multiply(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {
+std::unique_ptr<natural_number_impl> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
     if (y->is_zero()) {
         x->clear();
     } else {
         int y_ones = y->divide_by_radix();
-        std::unique_ptr<clean_natural_number> x_copy(static_cast<clean_natural_number*>(x->new_instance().release()));
+        std::unique_ptr<natural_number_impl> x_copy(static_cast<natural_number_impl*>(x->new_instance().release()));
         x_copy = add(std::move(x_copy), x);
         x_copy = multiply_by_digit(std::move(x_copy), y_ones);
         x = multiply(std::move(x), y);

@@ -12,12 +12,12 @@
 #include <type_traits>
 #include <stdio.h>
 #include <sstream>
-#include "clean_stack.hpp"
+#include "stack_impl.hpp"
 
 namespace cleanpp {
 
 template <class T>
-class linked_stack: public clean_stack<T> {
+class linked_stack: public stack_impl<T> {
 private:
     class stack_node: public clean_base {
     private:

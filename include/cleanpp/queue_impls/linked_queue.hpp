@@ -11,12 +11,12 @@
 
 #include <sstream>
 
-#include "clean_queue.hpp"
+#include "queue_impl.hpp"
 
 namespace cleanpp {
 
 template <typename T>
-class linked_queue: public clean_queue<T> {
+class linked_queue: public queue_impl<T> {
 private:
     class queue_node: public clean_base {
     private:
@@ -137,7 +137,7 @@ private:
     std::string to_str() {
         std::stringstream out;
         out << "<";
-        std::unique_ptr<clean_queue<T>> temp = std::make_unique<linked_queue<T>>();
+        std::unique_ptr<queue_impl<T>> temp = std::make_unique<linked_queue<T>>();
         while (!this->is_empty())
         {
             T elem;
