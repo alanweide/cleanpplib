@@ -14,7 +14,6 @@
 #include <clean_list/stack_based_list.hpp>
 #include <clean_nn/bounded_nn.hpp>
 #include <clean_nn/stack_nn.hpp>
-#include <template_list/template_list.hpp>
 #include <flexible_list/flexible_list.hpp>
 
 @interface TestFlexListNaturalNumber : XCTestCase

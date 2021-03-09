@@ -13,7 +13,6 @@
 #include "clean_integer.hpp"
 
 #include "stack_nn.hpp"
-#include "template_nn.hpp"
 #include "flexible_nn.hpp"
 
 namespace cleanpp {
@@ -35,7 +34,7 @@ public:
     std::unique_ptr<clean_integer> new_instance() const override;
 
 private:
-	t_natural_number<stack_nn> n_;
+	flex_natural_number n_;
 	enum integer_sign sign_;
 };
 }

@@ -131,7 +131,7 @@ std::unique_ptr<clean_natural_number> add(std::unique_ptr<clean_natural_number> 
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    return std::move(x);
+    return x;
 }
 
 std::unique_ptr<clean_natural_number>&& subtract(std::unique_ptr<clean_natural_number> x, std::unique_ptr<clean_natural_number> &y) {

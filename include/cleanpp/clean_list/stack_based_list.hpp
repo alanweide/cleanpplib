@@ -12,7 +12,6 @@
 #include "clean_list.hpp"
 
 #include "array_stack.hpp"
-#include "template_stack.hpp"
 #include "flexible_stack.hpp"
 
 namespace cleanpp {

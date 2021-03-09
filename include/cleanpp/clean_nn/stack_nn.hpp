@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "linked_stack.hpp"
 #include "array_stack.hpp"
-#include "template_stack.hpp"
 #include "flexible_stack.hpp"
 #include "natural_number.hpp"
 
@@ -34,7 +33,7 @@ public:
     int divide_by_radix() override;
     std::unique_ptr<clean_natural_number_kernel> new_instance() override;
 private:
-    t_stack<array_stack, int> rep_;
+    flex_stack<int> rep_;
 };
 
 }

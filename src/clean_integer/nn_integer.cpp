@@ -18,7 +18,7 @@ nn_integer::nn_integer(int n) {
 	} else {
 		sign_ = POSITIVE;
 	}
-	n_ = t_natural_number<stack_nn>(n);
+    n_ = flex_natural_number{stack_nn{}, n};
 }
 
 nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
