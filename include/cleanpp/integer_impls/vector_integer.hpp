@@ -11,12 +11,12 @@
 
 #include <stdio.h>
 #include <vector>
-#include "clean_integer.hpp"
+#include "integer_impl.hpp"
 
 #include "stack_nn.hpp"
 
 namespace cleanpp {
-class vector_integer: public clean_integer {
+class vector_integer: public integer_impl {
 public:
 	vector_integer(int n = 0);
 	
@@ -31,7 +31,7 @@ public:
 	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
-    std::unique_ptr<clean_integer> new_instance() const override;
+    std::unique_ptr<integer_impl> new_instance() const override;
 
 private:
 	std::vector<int> rep_;

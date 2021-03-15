@@ -6,67 +6,74 @@
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 
-#ifndef template_queue_h
-#define template_queue_h
+#ifndef flexible_queue_h
+#define flexible_queue_h
 
 #include <stdio.h>
 #include <iostream>
 #include <memory>
 
 #include "clean_base.hpp"
-#include "clean_queue.hpp"
+#include "queue_impl.hpp"
+#include "array_queue.hpp"
+#include "linked_queue.hpp"
 
 namespace cleanpp {
 
-template <template<typename> class I, typename Item>
-class t_queue: public clean_base {
+template <typename I>
+using _queue_def_t = array_queue<I>;
+
+template <typename Item>
+class queue: public clean_base {
 	/*
 	 queue is modeled by string of Item
 	 */
-private:
-	std::unique_ptr<clean_queue<Item>> rep_;
+protected:
+	std::unique_ptr<queue_impl<Item>> rep_;
 public:
-	
+
 	/*
 	 ensures this = <>
 	 */
-	t_queue(): rep_(std::make_unique<I<Item>>()) {
-		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
+	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
+	}
+
+	template<template<typename> class I>
+	queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
+		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 	}
-	
-	t_queue(const t_queue<I, Item> &o) = delete;
+
+	queue(const queue<Item> &o) = delete;
 	/*
 	 clears  other
 	 ensures this = #other
 	 */
-	t_queue(t_queue<I, Item>&& other): rep_(std::move(other.rep_)) {
-		static_assert(std::is_base_of<clean_queue<Item>, I<Item>>::value,
-					  "Template parameter I must derive from cleanpp::queue");
-		other.rep_ = std::make_unique<I<Item>>();
+	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
+		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
-	
-	t_queue<I, Item>& operator=(const t_queue<I, Item>& other) = delete;
+
+	queue<Item>& operator=(const queue<Item>& other) = delete;
 	/*
 	 clears  other
 	 ensures this = #other
 	 */
-	t_queue<I, Item>& operator=(t_queue<I, Item>&& other) {
+	queue<Item>& operator=(queue<Item>&& other) {
 		if (&other == this) {
 			return *this;
 		}
 		rep_ = std::move(other.rep_);
-		other.rep_ = std::make_unique<I<Item>>();
+		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 		return *this;
 	}
-	
+
 	/*
 	 clears this
 	 */
 	void clear() {
 		this->rep_->clear();
 	}
-	
+
 	/*
 	 updates this
 	 clears  x
@@ -75,7 +82,7 @@ public:
 	void enqueue(Item&& x) {
 		rep_->enqueue(std::forward<Item>(x));
 	}
-	
+
 	/*
 	 updates  this
 	 requires |this| > 0
@@ -84,26 +91,26 @@ public:
 	Item dequeue() {
 		return rep_->dequeue();
 	}
-	
+
 	/*
 	 ensures is_empty = (|this| = 0)
 	 */
 	bool is_empty() const {
 		return rep_->is_empty();
 	}
-	
+
     /*
      ensures `==` = (this = other)
      */
-    bool operator==(t_queue<I, Item>& other) {
+    bool operator==(queue<Item>& other) {
         return *this->rep_ == *other.rep_;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, t_queue<I, Item>& o) {
+    friend std::ostream& operator<<(std::ostream& out, queue<Item>& o) {
 		return out << *o.rep_;
 	}
 };
 
 }
 
-#endif /* template_queue_h */
+#endif /* flexible_queue_h */

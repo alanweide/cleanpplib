@@ -14,7 +14,7 @@
 #include "natural_number.hpp"
 
 namespace cleanpp {
-class bounded_nn: public clean_natural_number {
+class bounded_nn: public natural_number_impl {
 public:
     bounded_nn(long n = 0);
     
@@ -32,7 +32,7 @@ public:
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
     int divide_by_radix() override;
-    std::unique_ptr<clean_natural_number_kernel> new_instance() override;
+    std::unique_ptr<natural_number_kernel_impl> new_instance() override;
     void increment() override;
     void decrement() override;
     void set_from_long(long n) override;

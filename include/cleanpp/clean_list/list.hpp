@@ -14,20 +14,20 @@
 #include <iostream>
 #include <sstream>
 #include "clean_base.hpp"
-#include "clean_list.hpp"
+#include "list_impl.hpp"
 #include "stack_based_list.hpp"
 
 namespace cleanpp {
 
 template<typename Item>
-class flex_list_kernel: public clean_base {
+class list_kernel: public clean_base {
 protected:
     template <typename I>
     using _flex_list_def_t = stack_based_list<I>;
-    static_assert(std::is_base_of<clean_list<int>, _flex_list_def_t<int>>::value,
+    static_assert(std::is_base_of<list_impl<int>, _flex_list_def_t<int>>::value,
                   "_flex_list_def_t must derive from list<Item>");
     
-    std::unique_ptr<clean_list_kernel<Item>> rep_;
+    std::unique_ptr<list_kernel_impl<Item>> rep_;
     /*
      list_kernel is modeled by (prec: string of T, rem:  string of T)
      */
@@ -36,34 +36,34 @@ public:
     /*
      initialization ensures this = (<>, <>)
      */
-    flex_list_kernel(): rep_(std::make_unique<_flex_list_def_t<Item>>()) {
+    list_kernel(): rep_(std::make_unique<_flex_list_def_t<Item>>()) {
     }
     
     /*
      initialization ensures this = (<>, <>)
      */
     template <template<typename> class I>
-    flex_list_kernel(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
-        static_assert(std::is_base_of<clean_list_kernel<Item>, I<Item>>::value,
+    list_kernel(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
+        static_assert(std::is_base_of<list_kernel_impl<Item>, I<Item>>::value,
                       "Type of impl must derive from list_kernel<Item>");
     }
     
-    flex_list_kernel(const flex_list_kernel<Item>& other) = delete;
+    list_kernel(const list_kernel<Item>& other) = delete;
     /*
      clears other
      initialization ensures this = #other
      */
-    flex_list_kernel(flex_list_kernel<Item>&& other): rep_(std::move(other.rep_)) {
+    list_kernel(list_kernel<Item>&& other): rep_(std::move(other.rep_)) {
         other.rep_ = std::make_unique<_flex_list_def_t<Item>>();
     }
     
-    flex_list_kernel<Item>& operator=(const flex_list_kernel<Item>& other) = delete;
+    list_kernel<Item>& operator=(const list_kernel<Item>& other) = delete;
     
     /*
      clears other
      ensures this = #other
      */
-    flex_list_kernel<Item>& operator=(flex_list_kernel<Item>&& other) {
+    list_kernel<Item>& operator=(list_kernel<Item>&& other) {
         if (&other == this) {
             return *this;
         }
@@ -129,24 +129,24 @@ public:
         return this->rep_->to_str();
     }
     
-    bool operator==(flex_list_kernel<Item> &other) {
+    bool operator==(list_kernel<Item> &other) {
         return *this->rep_ == *other.rep_;
     }
     
-    friend std::ostream& operator<<(std::ostream& out, flex_list_kernel<Item>& o) {
+    friend std::ostream& operator<<(std::ostream& out, list_kernel<Item>& o) {
         return out << *o.rep_;
     }
 };
 
 template<typename Item>
-class flex_list: public flex_list_kernel<Item> {
+class list: public list_kernel<Item> {
 public:
     /*
      initialization ensures this = (<>, <>)
      */
     template <template<typename> class I>
-    flex_list(__attribute__((unused)) const I<Item>& impl): flex_list_kernel<Item>(impl) {
-        static_assert(std::is_base_of<clean_list<Item>, I<Item>>::value,
+    list(__attribute__((unused)) const I<Item>& impl): list_kernel<Item>(impl) {
+        static_assert(std::is_base_of<list_impl<Item>, I<Item>>::value,
                       "Type of impl must derive from list<Item>");
     }
     
@@ -155,7 +155,7 @@ public:
      ensures this = (<>, #this.prec * #this.rem)
      */
     void reset() {
-        std::unique_ptr<clean_list<Item>> casted(static_cast<clean_list<Item>*>(this->rep_.release()));
+        std::unique_ptr<list_impl<Item>> casted(static_cast<list_impl<Item>*>(this->rep_.release()));
         
         casted->reset();
         

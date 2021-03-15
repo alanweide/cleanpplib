@@ -7,7 +7,7 @@
 //
 #include <memory>
 #include <assert.h>
-#include <clean_integer/vector_integer.hpp>
+#include <integer_impls/vector_integer.hpp>
 
 namespace cleanpp {
 vector_integer::vector_integer(int n) {
@@ -71,7 +71,7 @@ void vector_integer::negate() {
 	}
 }
 
-std::unique_ptr<clean_integer> vector_integer::new_instance() const {
+std::unique_ptr<integer_impl> vector_integer::new_instance() const {
     return std::make_unique<vector_integer>();
 }
 

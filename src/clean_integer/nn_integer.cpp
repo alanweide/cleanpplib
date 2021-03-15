@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 #include <memory>
-#include <clean_integer/nn_integer.hpp>
+#include <integer_impls/nn_integer.hpp>
 
 namespace cleanpp {
 nn_integer::nn_integer(int n) {
@@ -18,7 +18,7 @@ nn_integer::nn_integer(int n) {
 	} else {
 		sign_ = POSITIVE;
 	}
-	n_ = t_natural_number<stack_nn>(n);
+    n_ = natural_number{stack_nn{}, n};
 }
 
 nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
@@ -70,7 +70,7 @@ void nn_integer::negate() {
 	}
 }
 
-std::unique_ptr<clean_integer> nn_integer::new_instance() const {
+std::unique_ptr<integer_impl> nn_integer::new_instance() const {
     return std::make_unique<nn_integer>();
 }
 

@@ -18,7 +18,7 @@
 namespace cleanpp {
 
 template <class T>
-class clean_stack: public clean_base {
+class stack_impl: public clean_base {
     /*
      stack is modeled by string of T
      */
@@ -48,7 +48,7 @@ public:
     /*
      ensures `==` = (this = other)
      */
-	bool operator==(clean_stack<T> &other) {
+	bool operator==(stack_impl<T> &other) {
 		bool ans;
 		if (is_empty() && other.is_empty()) {
 			ans = true;
@@ -65,7 +65,7 @@ public:
 		return ans;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, clean_stack<T>& o) {
+	friend std::ostream& operator<<(std::ostream& out, stack_impl<T>& o) {
 		return out << o.to_str();
 	}
 };

@@ -9,9 +9,9 @@
 #import <XCTest/XCTest.h>
 #include <stdio.h>
 #include <sstream>
-#include <flexible_nn/flexible_nn.hpp>
-#include <clean_nn/bounded_nn.hpp>
-#include <clean_nn/stack_nn.hpp>
+#include <clean_nn/natural_number.hpp>
+#include <natural_number_impls/bounded_nn.hpp>
+#include <natural_number_impls/stack_nn.hpp>
 
 @interface TestFlexNN: XCTestCase
 @end
@@ -23,7 +23,7 @@ using namespace cleanpp;
 typedef bounded_nn nn_type;
 typedef stack_nn nn_type2;
 
-static std::string nnToString(flex_natural_number &o) {
+static std::string nnToString(natural_number &o) {
 	std::stringstream s;
 	s << o;
 	return s.str();
@@ -38,30 +38,30 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testInitializerDef {
-	flex_natural_number n(nn_type{});
+	natural_number n(nn_type{});
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "0");
 }
 
 - (void)testInitializer_SingleDig {
-	flex_natural_number n(nn_type{}, 4);
+	natural_number n(nn_type{}, 4);
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "4", @"n = %s", n_str.c_str());
 }
 
 - (void)testInitializer_TwoDig {
-	flex_natural_number n(nn_type{}, 45);
+	natural_number n(nn_type{}, 45);
 	
 	std::string n_str = nnToString(n);
 	XCTAssert(n_str == "45", @"n = %s", n_str.c_str());
 }
 
 - (void)testAssignZeroZero {
-    flex_natural_number n(nn_type{});
-    flex_natural_number m(nn_type{});
-    flex_natural_number expected(nn_type{});
+    natural_number n(nn_type{});
+    natural_number m(nn_type{});
+    natural_number expected(nn_type{});
     
     n = std::move(m);
     
@@ -70,10 +70,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignZeroNonzero {
-	flex_natural_number n(nn_type{});
-	flex_natural_number m(nn_type{}, 5);
-	flex_natural_number n_expected(nn_type{}, 5);
-	flex_natural_number m_expected(nn_type{}, 0);
+	natural_number n(nn_type{});
+	natural_number m(nn_type{}, 5);
+	natural_number n_expected(nn_type{}, 5);
+	natural_number m_expected(nn_type{}, 0);
 	
 	n = std::move(m);
 	
@@ -84,10 +84,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignNonzeroZero {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number m(nn_type{});
-	flex_natural_number n_expected(nn_type{});
-	flex_natural_number m_expected(nn_type{});
+	natural_number n(nn_type{}, 5);
+	natural_number m(nn_type{});
+	natural_number n_expected(nn_type{});
+	natural_number m_expected(nn_type{});
 	
 	n = std::move(m);
 	
@@ -98,10 +98,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignNonzeroNonzero {
-	flex_natural_number n(nn_type{}, 9);
-	flex_natural_number m(nn_type{}, 5);
-	flex_natural_number n_expected(nn_type{}, 5);
-	flex_natural_number m_expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 9);
+	natural_number m(nn_type{}, 5);
+	natural_number n_expected(nn_type{}, 5);
+	natural_number m_expected(nn_type{}, 0);
 	
 	n = std::move(m);
 	
@@ -112,10 +112,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignMultidigMultidig {
-    flex_natural_number n(nn_type{}, 96);
-    flex_natural_number m(nn_type{}, 43);
-    flex_natural_number n_expected(nn_type{}, 43);
-    flex_natural_number m_expected(nn_type{}, 0);
+    natural_number n(nn_type{}, 96);
+    natural_number m(nn_type{}, 43);
+    natural_number n_expected(nn_type{}, 43);
+    natural_number m_expected(nn_type{}, 0);
     
     n = std::move(m);
     
@@ -127,9 +127,9 @@ static std::string nnToString(flex_natural_number &o) {
 
 
 - (void)testAssignZeroZeroMultiImpl {
-	flex_natural_number n(nn_type{});
-	flex_natural_number m(nn_type2{});
-	flex_natural_number expected(nn_type{});
+	natural_number n(nn_type{});
+	natural_number m(nn_type2{});
+	natural_number expected(nn_type{});
 	
 	n = std::move(m);
 	
@@ -138,10 +138,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignZeroNonzeroMultiImpl {
-	flex_natural_number n(nn_type{});
-	flex_natural_number m(nn_type2{}, 5);
-	flex_natural_number n_expected(nn_type2{}, 5);
-	flex_natural_number m_expected(nn_type{}, 0);
+	natural_number n(nn_type{});
+	natural_number m(nn_type2{}, 5);
+	natural_number n_expected(nn_type2{}, 5);
+	natural_number m_expected(nn_type{}, 0);
 	
 	n = std::move(m);
 	
@@ -152,10 +152,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignNonzeroZeroMultiImpl {
-	flex_natural_number n(nn_type2{}, 5);
-	flex_natural_number m(nn_type{});
-	flex_natural_number n_expected(nn_type2{});
-	flex_natural_number m_expected(nn_type{});
+	natural_number n(nn_type2{}, 5);
+	natural_number m(nn_type{});
+	natural_number n_expected(nn_type2{});
+	natural_number m_expected(nn_type{});
 	
 	n = std::move(m);
 	
@@ -166,10 +166,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignNonzeroNonzeroMultiImpl {
-	flex_natural_number n(nn_type2{}, 9);
-	flex_natural_number m(nn_type{}, 5);
-	flex_natural_number n_expected(nn_type2{}, 5);
-	flex_natural_number m_expected(nn_type{}, 0);
+	natural_number n(nn_type2{}, 9);
+	natural_number m(nn_type{}, 5);
+	natural_number n_expected(nn_type2{}, 5);
+	natural_number m_expected(nn_type{}, 0);
 	
 	n = std::move(m);
 	
@@ -180,10 +180,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAssignMultidigMultidigMultiImpl {
-	flex_natural_number n(nn_type2{}, 96);
-	flex_natural_number m(nn_type{}, 43);
-	flex_natural_number n_expected(nn_type2{}, 43);
-	flex_natural_number m_expected(nn_type{}, 0);
+	natural_number n(nn_type2{}, 96);
+	natural_number m(nn_type{}, 43);
+	natural_number n_expected(nn_type2{}, 43);
+	natural_number m_expected(nn_type{}, 0);
 	
 	n = std::move(m);
 	
@@ -195,8 +195,8 @@ static std::string nnToString(flex_natural_number &o) {
 
 
 - (void)testClearZero {
-	flex_natural_number n(nn_type{});
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{});
+	natural_number expected(nn_type{}, 0);
 	
 	n.clear();
 	
@@ -205,8 +205,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testClearNonZero {
-	flex_natural_number n(nn_type{}, 47);
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 47);
+	natural_number expected(nn_type{}, 0);
 	
 	n.clear();
 	
@@ -215,8 +215,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testIncrementZero {
-	flex_natural_number n(nn_type{});
-	flex_natural_number expected(nn_type{}, 1);
+	natural_number n(nn_type{});
+	natural_number expected(nn_type{}, 1);
 	
 	n.increment();
 	
@@ -225,8 +225,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testIncrementNine {
-	flex_natural_number n(nn_type{}, 9);
-	flex_natural_number expected(nn_type{}, 10);
+	natural_number n(nn_type{}, 9);
+	natural_number expected(nn_type{}, 10);
 	
 	n.increment();
 	
@@ -235,8 +235,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testIncrementFive {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number expected(nn_type{}, 6);
+	natural_number n(nn_type{}, 5);
+	natural_number expected(nn_type{}, 6);
 	
 	n.increment();
 	
@@ -245,8 +245,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDecrementOne {
-	flex_natural_number n(nn_type{}, 1);
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 1);
+	natural_number expected(nn_type{}, 0);
 	
 	n.decrement();
 	
@@ -255,8 +255,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDecrementTen {
-	flex_natural_number n(nn_type{}, 10);
-	flex_natural_number expected(nn_type{}, 9);
+	natural_number n(nn_type{}, 10);
+	natural_number expected(nn_type{}, 9);
 	
 	n.decrement();
 	
@@ -265,8 +265,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDecrementFive {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number expected(nn_type{}, 4);
+	natural_number n(nn_type{}, 5);
+	natural_number expected(nn_type{}, 4);
 	
 	n.decrement();
 	
@@ -275,8 +275,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultRadZero_Zero {
-	flex_natural_number n(nn_type{}, 0);
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 0);
+	natural_number expected(nn_type{}, 0);
 	
 	n.multiply_by_radix(0);
 	
@@ -285,8 +285,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultRadZero_Five {
-	flex_natural_number n(nn_type{}, 0);
-	flex_natural_number expected(nn_type{}, 5);
+	natural_number n(nn_type{}, 0);
+	natural_number expected(nn_type{}, 5);
 	
 	n.multiply_by_radix(5);
 	
@@ -295,8 +295,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultRadFive_Zero {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number expected(nn_type{}, 50);
+	natural_number n(nn_type{}, 5);
+	natural_number expected(nn_type{}, 50);
 	
 	n.multiply_by_radix(0);
 	
@@ -305,8 +305,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultRadFive_Five {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number expected(nn_type{}, 55);
+	natural_number n(nn_type{}, 5);
+	natural_number expected(nn_type{}, 55);
 	
 	n.multiply_by_radix(5);
 	
@@ -315,8 +315,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDivRadZero {
-	flex_natural_number n(nn_type{}, 0);
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 0);
+	natural_number expected(nn_type{}, 0);
 	
 	int d = 4;
 	d = n.divide_by_radix();
@@ -327,8 +327,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDivRadFive {
-	flex_natural_number n(nn_type{}, 5);
-	flex_natural_number expected(nn_type{}, 0);
+	natural_number n(nn_type{}, 5);
+	natural_number expected(nn_type{}, 0);
 	
 	int d = 4;
 	d = n.divide_by_radix();
@@ -339,8 +339,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDiveRadFifty {
-	flex_natural_number n(nn_type{}, 50);
-	flex_natural_number expected(nn_type{}, 5);
+	natural_number n(nn_type{}, 50);
+	natural_number expected(nn_type{}, 5);
 	
 	int d = 4;
 	d = n.divide_by_radix();
@@ -351,8 +351,8 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testDivRadFiftyFive {
-	flex_natural_number n(nn_type{}, 55);
-	flex_natural_number expected(nn_type{}, 5);
+	natural_number n(nn_type{}, 55);
+	natural_number expected(nn_type{}, 5);
 	
 	int d = 4;
 	d = n.divide_by_radix();
@@ -365,10 +365,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddZeroZero {
-	flex_natural_number n1(nn_type{});
-	flex_natural_number n2(nn_type{});
-	flex_natural_number n1_exp(nn_type{});
-	flex_natural_number n2_exp(nn_type{});
+	natural_number n1(nn_type{});
+	natural_number n2(nn_type{});
+	natural_number n1_exp(nn_type{});
+	natural_number n2_exp(nn_type{});
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -379,10 +379,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddZeroFive {
-	flex_natural_number n1(nn_type{}, 0);
-	flex_natural_number n2(nn_type{}, 5);
-	flex_natural_number n1_exp(nn_type{}, 5);
-	flex_natural_number n2_exp(nn_type{}, 5);
+	natural_number n1(nn_type{}, 0);
+	natural_number n2(nn_type{}, 5);
+	natural_number n1_exp(nn_type{}, 5);
+	natural_number n2_exp(nn_type{}, 5);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -393,10 +393,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddFiveZero {
-	flex_natural_number n1(nn_type{}, 5);
-	flex_natural_number n2(nn_type{}, 0);
-	flex_natural_number n1_exp(nn_type{}, 5);
-	flex_natural_number n2_exp(nn_type{}, 0);
+	natural_number n1(nn_type{}, 5);
+	natural_number n2(nn_type{}, 0);
+	natural_number n1_exp(nn_type{}, 5);
+	natural_number n2_exp(nn_type{}, 0);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -407,10 +407,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddFourFour {
-	flex_natural_number n1(nn_type{}, 4);
-	flex_natural_number n2(nn_type{}, 4);
-	flex_natural_number n1_exp(nn_type{}, 8);
-	flex_natural_number n2_exp(nn_type{}, 4);
+	natural_number n1(nn_type{}, 4);
+	natural_number n2(nn_type{}, 4);
+	natural_number n1_exp(nn_type{}, 8);
+	natural_number n2_exp(nn_type{}, 4);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -421,10 +421,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddFiveFive {
-	flex_natural_number n1(nn_type{}, 5);
-	flex_natural_number n2(nn_type{}, 5);
-	flex_natural_number n1_exp(nn_type{}, 10);
-	flex_natural_number n2_exp(nn_type{}, 5);
+	natural_number n1(nn_type{}, 5);
+	natural_number n2(nn_type{}, 5);
+	natural_number n1_exp(nn_type{}, 10);
+	natural_number n2_exp(nn_type{}, 5);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -435,10 +435,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAddTenTen {
-	flex_natural_number n1(nn_type{}, 10);
-	flex_natural_number n2(nn_type{}, 10);
-	flex_natural_number n1_exp(nn_type{}, 20);
-	flex_natural_number n2_exp(nn_type{}, 10);
+	natural_number n1(nn_type{}, 10);
+	natural_number n2(nn_type{}, 10);
+	natural_number n1_exp(nn_type{}, 20);
+	natural_number n2_exp(nn_type{}, 10);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -449,10 +449,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testAdd57_66{
-	flex_natural_number n1(nn_type{}, 57);
-	flex_natural_number n2(nn_type{}, 66);
-	flex_natural_number n1_exp(nn_type{}, 123);
-	flex_natural_number n2_exp(nn_type{}, 66);
+	natural_number n1(nn_type{}, 57);
+	natural_number n2(nn_type{}, 66);
+	natural_number n1_exp(nn_type{}, 123);
+	natural_number n2_exp(nn_type{}, 66);
 	
 	n1 = add(std::move(n1), n2);
 	
@@ -463,10 +463,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtractZeroZero {
-	flex_natural_number n1(nn_type{});
-	flex_natural_number n2(nn_type{});
-	flex_natural_number n1_exp(nn_type{});
-	flex_natural_number n2_exp(nn_type{});
+	natural_number n1(nn_type{});
+	natural_number n2(nn_type{});
+	natural_number n1_exp(nn_type{});
+	natural_number n2_exp(nn_type{});
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -477,10 +477,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtractFiveZero {
-	flex_natural_number n1(nn_type{}, 5);
-	flex_natural_number n2(nn_type{}, 0);
-	flex_natural_number n1_exp(nn_type{}, 5);
-	flex_natural_number n2_exp(nn_type{}, 0);
+	natural_number n1(nn_type{}, 5);
+	natural_number n2(nn_type{}, 0);
+	natural_number n1_exp(nn_type{}, 5);
+	natural_number n2_exp(nn_type{}, 0);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -491,10 +491,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtractFourFour {
-	flex_natural_number n1(nn_type{}, 4);
-	flex_natural_number n2(nn_type{}, 4);
-	flex_natural_number n1_exp(nn_type{}, 0);
-	flex_natural_number n2_exp(nn_type{}, 4);
+	natural_number n1(nn_type{}, 4);
+	natural_number n2(nn_type{}, 4);
+	natural_number n1_exp(nn_type{}, 0);
+	natural_number n2_exp(nn_type{}, 4);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -505,10 +505,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtractTenTen {
-	flex_natural_number n1(nn_type{}, 10);
-	flex_natural_number n2(nn_type{}, 10);
-	flex_natural_number n1_exp(nn_type{}, 0);
-	flex_natural_number n2_exp(nn_type{}, 10);
+	natural_number n1(nn_type{}, 10);
+	natural_number n2(nn_type{}, 10);
+	natural_number n1_exp(nn_type{}, 0);
+	natural_number n2_exp(nn_type{}, 10);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -519,10 +519,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtract77_66{
-	flex_natural_number n1(nn_type{}, 77);
-	flex_natural_number n2(nn_type{}, 66);
-	flex_natural_number n1_exp(nn_type{}, 11);
-	flex_natural_number n2_exp(nn_type{}, 66);
+	natural_number n1(nn_type{}, 77);
+	natural_number n2(nn_type{}, 66);
+	natural_number n1_exp(nn_type{}, 11);
+	natural_number n2_exp(nn_type{}, 66);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -533,10 +533,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtract77_6{
-	flex_natural_number n1(nn_type{}, 77);
-	flex_natural_number n2(nn_type{}, 6);
-	flex_natural_number n1_exp(nn_type{}, 71);
-	flex_natural_number n2_exp(nn_type{}, 6);
+	natural_number n1(nn_type{}, 77);
+	natural_number n2(nn_type{}, 6);
+	natural_number n1_exp(nn_type{}, 71);
+	natural_number n2_exp(nn_type{}, 6);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -547,10 +547,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testSubtract71_66{
-	flex_natural_number n1(nn_type{}, 71);
-	flex_natural_number n2(nn_type{}, 66);
-	flex_natural_number n1_exp(nn_type{}, 5);
-	flex_natural_number n2_exp(nn_type{}, 66);
+	natural_number n1(nn_type{}, 71);
+	natural_number n2(nn_type{}, 66);
+	natural_number n1_exp(nn_type{}, 5);
+	natural_number n2_exp(nn_type{}, 66);
 	
 	n1 = subtract(std::move(n1), n2);
 	
@@ -561,10 +561,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiplyZeroZero {
-    flex_natural_number n1(nn_type{});
-    flex_natural_number n2(nn_type{});
-    flex_natural_number n1_exp(nn_type{});
-    flex_natural_number n2_exp(nn_type{});
+    natural_number n1(nn_type{});
+    natural_number n2(nn_type{});
+    natural_number n1_exp(nn_type{});
+    natural_number n2_exp(nn_type{});
     
     n1 = multiply(std::move(n1), n2);
 
@@ -575,10 +575,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiplyFiveZero {
-    flex_natural_number n1(nn_type{}, 5);
-    flex_natural_number n2(nn_type{});
-    flex_natural_number n1_exp(nn_type{}, 0);
-    flex_natural_number n2_exp(nn_type{});
+    natural_number n1(nn_type{}, 5);
+    natural_number n2(nn_type{});
+    natural_number n1_exp(nn_type{}, 0);
+    natural_number n2_exp(nn_type{});
     
     n1 = multiply(std::move(n1), n2);
 
@@ -589,10 +589,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiplyFourFour {
-    flex_natural_number n1(nn_type{}, 4);
-    flex_natural_number n2(nn_type{}, 4);
-    flex_natural_number n1_exp(nn_type{}, 16);
-    flex_natural_number n2_exp(nn_type{}, 4);
+    natural_number n1(nn_type{}, 4);
+    natural_number n2(nn_type{}, 4);
+    natural_number n1_exp(nn_type{}, 16);
+    natural_number n2_exp(nn_type{}, 4);
     
     n1 = multiply(std::move(n1), n2);
 
@@ -603,10 +603,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiplyTenTen {
-    flex_natural_number n1(nn_type{}, 10);
-    flex_natural_number n2(nn_type{}, 10);
-    flex_natural_number n1_exp(nn_type{}, 100);
-    flex_natural_number n2_exp(nn_type{}, 10);
+    natural_number n1(nn_type{}, 10);
+    natural_number n2(nn_type{}, 10);
+    natural_number n1_exp(nn_type{}, 100);
+    natural_number n2_exp(nn_type{}, 10);
     
     n1 = multiply(std::move(n1), n2);
 
@@ -617,10 +617,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiply77_66{
-    flex_natural_number n1(nn_type{}, 77);
-    flex_natural_number n2(nn_type{}, 66);
-    flex_natural_number n1_exp(nn_type{}, 5082);
-    flex_natural_number n2_exp(nn_type{}, 66);
+    natural_number n1(nn_type{}, 77);
+    natural_number n2(nn_type{}, 66);
+    natural_number n1_exp(nn_type{}, 5082);
+    natural_number n2_exp(nn_type{}, 66);
     
     n1 = multiply(std::move(n1), n2);
 
@@ -631,10 +631,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiply77_6{
-    flex_natural_number n1(nn_type{}, 77);
-    flex_natural_number n2(nn_type{}, 6);
-    flex_natural_number n1_exp(nn_type{}, 462);
-    flex_natural_number n2_exp(nn_type{}, 6);
+    natural_number n1(nn_type{}, 77);
+    natural_number n2(nn_type{}, 6);
+    natural_number n1_exp(nn_type{}, 462);
+    natural_number n2_exp(nn_type{}, 6);
     
     n1 = multiply(std::move(n1), n2);
 
@@ -645,10 +645,10 @@ static std::string nnToString(flex_natural_number &o) {
 }
 
 - (void)testMultiply71_66{
-    flex_natural_number n1(nn_type{}, 71);
-    flex_natural_number n2(nn_type{}, 66);
-    flex_natural_number n1_exp(nn_type{}, 4686);
-    flex_natural_number n2_exp(nn_type{}, 66);
+    natural_number n1(nn_type{}, 71);
+    natural_number n2(nn_type{}, 66);
+    natural_number n1_exp(nn_type{}, 4686);
+    natural_number n2_exp(nn_type{}, 66);
     
     n1 = multiply(std::move(n1), n2);
 

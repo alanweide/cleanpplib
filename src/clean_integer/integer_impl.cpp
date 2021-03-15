@@ -7,7 +7,7 @@
 //
 #include <assert.h>
 #include <memory>
-#include <clean_integer/clean_integer.hpp>
+#include <integer_impls/integer_impl.hpp>
 
 namespace cleanpp {
 
@@ -20,7 +20,7 @@ namespace cleanpp {
          compare = 0 ==> |x| = |y| and
          compare < 0 ==> |x| < |y|
  */
-int compare_magnitude(std::unique_ptr<clean_integer> &x, std::unique_ptr<clean_integer> &y) {
+int compare_magnitude(std::unique_ptr<integer_impl> &x, std::unique_ptr<integer_impl> &y) {
     integer_sign x_sign = x->abs();
     integer_sign y_sign = y->abs();
     int comp = compare(x, y);
@@ -33,7 +33,7 @@ int compare_magnitude(std::unique_ptr<clean_integer> &x, std::unique_ptr<clean_i
 * big_integer_kernel
 * ---------------------------- */
 
-bool clean_integer_kernel::operator==(clean_integer_kernel &other) {
+bool integer_kernel_impl::operator==(integer_kernel_impl &other) {
     bool ans = false;
     if (other.sign() == ZERO && this->sign() == ZERO) {
         ans = true;
@@ -50,7 +50,7 @@ bool clean_integer_kernel::operator==(clean_integer_kernel &other) {
     return ans;
 }
 
-std::ostream& operator<<(std::ostream& out, clean_integer_kernel& o) {
+std::ostream& operator<<(std::ostream& out, integer_kernel_impl& o) {
     bool didNegate = false;
     if (o.sign() == NEGATIVE) {
         out << '-';
@@ -80,15 +80,15 @@ std::ostream& operator<<(std::ostream& out, clean_integer_kernel& o) {
 * big_integer
 * ---------------------------- */
 
-void clean_integer::increase_magnitude() {
+void integer_impl::increase_magnitude() {
     int d;
     
     integer_sign sign = this->abs();
     
    d =  divide_by_radix();
     d++;
-    if (d == clean_integer::RADIX) {
-        d -= clean_integer::RADIX;
+    if (d == integer_impl::RADIX) {
+        d -= integer_impl::RADIX;
         increase_magnitude();
     }
     multiply_by_radix(d);
@@ -96,7 +96,7 @@ void clean_integer::increase_magnitude() {
     this->assign_sign(sign);
 }
 
-void clean_integer::decrease_magnitude() {
+void integer_impl::decrease_magnitude() {
     assert(sign() != ZERO);
     
     integer_sign sign = this->abs();
@@ -105,7 +105,7 @@ void clean_integer::decrease_magnitude() {
    d =  divide_by_radix();
     d--;
     if (d < 0) {
-        d += clean_integer::RADIX;
+        d += integer_impl::RADIX;
         decrease_magnitude();
     }
     multiply_by_radix(d);
@@ -113,7 +113,7 @@ void clean_integer::decrease_magnitude() {
     this->assign_sign(sign);
 }
 
-void clean_integer::increment() {
+void integer_impl::increment() {
     switch (this->sign()) {
         case NEGATIVE:
             decrease_magnitude();
@@ -125,7 +125,7 @@ void clean_integer::increment() {
     }
 }
 
-void clean_integer::decrement() {
+void integer_impl::decrement() {
     switch (this->sign()) {
         case NEGATIVE:
             increase_magnitude();
@@ -140,7 +140,7 @@ void clean_integer::decrement() {
     }
 }
 
-void clean_integer::set_from_long(long n) {
+void integer_impl::set_from_long(long n) {
     bool shouldNegate = n < 0;
     if (shouldNegate) {
         n *= -1;
@@ -159,7 +159,7 @@ void clean_integer::set_from_long(long n) {
     }
 }
 
-integer_sign clean_integer::abs() {
+integer_sign integer_impl::abs() {
     integer_sign sign = this->sign();
     if (sign == NEGATIVE) {
         negate();
@@ -167,14 +167,14 @@ integer_sign clean_integer::abs() {
     return sign;
 }
 
-void clean_integer::assign_sign(integer_sign sign) {
+void integer_impl::assign_sign(integer_sign sign) {
     if (this->sign() == -sign) {
         this->negate();
     }
 }
 
-std::unique_ptr<clean_integer> clean_integer::clone() {
-    std::unique_ptr<clean_integer> clone;
+std::unique_ptr<integer_impl> integer_impl::clone() {
+    std::unique_ptr<integer_impl> clone;
     if (this->sign() == ZERO) {
         clone = this->new_instance();
     } else {
@@ -198,7 +198,7 @@ std::unique_ptr<clean_integer> clean_integer::clone() {
  * friend functions
  * ---------------------------- */
 
-std::unique_ptr<clean_integer> combine_same(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y) {
+std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
     assert(x->sign() == y->sign() || x->sign() == ZERO || y->sign() == ZERO);
 
     integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -210,8 +210,8 @@ std::unique_ptr<clean_integer> combine_same(std::unique_ptr<clean_integer> &&x, 
         x = combine_same(std::move(x), y);
     }
     x_low += y_low;
-    if (x_low >= clean_integer::RADIX) {
-        x_low -= clean_integer::RADIX;
+    if (x_low >= integer_impl::RADIX) {
+        x_low -= integer_impl::RADIX;
         x->increase_magnitude();
     }
     x->multiply_by_radix(x_low);
@@ -225,7 +225,7 @@ std::unique_ptr<clean_integer> combine_same(std::unique_ptr<clean_integer> &&x, 
 	return std::move(x);
 }
 
-std::unique_ptr<clean_integer> remove(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y) {
+std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
     assert(compare_magnitude(x, y) > 0);
     
     integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -238,7 +238,7 @@ std::unique_ptr<clean_integer> remove(std::unique_ptr<clean_integer> &&x, std::u
     }
     x_low -= y_low;
     if (x_low < 0) {
-        x_low += clean_integer::RADIX;
+        x_low += integer_impl::RADIX;
         x->decrease_magnitude();
     }
     x->multiply_by_radix(x_low);
@@ -250,13 +250,13 @@ std::unique_ptr<clean_integer> remove(std::unique_ptr<clean_integer> &&x, std::u
 	return std::move(x);
 }
 
-std::unique_ptr<clean_integer> combine_different(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y) {
+std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
     assert(x->sign() != y->sign() || x->sign() == ZERO);
 
     if (compare_magnitude(x, y) > 0) {
         x = remove(std::move(x), y);
     } else if (compare_magnitude(x, y) < 0) {
-        std::unique_ptr<clean_integer> tmp = std::move(x);
+        std::unique_ptr<integer_impl> tmp = std::move(x);
         x = y->clone();
 		x = remove(std::move(x), tmp);
     } else {
@@ -266,7 +266,7 @@ std::unique_ptr<clean_integer> combine_different(std::unique_ptr<clean_integer> 
 	return std::move(x);
 }
 
-std::unique_ptr<clean_integer> add(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y) {
+std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
 
     if (x->sign() == ZERO || x->sign() == y->sign()) {
         return combine_same(std::move(x), y);
@@ -275,7 +275,7 @@ std::unique_ptr<clean_integer> add(std::unique_ptr<clean_integer> &&x, std::uniq
     }
 }
 
-std::unique_ptr<clean_integer> subtract(std::unique_ptr<clean_integer> &&x, std::unique_ptr<clean_integer> &y) {
+std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
     y->negate();
     x = add(std::move(x), y);
     y->negate();
@@ -283,7 +283,7 @@ std::unique_ptr<clean_integer> subtract(std::unique_ptr<clean_integer> &&x, std:
 	return std::move(x);
 }
 
-int compare(std::unique_ptr<clean_integer> &x, std::unique_ptr<clean_integer> &y) {
+int compare(std::unique_ptr<integer_impl> &x, std::unique_ptr<integer_impl> &y) {
     if (x->sign() > y->sign()) {
         return 1;
     } else if (x->sign() < y->sign()) {
