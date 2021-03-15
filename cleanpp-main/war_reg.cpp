@@ -66,7 +66,7 @@ void shuffle(queue<Card>& deck, queue<Card>& p1, queue<Card>& p2)
 
 //shuffle p1 deck
 
-   //this is the required for loop specified in the APP C38-1 write-up.
+  
        for(int i = 0; i<26; i++) {
         srand((unsigned int) time(NULL));
         int posInMainDeck = (rand() % deck.size());
@@ -107,7 +107,7 @@ void war(queue<Card> p1, queue<Card> p2){
 
     while(p1.size() != 0 && p2.size() != 0){
         int input;
-        cout<<"Press enter to draw a card"<<endl;
+        std::cout<<"Press enter to draw a card"<<endl;
         getchar();
 
         Card p1Card, p2Card;
@@ -118,110 +118,154 @@ void war(queue<Card> p1, queue<Card> p2){
         p2.pop();
         
 
-        cout<<"player one has played a "<<p1Card<<endl;
-        cout<<"player two has played a "<<p2Card<<endl;
+        std::cout<<"player one has played a "<<p1Card<<endl;
+        std::cout<<"player two has played a "<<p2Card<<endl;
 
         if(p1Card.getCardNum() > p2Card.getCardNum()){
             
-            cout<<"player one has won this round"<<endl;
+            std::cout<<"player one has won this round"<<endl;
             p1.push(p1Card);
             p1.push(p2Card);
 
         } else if(p2Card.getCardNum() > p1Card.getCardNum()){
 
-            cout<<"player two has won this round"<<endl;
+            std::cout<<"player two has won this round"<<endl;
             p2.push(p2Card);
             p2.push(p1Card);
 
         } else{
 
-            cout<<"tie. play three cards each, the third of which will determine who wins this round"<<endl;
-            cout<<"Press enter to draw three cards"<<endl;
+            std::cout<<"tie. play three cards each, the third of which will determine who wins this round"<<endl;
+            std::cout<<"Press enter to draw three cards"<<endl;
             getchar();
+
+            queue<Card> p1TieCards, p2TieCards;
+            Card p1TieBreaker, p2TieBreaker;
+
+            int i = 0;
+
+            while(p1.size() > 0 && i < 3){
+                p1TieCards.push(p1.front());
+                p1TieBreaker = p1.front();
+                p1.pop();
+                i++;
+            }
+
+        
+            int j = 0;
+
+            while(p2.size() > 0 && j < 3){
+                p2TieCards.push(p2.front());
+                p2TieBreaker = p2.front();
+                p2.pop();
+                j++;
+            }
+
             
-            if( p1.size() >= 3 && p2.size() >= 3 ){
-                Card tieCards[4];
-                for(int i = 0; i < 4; i += 2){
-                    tieCards[i] = p1.front();
-                    p1.pop();
-                    tieCards[i + 1] = p2.front();
-                    p2.pop();
-                }
 
-                cout<<"p1 has played a "<<tieCards[0]<<", "<<tieCards[2]<<", and "<<p1.front()<<endl;
-                cout<<"p2 has played a "<<tieCards[1]<<", "<<tieCards[3]<<", and "<<p2.front()<<endl;
+            if( p1.size() != 0 && p2.size() != 0 ){
 
-                if(p1.front().getCardNum() > p2.front().getCardNum()){
-                    cout<<"p1 wins tiebreaker"<<endl;
+
+                    if(p1TieBreaker.getCardNum() > p2TieBreaker.getCardNum()){
+                    std::cout<<"player 1 wins tiebreaker"<<endl;
                     p1.push(p1Card);
                     p1.push(p2Card);
-                    p1.push(p1.front());
-                    p1.pop();
-                    p1.push(p2.front());
-                    p2.pop();
-                    for(int i = 0; i < 4; i++){
-                        p1.push(tieCards[i]);
-                    }
                     
-                } else if(p2.front().getCardNum() > p1.front().getCardNum()){
-                    cout<<"p2 wins tiebreaker"<<endl;
+                    while(!p1TieCards.empty()){
+                        p1.push(p1TieCards.front());
+                        p1TieCards.pop();
+                    }
+
+                    while(!p2TieCards.empty()){
+                        p1.push(p2TieCards.front());
+                        p2TieCards.pop();
+                    }
+
+                    
+                } else if(p2TieBreaker.getCardNum() > p1TieBreaker.getCardNum()){
+                    std::cout<<"player 2 wins tiebreaker"<<endl;
                     p2.push(p1Card);
                     p2.push(p2Card);
-                    p2.push(p2.front());
-                    p2.pop();
-                    p2.push(p1.front());
-                    p1.pop();
-                    for(int i = 0; i < 4; i++){
-                        p2.push(tieCards[i]);
+                    
+                    while(!p2TieCards.empty()){
+                        p2.push(p2TieCards.front());
+                        p2TieCards.pop();
                     }
+
+                    while(!p1TieCards.empty()){
+                        p2.push(p1TieCards.front());
+                        p1TieCards.pop();
+                    }
+
+
                 } else{
-                    cout<<"tie again. split the cards evenly"<<endl;
+                    std::cout<<"tie again. split the cards evenly"<<endl;
                     p1.push(p1Card);
-                    p1.push(p1.front());
-                    p1.pop();
+
                     p2.push(p2Card);
-                    p2.push(p2.front());
-                    p2.pop();
 
-                    for(int i = 0; i < 4; i+=2){
-                        p1.push(tieCards[i]);
-                        p2.push(tieCards[i +  1]);
-                    }
-                }
-            } else{
 
-                
-                if(p1.size() < 3){
-                    cout<<"p1 does not have enough cards to complete the war";
-                    while(p1.size() != 0){
-                        p1.pop();
-                    }
-                }
-                
-                if(p2.size() < 3){
-                    cout<<"p2 does not have enough cards to complete the war";
-                    while(p2.size() != 0){
-                        p2.pop();
+                    while(!p1TieCards.empty()){
+                        p1.push(p1TieCards.front());
+                        p1TieCards.pop();
                     }
 
+                    while(!p2TieCards.empty()){
+                        p2.push(p2TieCards.front());
+                        p2TieCards.pop();
+                    }
                 }
 
             }
+            
+            // if( p1.size() >= 3 && p2.size() >= 3 ){
+            //     Card tieCards[4];
+            //     for(int i = 0; i < 4; i += 2){
+            //         tieCards[i] = p1.front();
+            //         p1.pop();
+            //         tieCards[i + 1] = p2.front();
+            //         p2.pop();
+            //     }
+
+            //     cout<<"player 1 has played a "<<tieCards[0]<<", "<<tieCards[2]<<", and "<<p1.front()<<endl;
+            //     cout<<"player 2 has played a "<<tieCards[1]<<", "<<tieCards[3]<<", and "<<p2.front()<<endl;
+
+            
+            //     }
+            // } else{
+
+                
+            //     if(p1.size() < 3){
+            //         cout<<"player 1 does not have enough cards to complete the war";
+            //         while(p1.size() != 0){
+            //             p1.pop();
+            //         }
+            //     }
+                
+            //     if(p2.size() < 3){
+            //         cout<<"player 2 does not have enough cards to complete the war";
+            //         while(p2.size() != 0){
+            //             p2.pop();
+            //         }
+
+            //     }
+
+            // }
             
             
         }
     }
 
-    cout<<endl;
+    std::cout<<endl;
 
     if(p1.size() > 0){
-        cout<<"player one has won the game";
+        std::cout<<"player one has won the game";
     } else if(p2.size() > 0){
-        cout<<"player two has won the game";
+        std::cout<<"player two has won the game";
     } else{
-        cout<<"it's a draw";
+        std::cout<<"it's a draw";
     }
-    cout<<endl;
+    std::cout<<endl;
 }
 
 int main(){

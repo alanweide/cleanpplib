@@ -7,20 +7,27 @@
 //
 #include <memory>
 #include <iostream>
-#include "template_integer.hpp"
-#include "flexible_integer.hpp"
+#include "integer.hpp"
 #include "nn_integer.hpp"
 #include "bounded_nn.hpp"
 #include "vector_integer.hpp"
-#include "template_queue.hpp"
-#include "flexible_queue.hpp"
+#include "queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
+#include "stack.hpp"
 #include "array_stack.hpp"
-#include "template_list.hpp"
-#include "flexible_list.hpp"
+#include "linked_stack.hpp"
+#include "stack_impl.hpp"
+#include "list.hpp"
+#include "list_impl.hpp"
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
+#include "bounded_nn.hpp"
+#include "natural_number_impl.hpp"
+#include "stack_nn.hpp"
+#include <queue>
+#include <iostream>
+#include <stdlib.h>
 
 using namespace cleanpp;
 
@@ -77,8 +84,8 @@ bool operator<(stack_nn& nn1, stack_nn& nn2){
 
 
 template<typename T>
-std::tuple<T, flex_queue<T>, flex_queue<T>> partition(flex_queue<T> q, T partition){
-    flex_queue<T> front, back;
+std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
+    queue<T> front, back;
     while( !q.is_empty() ){
         T element = q.dequeue();
         if(partition < element){
@@ -91,7 +98,7 @@ std::tuple<T, flex_queue<T>, flex_queue<T>> partition(flex_queue<T> q, T partiti
 }
 
 template<typename T>
-flex_queue<T> quickSort(flex_queue<T> q){
+queue<T> quickSort(queue<T> q){
     T element;
     if(!q.is_empty() ){
         element = q.dequeue();
@@ -100,7 +107,7 @@ flex_queue<T> quickSort(flex_queue<T> q){
 
             q.enqueue(std::move(element));
             
-            flex_queue<T> front, back;
+            queue<T> front, back;
 
             T partitioner = q.dequeue();
             
@@ -132,7 +139,7 @@ flex_queue<T> quickSort(flex_queue<T> q){
 
 int main(int argc, const char* argv[]) {
 
-  flex_queue<stack_nn> qnn( linked_queue<stack_nn>{} );
+  queue<stack_nn> qnn( linked_queue<stack_nn>{} );
   
   qnn.enqueue(stack_nn(2));
   qnn.enqueue(stack_nn(3));
@@ -142,6 +149,7 @@ int main(int argc, const char* argv[]) {
   qnn = quickSort<stack_nn>(std::move(qnn));
 
   std::cout<<"Sorted queue: "<<std::endl;
+
 
   std::cout<<qnn<<std::endl;
   

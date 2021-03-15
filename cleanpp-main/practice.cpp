@@ -1,19 +1,23 @@
 #include <memory>
 #include <iostream>
-#include "template_integer.hpp"
-#include "flexible_integer.hpp"
+#include "integer.hpp"
 #include "nn_integer.hpp"
 #include "bounded_nn.hpp"
 #include "vector_integer.hpp"
-#include "template_queue.hpp"
-#include "flexible_queue.hpp"
+#include "queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
+#include "stack.hpp"
 #include "array_stack.hpp"
-#include "template_list.hpp"
-#include "flexible_list.hpp"
+#include "linked_stack.hpp"
+#include "stack_impl.hpp"
+#include "list.hpp"
+#include "list_impl.hpp"
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
+#include "bounded_nn.hpp"
+#include "natural_number_impl.hpp"
+#include "stack_nn.hpp"
 #include <queue>
 #include <iostream>
 #include <stdlib.h>
@@ -93,7 +97,7 @@ public:
 
 int main(){
 
-    flex_queue<int> deck(linked_queue<int>{}), p1, p2;
+    queue<int> deck(linked_queue<int>{}), p1, p2;
     for(int i = 1; i < 30; i++){
             deck.enqueue(std::move(i));
     }
@@ -102,7 +106,7 @@ int main(){
 
 
         std::cout<<"Right before enqueueing, deck is: "<<std::endl;
-        flex_queue<int> tempDeck;
+        queue<int> tempDeck;
         while(!deck.is_empty()){
             int temp = deck.dequeue();
             std::cout<<temp<<std::endl;

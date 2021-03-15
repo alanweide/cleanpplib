@@ -7,24 +7,31 @@
 //
 #include <memory>
 #include <iostream>
-#include "template_integer.hpp"
-#include "flexible_integer.hpp"
+#include "integer.hpp"
 #include "nn_integer.hpp"
 #include "bounded_nn.hpp"
 #include "vector_integer.hpp"
-#include "template_queue.hpp"
-#include "flexible_queue.hpp"
+#include "queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
+#include "stack.hpp"
 #include "array_stack.hpp"
-#include "template_list.hpp"
-#include "flexible_list.hpp"
+#include "linked_stack.hpp"
+#include "stack_impl.hpp"
+#include "list.hpp"
+#include "list_impl.hpp"
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
+#include "bounded_nn.hpp"
+#include "natural_number_impl.hpp"
+#include "stack_nn.hpp"
+#include <queue>
+#include <iostream>
+#include <stdlib.h>
 
 using namespace cleanpp;
 
-flex_natural_number divideBy2(flex_natural_number nn){
+natural_number divideBy2(natural_number nn){
 
     int rem = nn.divide_by_radix();
 
@@ -51,7 +58,7 @@ flex_natural_number divideBy2(flex_natural_number nn){
     return nn;
 }
 
-int compare(flex_natural_number& nn1, flex_natural_number& nn2){
+int compare(natural_number& nn1, natural_number& nn2){
 
     int rem1 = nn1.divide_by_radix();
     int rem2 = nn2.divide_by_radix();
@@ -106,11 +113,11 @@ int compare(flex_natural_number& nn1, flex_natural_number& nn2){
     return result;
 }
 
-flex_natural_number power(flex_natural_number nn, int p){
+natural_number power(natural_number nn, int p){
     
     int i = 0; 
 
-    flex_natural_number base(stack_nn{}, 0);
+    natural_number base(stack_nn{}, 0);
 
     base = add(std::move(base), nn);
     
@@ -125,26 +132,26 @@ flex_natural_number power(flex_natural_number nn, int p){
 
 
 
-flex_natural_number root(flex_natural_number nn, int r){
+natural_number root(natural_number nn, int r){
 
-    flex_natural_number lowEnough(stack_nn{}, 0);
-    flex_natural_number tooHigh(stack_nn{}, 0);
+    natural_number lowEnough(stack_nn{}, 0);
+    natural_number tooHigh(stack_nn{}, 0);
     
     tooHigh = add(std::move(tooHigh), nn);
 
-    flex_natural_number one(stack_nn{}, 1);
+    natural_number one(stack_nn{}, 1);
 
     lowEnough.increment();
     while(compare(tooHigh, lowEnough) > 0){
         lowEnough.decrement();
 
-        flex_natural_number root(stack_nn{}, 0);
+        natural_number root(stack_nn{}, 0);
 
         root = add(std::move(root), lowEnough);
         root = add(std::move(root), tooHigh);
         root.divide_by_two();
 
-        flex_natural_number powerTemp(stack_nn{}, 0);
+        natural_number powerTemp(stack_nn{}, 0);
         powerTemp = add(std::move(powerTemp), root);
         powerTemp = power(std::move(powerTemp), r);
 
@@ -166,12 +173,7 @@ flex_natural_number root(flex_natural_number nn, int r){
 }
 
 int main(int argc, const char * argv[]) {
-    t_integer<nn_integer> x;
-    x.increment();
-    t_queue<array_queue, t_integer<nn_integer>> q;
-    q.enqueue(std::move(x));
-    std::cout << "Hello, World!" << q << "\n";
-    
+
     long unsigned int input;
     int r;
     
@@ -181,7 +183,7 @@ int main(int argc, const char * argv[]) {
         std::cout<<"Please enter the root to take: ";
         std::cin>>r;
 
-        flex_natural_number x3(stack_nn{}, input);
+        natural_number x3(stack_nn{}, input);
 
         std::cout<<"result of root is: "<<std::endl;
         x3 = root(std::move(x3), r);

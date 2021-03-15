@@ -7,21 +7,27 @@
 //
 #include <memory>
 #include <iostream>
-#include "template_integer.hpp"
-#include "flexible_integer.hpp"
+#include "integer.hpp"
 #include "nn_integer.hpp"
 #include "bounded_nn.hpp"
 #include "vector_integer.hpp"
-#include "template_queue.hpp"
-#include "flexible_queue.hpp"
+#include "queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
+#include "stack.hpp"
 #include "array_stack.hpp"
-#include "template_list.hpp"
-#include "flexible_list.hpp"
+#include "linked_stack.hpp"
+#include "stack_impl.hpp"
+#include "list.hpp"
+#include "list_impl.hpp"
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
-
+#include "bounded_nn.hpp"
+#include "natural_number_impl.hpp"
+#include "stack_nn.hpp"
+#include <queue>
+#include <iostream>
+#include <stdlib.h>
 using namespace cleanpp;
 
 /**
@@ -33,7 +39,7 @@ using namespace cleanpp;
  * @ensures q = rev(#q)
  */
 template<typename T>
-std::unique_ptr<clean_queue<T>> flip(std::unique_ptr<clean_queue<T>> q){
+std::unique_ptr<queue<T>> flip(std::unique_ptr<queue<T>> q){
 
 
     if( !q->is_empty() ){
@@ -51,7 +57,7 @@ std::unique_ptr<clean_queue<T>> flip(std::unique_ptr<clean_queue<T>> q){
 
 int main(int argc, const char* argv[]) {
     
-    std::unique_ptr<clean_queue<stack_nn>> qnn = std::make_unique<linked_queue<stack_nn>>();
+    std::unique_ptr<queue<stack_nn>> qnn = std::make_unique<linked_queue<stack_nn>>();
     qnn->enqueue(stack_nn(5));
     qnn->enqueue(stack_nn(3));
     qnn->enqueue(stack_nn(4));
