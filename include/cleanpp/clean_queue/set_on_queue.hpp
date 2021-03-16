@@ -28,14 +28,13 @@ private:
     std::tuple<queue<T>, T> moveToFront(queue<T> q, T x){
 
         int i = 0;
-
+        
         T front = q.dequeue();
 
         while( i < size && !(front == x) ){
 
             q.enqueue(std::move(front));
             front = q.dequeue();
-            std::cout<<q<<std::endl;
             i++;
 
         }
@@ -102,9 +101,8 @@ public:
 
     T remove(T&& x){
 
-        std::cout<<"line 93"<<std::endl;
+        
         std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
-        std::cout<<"line 95"<<std::endl;
 
         size--;
         return this->rep.dequeue();
@@ -123,10 +121,10 @@ public:
 
         if(!this->rep.is_empty()){
             T front = this->rep.dequeue();
-            this->rep.enqueue(std::move(front));
             if(front == x){
                 has = true;
             }
+            this->rep.enqueue(std::move(front));
         }
 
         return has;
@@ -142,38 +140,37 @@ public:
     }
 
      friend std::ostream& operator<<(std::ostream& out, set_on_queue<T>& o) {
-		return out << o.rep;
+		return out << o.to_str();
 	}
 
 private:
 
-    // std::string to_str(){
+    std::string to_str(){
 
-    //     std::ostream out;
-    //     std::string result;
+        std::stringstream out;
         
-    //     result += "{";
+        out << "{";
+        queue<T> temp;
 
-    //     flex_queue<T> temp;
-
-    //     while(this->getSize() != 0){
-    //         T elem;
-    //         elem = this->rep.dequeue();
-    //         out << elem;
-    //         if(this->getSize() != 0){
-    //             out += ", ";
-    //         }
-    //         temp.enqueue(std::move(elem));
-    //     }
-
-    //     while(!temp.is_empty()){
-    //         T elem;
-    //         elem = temp.dequeue();
-    //         this->rep.enqueue(std::move(elem));
-    //     }
-    //     out+= "}";
-    //     return out << result;
-    // }
+        while(this->getSize() != 0){
+            T elem;
+            elem = this->removeAny();
+            out << elem;
+            
+            if(this->getSize() != 0){
+                out << ", ";
+            }
+            temp.enqueue(std::move(elem));
+        }
+    
+        while(!temp.is_empty()){
+            T elem;
+            elem = temp.dequeue();
+            this->rep.enqueue(std::move(elem));
+        }
+        out <<  "}";
+        return out.str();
+    }
 
    
 

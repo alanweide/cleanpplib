@@ -31,7 +31,7 @@ int main(){
 
     set_on_queue<stack_nn> cs;
     
-    std::cout<<"5"<<std::endl;
+    
     cs.add(stack_nn(5));
     
     cs.add(stack_nn(6));
@@ -40,7 +40,15 @@ int main(){
 
     stack_nn six(6);
     cs.remove(std::move(six));
-    std::cout<<"6"<<std::endl;
+    cs.removeAny();
+    if(cs.contains(stack_nn(6))){
+        std::cout<<"contains"<<std::endl;
+
+    }else{
+        std::cout<<"doesn't contain"<<std::endl;
+    }
+    
+    
     std::cout<<cs<<std::endl;
     
 

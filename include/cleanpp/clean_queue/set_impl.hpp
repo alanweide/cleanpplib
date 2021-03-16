@@ -71,9 +71,9 @@ public:
      **/
     virtual int getSize() = 0;
 
-    // friend std::ostream& operator<<(std::ostream& out, set<T> & o){
-    //      return out << o.to_str();
-    // }
+    friend std::ostream& operator<<(std::ostream& out, set_impl<T> & o){
+         return out << o.to_str();
+    }
 
     
 

@@ -71,7 +71,9 @@ public:
     T dequeue() override
     {
         T x = std::move(contents_[head_]);
+        
         length_--;
+        
         head_ = (head_ + 1) % cap_;
         
         this->resize_if_needed();

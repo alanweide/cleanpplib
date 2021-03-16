@@ -34,10 +34,11 @@ class set: public clean_base {
        set(): rep_(std::make_unique<_queue_def_t<Item>>()){
        }
 
-    //    set(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()){
-    //        static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value, 
-    //             "Template parameter I must derive from cleanpp::queue");
-    //    }
+        template<template<typename> class I>
+        set(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()){
+           static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value, 
+                "Template parameter I must derive from cleanpp::set");
+        }
 
        set(const queue<Item> &o) = delete;
 
@@ -96,7 +97,17 @@ class set: public clean_base {
         return rep_->getSize();
     }
 
+    /*
+    ensures '==' = (this = other)
+    */
+   bool operator==(set<Item>& other){
+       return *this->rep_ == *other.rep_;
+   }
 
+    friend std::ostream& operator<<(std::ostream& out, queue<Item>& o){
+        return out << *o.rep_;
+    }
+   
 
 };
 
