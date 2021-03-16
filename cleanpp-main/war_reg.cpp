@@ -218,40 +218,6 @@ void war(queue<Card> p1, queue<Card> p2){
 
             }
             
-            // if( p1.size() >= 3 && p2.size() >= 3 ){
-            //     Card tieCards[4];
-            //     for(int i = 0; i < 4; i += 2){
-            //         tieCards[i] = p1.front();
-            //         p1.pop();
-            //         tieCards[i + 1] = p2.front();
-            //         p2.pop();
-            //     }
-
-            //     cout<<"player 1 has played a "<<tieCards[0]<<", "<<tieCards[2]<<", and "<<p1.front()<<endl;
-            //     cout<<"player 2 has played a "<<tieCards[1]<<", "<<tieCards[3]<<", and "<<p2.front()<<endl;
-
-            
-            //     }
-            // } else{
-
-                
-            //     if(p1.size() < 3){
-            //         cout<<"player 1 does not have enough cards to complete the war";
-            //         while(p1.size() != 0){
-            //             p1.pop();
-            //         }
-            //     }
-                
-            //     if(p2.size() < 3){
-            //         cout<<"player 2 does not have enough cards to complete the war";
-            //         while(p2.size() != 0){
-            //             p2.pop();
-            //         }
-
-            //     }
-
-            // }
-            
             
         }
     }

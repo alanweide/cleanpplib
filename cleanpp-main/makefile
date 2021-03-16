@@ -1,5 +1,5 @@
 objects = bounded_nn.o integer_impl.o natural_number.o nn_integer.o stack_nn.o vector_integer.o
-headerfiles = -I ../include/cleanpp -I ../include/cleanpp/clean_integer -I ../include/cleanpp/clean_list -I ../include/cleanpp/clean_nn -I ../include/cleanpp/clean_queue -I ../include/cleanpp/clean_stack -I ../include/cleanpp/integer_impls -I ../include/cleanpp/list_impls -I ../include/cleanpp/natural_number_impls -I ../include/cleanpp/queue_impls -I ../include/cleanpp/stack_impls 
+headerfiles = -I ../include/cleanpp -I ../include/cleanpp/clean_integer -I ../include/cleanpp/clean_list -I ../include/cleanpp/clean_nn -I ../include/cleanpp/clean_queue -I ../include/cleanpp/clean_stack -I ../include/cleanpp/integer_impls -I ../include/cleanpp/list_impls -I ../include/cleanpp/natural_number_impls -I ../include/cleanpp/queue_impls -I ../include/cleanpp/stack_impls -I ../include/cleanpp/clean_set -I ../include/cleanpp/set_impls
 version = -std=c++14
 program = clean_set
 

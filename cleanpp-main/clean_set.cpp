@@ -38,18 +38,21 @@ int main(){
 
     cs.add(stack_nn(7));
 
+    std::cout<<"Before: "<<cs<<std::endl;
+
     stack_nn six(6);
     cs.remove(std::move(six));
     cs.removeAny();
-    if(cs.contains(stack_nn(6))){
-        std::cout<<"contains"<<std::endl;
+    // if(cs.contains(stack_nn(6))){
+    //     std::cout<<"contains"<<std::endl;
 
-    }else{
-        std::cout<<"doesn't contain"<<std::endl;
-    }
+    // }else{
+    //     std::cout<<"doesn't contain"<<std::endl;
+    // }
     
     
-    std::cout<<cs<<std::endl;
+    std::cout<<"After: "<<cs<<std::endl;
+    
     
 
    

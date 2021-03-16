@@ -110,6 +110,7 @@ public:
     }
 
     T removeAny(){
+
         size--;
         return this->rep.dequeue();
     }
@@ -152,12 +153,12 @@ private:
         out << "{";
         queue<T> temp;
 
-        while(this->getSize() != 0){
+        while(!this->rep.is_empty()){
             T elem;
-            elem = this->removeAny();
+            elem = this->rep.dequeue();
             out << elem;
             
-            if(this->getSize() != 0){
+            if(!this->rep.is_empty()){
                 out << ", ";
             }
             temp.enqueue(std::move(elem));
