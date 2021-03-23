@@ -29,7 +29,7 @@ using namespace cleanpp;
 
 int main(){
 
-    set_on_queue<stack_nn> cs;
+    set<stack_nn> cs;
     
     stack_nn five(5);
 

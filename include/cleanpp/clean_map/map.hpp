@@ -1,5 +1,5 @@
-#ifndef set_h
-#define set_h
+#ifndef map_h
+#define map_h
 
 
 #include <stdio.h>
@@ -35,10 +35,10 @@ class map: public clean_base {
        map(): rep_(std::make_unique<_map_def_t<K, V>>()){
        }
 
-       template<template<typename> class I>
+       template<template<typename, typename> class I>
        map(__attribute__((unused)) const I<K, V>& impl): rep_(std::make_unique<I<K, V>>()){
            static_assert(std::is_base_of<map_impl<K, V>, I<K, V>>::value,
-                "Template parameter I must derive from cleanpp::set");
+                "Template parameter I must derive from cleanpp::map");
        }
 
        map(const map<K, V> &o) = delete;
@@ -63,7 +63,7 @@ class map: public clean_base {
              return *this;
          }
         rep_ = std::move(other.rep_);
-        other.rep_ = std::make_unique<_map_def_t<K, V>>():
+        other.rep_ = std::make_unique<_map_def_t<K, V>>();
         return *this;
      }
 
@@ -74,19 +74,20 @@ class map: public clean_base {
         this->rep_->clear();
     }
 
-    void add(pair&& x){
-        this->rep_->add(x);
+    void add(K&& key, V&& value){
+        
+        this->rep_->add(std::move(key), std::move(value));
     }
 
     bool hasKey(K&& key){
-        return this->rep_->hasKey(key);
+        return this->rep_->hasKey(std::move(key));
     }
 
-    pair remove(pair&& x){
-        return this->rep_->remove(std::forward<pair>(x));
+    pair<K, V> remove(K&& x){
+        return this->rep_->remove(std::forward<K>(x));
     }
 
-    pair removeAny(){
+    pair<K, V> removeAny(){
         return this->rep_->removeAny();
     }
 
@@ -94,7 +95,7 @@ class map: public clean_base {
         return this->rep_->size();
     }
 
-    friend std::ostream& operator<<(std::ostream& out, map<Item>& o){
+    friend std::ostream& operator<<(std::ostream& out, map<K, V>& o){
         return out << *o.rep_;
     }
 

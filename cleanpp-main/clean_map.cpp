@@ -21,10 +21,6 @@
 #include "set_on_queue.hpp"
 #include "set_impl.hpp"
 #include "set.hpp"
-
-
-
-
 #include "map_on_set.hpp"
 #include "map_impl.hpp"
 #include "map.hpp"
@@ -36,13 +32,23 @@ using namespace cleanpp;
 
 int main(){
 
-    map_on_set<stack_nn, stack_nn> cm;
+    map<stack_nn, stack_nn> cm;
     cm.add(stack_nn(5), stack_nn(3));
     cm.add(stack_nn(2), stack_nn(7));
     std::cout<<cm<<std::endl;
     std::cout<<cm.size()<<std::endl;
     std::cout<<cm.removeAny()<<std::endl;
     std::cout<<cm.remove(stack_nn(2))<<std::endl;
+    cm.add(stack_nn(4), stack_nn(3));
+
+    if(cm.hasKey(stack_nn(3))){
+        std::cout<<"has pair with given key value"<<std::endl;
+
+    } else{
+        std::cout<<"doesn't have pair with given key value"<<std::endl;
+    }
+
+    
     
     
 
