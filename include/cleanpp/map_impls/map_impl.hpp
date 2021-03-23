@@ -53,12 +53,8 @@ namespace cleanpp {
             value.reset();
         }
 
-        K&& getKey(){
-            return *key;
-        }
-
-        V&& getValue(){
-            return *value;
+        V getValue(K&& key){
+            return std::move(*this->value);
         }
 
         bool operator==(pair& other){
@@ -93,13 +89,13 @@ public:
 
     virtual bool hasKey(K&& key) = 0;
 
-    virtual pair<K, V> remove(K&& x) = 0;
+    virtual pair<K, V> remove(K&& key) = 0;
 
     virtual pair<K, V> removeAny() = 0;
 
     virtual int size() = 0;
 
-    // virtual V value() = 0;
+    virtual V value(K&& key) = 0;
 
     
 

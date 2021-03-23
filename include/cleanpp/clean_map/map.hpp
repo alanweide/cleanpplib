@@ -79,16 +79,20 @@ class map: public clean_base {
         this->rep_->add(std::move(key), std::move(value));
     }
 
-    bool hasKey(K&& key){
-        return this->rep_->hasKey(std::move(key));
-    }
-
     pair<K, V> remove(K&& x){
         return this->rep_->remove(std::forward<K>(x));
     }
 
     pair<K, V> removeAny(){
         return this->rep_->removeAny();
+    }
+
+    V value(K&& key){
+        return this->rep_->value(std::move(key));
+    }
+
+    bool hasKey(K&& key){
+        return this->rep_->hasKey(std::move(key));
     }
 
     int size(){

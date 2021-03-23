@@ -17,7 +17,7 @@ private:
     set<pair<K, V>> rep;
 
     void createNewRep(){
-        this->rep = set_on_queue<pair<K, V>>();
+        this->rep = set<pair<K, V>>();
     }
 
     /**
@@ -51,19 +51,19 @@ public:
      * Kernel methods-------------------------------------------------------
      **/ 
 
-    void add(K&& x, V&& y){
-        pair<K, V> element(std::move(x), std::move(y));
+    void add(K&& key, V&& value){
+        pair<K, V> element(std::move(key), std::move(value));
         this->rep.add(std::move(element));
 
     }
 
-    pair<K, V> remove(K&& x){
+    pair<K, V> remove(K&& key){
         set<pair<K, V>> temp;
         pair<K, V> result;
         while(this->rep.getSize() != 0){
             pair<K, V> element = this->rep.removeAny();
             
-            if( element == x ){
+            if( element == key ){
                 result = std::move(element);
             } else {
                 temp.add(std::move(element));
@@ -95,18 +95,23 @@ public:
         return hasKey;
     }
 
-    // V value(K&& key){
-    //     map<K, V> temp;
-    //     pair result;
-    //     while(this->rep.getSize() != 0){
-    //         pair element = this->rep.removeAny();
-    //         if( element. == key ){
-    //             result = std::move(element);
-    //         }
+    V value(K&& key){
+        set<pair<K, V>> temp;
+        V result;
+        
+        while(this->rep.getSize() != 0){
+            pair<K, V> element = this->rep.removeAny();
+            if( element == key ){
+                result = element.getValue(std::move(key));
+            }
+        }
 
+        while(temp.getSize() != 0){
+            this->rep.add(temp.removeAny());
+        }
 
-    //     }
-    // }
+        return result;
+    }
 
     int size(){
         return this->rep.getSize();
