@@ -22,13 +22,12 @@ class set_impl : public clean_base {
     set is modeled by finite set of T
     */   
 private:
-    // virtual std::string to_str() = 0;
+    virtual std::string to_str() = 0;
 public:
     
     /**
      * Adds x to this
      * parameter: x - the element to be added
-     * aliases reference x
      * updates this
      * requires: x is not in this
      * ensures this = #this union {x}
@@ -71,7 +70,7 @@ public:
      **/
     virtual int getSize() = 0;
 
-    friend std::ostream& operator<<(std::ostream& out, set_impl<T> & o){
+    friend std::ostream& operator<<(std::ostream& out, set_impl<T>& o){
          return out << o.to_str();
     }
 

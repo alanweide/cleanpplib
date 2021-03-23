@@ -31,7 +31,7 @@ class set: public clean_base {
         /*
             ensures this = {}
         */
-       set(): rep_(std::make_unique<_queue_def_t<Item>>()){
+       set(): rep_(std::make_unique<_set_def_t<Item>>()){
        }
 
         template<template<typename> class I>
@@ -104,7 +104,7 @@ class set: public clean_base {
        return *this->rep_ == *other.rep_;
    }
 
-    friend std::ostream& operator<<(std::ostream& out, queue<Item>& o){
+    friend std::ostream& operator<<(std::ostream& out, set<Item>& o){
         return out << *o.rep_;
     }
    
