@@ -14,14 +14,11 @@ using namespace std;
 
 template<typename T>
 void flip(queue<T>& q){
-
     if( !q.empty() ){
-
       T front = q.front();
       q.pop();
       flip<T>( q );
       q.push(front);
-
     }
 }
 

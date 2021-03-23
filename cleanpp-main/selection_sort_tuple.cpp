@@ -74,15 +74,6 @@ bool operator<(stack_nn& nn1, stack_nn& nn2){
     return compare(nn1, nn2) < 0;   
 }
 
-template <typename T>
-struct minAndQueue{
-    
-    T min;
-    flex_queue<T> q;
-    int integer;
-     
-
-};
 
 /**
  * Removes and returns the minimum value from {@code q}, as well as the updated queue.
@@ -119,13 +110,6 @@ std::tuple<T , flex_queue<T>> removeMin(flex_queue<T> q) {
         temp.enqueue(std::move(element));
       }
     }
-
-    // struct minAndQueue<T> result;
-
-    // result.min = std::move(min);
-    // result.q = std::move(temp);
-    
-    // struct minAndQueue<T> result2 = result;
     
     return std::make_tuple(std::move(min), std::move(temp)); 
 }
@@ -144,11 +128,10 @@ flex_queue<T> sort(flex_queue<T> q){
     flex_queue<T> result( linked_queue<T>{} );
 
     while(!q.is_empty()){
-        // struct minAndQueue<T> temp = removeMin<T>(std::move(q));
+        
         T min;
         std::tie(min, q) = removeMin<T>(std::move(q));
         
-        // q = std::move(temp.q);
         result.enqueue(std::move(min));
 
     }

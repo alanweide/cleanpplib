@@ -16,6 +16,7 @@
 #include "clean_base.hpp"
 #include "queue_impl.hpp"
 #include "array_queue.hpp"
+#include "linked_queue.hpp"
 
 namespace cleanpp {
 
@@ -30,19 +31,19 @@ class queue: public clean_base {
 protected:
 	std::unique_ptr<queue_impl<Item>> rep_;
 public:
-	
+
 	/*
 	 ensures this = <>
 	 */
 	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
 	}
-	
+
 	template<template<typename> class I>
 	queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
 		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
 					  "Template parameter I must derive from cleanpp::queue");
 	}
-	
+
 	queue(const queue<Item> &o) = delete;
 	/*
 	 clears  other
@@ -51,7 +52,7 @@ public:
 	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
-	
+
 	queue<Item>& operator=(const queue<Item>& other) = delete;
 	/*
 	 clears  other
@@ -65,14 +66,14 @@ public:
 		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 		return *this;
 	}
-	
+
 	/*
 	 clears this
 	 */
 	void clear() {
 		this->rep_->clear();
 	}
-	
+
 	/*
 	 updates this
 	 clears  x
@@ -81,7 +82,7 @@ public:
 	void enqueue(Item&& x) {
 		rep_->enqueue(std::forward<Item>(x));
 	}
-	
+
 	/*
 	 updates  this
 	 requires |this| > 0
@@ -90,14 +91,14 @@ public:
 	Item dequeue() {
 		return rep_->dequeue();
 	}
-	
+
 	/*
 	 ensures is_empty = (|this| = 0)
 	 */
 	bool is_empty() const {
 		return rep_->is_empty();
 	}
-	
+
     /*
      ensures `==` = (this = other)
      */
