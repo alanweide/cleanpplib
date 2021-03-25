@@ -93,6 +93,10 @@ class set: public clean_base {
         return rep_->contains(std::forward<Item>(x));
     }
 
+    bool is_empty() {
+        return rep_->is_empty();
+    }
+    
     int getSize(){
         return rep_->getSize();
     }

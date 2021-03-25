@@ -317,6 +317,7 @@ typedef stack_based_list<nn_type> list_nn_type;
 - (void)testAdvanceFromFrontToMiddle {
     std::unique_ptr<list_impl<nn_type>> list = std::make_unique<list_nn_type>();
     std::string expected = "(<1>, <2>)";
+    
     nn_type a_exp, b_exp;
     
     nn_type a(1), b(2);
