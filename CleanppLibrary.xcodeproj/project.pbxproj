@@ -27,7 +27,6 @@
 		86EC1E9523F2338B00A7A779 /* nn_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9423F2338B00A7A779 /* nn_integer.cpp */; };
 		86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */; };
 		E717C03F24F9BFCC00F61B0F /* TestFlexibleStackInt.mm in Sources */ = {isa = PBXBuildFile; fileRef = E717C03E24F9BFCC00F61B0F /* TestFlexibleStackInt.mm */; };
-		E717C04324F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E717C04224F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm */; };
 		E71D16FE24F9ACBA00B3B6EE /* TestFlexListNaturalNumber.mm in Sources */ = {isa = PBXBuildFile; fileRef = E71D16FD24F9ACB900B3B6EE /* TestFlexListNaturalNumber.mm */; };
 		E759151B2548B36F00E8D654 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = E759151A2548B36F00E8D654 /* makefile */; };
 		E760A2F72392049D00139E3D /* queue_impl.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E760A2EE2392049D00139E3D /* queue_impl.hpp */; };
@@ -159,6 +158,7 @@
 		E7A2514C260D0EDC00AC204C /* set_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = set_impl.hpp; sourceTree = "<group>"; };
 		E7A2514E260D0EDC00AC204C /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
 		E7A25159260D103200AC204C /* TestFlexibleSetNaturalNumber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexibleSetNaturalNumber.mm; sourceTree = "<group>"; };
+		E7A251712613A8C900AC204C /* Doxyfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +288,7 @@
 		E760A2B2239203A200139E3D = {
 			isa = PBXGroup;
 			children = (
+				E7A251712613A8C900AC204C /* Doxyfile */,
 				E760A2CD239203DA00139E3D /* README.md */,
 				E760A2CA239203DA00139E3D /* include */,
 				E760A2C9239203DA00139E3D /* src */,
@@ -628,7 +629,6 @@
 				860934A623DA40CD00D38073 /* TestLinkedStackInt.mm in Sources */,
 				86EC1E9823F669A900A7A779 /* TestVectorInteger.mm in Sources */,
 				86B9E6CB23EB873D00907698 /* TestArrayQueueNaturalNumber.mm in Sources */,
-				E717C04324F9C50000F61B0F /* TestFlexibleQueueNaturalNumber.mm in Sources */,
 				E760A306239204DC00139E3D /* TestBoundedNN.mm in Sources */,
 				863809A924ED801C00F30C8F /* TestFlexInteger.mm in Sources */,
 				E775B52F23F20F6F007DB0C1 /* TestLinkedStackNaturalNumber.mm in Sources */,
