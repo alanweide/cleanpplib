@@ -25,14 +25,14 @@ using _queue_def_t = array_queue<I>;
 
 template <typename Item>
 class queue: public clean_base {
-	/*
+	/**
 	 queue is modeled by string of Item
 	 */
 protected:
 	std::unique_ptr<queue_impl<Item>> rep_;
 public:
 
-	/*
+	/**
 	 ensures this = <>
 	 */
 	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
@@ -45,7 +45,7 @@ public:
 	}
 
 	queue(const queue<Item> &o) = delete;
-	/*
+	/**
 	 clears  other
 	 ensures this = #other
 	 */
@@ -54,7 +54,7 @@ public:
 	}
 
 	queue<Item>& operator=(const queue<Item>& other) = delete;
-	/*
+	/**
 	 clears  other
 	 ensures this = #other
 	 */
@@ -67,14 +67,14 @@ public:
 		return *this;
 	}
 
-	/*
+	/**
 	 clears this
 	 */
 	void clear() {
 		this->rep_->clear();
 	}
 
-	/*
+	/**
 	 updates this
 	 clears  x
 	 ensures this = #this * <x>
@@ -83,7 +83,7 @@ public:
 		rep_->enqueue(std::forward<Item>(x));
 	}
 
-	/*
+	/**
 	 updates  this
 	 requires |this| > 0
 	 ensures  this * <dequeue> = #this
@@ -92,14 +92,14 @@ public:
 		return rep_->dequeue();
 	}
 
-	/*
+	/**
 	 ensures is_empty = (|this| = 0)
 	 */
 	bool is_empty() const {
 		return rep_->is_empty();
 	}
 
-    /*
+    /**
      ensures `==` = (this = other)
      */
     bool operator==(queue<Item>& other) {

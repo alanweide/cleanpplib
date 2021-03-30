@@ -17,13 +17,13 @@
 
 namespace cleanpp {
 
-class flex_natural_number_kernel: public clean_base {
+class natural_number_kernel: public clean_base {
 protected:
     typedef stack_nn _flex_nn_def_t;
     
     std::unique_ptr<natural_number_kernel_impl> rep_;
 public:
-	/*
+	/**
 	 type NATURAL is integer
 	 exemplar   n
 	 constraint n >= 0
@@ -32,21 +32,21 @@ public:
 	 */
 	static const int RADIX = 10;
 	
-    flex_natural_number_kernel(long n = 0): rep_(std::make_unique<_flex_nn_def_t>(n)) {}
+    natural_number_kernel(long n = 0): rep_(std::make_unique<_flex_nn_def_t>(n)) {}
     
     template<typename I>
-    flex_natural_number_kernel(__attribute__((unused)) const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
+    natural_number_kernel(__attribute__((unused)) const I& impl, long n = 0): rep_(std::make_unique<I>(n)) {
         static_assert(std::is_base_of<natural_number_kernel_impl, I>::value,
                       "Type of impl must derive from cleanpp::natural_number_kernel");
 	}
 	
-	flex_natural_number_kernel(const flex_natural_number_kernel& other) = delete;
-	flex_natural_number_kernel(flex_natural_number_kernel&& other): rep_(std::move(other.rep_)) {
+	natural_number_kernel(const natural_number_kernel& other) = delete;
+	natural_number_kernel(natural_number_kernel&& other): rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_flex_nn_def_t>();
 	}
 	
-	flex_natural_number_kernel& operator=(const flex_natural_number_kernel& other) = delete;
-    flex_natural_number_kernel& operator=(flex_natural_number_kernel&& other) {
+	natural_number_kernel& operator=(const natural_number_kernel& other) = delete;
+    natural_number_kernel& operator=(natural_number_kernel&& other) {
 		if (&other == this) {
 			return *this;
 		}
@@ -59,14 +59,14 @@ public:
 		this->rep_->clear();
 	}
 	
-	/*
+	/**
 	 ensures is_zero = (this = 0)
 	 */
 	bool is_zero() const{
 		return this->rep_->is_zero();
 	}
 	
-	/*
+	/**
 	 updates  this
 	 requires 0 <= d and d < RADIX
 	 ensures  this = #this * RADIX + d
@@ -75,7 +75,7 @@ public:
 		this->rep_->multiply_by_radix(d);
 	}
 	
-	/*
+	/**
 	 updates  this
 	 ensures  #this = this * RADIX + d and
 	 0 <= d and d < RADIX
@@ -84,32 +84,32 @@ public:
 		return this->rep_->divide_by_radix();
 	}
     
-	/*
+	/**
 	 ensures `==` = (this = other)
 	 */
-    bool operator==(flex_natural_number_kernel &other)	{
+    bool operator==(natural_number_kernel &other)	{
         return *this->rep_ == *other.rep_;
 	}
 	
-	friend std::ostream& operator<<(std::ostream& out, flex_natural_number_kernel& o) {
+	friend std::ostream& operator<<(std::ostream& out, natural_number_kernel& o) {
 		return out << *(o.rep_);
 	}
 	
 	friend class flex_natural_number;
 };
 
-class natural_number: public flex_natural_number_kernel {
+class natural_number: public natural_number_kernel {
 public:
 	
-    natural_number(long n = 0): flex_natural_number_kernel(n) {}
+    natural_number(long n = 0): natural_number_kernel(n) {}
     
     template<class I>
-    natural_number(__attribute__((unused)) const I& impl, long n = 0): flex_natural_number_kernel(impl, n) {
+    natural_number(__attribute__((unused)) const I& impl, long n = 0): natural_number_kernel(impl, n) {
 		static_assert(std::is_base_of<natural_number_impl, I>::value, "Template parameter I must derive from cleanpp::natural_number_secondary");
 	}
 	
     natural_number(const natural_number& other) = delete;
-    natural_number(natural_number&& other): flex_natural_number_kernel(std::forward<flex_natural_number_kernel>(other)) {
+    natural_number(natural_number&& other): natural_number_kernel(std::forward<natural_number_kernel>(other)) {
 		other.rep_ = std::make_unique<_flex_nn_def_t>();
 	}
 	
@@ -123,7 +123,7 @@ public:
 		return *this;
 	}
 	
-	/*
+	/**
 	 updates this
 	 ensures this = #this + 1
 	 */
@@ -135,7 +135,7 @@ public:
         this->rep_ = std::move(casted);
 	}
 	
-	/*
+	/**
 	 updates  this
 	 requires this > 0
 	 ensures  this = #this - 1
@@ -149,7 +149,7 @@ public:
         this->rep_ = std::move(casted);
 	}
 	
-	/*
+	/**
 	 replaces this
 	 requires n >= 0
 	 ensures  this = n
@@ -163,7 +163,7 @@ public:
         this->rep_ = std::move(casted);
 	}
 	    
-    /*
+    /**
      updates this
      ensures this = #this / 2
      */
@@ -175,7 +175,7 @@ public:
         this->rep_ = std::move(casted);
     }
     
-	/*
+	/**
 	 ensures add = #x + y
 	 */
 	friend natural_number add(natural_number&& x, natural_number &y) {
@@ -192,9 +192,9 @@ public:
         return sum;
 	}
 	
-	/*
+	/**
 	 requires x >= y
-	 ensures  add = #x - y
+	 ensures  subtract = #x - y
 	 */
 	friend natural_number subtract(natural_number&& x, natural_number &y) {
         natural_number diff(std::forward<natural_number>(x));
@@ -210,8 +210,8 @@ public:
 		return diff;
 	}
 
-    /*
-     ensures  add = #x * y
+    /**
+     ensures  \f$\mathtt{add} = \mathtt{\#x} \times \mathtt{y}\f$
      */
     friend natural_number multiply(natural_number&& x, natural_number &y) {
         natural_number product(std::forward<natural_number>(x));
