@@ -32,8 +32,10 @@ protected:
 	std::unique_ptr<queue_impl<Item>> rep_;
 public:
 
-	/*
-	 ensures this = <>
+	/**
+	 * @brief no argument constructor
+	 * 
+	 * @ensures this = <>
 	 */
 	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
 	}
@@ -44,20 +46,28 @@ public:
 					  "Template parameter I must derive from cleanpp::queue");
 	}
 
+
 	queue(const queue<Item> &o) = delete;
-	/*
-	 clears  other
-	 ensures this = #other
+
+
+	/**
+	 * @brief Custom move constructor
+	 * 
+	 * @param other - the queue being moved from
 	 */
 	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
 
 	queue<Item>& operator=(const queue<Item>& other) = delete;
-	/*
-	 clears  other
-	 ensures this = #other
-	 */
+
+	/**
+      * @brief custom move assignment operator
+      * 
+      * @param other - the queue being moved from
+      * @return the newly-assigned this 
+      * @ensures this = #other
+      */
 	queue<Item>& operator=(queue<Item>&& other) {
 		if (&other == this) {
 			return *this;
@@ -67,41 +77,52 @@ public:
 		return *this;
 	}
 
-	/*
-	 clears this
-	 */
+    /**
+     * @brief clears this
+     */
 	void clear() {
 		this->rep_->clear();
 	}
 
-	/*
-	 updates this
-	 clears  x
-	 ensures this = #this * <x>
+	/**
+	 * @brief Adds x to the end of this.
+	 * 
+	 * @param x - the entry to be added
+	 * @ensures this = #this * <x>
 	 */
 	void enqueue(Item&& x) {
 		rep_->enqueue(std::forward<Item>(x));
 	}
 
-	/*
-	 updates  this
-	 requires |this| > 0
-	 ensures  this * <dequeue> = #this
+	/**
+	 * @brief Removes and returns the entry at the front of this
+	 * 
+	 * @return the entry removed
+	 * @requires this /= <>
+	 * @ensures #this = <dequeue> * this
 	 */
 	Item dequeue() {
 		return rep_->dequeue();
 	}
-
-	/*
-	 ensures is_empty = (|this| = 0)
+	
+	/**
+	 * @brief Reports whether this is empty
+	 * 
+	 * @return true iff |this| = 0
+	 * @ensures is_empty = (|this| = 0)
 	 */
 	bool is_empty() const {
 		return rep_->is_empty();
 	}
 
-    /*
-     ensures `==` = (this = other)
-     */
+
+	/**
+	 * @brief overloaded equality operator
+	 * 
+	 * @param other 
+	 * @return true iff (this = other)
+	 * @ensures '==' = (this = other)
+	 */
     bool operator==(queue<Item>& other) {
         return *this->rep_ == *other.rep_;
     }

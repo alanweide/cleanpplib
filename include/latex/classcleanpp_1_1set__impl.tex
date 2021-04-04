@@ -1,0 +1,139 @@
+\hypertarget{classcleanpp_1_1set__impl}{}\doxysection{cleanpp\+::set\+\_\+impl$<$ T $>$ Class Template Reference}
+\label{classcleanpp_1_1set__impl}\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+Inheritance diagram for cleanpp\+::set\+\_\+impl$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcleanpp_1_1set__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classcleanpp_1_1set__impl_a9bbfe113295f84eedd4823bbf70a1e2d}{add}} (T \&\&x)=0
+\begin{DoxyCompactList}\small\item\em Adds x to this. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classcleanpp_1_1set__impl_ac10d3e3d377b3630ee5c863cd65bb86c}{contains}} (T \&\&x)=0
+\begin{DoxyCompactList}\small\item\em Reports whether x is in this. \end{DoxyCompactList}\item 
+virtual T \mbox{\hyperlink{classcleanpp_1_1set__impl_aa2c2fb7cc2e3ac14443e9732b8a3234d}{remove}} (T \&\&x)=0
+\begin{DoxyCompactList}\small\item\em Removes x from this, and returns it. \end{DoxyCompactList}\item 
+virtual T \mbox{\hyperlink{classcleanpp_1_1set__impl_ad03b2b4a9d190c2d0c7e4b74c895c6e3}{remove\+Any}} ()=0
+\begin{DoxyCompactList}\small\item\em Removes and returns an arbitrary element from this. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classcleanpp_1_1set__impl_a8ff632cdc3d910bca0908eb9727292bb}{get\+Size}} ()=0
+\begin{DoxyCompactList}\small\item\em Reports size (cardinality) of this. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_af3778b14a14008a0ddbb21c139fdf10b}\label{classcleanpp_1_1set__impl_af3778b14a14008a0ddbb21c139fdf10b}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&out, \mbox{\hyperlink{classcleanpp_1_1set__impl}{set\+\_\+impl}}$<$ T $>$ \&o)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_a9bbfe113295f84eedd4823bbf70a1e2d}\label{classcleanpp_1_1set__impl_a9bbfe113295f84eedd4823bbf70a1e2d}} 
+\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}!add@{add}}
+\index{add@{add}!cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual void \mbox{\hyperlink{classcleanpp_1_1set__impl}{cleanpp\+::set\+\_\+impl}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{T \&\&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Adds x to this. 
+
+Adds x to this parameter\+: x -\/ the element to be added updates this clears x requires\+: x is not in this ensures this = \#this union \{x\} 
+\begin{DoxyParams}{Parameters}
+{\em x} & the element to be added @updates\+: this @clears\+: x @requires\+: x is not in this @ensures\+: this = \#this union \{x\} \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classcleanpp_1_1set__on__queue_a7cdbd5cf17330777a0fb08dcd14ea3f4}{cleanpp\+::set\+\_\+on\+\_\+queue$<$ T $>$}}.
+
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_ac10d3e3d377b3630ee5c863cd65bb86c}\label{classcleanpp_1_1set__impl_ac10d3e3d377b3630ee5c863cd65bb86c}} 
+\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}!contains@{contains}}
+\index{contains@{contains}!cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual bool \mbox{\hyperlink{classcleanpp_1_1set__impl}{cleanpp\+::set\+\_\+impl}}$<$ T $>$\+::contains (\begin{DoxyParamCaption}\item[{T \&\&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Reports whether x is in this. 
+
+Reports whether x is in this. parameter\+: x -\/ the element to be checked returns\+: true iff element is in this clears x ensures\+: contains = (x is in this) 
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ the element to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true iff element is in this @clears\+: x @ensures\+: contains = (x is in this) 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcleanpp_1_1set__on__queue_a2ee4b2b2b9265dabdfa9d42e97dd492d}{cleanpp\+::set\+\_\+on\+\_\+queue$<$ T $>$}}.
+
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_a8ff632cdc3d910bca0908eb9727292bb}\label{classcleanpp_1_1set__impl_a8ff632cdc3d910bca0908eb9727292bb}} 
+\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}!getSize@{getSize}}
+\index{getSize@{getSize}!cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual int \mbox{\hyperlink{classcleanpp_1_1set__impl}{cleanpp\+::set\+\_\+impl}}$<$ T $>$\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Reports size (cardinality) of this. 
+
+Reports size (cardinality) of this. returns\+: the number of elements in this ensures\+: get\+Size = $\vert$this$\vert$ \begin{DoxyReturn}{Returns}
+the number of elements in this @ensures\+: get\+Size = $\vert$this$\vert$ 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcleanpp_1_1set__on__queue_ac849a381e5f4e4dc9d633dd197cbeb9f}{cleanpp\+::set\+\_\+on\+\_\+queue$<$ T $>$}}.
+
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_aa2c2fb7cc2e3ac14443e9732b8a3234d}\label{classcleanpp_1_1set__impl_aa2c2fb7cc2e3ac14443e9732b8a3234d}} 
+\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}!remove@{remove}}
+\index{remove@{remove}!cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual T \mbox{\hyperlink{classcleanpp_1_1set__impl}{cleanpp\+::set\+\_\+impl}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{T \&\&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Removes x from this, and returns it. 
+
+Removes x from this, and returns it. parameter\+: x -\/ the element to be removed returns\+: the element removed updates\+: this clears\+: x requires\+: x is in this ensures\+: this = \#this \textbackslash{} \{x\} and remove = x 
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the element removed @updates\+: this @clears\+: x @requires\+: x is in this @ensures\+: this = \#this \textbackslash{} \{x\} and remove = x 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcleanpp_1_1set__on__queue_af4aca3eac73fbbbecb94273da797a826}{cleanpp\+::set\+\_\+on\+\_\+queue$<$ T $>$}}.
+
+\mbox{\Hypertarget{classcleanpp_1_1set__impl_ad03b2b4a9d190c2d0c7e4b74c895c6e3}\label{classcleanpp_1_1set__impl_ad03b2b4a9d190c2d0c7e4b74c895c6e3}} 
+\index{cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}!removeAny@{removeAny}}
+\index{removeAny@{removeAny}!cleanpp::set\_impl$<$ T $>$@{cleanpp::set\_impl$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeAny()}{removeAny()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual T \mbox{\hyperlink{classcleanpp_1_1set__impl}{cleanpp\+::set\+\_\+impl}}$<$ T $>$\+::remove\+Any (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Removes and returns an arbitrary element from this. 
+
+Removes and returns an arbitrary element from this
+
+returns\+: the element removed from this updates; this requires\+: $\vert$this$\vert$ $>$ 0 ensures\+: remove\+Any is in \#this and this = \#this \textbackslash{} \{remove\+Any\} \begin{DoxyReturn}{Returns}
+the element removed fromt this @updates\+: this @requires\+: $\vert$this$\vert$ $>$ 0 @ensures\+: remove\+Any is in \#this and this = \#this \textbackslash{} \{remove\+Any\} 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcleanpp_1_1set__on__queue_a1f7dd17641dfb038f962beb6c14b7345}{cleanpp\+::set\+\_\+on\+\_\+queue$<$ T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cleanpp/set\+\_\+impls/set\+\_\+impl.\+hpp\end{DoxyCompactItemize}

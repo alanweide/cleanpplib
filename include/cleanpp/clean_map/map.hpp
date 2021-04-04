@@ -29,8 +29,10 @@ class map: public clean_base {
 
     public:
 
-        /*
-            ensures this = {}
+       /**
+        * @brief no argument constructor
+        * 
+        * @ensures this = {}
         */
        map(): rep_(std::make_unique<_map_def_t<K, V>>()){
        }
@@ -43,20 +45,26 @@ class map: public clean_base {
 
        map(const map<K, V> &o) = delete;
 
-    
-       /*
-            clears other
-            ensures this = #other
+      
+      /**
+       * @brief Custom move constructor
+       * 
+       * @param other - the map being moved from
        */
       map(map<K, V>&& other): rep_(std::move(other.rep_)){
           other.rep_ = std::make_unique<_map_def_t<K, V>>();
       }
 
+
       map<K, V>& operator=(const map<K, V>& other) = delete;
 
-      /*
-        clears other
-        ensures this = #other
+
+     /**
+      * @brief custom move assignment operator
+      * 
+      * @param other - the map being moved from
+      * @return the newly-assigned this 
+      * @ensures this = #other
       */
      map<K, V>& operator=(map<K, V> && other){
          if(&other == this){
@@ -67,34 +75,80 @@ class map: public clean_base {
         return *this;
      }
 
-     /*
-        clears this
+
+    /**
+     * @brief clears this
+     * 
+     * @clears this
      */
     void clear(){
         this->rep_->clear();
     }
 
+
+    /**
+     * @brief Adds the pair (key, value) to this
+     * 
+     * @param key - the key to be added
+     * @param value - the associated value to be added
+     *
+     * @updates this
+     * @requires key is not in DOMAIN(this)
+     * @ensures this = #this union {(key, value)}
+     */
     void add(K&& key, V&& value){
         
         this->rep_->add(std::move(key), std::move(value));
     }
 
-    pair<K, V> remove(K&& x){
-        return this->rep_->remove(std::forward<K>(x));
-    }
 
-    pair<K, V> removeAny(){
-        return this->rep_->removeAny();
-    }
-
-    V value(K&& key){
-        return this->rep_->value(std::move(key));
-    }
-
+    /**
+     * @brief Reports whether there is a pair in this whose first component is key
+     * 
+     * @param key - the key to be checked
+     * @return true iff there is a pair in this whose first component is key
+     * @clears key
+     * @ensures hasKey = (key is in DOMAIN(this))
+     */
     bool hasKey(K&& key){
         return this->rep_->hasKey(std::move(key));
     }
 
+
+    /**
+     * @brief Removes the pair whose first component is key and returns it
+     * 
+     * @param key - the key to be removed 
+     * @return the pair removed
+     * @updates this
+     * @clears key
+     * @requires key is in DOMAIN(this)
+     * @ensures remove.key = key and remove is in #this and this = #this \ {remove}
+     */
+    pair<K, V> remove(K&& key){
+        return this->rep_->remove(std::forward<K>(key));
+    }
+
+   
+    /**
+     * @brief Removes and returns an arbitrary pair from this
+     * 
+     * @return the pair removed from this
+     * @updates this
+     * @requires |this| > 0
+     * @ensures removeAny is in #this and this = #this \ {removeAny}
+     */
+    pair<K, V> removeAny(){
+        return this->rep_->removeAny();
+    }
+
+
+    /**
+     * @brief Reports the size of this
+     * 
+     * @return the number of pairs in this
+     * @ensures size = |this|
+     */
     int size(){
         return this->rep_->size();
     }

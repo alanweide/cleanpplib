@@ -28,8 +28,11 @@ class set: public clean_base {
 
     public:
 
-        /*
-            ensures this = {}
+
+       /**
+        * @brief No argument constructor
+        * 
+        * @ensures this = {}
         */
        set(): rep_(std::make_unique<_set_def_t<Item>>()){
        }
@@ -42,9 +45,13 @@ class set: public clean_base {
 
        set(const queue<Item> &o) = delete;
 
-       /*
-            clears other
-            ensures this = #other
+
+      /**
+       * @brief Custom move constructor
+       * 
+       * @param other - set to move from
+       * @clears other
+       * @ensures this = #other
        */
       set(set<Item>&& other): rep_(std::move(other.rep_)){
           other.rep_ = std::make_unique<_set_def_t<Item>>();
@@ -52,9 +59,14 @@ class set: public clean_base {
 
       set<Item>& operator=(const set<Item>& other) = delete;
 
-      /*
-            clears other
-            ensures this = #other
+
+     /**
+      * @brief Overloaded move assignment operator
+      * 
+      * @param other - set to move from
+      * @return the newly-assigned this
+      * @clears other
+      * @ensures this = #other
       */
      set<Item>& operator=(set<Item>&& other){
          if(&other == this){
@@ -65,40 +77,89 @@ class set: public clean_base {
          return *this;
      }
 
-     /*
-     clears this
+
+    /**
+     * @brief Resets this to default initial value
+     * 
+     * @clears this
      */
     void clear(){
         this->rep_->clear();
     }
 
-    /*
-    updates this
-    clears x
-    ensures this = #this union {x};
+
+   /**
+    * @brief Adds x to this
+    * 
+    * @param x the element to be added
+    * @updates this
+    * @clears x
+    * @requires x is not in this
+    * @ensures this = #this union {x}
+    *
     */
-   void add(Item&& x){
-       rep_->add(std::forward<Item>(x));
-   }
-
-    Item remove(Item&& x) {
-        return rep_->remove(std::forward<Item>(x));
+    void add(Item&& x){
+        rep_->add(std::forward<Item>(x));
     }
 
-    Item removeAny(){
-        return rep_->removeAny();
-    }
 
+    /**
+     * @brief Reports whether x is in this.
+     * 
+     * @param x - the element to be checked
+     * @return true iff element is in this
+     * @clears x
+     * @ensures contains = (x is in this) 
+     */
     bool contains(Item&& x){
         return rep_->contains(std::forward<Item>(x));
     }
 
+
+    /**
+     * @brief Removes x from this, and returns it.
+     * 
+     * @param x 
+     * @return the element removed
+     * @updates this
+     * @clears x
+     * @requires x is in this
+     * @ensures this = #this \ {x} and remove = x
+     */
+    Item remove(Item&& x) {
+        return rep_->remove(std::forward<Item>(x));
+    }
+
+
+    /**
+     * @brief Removes and returns an arbitrary element from this
+     * 
+     * @return the element removed fromt this
+     * @updates this
+     * @requires |this| > 0
+     * @ensures removeAny is in #this and this = #this \ {removeAny}
+     */
+    Item removeAny(){
+        return rep_->removeAny();
+    }
+
+
+    /**
+     * @brief Reports size (cardinality) of this
+     * 
+     * @return the number of elements in this
+     * @ensures getSize = |this|
+     */
     int getSize(){
         return rep_->getSize();
     }
 
-    /*
-    ensures '==' = (this = other)
+
+   /**
+    * @brief Overloaded equality operator for sets
+    * 
+    * @param other - set to compare to
+    * @return true iff sets contain the same elements
     */
    bool operator==(set<Item>& other){
        return *this->rep_ == *other.rep_;

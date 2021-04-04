@@ -25,49 +25,61 @@ private:
     virtual std::string to_str() = 0;
 public:
     
-    /**
-     * Adds x to this
-     * parameter: x - the element to be added
-     * updates this
-     * requires: x is not in this
-     * ensures this = #this union {x}
-     * 
-    **/
-   virtual void add(T&& s) = 0;
 
    /**
-    * Removes x from this, and returns it.
-    * parameter: x - the element to be removed
-    * returns: the element removed
-    * updates: this
-    * requires: x is in this
-    * ensures: this = #this \ {x} and remove = x
-    **/
-   virtual T remove(T&& x) = 0;
+    * @brief Adds x to this
+    * 
+    * @param x the element to be added
+    * @updates this
+    * @clears x
+    * @requires x is not in this
+    * @ensures this = #this union {x}
+    *
+    */
+   virtual void add(T&& x) = 0;
+
 
     /**
-     * Removes and returns an arbitrary element from this
+     * @brief Reports whether x is in this.
      * 
-     * returns: the element removed from this
-     * updates; this
-     * requires: |this| > 0
-     * ensures: removeAny is in #this and this = #this \ {removeAny}
-     **/
-    virtual T removeAny() = 0;
-
-    /**
-     * Reports whether x is in this.
-     * parameter: x - the element to be checked
-     * returns: true iff element is in this
-     * ensures: contains = (x is in this)
-     **/
+     * @param x - the element to be checked
+     * @return true iff element is in this
+     * @clears x
+     * @ensures contains = (x is in this) 
+     */
     virtual bool contains(T&& x) = 0;
 
+
     /**
-     * Reports size (cardinality) of this.
-     * returns: the number of elements in this
-     * ensures: size = |this|
-     **/
+     * @brief Removes x from this, and returns it.
+     * 
+     * @param x 
+     * @return the element removed
+     * @updates this
+     * @clears x
+     * @requires x is in this
+     * @ensures \f$ this = \#this \\ \{x\} \f$ and remove = x
+     */
+   virtual T remove(T&& x) = 0;
+
+
+   /**
+     * @brief Removes and returns an arbitrary element from this
+     * 
+     * @return the element removed fromt this
+     * @updates this
+     * @requires |this| > 0
+     * @ensures removeAny is in #this and this = #this \ {removeAny}
+     */
+    virtual T removeAny() = 0;
+
+
+    /**
+     * @brief Reports size (cardinality) of this
+     * 
+     * @return the number of elements in this
+     * @ensures getSize = |this|
+     */
     virtual int getSize() = 0;
 
     friend std::ostream& operator<<(std::ostream& out, set_impl<T>& o){
