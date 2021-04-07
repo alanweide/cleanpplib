@@ -168,25 +168,25 @@ $(function() {
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    </div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> clear()<span class="keyword"> override </span>{</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> (!is_empty()) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>()) {</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            top_ptr_.reset();</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        assert(is_empty());</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        assert(<a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>());</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> push(T&amp;&amp; x)<span class="keyword"> override </span>{</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classcleanpp_1_1linked__stack.html#a28d079c5c51b5323311e7118e4ee000d">  107</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1linked__stack.html#a28d079c5c51b5323311e7118e4ee000d">push</a>(T&amp;&amp; x)<span class="keyword"> override </span>{</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        top_ptr_ = std::make_unique&lt;stack_node&gt;(std::forward&lt;T&gt;(x), std::move(top_ptr_));</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    T pop()<span class="keyword"> override </span>{</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        assert(!is_empty());</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        T pop = top_ptr_-&gt;contents();</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">  111</a></span>&#160;    T <a class="code" href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">pop</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        assert(!<a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>());</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        T <a class="code" href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">pop</a> = top_ptr_-&gt;contents();</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        top_ptr_ = top_ptr_-&gt;next();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> std::move(pop);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> std::move(<a class="code" href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">pop</a>);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">bool</span> is_empty()<span class="keyword"> const override </span>{</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">  118</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>()<span class="keyword"> const override </span>{</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">return</span> top_ptr_ == <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    </div>
@@ -195,12 +195,12 @@ $(function() {
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        std::stringstream out;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        out &lt;&lt; <span class="stringliteral">&quot;&lt;&quot;</span>;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="classcleanpp_1_1linked__stack.html">linked_stack&lt;T&gt;</a> temp{};</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">while</span> (!this-&gt;is_empty())</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">while</span> (!this-&gt;<a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>())</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            T top;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            top = this-&gt;pop();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            top = this-&gt;<a class="code" href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">pop</a>();</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            out &lt;&lt; top;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">if</span> (!is_empty())</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">is_empty</a>())</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            {</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                out &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            }</div>
@@ -209,7 +209,7 @@ $(function() {
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">while</span> (!temp.is_empty()) {</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            T top;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            top = temp.pop();</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            this-&gt;push(std::move(top));</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            this-&gt;<a class="code" href="classcleanpp_1_1linked__stack.html#a28d079c5c51b5323311e7118e4ee000d">push</a>(std::move(top));</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        out &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> out.str();</div>
@@ -220,9 +220,12 @@ $(function() {
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* linked_stack_h */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclasscleanpp_1_1linked__stack_html_a28d079c5c51b5323311e7118e4ee000d"><div class="ttname"><a href="classcleanpp_1_1linked__stack.html#a28d079c5c51b5323311e7118e4ee000d">cleanpp::linked_stack::push</a></div><div class="ttdeci">void push(T &amp;&amp;x) override</div><div class="ttdoc">Adds x to the top of this</div><div class="ttdef"><b>Definition:</b> linked_stack.hpp:107</div></div>
 <div class="ttc" id="aclasscleanpp_1_1clean__base_html"><div class="ttname"><a href="classcleanpp_1_1clean__base.html">cleanpp::clean_base</a></div><div class="ttdef"><b>Definition:</b> clean_base.hpp:18</div></div>
+<div class="ttc" id="aclasscleanpp_1_1linked__stack_html_a64d3587b5a6dda17d5ee4576b3e212c7"><div class="ttname"><a href="classcleanpp_1_1linked__stack.html#a64d3587b5a6dda17d5ee4576b3e212c7">cleanpp::linked_stack::pop</a></div><div class="ttdeci">T pop() override</div><div class="ttdoc">Removes x from the top of this.</div><div class="ttdef"><b>Definition:</b> linked_stack.hpp:111</div></div>
 <div class="ttc" id="aclasscleanpp_1_1linked__stack_html"><div class="ttname"><a href="classcleanpp_1_1linked__stack.html">cleanpp::linked_stack</a></div><div class="ttdef"><b>Definition:</b> linked_stack.hpp:20</div></div>
 <div class="ttc" id="aclasscleanpp_1_1stack__impl_html"><div class="ttname"><a href="classcleanpp_1_1stack__impl.html">cleanpp::stack_impl</a></div><div class="ttdef"><b>Definition:</b> stack_impl.hpp:21</div></div>
+<div class="ttc" id="aclasscleanpp_1_1linked__stack_html_a6c2004fa1647709f567f4be883f241df"><div class="ttname"><a href="classcleanpp_1_1linked__stack.html#a6c2004fa1647709f567f4be883f241df">cleanpp::linked_stack::is_empty</a></div><div class="ttdeci">bool is_empty() const override</div><div class="ttdoc">Reports whether this is empty.</div><div class="ttdef"><b>Definition:</b> linked_stack.hpp:118</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

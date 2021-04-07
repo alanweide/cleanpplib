@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['operator_3d_89',['operator=',['../classcleanpp_1_1map.html#a1029acaccf884a1bc35be581f8cc1a53',1,'cleanpp::map::operator=()'],['../classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9',1,'cleanpp::set::operator=()']]],
-  ['operator_3d_3d_90',['operator==',['../classcleanpp_1_1set.html#a702c10537f1548602525626154b70577',1,'cleanpp::set']]]
+  ['haskey_93',['hasKey',['../classcleanpp_1_1map.html#a02e62e89b19a3f540c7c7263513e0f1d',1,'cleanpp::map::hasKey()'],['../classcleanpp_1_1map__impl.html#a852421bb0fba3c9d6f2c237817ff471f',1,'cleanpp::map_impl::hasKey()'],['../classcleanpp_1_1map__on__set.html#ad23db492e1f38793dda39957084a1609',1,'cleanpp::map_on_set::hasKey()']]]
 ];

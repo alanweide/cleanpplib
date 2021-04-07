@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['map_87',['map',['../classcleanpp_1_1map.html#a360dffe8119cfb5d9238e9f54ff906d0',1,'cleanpp::map::map()'],['../classcleanpp_1_1map.html#a470f270de76e43564e54d6771ac587ff',1,'cleanpp::map::map(map&lt; K, V &gt; &amp;&amp;other)']]],
-  ['map_5fon_5fset_88',['map_on_set',['../classcleanpp_1_1map__on__set.html#af5dbbba4688396d21cd3c2bf45bf3a81',1,'cleanpp::map_on_set']]]
+  ['getsize_92',['getSize',['../classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6',1,'cleanpp::set::getSize()'],['../classcleanpp_1_1set__impl.html#a8ff632cdc3d910bca0908eb9727292bb',1,'cleanpp::set_impl::getSize()'],['../classcleanpp_1_1set__on__queue.html#ac849a381e5f4e4dc9d633dd197cbeb9f',1,'cleanpp::set_on_queue::getSize()']]]
 ];

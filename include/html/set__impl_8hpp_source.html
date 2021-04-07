@@ -96,30 +96,33 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> std::string to_str() = 0;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set__impl.html#a9bbfe113295f84eedd4823bbf70a1e2d">add</a>(T&amp;&amp; x) = 0;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set__impl.html#ac10d3e3d377b3630ee5c863cd65bb86c">contains</a>(T&amp;&amp; x) = 0;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;   <span class="keyword">virtual</span> T <a class="code" href="classcleanpp_1_1set__impl.html#aa2c2fb7cc2e3ac14443e9732b8a3234d">remove</a>(T&amp;&amp; x) = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set__impl.html#a9bbfe113295f84eedd4823bbf70a1e2d">add</a>(T&amp;&amp; x) = 0;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set__impl.html#ac10d3e3d377b3630ee5c863cd65bb86c">contains</a>(T&amp;&amp; x) = 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;   <span class="keyword">virtual</span> T <a class="code" href="classcleanpp_1_1set__impl.html#aa2c2fb7cc2e3ac14443e9732b8a3234d">remove</a>(T&amp;&amp; x) = 0;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> T <a class="code" href="classcleanpp_1_1set__impl.html#ad03b2b4a9d190c2d0c7e4b74c895c6e3">removeAny</a>() = 0;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classcleanpp_1_1set__impl.html#a8ff632cdc3d910bca0908eb9727292bb">getSize</a>() = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1set__impl.html">set_impl&lt;T&gt;</a>&amp; o){</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;         <span class="keywordflow">return</span> out &lt;&lt; o.to_str();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">virtual</span> T <a class="code" href="classcleanpp_1_1set__impl.html#ad03b2b4a9d190c2d0c7e4b74c895c6e3">removeAny</a>() = 0;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classcleanpp_1_1set__impl.html#a8ff632cdc3d910bca0908eb9727292bb">getSize</a>() = 0;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1set__impl.html">set_impl&lt;T&gt;</a>&amp; o){</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;         <span class="keywordflow">return</span> out &lt;&lt; o.to_str();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* clean_set_h */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* clean_set_h */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasscleanpp_1_1clean__base_html"><div class="ttname"><a href="classcleanpp_1_1clean__base.html">cleanpp::clean_base</a></div><div class="ttdef"><b>Definition:</b> clean_base.hpp:18</div></div>
 <div class="ttc" id="aclasscleanpp_1_1set__impl_html_aa2c2fb7cc2e3ac14443e9732b8a3234d"><div class="ttname"><a href="classcleanpp_1_1set__impl.html#aa2c2fb7cc2e3ac14443e9732b8a3234d">cleanpp::set_impl::remove</a></div><div class="ttdeci">virtual T remove(T &amp;&amp;x)=0</div><div class="ttdoc">Removes x from this, and returns it.</div></div>

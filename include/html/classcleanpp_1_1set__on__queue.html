@@ -209,7 +209,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Reports whether x is in this. </p>
-<p>Reports whether x is in this. parameter: x - the element to be checked returns: true iff element is in this clears x ensures: contains = (x is in this) </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>- the element to be checked </td></tr>
   </table>
@@ -249,7 +249,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Reports size (cardinality) of this. </p>
-<p>Reports size (cardinality) of this. returns: the number of elements in this ensures: getSize = |this| </p><dl class="section return"><dt>Returns</dt><dd>the number of elements in this </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of elements in this </dd></dl>
 <dl class="section user"><dt>Ensures</dt><dd>getSize = |this| </dd></dl>
 
 <p>Implements <a class="el" href="classcleanpp_1_1set__impl.html#a8ff632cdc3d910bca0908eb9727292bb">cleanpp::set_impl&lt; T &gt;</a>.</p>
@@ -283,7 +283,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Removes x from this, and returns it. </p>
-<p>Removes x from this, and returns it. parameter: x - the element to be removed returns: the element removed updates: this clears: x requires: x is in this ensures: this = #this \ {x} and remove = x </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td></td></tr>
   </table>
@@ -325,8 +325,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Removes and returns an arbitrary element from this. </p>
-<p>Removes and returns an arbitrary element from this</p>
-<p>returns: the element removed from this updates; this requires: |this| &gt; 0 ensures: removeAny is in #this and this = #this \ {removeAny} </p><dl class="section return"><dt>Returns</dt><dd>the element removed fromt this </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the element removed fromt this </dd></dl>
 <dl class="section user"><dt>Updates</dt><dd>this </dd></dl>
 <dl class="section user"><dt>Requires</dt><dd>|this| &gt; 0 </dd></dl>
 <dl class="section user"><dt>Ensures</dt><dd>removeAny is in #this and this = #this \ {removeAny} </dd></dl>

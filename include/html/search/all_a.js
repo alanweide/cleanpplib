@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['operator_3d_27',['operator=',['../classcleanpp_1_1map.html#a1029acaccf884a1bc35be581f8cc1a53',1,'cleanpp::map::operator=()'],['../classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9',1,'cleanpp::set::operator=()']]],
-  ['operator_3d_3d_28',['operator==',['../classcleanpp_1_1set.html#a702c10537f1548602525626154b70577',1,'cleanpp::set']]]
+  ['map_23',['map',['../classcleanpp_1_1map.html',1,'cleanpp::map&lt; K, V &gt;'],['../classcleanpp_1_1map.html#a360dffe8119cfb5d9238e9f54ff906d0',1,'cleanpp::map::map()'],['../classcleanpp_1_1map.html#a470f270de76e43564e54d6771ac587ff',1,'cleanpp::map::map(map&lt; K, V &gt; &amp;&amp;other)']]],
+  ['map_5fimpl_24',['map_impl',['../classcleanpp_1_1map__impl.html',1,'cleanpp']]],
+  ['map_5fon_5fset_25',['map_on_set',['../classcleanpp_1_1map__on__set.html',1,'cleanpp::map_on_set&lt; K, V &gt;'],['../classcleanpp_1_1map__on__set.html#af5dbbba4688396d21cd3c2bf45bf3a81',1,'cleanpp::map_on_set::map_on_set()']]]
 ];

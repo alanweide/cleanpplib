@@ -96,36 +96,26 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> std::string to_str() = 0;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">     updates this</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">     clears  x</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">     ensures this = #this * &lt;x&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> enqueue(T&amp;&amp; x) = 0;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">     updates  this</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">     requires |this| &gt; 0</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">     ensures  this * &lt;dequeue&gt; = #this</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> T dequeue() = 0;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     ensures is_empty = (|this| = 0)</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> is_empty() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1queue__impl.html">queue_impl&lt;T&gt;</a>&amp; o) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> out &lt;&lt; o.to_str();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* clean_queue_h */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1queue__impl.html#ab8319b1fdab08862b91ce473a93fd578">enqueue</a>(T&amp;&amp; x) = 0;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> T <a class="code" href="classcleanpp_1_1queue__impl.html#a08c5f47135f9e93f7053e9953c2d94d5">dequeue</a>() = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1queue__impl.html#a66dd52f9bc882316855e8add6bbd770a">is_empty</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1queue__impl.html">queue_impl&lt;T&gt;</a>&amp; o) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">return</span> out &lt;&lt; o.to_str();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* clean_queue_h */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasscleanpp_1_1queue__impl_html"><div class="ttname"><a href="classcleanpp_1_1queue__impl.html">cleanpp::queue_impl</a></div><div class="ttdef"><b>Definition:</b> queue_impl.hpp:20</div></div>
 <div class="ttc" id="aclasscleanpp_1_1clean__base_html"><div class="ttname"><a href="classcleanpp_1_1clean__base.html">cleanpp::clean_base</a></div><div class="ttdef"><b>Definition:</b> clean_base.hpp:18</div></div>
+<div class="ttc" id="aclasscleanpp_1_1queue__impl_html_a08c5f47135f9e93f7053e9953c2d94d5"><div class="ttname"><a href="classcleanpp_1_1queue__impl.html#a08c5f47135f9e93f7053e9953c2d94d5">cleanpp::queue_impl::dequeue</a></div><div class="ttdeci">virtual T dequeue()=0</div><div class="ttdoc">Removes and returns the entry at the front of this.</div></div>
+<div class="ttc" id="aclasscleanpp_1_1queue__impl_html_ab8319b1fdab08862b91ce473a93fd578"><div class="ttname"><a href="classcleanpp_1_1queue__impl.html#ab8319b1fdab08862b91ce473a93fd578">cleanpp::queue_impl::enqueue</a></div><div class="ttdeci">virtual void enqueue(T &amp;&amp;x)=0</div><div class="ttdoc">Adds x to the end of this.</div></div>
+<div class="ttc" id="aclasscleanpp_1_1queue__impl_html_a66dd52f9bc882316855e8add6bbd770a"><div class="ttname"><a href="classcleanpp_1_1queue__impl.html#a66dd52f9bc882316855e8add6bbd770a">cleanpp::queue_impl::is_empty</a></div><div class="ttdeci">virtual bool is_empty() const =0</div><div class="ttdoc">Reports whether this is empty.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['haskey_86',['hasKey',['../classcleanpp_1_1map.html#a02e62e89b19a3f540c7c7263513e0f1d',1,'cleanpp::map::hasKey()'],['../classcleanpp_1_1map__impl.html#a852421bb0fba3c9d6f2c237817ff471f',1,'cleanpp::map_impl::hasKey()'],['../classcleanpp_1_1map__on__set.html#ad23db492e1f38793dda39957084a1609',1,'cleanpp::map_on_set::hasKey()']]]
+  ['enqueue_91',['enqueue',['../classcleanpp_1_1queue.html#a15709f874d2b6680e0509be0e89787e8',1,'cleanpp::queue::enqueue()'],['../classcleanpp_1_1array__queue.html#a39ad449ed775bc28c85d9e17ffbe61de',1,'cleanpp::array_queue::enqueue()'],['../classcleanpp_1_1linked__queue.html#a7b0ca42744b8107d059e311590114a9f',1,'cleanpp::linked_queue::enqueue()'],['../classcleanpp_1_1queue__impl.html#ab8319b1fdab08862b91ce473a93fd578',1,'cleanpp::queue_impl::enqueue()']]]
 ];

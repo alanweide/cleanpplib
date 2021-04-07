@@ -99,151 +99,96 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">/*</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">            Ensures: this = {}</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">        */</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">   40</a></span>&#160;       <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(): rep_(std::make_unique&lt;<a class="code" href="classcleanpp_1_1set__on__queue.html">_set_def_t</a>&lt;Item&gt;&gt;()){</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;       }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>I&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(__attribute__((unused)) <span class="keyword">const</span> I&lt;Item&gt;&amp; impl): rep_(std::make_unique&lt;I&lt;Item&gt;&gt;()){</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;           static_assert(std::is_base_of&lt;<a class="code" href="classcleanpp_1_1set__impl.html">set_impl&lt;Item&gt;</a>, I&lt;Item&gt;&gt;::value, </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="stringliteral">&quot;Template parameter I must derive from cleanpp::set&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">   37</a></span>&#160;       <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(): rep_(std::make_unique&lt;<a class="code" href="classcleanpp_1_1set__on__queue.html">_set_def_t</a>&lt;Item&gt;&gt;()){</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;       }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>I&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(__attribute__((unused)) <span class="keyword">const</span> I&lt;Item&gt;&amp; impl): rep_(std::make_unique&lt;I&lt;Item&gt;&gt;()){</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;           static_assert(std::is_base_of&lt;<a class="code" href="classcleanpp_1_1set__impl.html">set_impl&lt;Item&gt;</a>, I&lt;Item&gt;&gt;::value, </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="stringliteral">&quot;Template parameter I must derive from cleanpp::set&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(<span class="keyword">const</span> queue&lt;Item&gt; &amp;o) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;       <a class="code" href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">set</a>(<span class="keyword">const</span> queue&lt;Item&gt; &amp;o) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;       <span class="comment">/*</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">            Clears: other</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">            Ensures: this = #other</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">   63</a></span>&#160;      <a class="code" href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">set</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp;&amp; other): rep_(std::move(other.rep_)){</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          other.rep_ = std::make_unique&lt;_set_def_t&lt;Item&gt;&gt;();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="comment">/*</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            Clears: other</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            Ensures: this = #other</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">   82</a></span>&#160;     <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; <a class="code" href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">operator=</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp;&amp; other){</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;         <span class="keywordflow">if</span>(&amp;other == <span class="keyword">this</span>){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;             <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;         }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;         rep_ = std::move(other.rep_);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;         other.rep_ = std::make_unique&lt;_set_def_t&lt;Item&gt;&gt;();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;         <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;     }</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">   56</a></span>&#160;      <a class="code" href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">set</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp;&amp; other): rep_(std::move(other.rep_)){</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;          other.rep_ = std::make_unique&lt;_set_def_t&lt;Item&gt;&gt;();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">   71</a></span>&#160;     <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; <a class="code" href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">operator=</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp;&amp; other){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;         <span class="keywordflow">if</span>(&amp;other == <span class="keyword">this</span>){</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;             <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;         }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;         rep_ = std::move(other.rep_);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;         other.rep_ = std::make_unique&lt;_set_def_t&lt;Item&gt;&gt;();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;         <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;     }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">   86</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">clear</a>(){</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        this-&gt;rep_-&gt;clear();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">        Clears: this</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">  100</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">clear</a>(){</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        this-&gt;rep_-&gt;clear();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">      Adds x to this</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">      parameter: x - the element to be added</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">      updates this</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">      clears x</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">      requires: x is not in this</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">      ensures this = #this union {x}</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">      </span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">  124</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">add</a>(Item&amp;&amp; x){</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        rep_-&gt;add(std::forward&lt;Item&gt;(x));</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">      Reports whether x is in this.</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">      parameter: x - the element to be checked</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">      returns: true iff element is in this</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">      clears x</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">      ensures: contains = (x is in this)</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">  144</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">contains</a>(Item&amp;&amp; x){</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;contains(std::forward&lt;Item&gt;(x));</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;   <span class="comment">/*</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">     Removes x from this, and returns it.</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">     parameter: x - the element to be removed</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">     returns: the element removed</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">     updates: this</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">     clears: x</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">     requires: x is in this</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">     ensures: this = #this \ {x} and remove = x</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">  101</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">add</a>(Item&amp;&amp; x){</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        rep_-&gt;add(std::forward&lt;Item&gt;(x));</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">  114</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">contains</a>(Item&amp;&amp; x){</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;contains(std::forward&lt;Item&gt;(x));</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">  129</a></span>&#160;    Item <a class="code" href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">remove</a>(Item&amp;&amp; x) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;remove(std::forward&lt;Item&gt;(x));</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">  142</a></span>&#160;    Item <a class="code" href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">removeAny</a>(){</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;removeAny();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">  153</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">getSize</a>(){</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;getSize();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">  168</a></span>&#160;    Item <a class="code" href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">remove</a>(Item&amp;&amp; x) {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;remove(std::forward&lt;Item&gt;(x));</div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">  164</a></span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">operator==</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; other){</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;       <span class="keywordflow">return</span> *this-&gt;rep_ == *other.rep_;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;   }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; o){</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> out &lt;&lt; *o.rep_;</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">      Removes and returns an arbitrary element from this</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">      </span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">      returns: the element removed from this</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">      updates: this</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">      requires: |this| &gt; 0</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">      ensures: removeAny is in #this and this = #this \ {removeAny}</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">  189</a></span>&#160;    Item <a class="code" href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">removeAny</a>(){</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;removeAny();</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    }</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">      Reports size (cardinality) of this.</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">      returns: the number of elements in this</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">      ensures: getSize = |this|</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">  205</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">getSize</a>(){</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> rep_-&gt;getSize();</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">    ensures: &#39;==&#39; = (this = other)</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">  219</a></span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">operator==</a>(<a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; other){</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;       <span class="keywordflow">return</span> *this-&gt;rep_ == *other.rep_;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;   }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, <a class="code" href="classcleanpp_1_1set.html">set&lt;Item&gt;</a>&amp; o){</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">return</span> out &lt;&lt; *o.rep_;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;   </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;};</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;}</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* set_h */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;   </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;};</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* set_h */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclasscleanpp_1_1set_html"><div class="ttname"><a href="classcleanpp_1_1set.html">cleanpp::set</a></div><div class="ttdef"><b>Definition:</b> set.hpp:20</div></div>
 <div class="ttc" id="aclasscleanpp_1_1clean__base_html"><div class="ttname"><a href="classcleanpp_1_1clean__base.html">cleanpp::clean_base</a></div><div class="ttdef"><b>Definition:</b> clean_base.hpp:18</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a737f17a295b5b5bbbfd81b6974de202d"><div class="ttname"><a href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">cleanpp::set::remove</a></div><div class="ttdeci">Item remove(Item &amp;&amp;x)</div><div class="ttdoc">Removes x from this, and returns it.</div><div class="ttdef"><b>Definition:</b> set.hpp:168</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_abd3d9dbf19ab07f504222e39771bbc5c"><div class="ttname"><a href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">cleanpp::set::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Resets this to default initial value.</div><div class="ttdef"><b>Definition:</b> set.hpp:100</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a0f80323fe30b1191288f5e1d6c810919"><div class="ttname"><a href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">cleanpp::set::add</a></div><div class="ttdeci">void add(Item &amp;&amp;x)</div><div class="ttdoc">Adds x to this.</div><div class="ttdef"><b>Definition:</b> set.hpp:124</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a26c8d3b387c972d26083ac19756b2cd6"><div class="ttname"><a href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">cleanpp::set::getSize</a></div><div class="ttdeci">int getSize()</div><div class="ttdoc">Reports size (cardinality) of this.</div><div class="ttdef"><b>Definition:</b> set.hpp:205</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_abbdebc5f5cebd47c56f09b7bdc4671c9"><div class="ttname"><a href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">cleanpp::set::operator=</a></div><div class="ttdeci">set&lt; Item &gt; &amp; operator=(set&lt; Item &gt; &amp;&amp;other)</div><div class="ttdoc">Overloaded move assignment operator.</div><div class="ttdef"><b>Definition:</b> set.hpp:82</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a645398c0afc2121f63302f8ff5855763"><div class="ttname"><a href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">cleanpp::set::set</a></div><div class="ttdeci">set(set&lt; Item &gt; &amp;&amp;other)</div><div class="ttdoc">Custom move constructor.</div><div class="ttdef"><b>Definition:</b> set.hpp:63</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a04dae88b4586c5f038b68b113ed8a8aa"><div class="ttname"><a href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">cleanpp::set::removeAny</a></div><div class="ttdeci">Item removeAny()</div><div class="ttdoc">Removes and returns an arbitrary element from this.</div><div class="ttdef"><b>Definition:</b> set.hpp:189</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a737f17a295b5b5bbbfd81b6974de202d"><div class="ttname"><a href="classcleanpp_1_1set.html#a737f17a295b5b5bbbfd81b6974de202d">cleanpp::set::remove</a></div><div class="ttdeci">Item remove(Item &amp;&amp;x)</div><div class="ttdoc">Removes x from this, and returns it.</div><div class="ttdef"><b>Definition:</b> set.hpp:129</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_abd3d9dbf19ab07f504222e39771bbc5c"><div class="ttname"><a href="classcleanpp_1_1set.html#abd3d9dbf19ab07f504222e39771bbc5c">cleanpp::set::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Resets this to default initial value.</div><div class="ttdef"><b>Definition:</b> set.hpp:86</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a0f80323fe30b1191288f5e1d6c810919"><div class="ttname"><a href="classcleanpp_1_1set.html#a0f80323fe30b1191288f5e1d6c810919">cleanpp::set::add</a></div><div class="ttdeci">void add(Item &amp;&amp;x)</div><div class="ttdoc">Adds x to this.</div><div class="ttdef"><b>Definition:</b> set.hpp:101</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a26c8d3b387c972d26083ac19756b2cd6"><div class="ttname"><a href="classcleanpp_1_1set.html#a26c8d3b387c972d26083ac19756b2cd6">cleanpp::set::getSize</a></div><div class="ttdeci">int getSize()</div><div class="ttdoc">Reports size (cardinality) of this.</div><div class="ttdef"><b>Definition:</b> set.hpp:153</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_abbdebc5f5cebd47c56f09b7bdc4671c9"><div class="ttname"><a href="classcleanpp_1_1set.html#abbdebc5f5cebd47c56f09b7bdc4671c9">cleanpp::set::operator=</a></div><div class="ttdeci">set&lt; Item &gt; &amp; operator=(set&lt; Item &gt; &amp;&amp;other)</div><div class="ttdoc">Overloaded move assignment operator.</div><div class="ttdef"><b>Definition:</b> set.hpp:71</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a645398c0afc2121f63302f8ff5855763"><div class="ttname"><a href="classcleanpp_1_1set.html#a645398c0afc2121f63302f8ff5855763">cleanpp::set::set</a></div><div class="ttdeci">set(set&lt; Item &gt; &amp;&amp;other)</div><div class="ttdoc">Custom move constructor.</div><div class="ttdef"><b>Definition:</b> set.hpp:56</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a04dae88b4586c5f038b68b113ed8a8aa"><div class="ttname"><a href="classcleanpp_1_1set.html#a04dae88b4586c5f038b68b113ed8a8aa">cleanpp::set::removeAny</a></div><div class="ttdeci">Item removeAny()</div><div class="ttdoc">Removes and returns an arbitrary element from this.</div><div class="ttdef"><b>Definition:</b> set.hpp:142</div></div>
 <div class="ttc" id="aclasscleanpp_1_1set__impl_html"><div class="ttname"><a href="classcleanpp_1_1set__impl.html">cleanpp::set_impl</a></div><div class="ttdef"><b>Definition:</b> set_impl.hpp:19</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a702c10537f1548602525626154b70577"><div class="ttname"><a href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">cleanpp::set::operator==</a></div><div class="ttdeci">bool operator==(set&lt; Item &gt; &amp;other)</div><div class="ttdoc">Overloaded equality operator for sets.</div><div class="ttdef"><b>Definition:</b> set.hpp:219</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a702c10537f1548602525626154b70577"><div class="ttname"><a href="classcleanpp_1_1set.html#a702c10537f1548602525626154b70577">cleanpp::set::operator==</a></div><div class="ttdeci">bool operator==(set&lt; Item &gt; &amp;other)</div><div class="ttdoc">Overloaded equality operator for sets.</div><div class="ttdef"><b>Definition:</b> set.hpp:164</div></div>
 <div class="ttc" id="aclasscleanpp_1_1set__on__queue_html"><div class="ttname"><a href="classcleanpp_1_1set__on__queue.html">cleanpp::set_on_queue</a></div><div class="ttdef"><b>Definition:</b> set_on_queue.hpp:21</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a8e3d1c9a82f320f95840e1885edd979c"><div class="ttname"><a href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">cleanpp::set::contains</a></div><div class="ttdeci">bool contains(Item &amp;&amp;x)</div><div class="ttdoc">Reports whether x is in this.</div><div class="ttdef"><b>Definition:</b> set.hpp:144</div></div>
-<div class="ttc" id="aclasscleanpp_1_1set_html_a16971ca66caa3d6d841d8bd51122ea93"><div class="ttname"><a href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">cleanpp::set::set</a></div><div class="ttdeci">set()</div><div class="ttdoc">No argument constructor.</div><div class="ttdef"><b>Definition:</b> set.hpp:40</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a8e3d1c9a82f320f95840e1885edd979c"><div class="ttname"><a href="classcleanpp_1_1set.html#a8e3d1c9a82f320f95840e1885edd979c">cleanpp::set::contains</a></div><div class="ttdeci">bool contains(Item &amp;&amp;x)</div><div class="ttdoc">Reports whether x is in this.</div><div class="ttdef"><b>Definition:</b> set.hpp:114</div></div>
+<div class="ttc" id="aclasscleanpp_1_1set_html_a16971ca66caa3d6d841d8bd51122ea93"><div class="ttname"><a href="classcleanpp_1_1set.html#a16971ca66caa3d6d841d8bd51122ea93">cleanpp::set::set</a></div><div class="ttdeci">set()</div><div class="ttdoc">No argument constructor.</div><div class="ttdef"><b>Definition:</b> set.hpp:37</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

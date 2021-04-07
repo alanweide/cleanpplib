@@ -88,19 +88,126 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad18bb0dbf06e929d4534402904290181"><td class="memItemLeft" align="right" valign="top"><a id="ad18bb0dbf06e929d4534402904290181"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> () override</td></tr>
 <tr class="separator:ad18bb0dbf06e929d4534402904290181"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ad449ed775bc28c85d9e17ffbe61de"><td class="memItemLeft" align="right" valign="top"><a id="a39ad449ed775bc28c85d9e17ffbe61de"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enqueue</b> (T &amp;&amp;x) override</td></tr>
+<tr class="memitem:a39ad449ed775bc28c85d9e17ffbe61de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcleanpp_1_1array__queue.html#a39ad449ed775bc28c85d9e17ffbe61de">enqueue</a> (T &amp;&amp;x) override</td></tr>
+<tr class="memdesc:a39ad449ed775bc28c85d9e17ffbe61de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds x to the end of this.  <a href="classcleanpp_1_1array__queue.html#a39ad449ed775bc28c85d9e17ffbe61de">More...</a><br /></td></tr>
 <tr class="separator:a39ad449ed775bc28c85d9e17ffbe61de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ebd867b94908b74616adf416647967"><td class="memItemLeft" align="right" valign="top"><a id="a00ebd867b94908b74616adf416647967"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>dequeue</b> () override</td></tr>
+<tr class="memitem:a00ebd867b94908b74616adf416647967"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcleanpp_1_1array__queue.html#a00ebd867b94908b74616adf416647967">dequeue</a> () override</td></tr>
+<tr class="memdesc:a00ebd867b94908b74616adf416647967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes and returns the entry at the front of this.  <a href="classcleanpp_1_1array__queue.html#a00ebd867b94908b74616adf416647967">More...</a><br /></td></tr>
 <tr class="separator:a00ebd867b94908b74616adf416647967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8402f827dadad0127130b4b879556c3"><td class="memItemLeft" align="right" valign="top"><a id="ad8402f827dadad0127130b4b879556c3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_empty</b> () const override</td></tr>
+<tr class="memitem:ad8402f827dadad0127130b4b879556c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcleanpp_1_1array__queue.html#ad8402f827dadad0127130b4b879556c3">is_empty</a> () const override</td></tr>
+<tr class="memdesc:ad8402f827dadad0127130b4b879556c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether this is empty.  <a href="classcleanpp_1_1array__queue.html#ad8402f827dadad0127130b4b879556c3">More...</a><br /></td></tr>
 <tr class="separator:ad8402f827dadad0127130b4b879556c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef65927d1899dfa95ebfeba5aedcc923"><td class="memItemLeft" align="right" valign="top"><a id="aef65927d1899dfa95ebfeba5aedcc923"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>to_str</b> () override</td></tr>
 <tr class="separator:aef65927d1899dfa95ebfeba5aedcc923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a00ebd867b94908b74616adf416647967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ebd867b94908b74616adf416647967">&#9670;&nbsp;</a></span>dequeue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="classcleanpp_1_1array__queue.html">cleanpp::array_queue</a>&lt; T &gt;::dequeue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes and returns the entry at the front of this. </p>
+<dl class="section return"><dt>Returns</dt><dd>the entry removed </dd></dl>
+<dl class="section user"><dt>Requires</dt><dd>this /= &lt;&gt; </dd></dl>
+<dl class="section user"><dt>Ensures</dt><dd>#this = &lt;dequeue&gt; * this </dd></dl>
+
+<p>Implements <a class="el" href="classcleanpp_1_1queue__impl.html#a08c5f47135f9e93f7053e9953c2d94d5">cleanpp::queue_impl&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a39ad449ed775bc28c85d9e17ffbe61de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ad449ed775bc28c85d9e17ffbe61de">&#9670;&nbsp;</a></span>enqueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classcleanpp_1_1array__queue.html">cleanpp::array_queue</a>&lt; T &gt;::enqueue </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds x to the end of this. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>- the entry to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Ensures</dt><dd>this = #this * &lt;x&gt; </dd></dl>
+
+<p>Implements <a class="el" href="classcleanpp_1_1queue__impl.html#ab8319b1fdab08862b91ce473a93fd578">cleanpp::queue_impl&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ad8402f827dadad0127130b4b879556c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8402f827dadad0127130b4b879556c3">&#9670;&nbsp;</a></span>is_empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classcleanpp_1_1array__queue.html">cleanpp::array_queue</a>&lt; T &gt;::is_empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether this is empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>true iff |this| = 0 </dd></dl>
+<dl class="section user"><dt>Ensures</dt><dd>is_empty = (|this| = 0) </dd></dl>
+
+<p>Implements <a class="el" href="classcleanpp_1_1queue__impl.html#a66dd52f9bc882316855e8add6bbd770a">cleanpp::queue_impl&lt; T &gt;</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>cleanpp/queue_impls/<a class="el" href="array__queue_8hpp_source.html">array_queue.hpp</a></li>
 </ul>
