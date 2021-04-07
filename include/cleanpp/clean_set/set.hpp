@@ -31,7 +31,7 @@ class set: public clean_base {
 
        /**
         * @brief No argument constructor
-        * 
+        *
         * @ensures this = {}
         */
        set(): rep_(std::make_unique<_set_def_t<Item>>()){
@@ -39,7 +39,7 @@ class set: public clean_base {
 
         template<template<typename> class I>
         set(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()){
-           static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value, 
+           static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value,
                 "Template parameter I must derive from cleanpp::set");
         }
 
@@ -48,9 +48,8 @@ class set: public clean_base {
 
       /**
        * @brief Custom move constructor
-       * 
+       *
        * @param other - set to move from
-       * @clears other
        * @ensures this = #other
        */
       set(set<Item>&& other): rep_(std::move(other.rep_)){
@@ -62,10 +61,9 @@ class set: public clean_base {
 
      /**
       * @brief Overloaded move assignment operator
-      * 
+      *
       * @param other - set to move from
       * @return the newly-assigned this
-      * @clears other
       * @ensures this = #other
       */
      set<Item>& operator=(set<Item>&& other){
@@ -80,8 +78,7 @@ class set: public clean_base {
 
     /**
      * @brief Resets this to default initial value
-     * 
-     * @clears this
+     *
      */
     void clear(){
         this->rep_->clear();
@@ -90,10 +87,8 @@ class set: public clean_base {
 
    /**
     * @brief Adds x to this
-    * 
+    *
     * @param x the element to be added
-    * @updates this
-    * @clears x
     * @requires x is not in this
     * @ensures this = #this union {x}
     *
@@ -105,11 +100,10 @@ class set: public clean_base {
 
     /**
      * @brief Reports whether x is in this.
-     * 
+     *
      * @param x - the element to be checked
      * @return true iff element is in this
-     * @clears x
-     * @ensures contains = (x is in this) 
+     * @ensures contains = (x is in this)
      */
     bool contains(Item&& x){
         return rep_->contains(std::forward<Item>(x));
@@ -118,11 +112,9 @@ class set: public clean_base {
 
     /**
      * @brief Removes x from this, and returns it.
-     * 
-     * @param x 
+     *
+     * @param x
      * @return the element removed
-     * @updates this
-     * @clears x
      * @requires x is in this
      * @ensures this = #this \ {x} and remove = x
      */
@@ -133,9 +125,8 @@ class set: public clean_base {
 
     /**
      * @brief Removes and returns an arbitrary element from this
-     * 
+     *
      * @return the element removed fromt this
-     * @updates this
      * @requires |this| > 0
      * @ensures removeAny is in #this and this = #this \ {removeAny}
      */
@@ -146,7 +137,7 @@ class set: public clean_base {
 
     /**
      * @brief Reports size (cardinality) of this
-     * 
+     *
      * @return the number of elements in this
      * @ensures getSize = |this|
      */
@@ -157,7 +148,7 @@ class set: public clean_base {
 
    /**
     * @brief Overloaded equality operator for sets
-    * 
+    *
     * @param other - set to compare to
     * @return true iff sets contain the same elements
     */
@@ -168,7 +159,7 @@ class set: public clean_base {
     friend std::ostream& operator<<(std::ostream& out, set<Item>& o){
         return out << *o.rep_;
     }
-   
+
 
 };
 

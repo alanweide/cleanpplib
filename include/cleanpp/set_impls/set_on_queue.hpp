@@ -90,11 +90,11 @@ public:
 
     /**
      * Kernel methods----------------------------------------------------
-     **/
+     */
 
     void add(T&& x){
 
-        this->rep.enqueue(std::move(x));
+        this->rep.enqueue(std::forward<T>(x));
         size++;
 
     }
@@ -118,20 +118,44 @@ public:
     bool contains(T&& x){
         bool has = false;
 
-        std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
-
-        if(!this->rep.is_empty()){
-            T front = this->rep.dequeue();
-            if(front == x){
-                has = true;
-            }
-            this->rep.enqueue(std::move(front));
+        // Recursive implementation
+        if (!this->rep.is_empty()) {
+            T guess = this->rep.dequeue();
+            has = (guess == x) || this->contains(std::move(x));
+            this->rep.enqueue(std::move(guess));
         }
+        
+        // Iterative Implementation
+//        queue<T> temp;
+//        while (!has && !this->rep.is_empty()) {
+//            T item = this->rep.dequeue();
+//            has = (item == x);
+//            temp.enqueue(std::move(item));
+//        }
+//        while (!temp.is_empty()) {
+//            T item = temp.dequeue();
+//            this->rep.enqueue(std::move(item));
+//        }
+        
+        // Will's implementation (not correct)
+//        std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
+//
+//        if(!this->rep.is_empty()){
+//            T front = this->rep.dequeue();
+//            if(front == x){
+//                has = true;
+//            }
+//            this->rep.enqueue(std::move(front));
+//        }
 
         return has;
 
     }
 
+    bool is_empty() {
+        return this->rep.is_empty();
+    }
+    
     int getSize(){
         return size;
     }

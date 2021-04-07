@@ -17,8 +17,7 @@ namespace cleanpp {
 // natural_number_kernel
 bool natural_number_kernel_impl::operator==(natural_number_kernel_impl &other) {
     bool ans = false;
-    std::cout << *this;
-    bool otherZero = other.is_zero();
+     bool otherZero = other.is_zero();
     bool thisZero = (*this).is_zero();
     if (otherZero && thisZero) {
         ans = true;

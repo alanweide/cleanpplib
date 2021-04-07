@@ -183,4 +183,22 @@ static std::string queueNNToString(std::unique_ptr<queue_impl<nn_type>> &s) {
     XCTAssert(b == expected_b);
 }
 
+- (void)testDequeueFromLong {
+    std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
+    std::string empty_stack = "<1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11>";
+    nn_type a, a_expected;
+    
+    int numElem = 12;
+    for (int i = 0; i < numElem; i++) {
+        nn_type n(i);
+        q->enqueue(std::move(n));
+    }
+    
+    a = q->dequeue();
+    
+    std::string q_str = queueNNToString(q);
+    XCTAssert(q_str == empty_stack, @"%s", q_str.c_str());
+    XCTAssert(a == a_expected);
+}
+
 @end

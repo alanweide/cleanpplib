@@ -25,7 +25,7 @@ using _queue_def_t = array_queue<I>;
 
 template <typename Item>
 class queue: public clean_base {
-	/*
+	/**
 	 queue is modeled by string of Item
 	 */
 protected:
@@ -34,7 +34,7 @@ public:
 
 	/**
 	 * @brief no argument constructor
-	 * 
+	 *
 	 * @ensures this = <>
 	 */
 	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
@@ -52,7 +52,7 @@ public:
 
 	/**
 	 * @brief Custom move constructor
-	 * 
+	 *
 	 * @param other - the queue being moved from
 	 */
 	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
@@ -63,9 +63,9 @@ public:
 
 	/**
       * @brief custom move assignment operator
-      * 
+      *
       * @param other - the queue being moved from
-      * @return the newly-assigned this 
+      * @return the newly-assigned this
       * @ensures this = #other
       */
 	queue<Item>& operator=(queue<Item>&& other) {
@@ -86,7 +86,7 @@ public:
 
 	/**
 	 * @brief Adds x to the end of this.
-	 * 
+	 *
 	 * @param x - the entry to be added
 	 * @ensures this = #this * <x>
 	 */
@@ -96,7 +96,7 @@ public:
 
 	/**
 	 * @brief Removes and returns the entry at the front of this
-	 * 
+	 *
 	 * @return the entry removed
 	 * @requires this /= <>
 	 * @ensures #this = <dequeue> * this
@@ -104,10 +104,10 @@ public:
 	Item dequeue() {
 		return rep_->dequeue();
 	}
-	
+
 	/**
 	 * @brief Reports whether this is empty
-	 * 
+	 *
 	 * @return true iff |this| = 0
 	 * @ensures is_empty = (|this| = 0)
 	 */
@@ -118,8 +118,8 @@ public:
 
 	/**
 	 * @brief overloaded equality operator
-	 * 
-	 * @param other 
+	 *
+	 * @param other
 	 * @return true iff (this = other)
 	 * @ensures '==' = (this = other)
 	 */
