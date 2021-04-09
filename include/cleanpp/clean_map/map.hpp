@@ -78,8 +78,6 @@ class map: public clean_base {
 
     /**
      * @brief clears this
-     * 
-     * @clears this
      */
     void clear(){
         this->rep_->clear();
@@ -92,7 +90,6 @@ class map: public clean_base {
      * @param key - the key to be added
      * @param value - the associated value to be added
      *
-     * @updates this
      * @requires key is not in DOMAIN(this)
      * @ensures this = #this union {(key, value)}
      */
@@ -107,7 +104,6 @@ class map: public clean_base {
      * 
      * @param key - the key to be checked
      * @return true iff there is a pair in this whose first component is key
-     * @clears key
      * @ensures hasKey = (key is in DOMAIN(this))
      */
     bool hasKey(K&& key){
@@ -120,8 +116,6 @@ class map: public clean_base {
      * 
      * @param key - the key to be removed 
      * @return the pair removed
-     * @updates this
-     * @clears key
      * @requires key is in DOMAIN(this)
      * @ensures remove.key = key and remove is in #this and this = #this \ {remove}
      */
@@ -134,7 +128,6 @@ class map: public clean_base {
      * @brief Removes and returns an arbitrary pair from this
      * 
      * @return the pair removed from this
-     * @updates this
      * @requires |this| > 0
      * @ensures removeAny is in #this and this = #this \ {removeAny}
      */
