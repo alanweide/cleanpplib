@@ -25,23 +25,29 @@ private:
     virtual std::string to_str() = 0;
 public:
     
-    /*
-     updates this
-     clears  x
-     ensures this = #this * <x>
-     */
+	/**
+	 * @brief Adds x to the end of this.
+	 * 
+	 * @param x - the entry to be added
+	 * @ensures this = #this * <x>
+	 */
     virtual void enqueue(T&& x) = 0;
     
-    /*
-     updates  this
-     requires |this| > 0
-     ensures  this * <dequeue> = #this
-     */
+	/**
+	 * @brief Removes and returns the entry at the front of this
+	 * 
+	 * @return the entry removed
+	 * @requires this /= <>
+	 * @ensures #this = <dequeue> * this
+	 */
     virtual T dequeue() = 0;
     
-    /*
-     ensures is_empty = (|this| = 0)
-     */
+	/**
+	 * @brief Reports whether this is empty
+	 * 
+	 * @return true iff |this| = 0
+	 * @ensures is_empty = (|this| = 0)
+	 */
     virtual bool is_empty() const = 0;
     
     friend std::ostream& operator<<(std::ostream& out, queue_impl<T>& o) {

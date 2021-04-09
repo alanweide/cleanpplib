@@ -27,6 +27,12 @@ protected:
 
     std::unique_ptr<stack_impl<Item>> rep_;
 public:
+
+    /**
+	 * @brief no argument constructor
+	 * 
+	 * @ensures this = <>
+	 */
 	stack() : rep_(std::make_unique<_flex_stack_def_t<Item>>()) {
     }
     
@@ -37,11 +43,25 @@ public:
 	}
 	
     stack(const stack<Item> &o) = delete;
+
+    /**
+	 * @brief Custom move constructor
+	 * 
+	 * @param other - the stack being moved from
+	 */
     stack(stack<Item>&& o): rep_(std::move(o.rep_)) {
 		o.rep_ = std::make_unique<_flex_stack_def_t<Item>>();
     }
     
     stack<Item>& operator=(const stack<Item>& o) = delete;
+
+    /**
+     * @brief custom move assignment operator
+     * 
+     * @param other - the stack being moved from
+     * @return the newly-assigned this
+     * @ensures this = #other
+     */
     stack<Item>& operator=(stack<Item>&& other) {
 		if (&other == this) {
 			return *this;
@@ -51,38 +71,52 @@ public:
 		return *this;
     }
     
+    /**
+     * @brief clears this
+     */
     void clear() {
 		this->rep_->clear();
     }
     
-    /*
-     updates this
-     clears  x
-     ensures this = <#x> * #this
+    /**
+     * @brief Adds x to the top of this  
+     *  
+     * @param x - the entry to be aded
+     * @ensures this = <x> * #this
      */
     virtual void push(Item&& x) {
         rep_->push(std::forward<Item>(x));
     }
-    
-    /*
-     updates  this
-     replaces x
-     requires |this| > 0
-     ensures  #this = <x> * this
+
+    /**
+     * @brief Removes x from the top of this
+     * 
+     * @return the entry rmemoved
+     * @requires this /= <>
+     * @ensures #this = <pop> * this
      */
     virtual Item pop() {
         return rep_->pop();
     }
     
-    /*
-     ensures is_empty = (|this| = 0)
+
+    /**
+     * @brief Reports whether this is empty
+     * 
+     * @return true iff |this| = 0
+     * @ensures is_empty = (|this| = 0)
      */
     virtual bool is_empty() const {
         return rep_->is_empty();
     }
-    
-    /*
-     ensures `==` = (this = other)
+
+
+    /**
+     * @brief overloaded equality operator
+     * 
+     * @param other - stack to compare with
+     * @return true iff this = other
+     * @ensures '==' = (this = other)
      */
     bool operator==(stack<Item>& other) {
         return *this->rep_ == *other.rep_;

@@ -15,7 +15,7 @@
 
 namespace cleanpp {
 
-template<typename T> 
+template<typename T>
 class set_impl : public clean_base {
 
     /**
@@ -24,53 +24,55 @@ class set_impl : public clean_base {
 private:
     virtual std::string to_str() = 0;
 public:
-    
-    /**
-     * Adds x to this
-     * parameter: x - the element to be added
-     * updates this
-     * requires: x is not in this
-     * ensures this = #this union {x}
-     */
-   virtual void add(T&& s) = 0;
+
 
    /**
-    * Removes x from this, and returns it.
-    * parameter: x - the element to be removed
-    * returns: the element removed
-    * updates: this
-    * requires: x is in this
-    * ensures: this = #this \ {x} and remove = x
+    * @brief Adds x to this
+    *
+    * @param x the element to be added
+    * @requires x is not in this
+    * @ensures this = #this union {x}
+    *
     */
-   virtual T remove(T&& x) = 0;
+   virtual void add(T&& x) = 0;
+
 
     /**
-     * Removes and returns an arbitrary element from this
-     * returns: the element removed from this
-     * updates; this
-     * requires: |this| > 0
-     * ensures: removeAny is in #this and this = #this \ {removeAny}
-     */
-    virtual T removeAny() = 0;
-
-    /**
-     * Reports whether x is in this.
-     * parameter: x - the element to be checked
-     * returns: true iff element is in this
-     * ensures: contains = (x is in this)
+     * @brief Reports whether x is in this.
+     *
+     * @param x - the element to be checked
+     * @return true iff element is in this
+     * @ensures contains = (x is in this)
      */
     virtual bool contains(T&& x) = 0;
 
+
     /**
-     * Reports whether this is empty.
-     * ensures: is_empty = (|this| = 0)
+     * @brief Removes x from this, and returns it.
+     *
+     * @param x
+     * @return the element removed
+     * @requires x is in this
+     * @ensures \f$ this = \#this \\ \{x\} \f$ and remove = x
      */
-    virtual bool is_empty() = 0;
-    
+   virtual T remove(T&& x) = 0;
+
+
+   /**
+     * @brief Removes and returns an arbitrary element from this
+     *
+     * @return the element removed fromt this
+     * @requires |this| > 0
+     * @ensures removeAny is in #this and this = #this \ {removeAny}
+     */
+    virtual T removeAny() = 0;
+
+
     /**
-     * Reports size (cardinality) of this.
-     * returns: the number of elements in this
-     * ensures: size = |this|
+     * @brief Reports size (cardinality) of this
+     *
+     * @return the number of elements in this
+     * @ensures getSize = |this|
      */
     virtual int getSize() = 0;
 

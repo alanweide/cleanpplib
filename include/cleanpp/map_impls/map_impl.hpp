@@ -12,7 +12,7 @@
 #include "clean_base.hpp"
 
 namespace cleanpp {
-
+    
     template <typename K, typename V>
     class pair: public clean_base{
     private:
@@ -85,21 +85,57 @@ private:
 
 public:
 
+
+    /**
+     * @brief Adds the pair (key, value) to this
+     * 
+     * @param key - the key to be added
+     * @param value - the associated value to be added
+     *
+     * @requires key is not in DOMAIN(this)
+     * @ensures this = #this union {(key, value)}
+     */
     virtual void add(K&& key, V&& value) = 0;
 
+
+    /**
+     * @brief Reports whether there is a pair in this whose first component is key
+     * 
+     * @param key - the key to be checked
+     * @return true iff there is a pair in this whose first component is key
+     * @ensures hasKey = (key is in DOMAIN(this))
+     */
     virtual bool hasKey(K&& key) = 0;
 
+
+    /**
+     * @brief Removes the pair whose first component is key and returns it
+     * 
+     * @param key - the key to be removed 
+     * @return the pair removed
+     * @requires key is in DOMAIN(this)
+     * @ensures remove.key = key and remove is in #this and this = #this \ {remove}
+     */
     virtual pair<K, V> remove(K&& key) = 0;
 
+
+    /**
+     * @brief Removes and returns an arbitrary pair from this
+     * 
+     * @return the pair removed from this
+     * @requires |this| > 0
+     * @ensures removeAny is in #this and this = #this \ {removeAny}
+     */
     virtual pair<K, V> removeAny() = 0;
-
-    virtual int size() = 0;
-
-    virtual V value(K&& key) = 0;
-
     
 
-
+    /**
+     * @brief Reports the size of this
+     * 
+     * @return the number of pairs in this
+     * @ensures size = |this|
+     */
+    virtual int size() = 0;
 
     friend std::ostream& operator<<(std::ostream& out, map_impl<K, V>& o){
         return out << o.to_str();

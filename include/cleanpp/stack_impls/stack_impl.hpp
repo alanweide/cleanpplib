@@ -26,27 +26,38 @@ private:
 	virtual std::string to_str() = 0;
 public:
     
-    /*
-     updates this
-     clears  x
-     ensures this = <#x> * #this
+    /**
+     * @brief Adds x to the top of this  
+     *  
+     * @param x - the entry to be aded
+     * @ensures this = <x> * #this
      */
 	virtual void push(T&& x) = 0;
     
-    /*
-     updates  this
-     requires |this| > 0
-     ensures  #this = <pop> * this
+    /**
+     * @brief Removes x from the top of this
+     * 
+     * @return the entry rmemoved
+     * @requires this /= <>
+     * @ensures #this = <pop> * this
      */
 	virtual T pop() = 0;
     
-    /*
-     ensures is_empty = (|this| = 0)
+    /**
+     * @brief Reports whether this is empty
+     * 
+     * @return true iff |this| = 0
+     * @ensures is_empty = (|this| = 0)
      */
 	virtual bool is_empty() const = 0;
+
 	
-    /*
-     ensures `==` = (this = other)
+    /**
+     * @brief overloaded equality operator
+     * 
+     * @param other - stack to compare with
+     * @return true iff this = other
+     * @ensures '==' = (this = other)
      */
 	bool operator==(stack_impl<T> &other) {
 		bool ans;
