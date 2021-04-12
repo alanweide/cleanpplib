@@ -5,3 +5,5 @@ Build/**
 **/*.a
 **/*.o
 doc/*/**
+**/html
+**/latex
