@@ -192,6 +192,8 @@
 		E7A2517F2613AD1900AC204C /* selection_sort6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = selection_sort6.cpp; sourceTree = "<group>"; };
 		E7A251802613AD1900AC204C /* practice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = practice.cpp; sourceTree = "<group>"; };
 		E7A251812613AD1900AC204C /* selection_sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = selection_sort.cpp; sourceTree = "<group>"; };
+		E7CD612F262F667F00CC1D12 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E7CD6139262F66C100CC1D12 /* hello_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hello_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				E760A2CC239203DA00139E3D /* test */,
 				E7744EB625278F43000A5CC9 /* cleanpp-main */,
 				E7A251762613AD1800AC204C /* experiments */,
+				E7CD612E262F667F00CC1D12 /* cleanpp-gtest */,
 				E760A2BC239203A200139E3D /* Products */,
 				E7744EBF25278F66000A5CC9 /* Frameworks */,
 			);
@@ -494,6 +497,15 @@
 				E7A251812613AD1900AC204C /* selection_sort.cpp */,
 			);
 			path = experiments;
+			sourceTree = "<group>";
+		};
+		E7CD612E262F667F00CC1D12 /* cleanpp-gtest */ = {
+			isa = PBXGroup;
+			children = (
+				E7CD612F262F667F00CC1D12 /* main.cpp */,
+				E7CD6139262F66C100CC1D12 /* hello_test.cpp */,
+			);
+			path = "cleanpp-gtest";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

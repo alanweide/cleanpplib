@@ -4,6 +4,7 @@ Build/**
 .vscode
 **/*.a
 **/*.o
-doc/*/**
+**/doc
 **/html
 **/latex
+**/build
