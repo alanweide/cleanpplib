@@ -19,4 +19,4 @@ $(objects): %.o: %.cpp $(headerfiles_prereq)
 %.cpp:
 
 clean:
-	rm **/*.o **/*.exe
+	rm $(objects) */**.exe 
