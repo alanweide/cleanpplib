@@ -1,4 +1,3 @@
-CXX = g++
 CXXFLAGS = -std=c++14
 lib_objects = src/clean_nn/natural_number.o src/clean_nn/bounded_nn.o src/clean_nn/stack_nn.o src/clean_integer/integer_impl.o src/clean_integer/nn_integer.o src/clean_integer/vector_integer.o
 includepath = -I include/cleanpp
