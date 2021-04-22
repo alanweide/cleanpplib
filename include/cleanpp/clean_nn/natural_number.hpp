@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include <assert.h>
-#include "clean_base.hpp"
-#include "natural_number.hpp"
-#include "stack_nn.hpp"
+#include <clean_base.hpp>
+#include <clean_nn/natural_number.hpp>
+#include <natural_number_impls/stack_nn.hpp>
 
 namespace cleanpp {
 

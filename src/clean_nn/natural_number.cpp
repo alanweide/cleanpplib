@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <clean_nn/natural_number.hpp>
-#include <bounded_nn.hpp>
+#include <natural_number_impls/bounded_nn.hpp>
 
 
 namespace cleanpp {

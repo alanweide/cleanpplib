@@ -11,7 +11,7 @@
 
 #include <memory>
 #include <assert.h>
-#include "natural_number.hpp"
+#include <clean_nn/natural_number.hpp>
 
 namespace cleanpp {
 class bounded_nn: public natural_number_impl {
