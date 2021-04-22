@@ -10,10 +10,10 @@
 #define stack_nn_h
 
 #include <stdio.h>
-#include "linked_stack.hpp"
-#include "array_stack.hpp"
-#include "stack.hpp"
-#include "natural_number_impl.hpp"
+#include <stack_impls/linked_stack.hpp>
+#include <stack_impls/array_stack.hpp>
+#include <clean_stack/stack.hpp>
+#include <natural_number_impls/natural_number_impl.hpp>
 
 namespace cleanpp {
 
