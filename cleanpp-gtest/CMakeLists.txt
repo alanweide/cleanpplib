@@ -15,10 +15,6 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_subdirectory(
-  cleanpp-gtest  
-)
-
 add_executable(
   hello_test
   hello_test.cpp
