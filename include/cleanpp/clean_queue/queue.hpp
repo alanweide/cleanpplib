@@ -13,10 +13,10 @@
 #include <iostream>
 #include <memory>
 
-#include "clean_base.hpp"
-#include "queue_impl.hpp"
-#include "array_queue.hpp"
-#include "linked_queue.hpp"
+#include <clean_base.hpp>
+#include <queue_impls/queue_impl.hpp>
+#include <queue_impls/array_queue.hpp>
+#include <queue_impls/linked_queue.hpp>
 
 namespace cleanpp {
 

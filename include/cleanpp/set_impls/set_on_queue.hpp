@@ -9,10 +9,10 @@
 #include <sstream>
 #include <memory>
 
-#include "clean_base.hpp"
-#include "set_impl.hpp"
-#include "queue.hpp"
-#include "linked_queue.hpp"
+#include <clean_base.hpp>
+#include <set_impls/set_impl.hpp>
+#include <clean_queue/queue.hpp>
+#include <queue_impls/linked_queue.hpp>
 
 
 namespace cleanpp {
@@ -152,7 +152,7 @@ public:
 
     }
 
-    bool is_empty() {
+    bool isEmpty() {
         return this->rep.is_empty();
     }
     

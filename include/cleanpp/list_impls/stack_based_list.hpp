@@ -11,8 +11,8 @@
 
 #include "list_impl.hpp"
 
-#include "array_stack.hpp"
-#include "stack.hpp"
+#include <stack_impls/array_stack.hpp>
+#include <clean_stack/stack.hpp>
 
 namespace cleanpp {
 

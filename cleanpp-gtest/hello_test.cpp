@@ -16,5 +16,7 @@ using namespace cleanpp;
 TEST(HelloTest, BasicAssertions) {
     EXPECT_STRNE("hello", "world");
     EXPECT_EQ(7*6, 42);
-    EXPECT_EQ(natural_number{bounded_nn{}, 12}, natural_number{bounded_nn{}, 12});
+    natural_number n1{bounded_nn{}, 12};
+    natural_number n2{bounded_nn{}, 12};
+    EXPECT_TRUE(n1 == n2);
 }

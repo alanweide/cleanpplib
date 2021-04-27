@@ -76,6 +76,8 @@ public:
      */
     virtual int getSize() = 0;
 
+    virtual bool isEmpty() = 0;
+
     friend std::ostream& operator<<(std::ostream& out, set_impl<T>& o){
          return out << o.to_str();
     }
