@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(cleanpp_gtest)
 
 # GoogleTest requires at least C++11
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -13,15 +13,24 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+link_directories(${CMAKE_SOURCE_DIR}/..)
+include_directories(${CMAKE_SOURCE_DIR}/../include/cleanpp)
+
 enable_testing()
 
 add_executable(
   hello_test
   hello_test.cpp
 )
+
 target_link_libraries(
   hello_test
   gtest_main
+)
+
+target_link_libraries(
+  hello_test
+  Cleanpp
 )
 
 include(GoogleTest)

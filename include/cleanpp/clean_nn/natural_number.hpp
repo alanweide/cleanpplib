@@ -176,6 +176,14 @@ public:
     }
     
 	/**
+	 ensures `==` = (this = other)
+	 */
+    bool operator==(natural_number &other)	{
+        return *this->rep_ == *other.rep_;
+	}
+	
+
+	/**
 	 ensures add = #x + y
 	 */
 	friend natural_number add(natural_number&& x, natural_number &y) {

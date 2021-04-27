@@ -8,8 +8,13 @@
 
 #include <stdio.h>
 #include <gtest/gtest.h>
+#include <clean_nn/natural_number.hpp>
+#include <natural_number_impls/bounded_nn.hpp>
+
+using namespace cleanpp;
 
 TEST(HelloTest, BasicAssertions) {
     EXPECT_STRNE("hello", "world");
     EXPECT_EQ(7*6, 42);
+    EXPECT_EQ(natural_number{bounded_nn{}, 12}, natural_number{bounded_nn{}, 12});
 }
