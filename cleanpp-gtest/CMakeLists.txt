@@ -39,10 +39,10 @@ add_executable(
   TestFlexQueueNaturalNumber
   TestFlexQueueNaturalNumber.cpp
 )
-# add_executable(
-#   TestFlexSetNaturalNumber
-#   TestFlexSetNaturalNumber.cpp
-# )
+add_executable(
+  TestFlexSetNaturalNumber
+  TestFlexSetNaturalNumber.cpp
+)
 add_executable(
   TestFlexStackInt
   TestFlexStackInt.cpp
@@ -109,10 +109,10 @@ target_link_libraries(
   TestFlexQueueNaturalNumber
   gtest_main
 )
-# target_link_libraries(
-#   TestFlexSetNaturalNumber
-#   gtest_main
-# )
+target_link_libraries(
+  TestFlexSetNaturalNumber
+  gtest_main
+)
 target_link_libraries(
   TestFlexStackInt
   gtest_main
@@ -179,10 +179,10 @@ target_link_libraries(
   TestFlexQueueNaturalNumber
   Cleanpp
 )
-# target_link_libraries(
-#   TestFlexSetNaturalNumber
-#   Cleanpp
-# )
+target_link_libraries(
+  TestFlexSetNaturalNumber
+  Cleanpp
+)
 target_link_libraries(
   TestFlexStackInt
   Cleanpp
@@ -244,9 +244,9 @@ gtest_discover_tests(
 gtest_discover_tests(
   TestFlexQueueNaturalNumber
 )
-# gtest_discover_tests(
-#   TestFlexSetNaturalNumber
-# )
+gtest_discover_tests(
+  TestFlexSetNaturalNumber
+)
 gtest_discover_tests(
   TestFlexStackInt
 )

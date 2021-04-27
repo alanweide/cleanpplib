@@ -77,7 +77,7 @@ public:
         }
 
         this->rep = std::move(other.rep);
-        this->size = std::move(this.size());
+        this->size = std::move(other.size);
         other.clear();
 
         return *this;

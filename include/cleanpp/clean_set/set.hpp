@@ -149,6 +149,10 @@ class set: public clean_base {
         return rep_->isEmpty();
     }
 
+    bool is_empty() {
+        return rep_->isEmpty();
+    }
+
 
    /**
     * @brief Overloaded equality operator for sets
