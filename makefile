@@ -5,15 +5,18 @@ lib_objects = src/clean_nn/natural_number.o src/clean_nn/bounded_nn.o src/clean_
 includepath = include/cleanpp
 testdir = cleanpp-gtest
 
-# all: libCleanpp
-
 # ---------------
 # Library targets
 # ---------------
-libCleanpp libcleanpp libCleanpp.a: $(lib_objects)
+# Static library
+libCleanpp.a: $(lib_objects)
 	@echo "Building $@..." 
 	ar rv libCleanpp.a $^
 	@echo "Done."
+
+# Dynamic library
+libCleanpp.so: $(lib_objects)
+	$(CXX) $(CXXFLAGS) -shared -o libCleanpp.so $^
 
 # @Will: does this work in Windows?
 libCleanpp.exe: $(lib_objects) libCleanpp
@@ -21,13 +24,13 @@ libCleanpp.exe: $(lib_objects) libCleanpp
 
 $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepath)/**/*.hpp)
 	@echo "Making object file for $@..."
-	@ls $(includepath)/**/*.hpp
+# @ls $(includepath)/**/*.hpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(includepath)
 
 # ------------------------------------------
 # Build (simple) individual Clean++ programs
 # ------------------------------------------
-%.o: %.cpp libCleanpp
+%.o: %.cpp libCleanpp.a
 	@echo "Building $@..."
 	$(CXX) $(CXXFLAGS) $< -o $@ -L. -lCleanpp -I $(includepath)
 	@echo "Done."
