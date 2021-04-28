@@ -18,265 +18,42 @@ include_directories(${CMAKE_SOURCE_DIR}/../include/cleanpp)
 
 enable_testing()
 
-add_executable(
-  hello_test
-  hello_test.cpp
-)
-
-add_executable(
-  TestArrayQueueNaturalNumber
-  TestArrayQueueNaturalNumber.cpp
-)
-add_executable(
-  TestArrayStackNaturalNumber
-  TestArrayStackNaturalNumber.cpp
-)
-add_executable(
-  TestBoundedNN
-  TestBoundedNN.cpp
-)
-add_executable(
-  TestFlexQueueNaturalNumber
-  TestFlexQueueNaturalNumber.cpp
-)
-add_executable(
-  TestFlexSetNaturalNumber
-  TestFlexSetNaturalNumber.cpp
-)
-add_executable(
-  TestFlexStackInt
-  TestFlexStackInt.cpp
-)
-add_executable(
-  TestFlexInteger
-  TestFlexInteger.cpp
-)
-add_executable(
-  TestFlexListNaturalNumber
-  TestFlexListNaturalNumber.cpp
-)
-add_executable(
-  TestFlexNN
-  TestFlexNN.cpp
-)
-add_executable(
-  TestLinkedQueueNaturalNumber
-  TestLinkedQueueNaturalNumber.cpp
-)
-add_executable(
-  TestLinkedStackInt
-  TestLinkedStackInt.cpp
-)
-add_executable(
-  TestLinkedStackNaturalNumber
-  TestLinkedStackNaturalNumber.cpp
-)
-add_executable(
-  TestNNInteger
-  TestNNInteger.cpp
-)
-add_executable(
-  TestStackBasedListNaturalNumber
-  TestStackBasedListNaturalNumber.cpp
-)
-add_executable(
-  TestStackNN
-  TestStackNN.cpp
-)
-add_executable(
-  TestVectorInteger
-  TestVectorInteger.cpp
-)
-
-target_link_libraries(
-  hello_test
-  gtest_main
-)
-
-target_link_libraries(
-  TestArrayQueueNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestArrayStackNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestBoundedNN
-  gtest_main
-)
-target_link_libraries(
-  TestFlexQueueNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestFlexSetNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestFlexStackInt
-  gtest_main
-)
-target_link_libraries(
-  TestFlexInteger
-  gtest_main
-)
-target_link_libraries(
-  TestFlexListNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestFlexNN
-  gtest_main
-)
-target_link_libraries(
-  TestLinkedQueueNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestLinkedStackInt
-  gtest_main
-)
-target_link_libraries(
-  TestLinkedStackNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestNNInteger
-  gtest_main
-)
-target_link_libraries(
-  TestStackBasedListNaturalNumber
-  gtest_main
-)
-target_link_libraries(
-  TestStackNN
-  gtest_main
-)
-target_link_libraries(
-  TestVectorInteger
-  gtest_main
-)
-
-target_link_libraries(
-  hello_test
-  Cleanpp
-)
-
-target_link_libraries(
-  TestArrayQueueNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestArrayStackNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestBoundedNN
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexQueueNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexSetNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexStackInt
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexInteger
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexListNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestFlexNN
-  Cleanpp
-)
-target_link_libraries(
-  TestLinkedQueueNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestLinkedStackInt
-  Cleanpp
-)
-target_link_libraries(
-  TestLinkedStackNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestNNInteger
-  Cleanpp
-)
-target_link_libraries(
-  TestStackBasedListNaturalNumber
-  Cleanpp
-)
-target_link_libraries(
-  TestStackNN
-  Cleanpp
-)
-target_link_libraries(
-  TestVectorInteger
-  Cleanpp
-)
-
 include(GoogleTest)
-gtest_discover_tests(
-  hello_test
-)
-gtest_discover_tests(
-  TestArrayQueueNaturalNumber
-)
-gtest_discover_tests(
-  TestArrayStackNaturalNumber
-)
-gtest_discover_tests(
-  TestBoundedNN
-)
-gtest_discover_tests(
-  TestFlexQueueNaturalNumber
-)
-gtest_discover_tests(
-  TestFlexSetNaturalNumber
-)
-gtest_discover_tests(
-  TestFlexStackInt
-)
-gtest_discover_tests(
-  TestFlexInteger
-)
-gtest_discover_tests(
-  TestFlexListNaturalNumber
-)
-gtest_discover_tests(
-  TestFlexNN
-)
-gtest_discover_tests(
-  TestLinkedQueueNaturalNumber
-)
-gtest_discover_tests(
-  TestLinkedStackInt
-)
-gtest_discover_tests(
-  TestLinkedStackNaturalNumber
-)
-gtest_discover_tests(
-  TestNNInteger
-)
-gtest_discover_tests(
-  TestStackBasedListNaturalNumber
-)
-gtest_discover_tests(
-  TestStackNN
-)
-gtest_discover_tests(
-  TestVectorInteger
-)
+
+# For each Test*.cpp file in cleanpp-gtest:
+#     build an executable,
+#     link libraries,
+#     and tell googletest about it.
+file( GLOB APP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Test*.cpp )
+foreach( sourcefile ${APP_SOURCES} )
+  # extract the executable name from the source file name
+  file( RELATIVE_PATH
+    sourcefile_rel
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${sourcefile}
+  )
+  string( REPLACE
+    ".cpp" 
+    "" 
+    execfile 
+    ${sourcefile_rel}
+  )
+
+  # buid executable
+  add_executable(
+    ${execfile}
+    ${sourcefile_rel}
+  )
+
+  # link libraries
+  target_link_libraries(
+    ${execfile}
+    gtest_main
+    Cleanpp
+  )
+
+  # tell googletest about it
+  gtest_discover_tests(
+    ${execfile}
+  )
+endforeach( sourcefile ${APP_SOURCES} )
