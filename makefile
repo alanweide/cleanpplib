@@ -50,13 +50,12 @@ run-test:
 # Cleaning targets
 # ----------------
 clean: clean-lib clean-obj clean-test
-	rm libCleanpp.a $(lib_objects) */**.o
 
 clean-lib:
-	rm libCleanpp.a $(lib_objects)
+	-rm libCleanpp.a $(lib_objects)
 
 clean-obj:
-	rm */**.o
+	-rm */**.o
 	
 clean-test:
-	rm -rf $(testdir)/build
+	-rm -r $(testdir)/build
