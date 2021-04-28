@@ -4,7 +4,8 @@ Build/**
 .vscode
 **/*.a
 **/*.o
-**/doc
+doc/*/**
 **/html
 **/latex
 experiments/
+examples/makefile
