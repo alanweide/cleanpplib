@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/TestStackNN.dir/TestStackNN.cpp.o  -o TestStackNN   -L/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/..  -Wl,-rpath,/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/.. lib/libgtest_main.a -lCleanpp lib/libgtest.a -lpthread 

@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestArrayStackNaturalNumber[1]_tests.cmake")
+  include("/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestArrayStackNaturalNumber[1]_tests.cmake")
+else()
+  add_test(TestArrayStackNaturalNumber_NOT_BUILT TestArrayStackNaturalNumber_NOT_BUILT)
+endif()

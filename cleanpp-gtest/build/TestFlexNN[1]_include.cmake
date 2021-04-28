@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestFlexNN[1]_tests.cmake")
+  include("/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestFlexNN[1]_tests.cmake")
+else()
+  add_test(TestFlexNN_NOT_BUILT TestFlexNN_NOT_BUILT)
+endif()

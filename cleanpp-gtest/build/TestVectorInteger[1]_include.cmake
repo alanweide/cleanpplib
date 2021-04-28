@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestVectorInteger[1]_tests.cmake")
+  include("/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestVectorInteger[1]_tests.cmake")
+else()
+  add_test(TestVectorInteger_NOT_BUILT TestVectorInteger_NOT_BUILT)
+endif()

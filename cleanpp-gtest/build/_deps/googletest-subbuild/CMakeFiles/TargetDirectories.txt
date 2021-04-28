@@ -1,0 +1,3 @@
+/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
+/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
