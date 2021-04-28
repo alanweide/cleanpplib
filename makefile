@@ -1,38 +1,62 @@
-objects = bounded_nn.o integer_impl.o natural_number.o nn_integer.o stack_nn.o vector_integer.o
-headerfiles = -I include/cleanpp -I include/cleanpp/clean_integer -I include/cleanpp/clean_list -I include/cleanpp/clean_nn -I include/cleanpp/clean_queue -I include/cleanpp/clean_stack -I include/cleanpp/integer_impls -I include/cleanpp/list_impls -I include/cleanpp/natural_number_impls -I include/cleanpp/queue_impls -I include/cleanpp/stack_impls -I include/cleanpp/clean_set -I include/cleanpp/set_impls -I include/cleanpp/clean_map -I include/cleanpp/map_impls
-headerfiles_prereq = include/cleanpp/clean_base.hpp include/cleanpp/clean_integer/integer.hpp include/cleanpp/clean_list/list.hpp include/cleanpp/clean_map/map.hpp include/cleanpp/clean_nn/natural_number.hpp include/cleanpp/clean_queue/queue.hpp include/cleanpp/clean_set/set.hpp include/cleanpp/clean_stack/stack.hpp include/cleanpp/integer_impls/integer_impl.hpp include/cleanpp/integer_impls/nn_integer.hpp include/cleanpp/integer_impls/vector_integer.hpp include/cleanpp/list_impls/list_impl.hpp include/cleanpp/list_impls/stack_based_list.hpp include/cleanpp/map_impls/map_impl.hpp include/cleanpp/map_impls/map_on_set.hpp include/cleanpp/natural_number_impls/bounded_nn.hpp include/cleanpp/natural_number_impls/natural_number_impl.hpp include/cleanpp/natural_number_impls/stack_nn.hpp include/cleanpp/set_impls/set_impl.hpp include/cleanpp/set_impls/set_on_queue.hpp include/cleanpp/stack_impls/array_stack.hpp include/cleanpp/stack_impls/linked_stack.hpp include/cleanpp/stack_impls/stack_impl.hpp include/cleanpp/clean_base.hpp
-version = -std=c++14
-program = quicksort_clean
+SHELL = bash
+CXXFLAGS = -std=c++14
 
+lib_objects = src/clean_nn/natural_number.o src/clean_nn/bounded_nn.o src/clean_nn/stack_nn.o src/clean_integer/integer_impl.o src/clean_integer/nn_integer.o src/clean_integer/vector_integer.o
+includepath = include/cleanpp
+testdir = cleanpp-gtest
 
-%.exe: %.o libCleanpp.a 
-	g++ -o $@ $^
+# all: libCleanpp
 
-libCleanpp.a: $(objects)
-	echo "building libCleanpp.a" 
-	@ar rv libCleanpp.a $^ 
+# ---------------
+# Library targets
+# ---------------
+libCleanpp libcleanpp libCleanpp.a: $(lib_objects)
+	@echo "Building $@..." 
+	ar rv libCleanpp.a $^
+	@echo "Done."
 
-%.o: %.cpp $(headerfiles_prereq)
-	echo "building $@"
-	@g++ $(version) -c $< -o $@ $(headerfiles)
+# @Will: does this work in Windows?
+libCleanpp.exe: $(lib_objects) libCleanpp
+	$(CXX) -o $@ $^
 
-# bounded_nn.o: src/clean_nn/bounded_nn.cpp 
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+$(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepath)/**/*.hpp)
+	@echo "Making object file for $@..."
+	@ls $(includepath)/**/*.hpp
+	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(includepath)
 
-# integer_impl.o: src/clean_integer/integer_impl.cpp
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+# ------------------------------------------
+# Build (simple) individual Clean++ programs
+# ------------------------------------------
+%.o: %.cpp libCleanpp
+	@echo "Building $@..."
+	$(CXX) $(CXXFLAGS) $< -o $@ -L. -lCleanpp -I $(includepath)
+	@echo "Done."
 
-# natural_number.o: src/clean_nn/natural_number.cpp 
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+# ---------------
+# Testing targets
+# ---------------
+test gtest: libCleanpp build-test run-test
+	@echo "Done."
 
-# nn_integer.o: src/clean_integer/nn_integer.cpp 
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+build-test:
+	@echo "Testing..."
+	@cmake -S $(testdir) -B $(testdir)/build
+	@cmake --build $(testdir)/build
 
-# stack_nn.o: src/clean_nn/stack_nn.cpp 
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+run-test:
+	@cd $(testdir)/build && ctest
 
-# vector_integer.o: src/clean_integer/vector_integer.cpp 
-# 	@g++ $(version) -c $< -o cleanpp-main/$@ $(headerfiles)
+# ----------------
+# Cleaning targets
+# ----------------
+clean: clean-lib clean-obj clean-test
+	rm libCleanpp.a $(lib_objects) */**.o
 
-clean: 
-	rm *.o *.exe
+clean-lib:
+	rm libCleanpp.a $(lib_objects)
+
+clean-obj:
+	rm */**.o
+	
+clean-test:
+	rm -rf $(testdir)/build

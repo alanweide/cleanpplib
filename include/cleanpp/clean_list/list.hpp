@@ -13,9 +13,9 @@
 #include <memory.h>
 #include <iostream>
 #include <sstream>
-#include "clean_base.hpp"
-#include "list_impl.hpp"
-#include "stack_based_list.hpp"
+#include <clean_base.hpp>
+#include <list_impls/list_impl.hpp>
+#include <list_impls/stack_based_list.hpp>
 
 namespace cleanpp {
 

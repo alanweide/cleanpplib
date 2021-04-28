@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#include "clean_base.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
 

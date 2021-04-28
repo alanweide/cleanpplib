@@ -6,9 +6,9 @@
 #include <iostream>
 #include <memory>
 
-#include "clean_base.hpp"
-#include "set_impl.hpp"
-#include "set_on_queue.hpp"
+#include <clean_base.hpp>
+#include <set_impls/set_impl.hpp>
+#include <set_impls/set_on_queue.hpp>
 
 
 namespace cleanpp {
@@ -143,6 +143,14 @@ class set: public clean_base {
      */
     int getSize(){
         return rep_->getSize();
+    }
+
+    bool isEmpty(){
+        return rep_->isEmpty();
+    }
+
+    bool is_empty() {
+        return rep_->isEmpty();
     }
 
 

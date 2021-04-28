@@ -7,7 +7,7 @@
 //
 #include <memory>
 #include <assert.h>
-#include <stack_nn.hpp>
+#include <natural_number_impls/stack_nn.hpp>
 #include <stack_impls/linked_stack.hpp>
 
 namespace cleanpp {
