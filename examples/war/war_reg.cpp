@@ -3,6 +3,7 @@
 #include <queue>
 #include <string>
 #include <ctime>
+
 using namespace std;
 
 class Card {
@@ -24,7 +25,6 @@ public:
     friend std::ostream& operator<<(std::ostream& out, Card& C){
         std::string result;
         
-
         if(C.cardNum <= 10){
             result = std::to_string(C.cardNum);
         } else if(C.cardNum == 11){
@@ -59,35 +59,29 @@ void populateDeck(queue<Card>& deck){
 }
 
 //Define shuffle function
-void shuffle(queue<Card>& deck, queue<Card>& p1, queue<Card>& p2)
-{
+void shuffle(queue<Card>& deck, queue<Card>& p1, queue<Card>& p2){
     
     populateDeck(deck);
 
-//shuffle p1 deck
-
-  
-       for(int i = 0; i<26; i++) {
+    //shuffle p1 deck
+    for(int i = 0; i<26; i++) {
         srand((unsigned int) time(NULL));
-        int posInMainDeck = (rand() % deck.size());
+        int posInMainDeck = rand() % 100;
 
         for(int i = 0; i < posInMainDeck; i++){
             deck.push(deck.front());
-            
             deck.pop();
         }
         
         p1.push(deck.front());
         deck.pop(); 
 
-        
-
-        }//end for
+        }
 
        //shuffle p2 deck
        for(int i = 0; i<26; i++){
-            srand((unsigned int) time(NULL));
-            int posInMainDeck = (rand() % deck.size());
+            
+            int posInMainDeck = rand() % 100;
             
             for(int i = 0; i < posInMainDeck; i++){
                 deck.push(deck.front());
@@ -99,8 +93,6 @@ void shuffle(queue<Card>& deck, queue<Card>& p1, queue<Card>& p2)
                 
         }
         
-
-//end shuffling
 }
 
 void war(queue<Card> p1, queue<Card> p2){
@@ -151,22 +143,18 @@ void war(queue<Card> p1, queue<Card> p2){
                 i++;
             }
 
-        
             int j = 0;
 
             while(p2.size() > 0 && j < 3){
-                p2TieCards.push(p2.front());
                 p2TieBreaker = p2.front();
+                p2TieCards.push(p2.front());
                 p2.pop();
                 j++;
             }
 
-            
-
             if( p1.size() != 0 && p2.size() != 0 ){
 
-
-                    if(p1TieBreaker.getCardNum() > p2TieBreaker.getCardNum()){
+                if(p1TieBreaker.getCardNum() > p2TieBreaker.getCardNum()){
                     std::cout<<"player 1 wins tiebreaker"<<endl;
                     p1.push(p1Card);
                     p1.push(p2Card);
@@ -180,8 +168,7 @@ void war(queue<Card> p1, queue<Card> p2){
                         p1.push(p2TieCards.front());
                         p2TieCards.pop();
                     }
-
-                    
+  
                 } else if(p2TieBreaker.getCardNum() > p1TieBreaker.getCardNum()){
                     std::cout<<"player 2 wins tiebreaker"<<endl;
                     p2.push(p1Card);
@@ -196,7 +183,6 @@ void war(queue<Card> p1, queue<Card> p2){
                         p2.push(p1TieCards.front());
                         p1TieCards.pop();
                     }
-
 
                 } else{
                     std::cout<<"tie again. split the cards evenly"<<endl;
@@ -215,15 +201,11 @@ void war(queue<Card> p1, queue<Card> p2){
                         p2TieCards.pop();
                     }
                 }
-
-            }
-            
-            
+            } 
         }
     }
 
     std::cout<<endl;
-
     if(p1.size() > 0){
         std::cout<<"player one has won the game";
     } else if(p2.size() > 0){

@@ -81,7 +81,7 @@ public:
     /**
      * @brief Adds x to the top of this  
      *  
-     * @param x - the entry to be aded
+     * @param x - the entry to be added
      * @ensures this = <x> * #this
      */
     virtual void push(Item&& x) {

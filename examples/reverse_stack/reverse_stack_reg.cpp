@@ -11,15 +11,6 @@
 
 using namespace std;
 
-/**
- * Reverses ("flips") {@code this}.
- * 
- *  @param s
- *              the stack
- * @updates s
- * @returns s
- * @ensures s = rev(#s)
- */
 template<typename T>
 void flip(stack<T>& s){
 
@@ -44,14 +35,31 @@ int main(int argc, const char* argv[]) {
     s.push(4);
     s.push(5);
 
+    stack<int> temp;
+    int element;
+    cout<<"Original stack (from top to bottom): ";
+    cout<<"< ";
+    while(s.size() > 1){
+        element = s.top();
+        s.pop();
+        cout<<element<<", ";
+        temp.push(element);
+    }
+    element = s.top();
+    s.pop();
+    cout<<element<<" >"<<endl;
+    temp.push(element);
+    s = temp;
+
     flip<int>(s);
 
-    std::cout<<"Flipped stack (from top to bottom):"<<std::endl;
-
-    while( !s.empty() ){
-        cout<<s.top()<<endl;
+    cout<<"Flipped stack (from top to bottom): ";
+    cout<<"< ";
+    while(s.size() > 1){
+        cout<<s.top()<<", ";
         s.pop();     
     }
+    cout<<s.top()<<">"<<endl;
     
  
 }

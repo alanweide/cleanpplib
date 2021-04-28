@@ -28,6 +28,7 @@
 #include <iostream>
 #include <stdlib.h>
 
+
 using namespace cleanpp;
 
 int main(){
@@ -37,10 +38,10 @@ int main(){
     cm.add(natural_number(stack_nn{}, 2), natural_number(stack_nn{}, 7));
     std::cout<<cm<<std::endl;
     std::cout<<cm.size()<<std::endl;
-    
+
     std::cout<<cm.remove(natural_number(stack_nn{}, 2))<<std::endl;
     std::cout<<cm.removeAny()<<std::endl;
-    
+
     cm.add(natural_number(stack_nn{}, 4), natural_number(stack_nn{}, 3));
 
     if(cm.hasKey(natural_number(stack_nn{}, 3))){
@@ -51,13 +52,13 @@ int main(){
     }
 
 
-    
+
     std::cout<<cm<<std::endl;
 
 
 
-    
-    
-    
+
+
+
 
 }

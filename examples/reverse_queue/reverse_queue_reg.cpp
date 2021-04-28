@@ -1,14 +1,5 @@
-//
-//  selection_sort2.cpp
-//  cleanpp-main
-//
-//  Created by Will Janning on 1/15/21.
-//  Copyright © 2020 Alan Weide. All rights reserved.
-//
-
 #include <iostream>
 #include <queue>
-
 
 using namespace std;
 
@@ -30,10 +21,19 @@ int main(int argc, const char* argv[]) {
     q.push(4);
     q.push(2);
 
-    flip<int>( q );
+    queue<int> temp;
+    cout<<"Original queue: "<<endl;
+    while(!q.empty()){
+        int element = q.front();
+        q.pop();
+        cout<<element<<endl;
+        temp.push(element);
+    }
+    q = temp;
+
+    flip<int>(q);
 
     cout<<"Flipped queue: "<<endl;
-  
     while( !q.empty() ){
         cout<<q.front()<<endl;
         q.pop();

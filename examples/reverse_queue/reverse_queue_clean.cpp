@@ -1,10 +1,3 @@
-//
-//  selection_sort2.cpp
-//  cleanpp-main
-//
-//  Created by Will Janning on 1/15/21.
-//  Copyright © 2020 Alan Weide. All rights reserved.
-//
 #include <memory>
 #include <iostream>
 #include "integer.hpp"
@@ -31,14 +24,6 @@
 
 using namespace cleanpp;
 
-/**
- * Reverses ("flips") input {@code Queue<T>} type
- *
- * @param q
- *            queue to flip
- * @updates q
- * @ensures q = rev(#q)
- */
 template<typename T>
 queue<T> flip(queue<T> q){
     if( !q.is_empty() ){

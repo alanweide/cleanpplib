@@ -32,63 +32,18 @@
 using namespace cleanpp;
 
 int compare(stack_nn& nn1,
-            stack_nn& nn2) {
-
-  int rem1 = nn1.divide_by_radix();
-  int rem2 = nn2.divide_by_radix();
-
-  int result = 0;
-
-  if (nn1.is_zero()) {
-    if (nn2.is_zero()) {
-      if (rem1 > rem2) {
-        result = 1;
-      } else if (rem1 == rem2) {
-        result = 0;
-      } else {
-        result = -1;
-      }
-    } else {
-      result = -1;
-    }
-  } else if (nn2.is_zero()) {
-    result = 1;
-  } else {
-    int compareResult = compare(nn1, nn2);
-
-    if (compareResult == 0) {
-      if (rem1 > rem2) {
-        result = 1;
-      } else if (rem1 < rem2) {
-        result = -1;
-      } else {
-        result = 0;
-      }
-    } else if (compareResult == -1) {
-      result = -1;
-    } else {
-      result = 1;
-    }
-  }
-
-  nn1.multiply_by_radix(rem1);
-  nn2.multiply_by_radix(rem2);
-
-  return result;
-}
+            stack_nn& nn2);
 
 bool operator<(stack_nn& nn1, stack_nn& nn2){
     return compare(nn1, nn2) < 0;   
 }
-
-
 
 template<typename T>
 std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
     queue<T> front, back;
     while( !q.is_empty() ){
         T element = q.dequeue();
-        if(partition < element){
+        if(compare(partition, element) < 0){
             back.enqueue(std::move(element));
         } else {
             front.enqueue(std::move(element));
@@ -99,28 +54,22 @@ std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
 
 template<typename T>
 queue<T> quickSort(queue<T> q){
-    T element;
+
     if(!q.is_empty() ){
-        element = q.dequeue();
-
+        T element = q.dequeue();
         if( !q.is_empty() ){
-
             q.enqueue(std::move(element));
-            
             queue<T> front, back;
 
             T partitioner = q.dequeue();
             
-
             std::tie(partitioner, front, back) = partition(std::move(q), std::move(partitioner));
             
             front = quickSort(std::move(front));
             back = quickSort(std::move(back));
         
             front.enqueue(std::move(partitioner));
-
             while( !back.is_empty() ){
-
                 front.enqueue(back.dequeue());
 
             }
@@ -149,10 +98,39 @@ int main(int argc, const char* argv[]) {
   qnn = quickSort<stack_nn>(std::move(qnn));
 
   std::cout<<"Sorted queue: "<<std::endl;
-
-
   std::cout<<qnn<<std::endl;
   
  
+
+}
+
+int compare(stack_nn& nn1,
+            stack_nn& nn2) {
+
+  //base cases
+  if(nn1.is_zero() && nn2.is_zero()){
+      return 0;
+  }
+  if(nn1.is_zero()){
+      return -1;
+  }
+  if(nn2.is_zero()){
+      return 1;
+  }
+
+  //recursive cases
+  int rem1 = nn1.divide_by_radix(), rem2 = nn2.divide_by_radix();
+
+  int result;
+  if(compare(nn1, nn2) == 0){
+    result = rem1 - rem2;
+  } else{
+    result = compare(nn1, nn2);
+  }
+
+  nn1.multiply_by_radix(std::move(rem1));
+  nn2.multiply_by_radix(std::move(rem2));
+
+  return result;
 
 }

@@ -1,33 +1,8 @@
-//
-//  selection_sort_reg.cpp
-//  cleanpp-main
-//
-//  Created by Will Janning on 1/2/21.
-//  Copyright © 2020 Alan Weide. All rights reserved.
-//
-
 #include <iostream>
 #include <queue>
 
 using namespace std;
 
-/**
- * Removes and returns the minimum value from {@code q}.
- * 
- * @param q
- *            the queue
- * @return the minimum value from {@code q} and the updated {@code q}
- * @updates q
- * @requires <pre>
- * q /= empty_string
- * </pre>
- * @ensures <pre>
- * perms(q * <removeMin>, #q)  and
- *  for all x: template type
- *      where (x is in entries (q))
- *    ( <removeMin> <= x )
- * </pre>
- */
 template<typename T>
 T removeMin(queue<T>& q) {
 
@@ -53,15 +28,6 @@ T removeMin(queue<T>& q) {
     return min; 
 }
 
-
-/**
- * Sorts {@code q}.
- * 
- * @param q
- *            the queue
- * @updates q
- * @ensures q = [#q in nondecreasing order]
- */
 template<typename T>
 void sort(queue<T>& q){
     
@@ -92,21 +58,19 @@ int main(int argc, const char* argv[]) {
   
   int min = removeMin<int>(q);
 
-
-  std::cout<<"Minimum element is: ";
- 
+  cout<<"Minimum element is: ";
   cout<<min<<endl<<endl;
   
   sort<int>(q);
 
-  std::cout<<"Sorted rest of queue: (left to right) "<<std::endl;
-  
-  while( !q.empty() ){
+  cout<<"Sorted rest of queue: (left to right) "<<endl;
+  cout<<"<";
+  while( q.size() > 1 ){
   
     cout<<q.front()<<", ";
     q.pop();
   
   }
-  cout<<endl;
+  cout<<q.front()<<">"<<endl;
 
 }

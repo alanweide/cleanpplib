@@ -31,15 +31,6 @@
 
 using namespace cleanpp;
 
-/**
- * Reverses ("flips") {@code this}.
- * 
- *  @param s
- *              the stack
- * @updates s
- * @returns s
- * @ensures s = rev(#s)
- */
 template<typename T>
 stack<T> flip(stack<T> s){
 
@@ -63,7 +54,7 @@ int main(int argc, const char* argv[]) {
     snn.push(stack_nn(4));
     snn.push(stack_nn(5));
 
-    std::cout<<"Original stack: ";
+    std::cout<<"Original stack: "<<std::endl;
     std::cout<<snn<<std::endl;
 
     snn = flip<stack_nn>(std::move(snn));

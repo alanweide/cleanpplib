@@ -24,14 +24,6 @@ void partition(queue<T>& q, queue<T>& front, queue<T>& back, T partition){
     }
 }
 
-/**
- * Sorts {@code q}.
- * 
- * @param q
- *            the queue
- * @updates q
- * @ensures q = [#q in nondecreasing order]
- */
 template<typename T>
 void quickSort(queue<T>& q){
     
@@ -49,8 +41,7 @@ void quickSort(queue<T>& q){
        front.push(partitioner);
         while( !back.empty() ){
             front.push(back.front());
-            back.pop();
-            
+            back.pop();   
         }
         
         q = front;
@@ -68,19 +59,16 @@ int main(int argc, const char* argv[]) {
   q.push(5);
   q.push(4);
 
-
   queue<int> front, back;
   
   quickSort<int>(q);
 
-  std::cout<<"Sorted queue:"<<std::endl;
-  
-  while( !q.empty() ){
-  
+  //print out sorted queue
+  std::cout<<"Sorted queue: <"<<std::endl;
+  while( q.size() > 1 ){
     cout<<q.front()<<", ";
     q.pop();
-  
   }
-  cout<<endl;
+  cout<<q.front()<<">"<<endl;
 
 }

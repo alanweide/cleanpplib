@@ -7,24 +7,18 @@
 //
 #include <memory>
 #include <iostream>
-#include "template_integer.hpp"
-#include "flexible_integer.hpp"
 #include "nn_integer.hpp"
 #include "bounded_nn.hpp"
 #include "vector_integer.hpp"
-#include "template_queue.hpp"
-#include "flexible_queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
 #include "array_stack.hpp"
-#include "template_list.hpp"
-#include "flexible_list.hpp"
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
 
 using namespace cleanpp;
 
-std::unique_ptr<clean_natural_number> divideBy2(std::unique_ptr<clean_natural_number> nn){
+std::unique_ptr<natural_number> divideBy2(std::unique_ptr<natural_number> nn){
 
     int rem = nn->divide_by_radix();
 
@@ -49,7 +43,7 @@ std::unique_ptr<clean_natural_number> divideBy2(std::unique_ptr<clean_natural_nu
     return nn;
 }
 
-int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_natural_number>& nn2){
+int compare(std::unique_ptr<natural_number>& nn1, std::unique_ptr<natural_number>& nn2){
 
     int rem1 = nn1->divide_by_radix();
     int rem2 = nn2->divide_by_radix();
@@ -98,16 +92,16 @@ int compare(std::unique_ptr<clean_natural_number>& nn1, std::unique_ptr<clean_na
         }
     }
 
-    nn1->multiply_by_radix(rem1);
-    nn2->multiply_by_radix(rem2);
+    nn1->multiply_by_radix(std::move(rem1));
+    nn2->multiply_by_radix(std::move(rem2));
 
     return result;
 }
 
-std::unique_ptr<clean_natural_number> power(std::unique_ptr<clean_natural_number> nn, int p){
+std::unique_ptr<natural_number> power(std::unique_ptr<natural_number> nn, int p){
     
     int i = 0; 
-    std::unique_ptr<clean_natural_number> base(static_cast<clean_natural_number*>(nn->new_instance().release()));
+    std::unique_ptr<natural_number> base(static_cast<clean_natural_number*>(nn->new_instance().release()));
     base = add(std::move(base), nn);
 
     while(i < p - 1){ 
