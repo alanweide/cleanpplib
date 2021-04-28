@@ -235,9 +235,10 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyTrueTest) {
 }
 
 /**
- Weird error when running this test. EXC_BAD_ACCESS at closing curly brace (during destructor?) most of the time but sometimes in XCTAssert(contains)???
+ Weird error when running this test. segfault at closing curly brace (during destructor?) most of the time but sometimes in EXPECT_TRUE(contains)???
  */
-TEST(DISABLED_FlexSetNaturalNumber, BigSetContainsTest) {
+TEST(FlexSetNaturalNumber, BigSetContainsTest) {
+    GTEST_SKIP();
     set_type s;
     int expected_size = 0;
     nn_type a;
