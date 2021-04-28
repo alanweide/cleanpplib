@@ -8,3 +8,4 @@ Build/**
 **/html
 **/latex
 **/build
+CleappLibrary.xcodeproj/**/*

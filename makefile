@@ -35,16 +35,16 @@ $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepat
 # ---------------
 # Testing targets
 # ---------------
-test gtest: libCleanpp build-test run-test
+test gtest: build-test
+	@echo "Running tests..."
+	@cd $(testdir)/build && ctest
 	@echo "Done."
 
 build-test:
-	@echo "Testing..."
+	@echo "Building tests..."
 	@cmake -S $(testdir) -B $(testdir)/build
 	@cmake --build $(testdir)/build
-
-run-test:
-	@cd $(testdir)/build && ctest
+	@echo "Done."
 
 # ----------------
 # Cleaning targets

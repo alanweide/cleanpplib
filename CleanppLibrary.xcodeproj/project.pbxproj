@@ -327,7 +327,7 @@
 				E760A2CD239203DA00139E3D /* README.md */,
 				E760A2CA239203DA00139E3D /* include */,
 				E760A2C9239203DA00139E3D /* src */,
-				E760A2CC239203DA00139E3D /* test */,
+				E760A2CC239203DA00139E3D /* cleanpp-xctest */,
 				E7744EB625278F43000A5CC9 /* cleanpp-main */,
 				E7A251762613AD1800AC204C /* experiments */,
 				E7CD612E262F667F00CC1D12 /* cleanpp-gtest */,
@@ -386,7 +386,7 @@
 			path = cleanpp;
 			sourceTree = "<group>";
 		};
-		E760A2CC239203DA00139E3D /* test */ = {
+		E760A2CC239203DA00139E3D /* cleanpp-xctest */ = {
 			isa = PBXGroup;
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
@@ -408,7 +408,7 @@
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
-			path = test;
+			path = "cleanpp-xctest";
 			sourceTree = "<group>";
 		};
 		E7744EB625278F43000A5CC9 /* cleanpp-main */ = {
