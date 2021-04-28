@@ -50,6 +50,7 @@ run-test:
 # Cleaning targets
 # ----------------
 clean: clean-lib clean-obj clean-test
+	@echo "Done."
 
 clean-lib:
 	-rm libCleanpp.a $(lib_objects)
