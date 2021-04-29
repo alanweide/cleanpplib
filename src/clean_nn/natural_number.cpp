@@ -133,7 +133,7 @@ std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x,
     return x;
 }
 
-std::unique_ptr<natural_number_impl>&& subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
+std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;

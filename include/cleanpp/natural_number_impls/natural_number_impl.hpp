@@ -91,7 +91,7 @@ public:
      requires x >= y
      ensures  add = #x - y
      */
-    friend std::unique_ptr<natural_number_impl>&& subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y);
+    friend std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y);
     
     /*
      ensures multiply = #x * y
