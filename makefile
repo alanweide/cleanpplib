@@ -23,6 +23,7 @@ $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepat
 	@echo "Making object file for $@..."
 	@ls $(includepath)/**/*.hpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(includepath)
+	@echo "Done."
 
 # ------------------------------------------
 # Build (simple) individual Clean++ programs
@@ -40,11 +41,11 @@ test gtest: build-test
 	@cd $(testdir)/build && ctest
 	@echo "Done."
 
-build-test:
-	@echo "Building tests..."
-	@cmake -S $(testdir) -B $(testdir)/build
+build-test build-test-2: build-test-1
 	@cmake --build $(testdir)/build
-	@echo "Done."
+
+build-test-1:
+	@cmake -S $(testdir) -B $(testdir)/build
 
 # ----------------
 # Cleaning targets
