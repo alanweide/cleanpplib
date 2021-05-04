@@ -24,12 +24,12 @@ include(GoogleTest)
 #     build an executable,
 #     link libraries,
 #     and tell googletest about it.
-file( GLOB APP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Test*.cpp )
+file( GLOB APP_SOURCES ${CMAKE_SOURCE_DIR}/Test*.cpp )
 foreach( sourcefile ${APP_SOURCES} )
   # extract the executable name from the source file name
   file( RELATIVE_PATH
     sourcefile_rel
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}
     ${sourcefile}
   )
   string( REPLACE
