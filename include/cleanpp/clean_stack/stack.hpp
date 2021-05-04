@@ -47,7 +47,7 @@ public:
     /**
 	 * @brief Custom move constructor
 	 * 
-	 * @param other - the stack being moved from
+     * @param o - the stack being moved from
 	 */
     stack(stack<Item>&& o): rep_(std::move(o.rep_)) {
 		o.rep_ = std::make_unique<_flex_stack_def_t<Item>>();

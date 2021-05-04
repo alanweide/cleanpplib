@@ -133,7 +133,7 @@ std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x,
     return x;
 }
 
-std::unique_ptr<natural_number_impl>&& subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
+std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -148,7 +148,7 @@ std::unique_ptr<natural_number_impl>&& subtract(std::unique_ptr<natural_number_i
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    return std::move(x);
+    return x;
 }
 
 std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_number_impl> x, int d) {
