@@ -16,11 +16,7 @@ namespace cleanpp
 
 template <class T>
 class array_queue : public queue_impl<T> {
-<<<<<<< HEAD
 private:
-=======
-    private:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     static const int MIN_CAP = 6;
     static const int GROW_FAC = 2;
     static const int SHRINK_FAC = 4;
@@ -50,7 +46,6 @@ private:
         }
     }
 
-<<<<<<< HEAD
 public:
 
     array_queue() : cap_(MIN_CAP), head_(0), length_(0) {
@@ -58,25 +53,12 @@ public:
     }
 
     ~array_queue() { }
-=======
-    public:
-
-    array_queue() : cap_(MIN_CAP), head_(0), length_(0)     {
-        contents_ = std::make_unique<T[ ]>(cap_);
-    }
-
-    ~array_queue() {     }
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     void clear() override {
         length_ = 0;
     }
 
-<<<<<<< HEAD
     void enqueue(T&& x) override {
-=======
-    void enqueue(T&& x) override     {
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
         int next_idx = (head_ + length_) % cap_;
         contents_[next_idx] = std::move(x);
         length_++;
@@ -84,11 +66,7 @@ public:
         this->resize_if_needed();
     }
 
-<<<<<<< HEAD
     T dequeue() override {
-=======
-    T dequeue() override     {
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
         T x = std::move(contents_[head_]);
 
         length_--;
@@ -108,19 +86,11 @@ public:
         std::stringstream out;
         out << "<";
         int i = 0;
-<<<<<<< HEAD
         while (i < length_) {
             int idx = (head_ + i) % cap_;
             out << contents_[idx];
             i++;
             if (i < length_) {
-=======
-        while (i < length_)         {
-            int idx = (head_ + i) % cap_;
-            out << contents_[idx];
-            i++;
-            if (i < length_)             {
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
                 out << ", ";
             }
         }

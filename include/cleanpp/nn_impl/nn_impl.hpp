@@ -55,11 +55,7 @@ class natural_number_kernel_impl : public clean_base {
 };
 
 class natural_number_impl : public natural_number_kernel_impl {
-<<<<<<< HEAD
 public:
-=======
-    public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     /*
      updates this

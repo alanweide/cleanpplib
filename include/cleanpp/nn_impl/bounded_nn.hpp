@@ -16,11 +16,7 @@
 namespace cleanpp
 {
 class bounded_nn : public natural_number_impl {
-<<<<<<< HEAD
 public:
-=======
-    public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     bounded_nn(long n = 0);
 
     bounded_nn(bounded_nn const& other) = delete;
@@ -46,7 +42,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
         return out << o.n_;
     }
-    private:
+private:
     long n_;
 };
 

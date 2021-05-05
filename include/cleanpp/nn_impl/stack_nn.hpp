@@ -17,11 +17,7 @@ namespace cleanpp
 {
 
 class stack_nn : public natural_number_impl {
-<<<<<<< HEAD
 public:
-=======
-    public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     stack_nn(long n = 0);
 
     stack_nn(stack_nn const& other) = delete;

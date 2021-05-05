@@ -22,11 +22,7 @@ class list_kernel_impl : public clean_base {
      list_kernel is modeled by (prec: string of T,
                                 rem:  string of T)
      */
-<<<<<<< HEAD
 public:
-=======
-    public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     /*
      updates  this
@@ -115,17 +111,13 @@ public:
 
 template<class T>
 class list_impl : public list_kernel_impl<T> {
-<<<<<<< HEAD
 public:
-=======
-    public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
-    /*
-     updates this
-     ensures this = (<>, #this.prec * #this.rem)
-     */
-    virtual void reset() {
+        /*
+         updates this
+         ensures this = (<>, #this.prec * #this.rem)
+         */
+        virtual void reset() {
         while (!this->is_at_front()) {
             this->retreat();
         }

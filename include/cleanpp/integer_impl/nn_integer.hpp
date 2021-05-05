@@ -18,11 +18,7 @@
 namespace cleanpp
 {
 class nn_integer : public integer_impl {
-<<<<<<< HEAD
 public:
-=======
-	public:
->>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 	nn_integer(int n = 0);
 
 	nn_integer(nn_integer const& other) = delete;
