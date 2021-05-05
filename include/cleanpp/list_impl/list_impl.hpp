@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
-#include "clean_base.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
 template <class T>

@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include <clean_base.hpp>
-#include <stack_impls/stack_impl.hpp>
-#include <stack_impls/array_stack.hpp>
+#include <stack_impl/stack_impl.hpp>
+#include <stack_impl/array_stack.hpp>
 
 namespace cleanpp {
 

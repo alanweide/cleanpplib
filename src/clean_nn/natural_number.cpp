@@ -8,8 +8,8 @@
 #include <memory>
 #include <assert.h>
 #include <stdio.h>
-#include <clean_nn/natural_number.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
+#include <natural_number.hpp>
+#include <nn_impl/bounded_nn.hpp>
 
 
 namespace cleanpp {

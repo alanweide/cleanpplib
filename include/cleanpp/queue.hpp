@@ -14,9 +14,8 @@
 #include <memory>
 
 #include <clean_base.hpp>
-#include <queue_impls/queue_impl.hpp>
-#include <queue_impls/array_queue.hpp>
-#include <queue_impls/linked_queue.hpp>
+#include <queue_impl/queue_impl.hpp>
+#include <queue_impl/array_queue.hpp>
 
 namespace cleanpp {
 

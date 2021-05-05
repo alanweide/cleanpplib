@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <queue_impls/linked_queue.hpp>
-#include <queue_impls/array_queue.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
-#include <clean_queue/queue.hpp>
-#include <clean_nn/natural_number.hpp>
-#include <clean_set/set.hpp>
-#include <set_impls/set_on_queue.hpp>
+#include <queue_impl/linked_queue.hpp>
+#include <queue_impl/array_queue.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
+#include <queue.hpp>
+#include <natural_number.hpp>
+#include <set.hpp>
+#include <set_impl/set_on_queue.hpp>
 
 using namespace cleanpp;
 
@@ -241,7 +241,8 @@ TEST(FlexSetNaturalNumber, BigSetContains0Test) {
     
     int numElem = 12;
     for (long i = 0; i < numElem; i++) {
-        nn_type n{bounded_nn{}, i};
+        nn_type n;
+        n.set_from_long(i);
         s.add(std::move(n));
     }
     

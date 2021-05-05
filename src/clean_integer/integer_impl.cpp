@@ -7,7 +7,7 @@
 //
 #include <assert.h>
 #include <memory>
-#include <integer_impls/integer_impl.hpp>
+#include <integer_impl/integer_impl.hpp>
 
 namespace cleanpp {
 

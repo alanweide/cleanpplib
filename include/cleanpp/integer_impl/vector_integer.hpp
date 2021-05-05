@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include <vector>
-#include <integer_impls/integer_impl.hpp>
+#include "integer_impl.hpp"
 
-#include <natural_number_impls/stack_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
 
 namespace cleanpp {
 class vector_integer: public integer_impl {

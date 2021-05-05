@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <queue_impls/linked_queue.hpp>
-#include <queue_impls/array_queue.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
+#include <queue_impl/linked_queue.hpp>
+#include <queue_impl/array_queue.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
 
 using namespace cleanpp;
 
@@ -164,7 +164,7 @@ TEST(ArrayQueueNaturalNumber, DequeueNonEmptyToEmptyAfterNonEmptyTest) {
 
 TEST(ArrayQueueNaturalNumber, DequeueFromLongTest) {
     std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
-    std::string empty_stack = "<1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11>";
+    std::string expected_queue = "<1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11>";
     nn_type a, a_expected;
     
     int numElem = 12;
@@ -176,6 +176,26 @@ TEST(ArrayQueueNaturalNumber, DequeueFromLongTest) {
     a = q->dequeue();
     
     std::string q_str = queueNNToString(q);
-    EXPECT_TRUE(q_str == empty_stack);
+    EXPECT_TRUE(q_str == expected_queue);
     EXPECT_TRUE(a == a_expected);
+}
+
+TEST(ArrayQueueNaturalNumber, DequeueAllFromLongTest) {
+    std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
+    std::string expected_queue = "<>";
+    nn_type a, a_expected;
+    
+    int numElem = 12;
+    for (int i = 0; i < numElem; i++) {
+        nn_type n(i);
+        q->enqueue(std::move(n));
+    }
+    
+	for (int i = 0; i < numElem; i++) {
+    	a = q->dequeue();
+	}
+    
+    std::string q_str = queueNNToString(q);
+    EXPECT_TRUE(q_str == expected_queue);
+    // EXPECT_TRUE(a == a_expected);
 }
