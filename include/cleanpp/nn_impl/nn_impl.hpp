@@ -22,7 +22,7 @@ class natural_number_kernel_impl : public clean_base {
 
      natural_number_kernel is modeled by NATURAL
      */
-public:
+    public:
     static const int RADIX = 10;
 
     /*
@@ -55,7 +55,11 @@ public:
 };
 
 class natural_number_impl : public natural_number_kernel_impl {
+<<<<<<< HEAD
 public:
+=======
+    public:
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     /*
      updates this

@@ -12,9 +12,15 @@ namespace cleanpp
 
 template <typename K, typename V>
 class map_on_set : public map_impl<K, V> {
+<<<<<<< HEAD
 private:
 
 
+=======
+    private:
+
+
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     set<pair<K, V>> rep;
 
@@ -26,7 +32,7 @@ private:
      * Constructors--------------------------------------------------------------------
      **/
 
-public:
+    public:
 
     map_on_set() {
         this->createNewRep();
@@ -119,7 +125,11 @@ public:
         return this->rep.getSize();
     }
 
+<<<<<<< HEAD
 private:
+=======
+    private:
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     std::string to_str() {
 
         std::stringstream out;

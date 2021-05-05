@@ -18,7 +18,11 @@
 namespace cleanpp
 {
 class vector_integer : public integer_impl {
+<<<<<<< HEAD
 public:
+=======
+	public:
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 	vector_integer(int n = 0);
 
 	vector_integer(vector_integer const& other) = delete;
@@ -34,7 +38,7 @@ public:
 	integer_sign sign() const override;
 	std::unique_ptr<integer_impl> new_instance() const override;
 
-private:
+	private:
 	std::vector<int> rep_;
 	enum integer_sign sign_;
 };

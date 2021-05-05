@@ -13,6 +13,7 @@
 
 namespace cleanpp
 {
+<<<<<<< HEAD
 
 template <typename K, typename V>
 class pair : public clean_base {
@@ -29,6 +30,24 @@ public:
         this->value = std::make_unique<V>(std::move(value));
     }
 
+=======
+
+template <typename K, typename V>
+class pair : public clean_base {
+    private:
+
+    std::unique_ptr<K> key;
+    std::unique_ptr<V> value;
+    public:
+
+    pair() : key(), value() { }
+
+    pair(K&& key, V&& value) {
+        this->key = std::make_unique<K>(std::move(key));
+        this->value = std::make_unique<V>(std::move(value));
+    }
+
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     pair(pair const& other) = delete;
     pair(pair&& other) :
         key(std::move(other.key)),
@@ -80,11 +99,11 @@ class map_impl : public clean_base {
     map is modeled by finite set of Pair
     */
 
-private:
+    private:
 
     virtual std::string to_str() = 0;
 
-public:
+    public:
 
 
     /**

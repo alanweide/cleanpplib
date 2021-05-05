@@ -27,7 +27,7 @@ class integer_kernel_impl : public clean_base {
     /*
      big_integer_kernel is modeled by integer
      */
-public:
+    public:
     // The "base" of the number
     static const int RADIX = 10;
 
@@ -74,7 +74,11 @@ public:
 };
 
 class integer_impl : public integer_kernel_impl {
+<<<<<<< HEAD
 private:
+=======
+    private:
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
 
     /*
      updates this
@@ -111,9 +115,15 @@ private:
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
     friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+<<<<<<< HEAD
 
 public:
 
+=======
+
+    public:
+
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     /*
      updates this
      ensures this = #this + 1

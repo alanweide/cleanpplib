@@ -19,7 +19,11 @@ namespace cleanpp
 
 template <typename T>
 class stack_based_list : public list_impl<T> {
+<<<<<<< HEAD
 public:
+=======
+    public:
+>>>>>>> 9c62f73e0528c332982fb99bdce70c979ced8529
     stack_based_list<T>() {
         prec_ = std::make_unique<array_stack<T>>();
         rem_ = std::make_unique<array_stack<T>>();
@@ -106,7 +110,7 @@ public:
         out << ", " << *rem_ << ")";
         return out.str();
     }
-private:
+    private:
     std::unique_ptr<stack_impl<T>> prec_;
     std::unique_ptr<stack_impl<T>> rem_;
 };
