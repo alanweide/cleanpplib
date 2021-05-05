@@ -14,15 +14,16 @@
 #include <sstream>
 #include <clean_base.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 template <class T>
-class list_kernel_impl: public clean_base {
+class list_kernel_impl : public clean_base {
     /*
      list_kernel is modeled by (prec: string of T,
                                 rem:  string of T)
      */
-public:
-    
+    public:
+
     /*
      updates  this
      requires |this.rem| > 0
@@ -36,7 +37,7 @@ public:
      ensures  exists A, B, x : #this = (A, <x> * B) : this = (A * <x>, B)
      */
     virtual void retreat() = 0;
-    
+
     /*
      updates this
      clears  x
@@ -49,27 +50,27 @@ public:
      ensures  #this = (this.prec * <remove>, this.rem)
      */
     virtual T remove() = 0;
-    
+
     /*
      ensures is_at_end = (|this.rem| = 0)
      */
     virtual bool is_at_end() const = 0;
-    
+
     /*
      ensures is_at_front = (|this.prec| = 0)
      */
     virtual bool is_at_front() const = 0;
-        
+
     virtual std::string to_str() {
         std::stringstream out;
-        
+
         // Reset this and count position
         int pos = 0;
         while (!this->is_at_front()) {
             this->retreat();
             pos++;
         }
-        
+
         // Append first part of this to out
         out << "(<";
         while (!this->is_at_end() && pos > 0) {
@@ -83,7 +84,7 @@ public:
             }
         }
         out << ">, ";
-        
+
         // Append second part of this to out
         out << "<";
         while (!this->is_at_end()) {
@@ -97,21 +98,21 @@ public:
             }
         }
         out << ">)";
-        
+
         // Reset this this to original position
         while (pos > 0) {
             this->retreat();
             pos--;
         }
-        
+
         return out.str();
     }
 };
 
 template<class T>
-class list_impl: public list_kernel_impl<T> {
-public:
-    
+class list_impl : public list_kernel_impl<T> {
+    public:
+
     /*
      updates this
      ensures this = (<>, #this.prec * #this.rem)

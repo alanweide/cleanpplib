@@ -9,13 +9,14 @@
 #include <assert.h>
 #include <nn_impl/stack_nn.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
-stack_nn::stack_nn(long n): rep_() {
+stack_nn::stack_nn(long n) : rep_() {
     set_from_long(n);
 }
 
-stack_nn::stack_nn(stack_nn&& other): rep_(std::move(other.rep_)) {
+stack_nn::stack_nn(stack_nn&& other) : rep_(std::move(other.rep_)) {
     other.clear();
 }
 
@@ -45,12 +46,12 @@ void stack_nn::multiply_by_radix(int d) {
 }
 
 int stack_nn::divide_by_radix() {
-	int d = 0;
+    int d = 0;
     if (!is_zero()) {
         d = rep_.pop();
     }
     assert(0 <= d && d < RADIX);
-	return std::move(d);
+    return std::move(d);
 }
 
 

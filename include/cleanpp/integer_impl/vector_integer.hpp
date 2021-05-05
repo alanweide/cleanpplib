@@ -15,15 +15,16 @@
 
 #include <nn_impl/stack_nn.hpp>
 
-namespace cleanpp {
-class vector_integer: public integer_impl {
-public:
+namespace cleanpp
+{
+class vector_integer : public integer_impl {
+	public:
 	vector_integer(int n = 0);
-	
-	vector_integer(vector_integer const &other) = delete;
+
+	vector_integer(vector_integer const& other) = delete;
 	vector_integer(vector_integer&& other);
-	
-	vector_integer& operator=(vector_integer const &other) = delete;
+
+	vector_integer& operator=(vector_integer const& other) = delete;
 	vector_integer& operator=(vector_integer&& other);
 
 	void clear() override;
@@ -31,9 +32,9 @@ public:
 	int divide_by_radix() override;
 	void negate() override;
 	integer_sign sign() const override;
-    std::unique_ptr<integer_impl> new_instance() const override;
+	std::unique_ptr<integer_impl> new_instance() const override;
 
-private:
+	private:
 	std::vector<int> rep_;
 	enum integer_sign sign_;
 };
