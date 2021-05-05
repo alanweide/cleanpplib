@@ -15,11 +15,12 @@ libCleanpp.a: $(lib_objects)
 	@echo "Done."
 
 # Dynamic library
+# WARNING: Doesn't work.
 libCleanpp.so: $(lib_objects)
 	$(CXX) $(CXXFLAGS) -shared -o libCleanpp.so $^
 
 # @Will: does this work in Windows?
-libCleanpp.exe: $(lib_objects) libCleanpp
+libCleanpp.exe: $(lib_objects) libCleanpp.a
 	$(CXX) -o $@ $^
 
 $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepath)/**/*.hpp)
@@ -39,16 +40,16 @@ $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepat
 # ---------------
 # Testing targets
 # ---------------
-test gtest: build-test
+test gtest: libCleanpp.a $(testdir)/build
 	@echo "Running tests..."
 	@cd $(testdir)/build && ctest
 	@echo "Done."
 
-build-test build-test-2: build-test-1
-	@cmake --build $(testdir)/build
+build-test: $(testdir)/build
 
-build-test-1:
+$(testdir)/build:
 	@cmake -S $(testdir) -B $(testdir)/build
+	@cmake --build $(testdir)/build
 
 # ----------------
 # Cleaning targets
