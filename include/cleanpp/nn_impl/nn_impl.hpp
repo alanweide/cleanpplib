@@ -9,7 +9,7 @@
 #ifndef natural_number_h
 #define natural_number_h
 
-#include "clean_base.hpp"
+#include <clean_base.hpp>
 
 namespace cleanpp {
     

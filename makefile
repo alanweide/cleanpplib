@@ -5,15 +5,18 @@ lib_objects = src/clean_nn/natural_number.o src/clean_nn/bounded_nn.o src/clean_
 includepath = include/cleanpp
 testdir = cleanpp-gtest
 
-# all: libCleanpp
-
 # ---------------
 # Library targets
 # ---------------
-libCleanpp libcleanpp libCleanpp.a: $(lib_objects)
+# Static library
+libCleanpp.a: $(lib_objects)
 	@echo "Building $@..." 
 	ar rv libCleanpp.a $^
 	@echo "Done."
+
+# Dynamic library
+libCleanpp.so: $(lib_objects)
+	$(CXX) $(CXXFLAGS) -shared -o libCleanpp.so $^
 
 # @Will: does this work in Windows?
 libCleanpp.exe: $(lib_objects) libCleanpp
@@ -21,13 +24,14 @@ libCleanpp.exe: $(lib_objects) libCleanpp
 
 $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepath)/**/*.hpp)
 	@echo "Making object file for $@..."
-	@ls $(includepath)/**/*.hpp
+# @ls $(includepath)/**/*.hpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(includepath)
+	@echo "Done."
 
 # ------------------------------------------
 # Build (simple) individual Clean++ programs
 # ------------------------------------------
-%.o: %.cpp libCleanpp
+%.o: %.cpp libCleanpp.a
 	@echo "Building $@..."
 	$(CXX) $(CXXFLAGS) $< -o $@ -L. -lCleanpp -I $(includepath)
 	@echo "Done."
@@ -35,28 +39,28 @@ $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepat
 # ---------------
 # Testing targets
 # ---------------
-test gtest: libCleanpp build-test run-test
+test gtest: build-test
+	@echo "Running tests..."
+	@cd $(testdir)/build && ctest
 	@echo "Done."
 
-build-test:
-	@echo "Testing..."
-	@cmake -S $(testdir) -B $(testdir)/build
+build-test build-test-2: build-test-1
 	@cmake --build $(testdir)/build
 
-run-test:
-	@cd $(testdir)/build && ctest
+build-test-1:
+	@cmake -S $(testdir) -B $(testdir)/build
 
 # ----------------
 # Cleaning targets
 # ----------------
 clean: clean-lib clean-obj clean-test
-	rm libCleanpp.a $(lib_objects) */**.o
+	@echo "Done."
 
 clean-lib:
-	rm libCleanpp.a $(lib_objects)
+	-rm libCleanpp.a $(lib_objects)
 
 clean-obj:
-	rm */**.o
+	-rm */**.o
 	
 clean-test:
-	rm -rf $(testdir)/build
+	-rm -r $(testdir)/build

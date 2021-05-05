@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <integer_impls/nn_integer.hpp>
-#include <integer_impls/vector_integer.hpp>
-#include <clean_integer/integer.hpp>
+#include <integer_impl/nn_integer.hpp>
+#include <integer_impl/vector_integer.hpp>
+#include <integer.hpp>
 
 using namespace cleanpp;
 

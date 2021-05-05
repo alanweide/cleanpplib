@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <queue_impls/linked_queue.hpp>
-#include <queue_impls/array_queue.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
-#include <clean_queue/queue.hpp>
-#include <clean_nn/natural_number.hpp>
+#include <queue_impl/linked_queue.hpp>
+#include <queue_impl/array_queue.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
+#include <queue.hpp>
+#include <natural_number.hpp>
 using namespace cleanpp;
 
 typedef natural_number nn_type;

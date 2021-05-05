@@ -4,8 +4,10 @@ Build/**
 .vscode
 **/*.a
 **/*.o
-doc/*/**
+**/*.out
+**/doc
 **/html
 **/latex
-experiments/
-examples/makefile
+**/build
+CleappLibrary.xcodeproj/**/*
+*.code-workspace

@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <list_impls/stack_based_list.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
-#include <clean_list/list.hpp>
+#include <list_impl/stack_based_list.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
+#include <list.hpp>
 
 using namespace cleanpp;
 

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <integer_impls/nn_integer.hpp>
+#include <integer_impl/nn_integer.hpp>
 
 using namespace cleanpp;
 

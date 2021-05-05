@@ -10,9 +10,9 @@
 #include <memory>
 
 #include <clean_base.hpp>
-#include <set_impls/set_impl.hpp>
-#include <clean_queue/queue.hpp>
-#include <queue_impls/linked_queue.hpp>
+#include <set_impl/set_impl.hpp>
+#include <queue.hpp>
+#include <queue_impl/linked_queue.hpp>
 
 
 namespace cleanpp {

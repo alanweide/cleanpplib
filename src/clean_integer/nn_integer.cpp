@@ -6,7 +6,8 @@
 //  Copyright © 2020 Alan Weide. All rights reserved.
 //
 #include <memory>
-#include <integer_impls/nn_integer.hpp>
+#include <integer_impl/nn_integer.hpp>
+#include <natural_number.hpp>
 
 namespace cleanpp {
 nn_integer::nn_integer(int n) {
@@ -18,7 +19,7 @@ nn_integer::nn_integer(int n) {
 	} else {
 		sign_ = POSITIVE;
 	}
-    n_ = natural_number{stack_nn{}, n};
+	n_.set_from_long(n);
 }
 
 nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {

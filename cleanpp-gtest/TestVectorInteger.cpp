@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <integer_impls/vector_integer.hpp>
+#include <integer_impl/vector_integer.hpp>
 
 using namespace cleanpp;
 

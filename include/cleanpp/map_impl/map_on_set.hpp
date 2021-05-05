@@ -4,7 +4,8 @@
 #include <sstream>
 
 #include "map_impl.hpp"
-#include "set.hpp"
+
+#include <set.hpp>
 
 namespace cleanpp {
 

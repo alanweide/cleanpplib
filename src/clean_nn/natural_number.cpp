@@ -8,8 +8,8 @@
 #include <memory>
 #include <assert.h>
 #include <stdio.h>
-#include <clean_nn/natural_number.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
+#include <natural_number.hpp>
+#include <nn_impl/bounded_nn.hpp>
 
 
 namespace cleanpp {
@@ -148,7 +148,7 @@ std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_imp
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    return std::move(x);
+    return x;
 }
 
 std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_number_impl> x, int d) {

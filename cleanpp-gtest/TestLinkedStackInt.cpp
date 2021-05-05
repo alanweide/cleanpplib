@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <stack_impls/linked_stack.hpp>
+#include <stack_impl/linked_stack.hpp>
 
 using namespace cleanpp;
 

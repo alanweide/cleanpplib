@@ -146,6 +146,23 @@
 		86EC1E9423F2338B00A7A779 /* nn_integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nn_integer.cpp; sourceTree = "<group>"; };
 		86EC1E9623F233AA00A7A779 /* nn_integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nn_integer.hpp; sourceTree = "<group>"; };
 		86EC1E9723F669A900A7A779 /* TestVectorInteger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVectorInteger.mm; sourceTree = "<group>"; };
+		E7125389264202430055CC45 /* TestFlexQueueNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexQueueNaturalNumber.cpp; sourceTree = "<group>"; };
+		E712538A264202430055CC45 /* TestNNInteger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestNNInteger.cpp; sourceTree = "<group>"; };
+		E712538B264202440055CC45 /* TestLinkedStackNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestLinkedStackNaturalNumber.cpp; sourceTree = "<group>"; };
+		E712538C264202440055CC45 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		E712538D264202440055CC45 /* TestBoundedNN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestBoundedNN.cpp; sourceTree = "<group>"; };
+		E712538E264202440055CC45 /* TestVectorInteger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestVectorInteger.cpp; sourceTree = "<group>"; };
+		E712538F264202440055CC45 /* TestLinkedStackInt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestLinkedStackInt.cpp; sourceTree = "<group>"; };
+		E7125390264202440055CC45 /* TestStackBasedListNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestStackBasedListNaturalNumber.cpp; sourceTree = "<group>"; };
+		E7125391264202440055CC45 /* TestFlexListNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexListNaturalNumber.cpp; sourceTree = "<group>"; };
+		E7125392264202440055CC45 /* TestArrayQueueNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestArrayQueueNaturalNumber.cpp; sourceTree = "<group>"; };
+		E7125393264202440055CC45 /* TestFlexNN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexNN.cpp; sourceTree = "<group>"; };
+		E7125394264202440055CC45 /* TestFlexSetNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexSetNaturalNumber.cpp; sourceTree = "<group>"; };
+		E7125395264202440055CC45 /* TestStackNN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestStackNN.cpp; sourceTree = "<group>"; };
+		E7125396264202440055CC45 /* TestFlexInteger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexInteger.cpp; sourceTree = "<group>"; };
+		E7125397264202440055CC45 /* TestLinkedQueueNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestLinkedQueueNaturalNumber.cpp; sourceTree = "<group>"; };
+		E7125398264202440055CC45 /* TestFlexStackInt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFlexStackInt.cpp; sourceTree = "<group>"; };
+		E7125632264202480055CC45 /* TestArrayStackNaturalNumber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestArrayStackNaturalNumber.cpp; sourceTree = "<group>"; };
 		E717C03B24F9BEDF00F61B0F /* stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack.hpp; sourceTree = "<group>"; };
 		E717C03E24F9BFCC00F61B0F /* TestFlexibleStackInt.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFlexibleStackInt.mm; sourceTree = "<group>"; };
 		E717C04024F9C2B200F61B0F /* queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = queue.hpp; sourceTree = "<group>"; };
@@ -192,8 +209,6 @@
 		E7A2517F2613AD1900AC204C /* selection_sort6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = selection_sort6.cpp; sourceTree = "<group>"; };
 		E7A251802613AD1900AC204C /* practice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = practice.cpp; sourceTree = "<group>"; };
 		E7A251812613AD1900AC204C /* selection_sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = selection_sort.cpp; sourceTree = "<group>"; };
-		E7CD612F262F667F00CC1D12 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		E7CD6139262F66C100CC1D12 /* hello_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hello_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +311,30 @@
 			path = clean_nn;
 			sourceTree = "<group>";
 		};
+		E7125388264202430055CC45 /* cleanpp-gtest */ = {
+			isa = PBXGroup;
+			children = (
+				E7125389264202430055CC45 /* TestFlexQueueNaturalNumber.cpp */,
+				E712538A264202430055CC45 /* TestNNInteger.cpp */,
+				E712538B264202440055CC45 /* TestLinkedStackNaturalNumber.cpp */,
+				E712538C264202440055CC45 /* CMakeLists.txt */,
+				E712538D264202440055CC45 /* TestBoundedNN.cpp */,
+				E712538E264202440055CC45 /* TestVectorInteger.cpp */,
+				E712538F264202440055CC45 /* TestLinkedStackInt.cpp */,
+				E7125390264202440055CC45 /* TestStackBasedListNaturalNumber.cpp */,
+				E7125391264202440055CC45 /* TestFlexListNaturalNumber.cpp */,
+				E7125392264202440055CC45 /* TestArrayQueueNaturalNumber.cpp */,
+				E7125393264202440055CC45 /* TestFlexNN.cpp */,
+				E7125394264202440055CC45 /* TestFlexSetNaturalNumber.cpp */,
+				E7125395264202440055CC45 /* TestStackNN.cpp */,
+				E7125396264202440055CC45 /* TestFlexInteger.cpp */,
+				E7125397264202440055CC45 /* TestLinkedQueueNaturalNumber.cpp */,
+				E7125398264202440055CC45 /* TestFlexStackInt.cpp */,
+				E7125632264202480055CC45 /* TestArrayStackNaturalNumber.cpp */,
+			);
+			path = "cleanpp-gtest";
+			sourceTree = "<group>";
+		};
 		E717C03D24F9BEF000F61B0F /* clean_stack */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,12 +364,13 @@
 			children = (
 				E7A251712613A8C900AC204C /* Doxyfile */,
 				E760A2CD239203DA00139E3D /* README.md */,
+				E759151A2548B36F00E8D654 /* makefile */,
 				E760A2CA239203DA00139E3D /* include */,
 				E760A2C9239203DA00139E3D /* src */,
-				E760A2CC239203DA00139E3D /* test */,
+				E760A2CC239203DA00139E3D /* cleanpp-xctest */,
 				E7744EB625278F43000A5CC9 /* cleanpp-main */,
 				E7A251762613AD1800AC204C /* experiments */,
-				E7CD612E262F667F00CC1D12 /* cleanpp-gtest */,
+				E7125388264202430055CC45 /* cleanpp-gtest */,
 				E760A2BC239203A200139E3D /* Products */,
 				E7744EBF25278F66000A5CC9 /* Frameworks */,
 			);
@@ -386,7 +426,7 @@
 			path = cleanpp;
 			sourceTree = "<group>";
 		};
-		E760A2CC239203DA00139E3D /* test */ = {
+		E760A2CC239203DA00139E3D /* cleanpp-xctest */ = {
 			isa = PBXGroup;
 			children = (
 				E760A305239204DC00139E3D /* TestBoundedNN.mm */,
@@ -408,14 +448,13 @@
 				8682AD8F23D68DDB003F4238 /* TestCleanpp.xctestplan */,
 				E760A307239204DC00139E3D /* Info.plist */,
 			);
-			path = test;
+			path = "cleanpp-xctest";
 			sourceTree = "<group>";
 		};
 		E7744EB625278F43000A5CC9 /* cleanpp-main */ = {
 			isa = PBXGroup;
 			children = (
 				860A16B32564662A000F5942 /* minimal.cpp */,
-				E759151A2548B36F00E8D654 /* makefile */,
 			);
 			path = "cleanpp-main";
 			sourceTree = "<group>";
@@ -497,15 +536,6 @@
 				E7A251812613AD1900AC204C /* selection_sort.cpp */,
 			);
 			path = experiments;
-			sourceTree = "<group>";
-		};
-		E7CD612E262F667F00CC1D12 /* cleanpp-gtest */ = {
-			isa = PBXGroup;
-			children = (
-				E7CD612F262F667F00CC1D12 /* main.cpp */,
-				E7CD6139262F66C100CC1D12 /* hello_test.cpp */,
-			);
-			path = "cleanpp-gtest";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -948,7 +978,7 @@
 					/usr/local/include,
 					$SRCROOT/include/cleanpp,
 				);
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = "cleanpp-xctest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -977,7 +1007,7 @@
 					/usr/local/include,
 					$SRCROOT/include/cleanpp,
 				);
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = "cleanpp-xctest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

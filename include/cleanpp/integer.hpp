@@ -11,8 +11,8 @@
 
 // #include "integer_impl.hpp"
 // #include "nn_integer.hpp"
-#include <integer_impls/integer_impl.hpp>
-#include <integer_impls/nn_integer.hpp>
+#include <integer_impl/integer_impl.hpp>
+#include <integer_impl/nn_integer.hpp>
 
 namespace cleanpp {
 

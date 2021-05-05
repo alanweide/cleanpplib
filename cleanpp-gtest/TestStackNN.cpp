@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <natural_number_impls/stack_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
 
 using namespace cleanpp;
 

@@ -7,7 +7,7 @@
 //
 #include <memory>
 #include <assert.h>
-#include <integer_impls/vector_integer.hpp>
+#include <integer_impl/vector_integer.hpp>
 
 namespace cleanpp {
 vector_integer::vector_integer(int n) {

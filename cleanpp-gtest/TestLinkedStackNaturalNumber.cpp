@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <stack_impls/linked_stack.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
+#include <stack_impl/linked_stack.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
 
 using namespace cleanpp;
 

@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include <clean_base.hpp>
-#include <stack_impls/stack_impl.hpp>
-#include <stack_impls/array_stack.hpp>
+#include <stack_impl/stack_impl.hpp>
+#include <stack_impl/array_stack.hpp>
 
 namespace cleanpp {
 
@@ -47,7 +47,7 @@ public:
     /**
 	 * @brief Custom move constructor
 	 * 
-	 * @param other - the stack being moved from
+     * @param o - the stack being moved from
 	 */
     stack(stack<Item>&& o): rep_(std::move(o.rep_)) {
 		o.rep_ = std::make_unique<_flex_stack_def_t<Item>>();

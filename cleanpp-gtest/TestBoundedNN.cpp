@@ -2,8 +2,8 @@
 
 #include <stdio.h>
 #include <sstream>
-#include <natural_number_impls/natural_number_impl.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
+#include <nn_impl/nn_impl.hpp>
+#include <nn_impl/bounded_nn.hpp>
 
 using namespace cleanpp;
 

@@ -42,6 +42,7 @@ private:
             for (int i = 0; i < length_; i++) {
                 contents_[i] = std::move(temp_cont[(i + head_) % old_cap]);
             }
+            head_ = 0;
         }
     }
 

@@ -10,10 +10,10 @@
 #define nn_integer_hpp
 
 #include <stdio.h>
-#include <integer_impls/integer_impl.hpp>
+#include "integer_impl.hpp"
 
-#include <natural_number_impls/stack_nn.hpp>
-#include <clean_nn/natural_number.hpp>
+#include <natural_number.hpp>
+#include <nn_impl/stack_nn.hpp>
 
 namespace cleanpp {
 class nn_integer: public integer_impl {

@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include <queue_impls/linked_queue.hpp>
-#include <queue_impls/array_queue.hpp>
-#include <natural_number_impls/bounded_nn.hpp>
-#include <natural_number_impls/stack_nn.hpp>
-#include <clean_queue/queue.hpp>
-#include <clean_nn/natural_number.hpp>
-#include <clean_set/set.hpp>
-#include <set_impls/set_on_queue.hpp>
+#include <queue_impl/linked_queue.hpp>
+#include <queue_impl/array_queue.hpp>
+#include <nn_impl/bounded_nn.hpp>
+#include <nn_impl/stack_nn.hpp>
+#include <queue.hpp>
+#include <natural_number.hpp>
+#include <set.hpp>
+#include <set_impl/set_on_queue.hpp>
 
 using namespace cleanpp;
 
@@ -234,26 +234,42 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyTrueTest) {
     EXPECT_TRUE(contains);
 }
 
-/**
- Weird error when running this test. EXC_BAD_ACCESS at closing curly brace (during destructor?) most of the time but sometimes in XCTAssert(contains)???
- */
-TEST(FlexSetNaturalNumber, BigSetContainsTest) {
-    GTEST_SKIP();
+TEST(FlexSetNaturalNumber, BigSetContains0Test) {
     set_type s;
-    int expected_size = 0;
+    int expected_size = 12;
     nn_type a;
     
     int numElem = 12;
     for (long i = 0; i < numElem; i++) {
-        nn_type n(i);
+        nn_type n;
+        n.set_from_long(i);
         s.add(std::move(n));
     }
     
     bool contains;
     contains = s.contains(std::move(a));
     
-    std::string s_str = setToString(s);
-    EXPECT_TRUE(s.getSize() == expected_size);
+    int actual_size = s.getSize();
+    EXPECT_EQ(expected_size, actual_size);
+    EXPECT_TRUE(contains);
+}
+
+TEST(FlexSetNaturalNumber, BigSetContains6Test) {
+    set_type s;
+    int expected_size = 12;
+    nn_type a{bounded_nn{}, 6};
+    
+    int numElem = 12;
+    for (long i = 0; i < numElem; i++) {
+        nn_type n{bounded_nn{}, i};
+        s.add(std::move(n));
+    }
+    
+    bool contains;
+    contains = s.contains(std::move(a));
+    
+    int actual_size = s.getSize();
+    EXPECT_EQ(expected_size, actual_size);
     EXPECT_TRUE(contains);
 }
 
