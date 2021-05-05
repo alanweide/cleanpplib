@@ -10,3 +10,4 @@ Build/**
 **/latex
 **/build
 CleappLibrary.xcodeproj/**/*
+workspace.code-workspace
