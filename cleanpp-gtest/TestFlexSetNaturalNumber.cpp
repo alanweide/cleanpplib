@@ -238,23 +238,23 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyTrueTest) {
  Weird error when running this test. segfault at closing curly brace (during destructor?) most of the time but sometimes in EXPECT_TRUE(contains)???
  */
 TEST(FlexSetNaturalNumber, BigSetContainsTest) {
-    GTEST_SKIP();
     set_type s;
-    int expected_size = 0;
+    int expected_size = 12;
     nn_type a;
     
     int numElem = 12;
     for (long i = 0; i < numElem; i++) {
-        nn_type n(i);
+        nn_type n{bounded_nn{}, i};
         s.add(std::move(n));
     }
+    std::cout << "Past loop." << std::endl;
     
     bool contains;
     contains = s.contains(std::move(a));
     
-    std::string s_str = setToString(s);
-    EXPECT_TRUE(s.getSize() == expected_size);
-    EXPECT_TRUE(contains);
+    int actual_size = s.getSize();
+    EXPECT_EQ(expected_size, actual_size) << "Size is wrong.";
+    EXPECT_TRUE(contains) << "Does not contain whatever it is supposed to.";
 }
 
 TEST(FlexSetNaturalNumber, ContainsNonEmptyFalseTest) {
