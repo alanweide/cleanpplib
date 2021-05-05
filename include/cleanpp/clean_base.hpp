@@ -13,18 +13,19 @@
 #include <memory>
 #include <assert.h>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
-	class clean_base {
-	public:
-		clean_base() = default;
-        virtual ~clean_base() = default;
+class clean_base {
+public:
+	clean_base() = default;
+	virtual ~clean_base() = default;
 
-//        virtual clean_base<T> operator=(clean_base<T> &other) = delete;
-//        virtual clean_base<T> operator=(clean_base<T> &&other) = 0;
-        
-        virtual void clear() = 0;
-    };
+	//        virtual clean_base<T> operator=(clean_base<T> &other) = delete;
+	//        virtual clean_base<T> operator=(clean_base<T> &&other) = 0;
+
+	virtual void clear() = 0;
+};
 }
 
 #endif /* clean_base_h */

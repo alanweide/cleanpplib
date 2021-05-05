@@ -13,22 +13,23 @@
 
 #include <clean_base.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
 enum integer_sign {
-	NEGATIVE = -1, ZERO = 0, POSITIVE = 1
+    NEGATIVE = -1, ZERO = 0, POSITIVE = 1
 };
 
 class integer_kernel_impl;
 class integer_impl;
 
-class integer_kernel_impl: public clean_base {
+class integer_kernel_impl : public clean_base {
     /*
      big_integer_kernel is modeled by integer
      */
 public:
     // The "base" of the number
-	static const int RADIX = 10;
+    static const int RADIX = 10;
 
     /*
      updates  this
@@ -36,7 +37,7 @@ public:
      ensures  |this| = |#this| * RADIX + d and
               this < 0 iff #this < 0
      */
-	virtual void multiply_by_radix(int d) = 0;
+    virtual void multiply_by_radix(int d) = 0;
 
     /*
      updates  this
@@ -51,14 +52,14 @@ public:
      ensures this = -#this
      */
     virtual void negate() = 0;
-	
+
     /*
      ensures  this < 0 ==> sign = NEGATIVE and
               this = 0 ==> sign = ZERO and
               this > 0 ==> sign = POSITIVE
      */
     virtual integer_sign sign() const = 0;
-    
+
     /*
      ensures new_instance = 0
      */
@@ -67,14 +68,14 @@ public:
     /*
      ensures `==` = (this = other)
      */
-	bool operator==(integer_kernel_impl &other);
-	
-	friend std::ostream& operator<<(std::ostream& out, integer_kernel_impl& o);
+    bool operator==(integer_kernel_impl& other);
+
+    friend std::ostream& operator<<(std::ostream& out, integer_kernel_impl& o);
 };
 
-class integer_impl: public integer_kernel_impl {
+class integer_impl : public integer_kernel_impl {
 private:
-    
+
     /*
      updates this
      ensures |this| = |#this| + 1 and
@@ -89,54 +90,54 @@ private:
               this < 0 iff #this < 0
      */
     virtual void decrease_magnitude();
-    
+
     /*
      updates  x
      requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
      ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
-    
+    friend std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+
     /*
      updates  x
      requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
      */
-	friend std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
-    
+    friend std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+
     /*
      updates  x
      requires |x| > |y|
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
+    friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
 
 public:
-    
+
     /*
      updates this
      ensures this = #this + 1
      */
-	virtual void increment();
+    virtual void increment();
 
     /*
      updates this
      ensures this = #this - 1
      */
     virtual void decrement();
-	
+
     /*
      replaces this
      ensures  this = n
      */
     virtual void set_from_long(long n);
-    
+
     /*
      requires 0 <= d and d < 10
      ensures  this = |#this|
      */
     virtual integer_sign abs();
-    
+
     /*
      updates  this
      ensures  sign = NEGATIVE ==> this = -|#this| and
@@ -144,7 +145,7 @@ public:
               sign = POSITIVE ==> this = |#this|
      */
     virtual void assign_sign(integer_sign sign);
-    
+
     /*
      ensures clone = this
      */
@@ -154,20 +155,20 @@ public:
      updates  x
      ensures  x = #x + y
      */
-    friend std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
-    
+    friend std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+
     /*
      updates x
      ensures x = #x - y
      */
-	friend std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
+    friend std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
 
     /*
      ensures compare > 0 ==> x > y and
              compare = 0 ==> x = y and
              compare < 0 ==> x < y
      */
-    friend int compare(std::unique_ptr<integer_impl> &x, std::unique_ptr<integer_impl> &y);	
+    friend int compare(std::unique_ptr<integer_impl>& x, std::unique_ptr<integer_impl>& y);
 };
 }
 

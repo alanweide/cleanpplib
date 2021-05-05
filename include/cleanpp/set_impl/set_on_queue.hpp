@@ -15,23 +15,24 @@
 #include <queue_impl/linked_queue.hpp>
 
 
-namespace cleanpp {
+namespace cleanpp
+{
 
 template <typename T>
-class set_on_queue: public set_impl<T> {
+class set_on_queue : public set_impl<T> {
 
-private: 
+private:
 
     queue<T> rep;
     int size;
-    
-    std::tuple<queue<T>, T> moveToFront(queue<T> q, T x){
+
+    std::tuple<queue<T>, T> moveToFront(queue<T> q, T x) {
 
         int i = 0;
-        
+
         T front = q.dequeue();
 
-        while( i < size && !(front == x) ){
+        while (i < size && !(front == x)) {
 
             q.enqueue(std::move(front));
             front = q.dequeue();
@@ -40,19 +41,19 @@ private:
         }
 
         queue<T> temp;
-        while(!q.is_empty()){
+        while (!q.is_empty()) {
             temp.enqueue(q.dequeue());
         }
         q.enqueue(std::move(front));
 
-        while(!temp.is_empty()){
+        while (!temp.is_empty()) {
             q.enqueue(temp.dequeue());
         }
 
         return std::make_tuple(std::move(q), std::move(x));
     }
 
-    void createNewRep(){
+    void createNewRep() {
 
         this->rep = linked_queue<T>();
         this->size = 0;
@@ -65,14 +66,14 @@ private:
 
 public:
 
-    set_on_queue<T>(){
+    set_on_queue<T>() {
         this->createNewRep();
     }
 
     set_on_queue<T>& operator=(const set_on_queue<T>& other) = delete;
 
-    set_on_queue<T>& operator=(set_on_queue<T>&& other){
-        if(&other == this){
+    set_on_queue<T>& operator=(set_on_queue<T>&& other) {
+        if (&other == this) {
             return *this;
         }
 
@@ -83,7 +84,7 @@ public:
         return *this;
     }
 
-    void clear(){
+    void clear() {
         this->rep.clear();
         size = 0;
     }
@@ -92,16 +93,16 @@ public:
      * Kernel methods----------------------------------------------------
      */
 
-    void add(T&& x){
+    void add(T&& x) {
 
         this->rep.enqueue(std::forward<T>(x));
         size++;
 
     }
 
-    T remove(T&& x){
+    T remove(T&& x) {
 
-        
+
         std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
 
         size--;
@@ -109,13 +110,13 @@ public:
 
     }
 
-    T removeAny(){
+    T removeAny() {
 
         size--;
         return this->rep.dequeue();
     }
 
-    bool contains(T&& x){
+    bool contains(T&& x) {
         bool has = false;
 
         // Recursive implementation
@@ -124,7 +125,7 @@ public:
             has = (guess == x) || this->contains(std::move(x));
             this->rep.enqueue(std::move(guess));
         }
-        
+
         // Iterative Implementation
 //        queue<T> temp;
 //        while (!has && !this->rep.is_empty()) {
@@ -136,7 +137,7 @@ public:
 //            T item = temp.dequeue();
 //            this->rep.enqueue(std::move(item));
 //        }
-        
+
         // Will's implementation (not correct)
 //        std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
 //
@@ -155,49 +156,49 @@ public:
     bool isEmpty() {
         return this->rep.is_empty();
     }
-    
-    int getSize(){
+
+    int getSize() {
         return size;
     }
 
-    void getElements(){
-        std::cout<<this->to_str()<<std::endl;
+    void getElements() {
+        std::cout << this->to_str() << std::endl;
     }
 
-     friend std::ostream& operator<<(std::ostream& out, set_on_queue<T>& o) {
-		return out << o.to_str();
-	}
+    friend std::ostream& operator<<(std::ostream& out, set_on_queue<T>& o) {
+        return out << o.to_str();
+    }
 
 private:
 
-    std::string to_str(){
+    std::string to_str() {
 
         std::stringstream out;
-        
+
         out << "{";
         queue<T> temp;
 
-        while(!this->rep.is_empty()){
+        while (!this->rep.is_empty()) {
             T elem;
             elem = this->rep.dequeue();
             out << elem;
-            
-            if(!this->rep.is_empty()){
+
+            if (!this->rep.is_empty()) {
                 out << ", ";
             }
             temp.enqueue(std::move(elem));
         }
-    
-        while(!temp.is_empty()){
+
+        while (!temp.is_empty()) {
             T elem;
             elem = temp.dequeue();
             this->rep.enqueue(std::move(elem));
         }
-        out <<  "}";
+        out << "}";
         return out.str();
     }
 
-   
+
 
 };
 

@@ -17,13 +17,14 @@
 #include <queue_impl/queue_impl.hpp>
 #include <queue_impl/array_queue.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
 template <typename I>
 using _queue_def_t = array_queue<I>;
 
 template <typename Item>
-class queue: public clean_base {
+class queue : public clean_base {
 	/**
 	 queue is modeled by string of Item
 	 */
@@ -36,17 +37,16 @@ public:
 	 *
 	 * @ensures this = <>
 	 */
-	queue(): rep_(std::make_unique<_queue_def_t<Item>>()) {
-	}
+	queue() : rep_(std::make_unique<_queue_def_t<Item>>()) { }
 
 	template<template<typename> class I>
-	queue(__attribute__((unused)) const I<Item>& impl): rep_(std::make_unique<I<Item>>()) {
+	queue(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
 		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
-					  "Template parameter I must derive from cleanpp::queue");
+			"Template parameter I must derive from cleanpp::queue");
 	}
 
 
-	queue(const queue<Item> &o) = delete;
+	queue(const queue<Item>& o) = delete;
 
 
 	/**
@@ -54,19 +54,19 @@ public:
 	 *
 	 * @param other - the queue being moved from
 	 */
-	queue(queue<Item>&& other): rep_(std::move(other.rep_)) {
+	queue(queue<Item>&& other) : rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
 
 	queue<Item>& operator=(const queue<Item>& other) = delete;
 
 	/**
-      * @brief custom move assignment operator
-      *
-      * @param other - the queue being moved from
-      * @return the newly-assigned this
-      * @ensures this = #other
-      */
+	  * @brief custom move assignment operator
+	  *
+	  * @param other - the queue being moved from
+	  * @return the newly-assigned this
+	  * @ensures this = #other
+	  */
 	queue<Item>& operator=(queue<Item>&& other) {
 		if (&other == this) {
 			return *this;
@@ -76,9 +76,9 @@ public:
 		return *this;
 	}
 
-    /**
-     * @brief clears this
-     */
+	/**
+	 * @brief clears this
+	 */
 	void clear() {
 		this->rep_->clear();
 	}
@@ -122,11 +122,11 @@ public:
 	 * @return true iff (this = other)
 	 * @ensures '==' = (this = other)
 	 */
-    bool operator==(queue<Item>& other) {
-        return *this->rep_ == *other.rep_;
-    }
+	bool operator==(queue<Item>& other) {
+		return *this->rep_ == *other.rep_;
+	}
 
-    friend std::ostream& operator<<(std::ostream& out, queue<Item>& o) {
+	friend std::ostream& operator<<(std::ostream& out, queue<Item>& o) {
 		return out << *o.rep_;
 	}
 };

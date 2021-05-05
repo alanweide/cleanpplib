@@ -13,18 +13,19 @@
 #include <stack.hpp>
 #include <nn_impl/nn_impl.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
-class stack_nn: public natural_number_impl {
+class stack_nn : public natural_number_impl {
 public:
     stack_nn(long n = 0);
-    
-    stack_nn(stack_nn const &other) = delete;
+
+    stack_nn(stack_nn const& other) = delete;
     stack_nn(stack_nn&& other);
-    
+
     stack_nn& operator=(const stack_nn& other) = delete;
     stack_nn& operator=(stack_nn&& other);
-    
+
     void clear() override;
     bool is_zero() const override;
     void multiply_by_radix(int d) override;

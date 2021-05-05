@@ -12,12 +12,13 @@
 #include <nn_impl/bounded_nn.hpp>
 
 
-namespace cleanpp {
+namespace cleanpp
+{
 
 // natural_number_kernel
-bool natural_number_kernel_impl::operator==(natural_number_kernel_impl &other) {
+bool natural_number_kernel_impl::operator==(natural_number_kernel_impl& other) {
     bool ans = false;
-     bool otherZero = other.is_zero();
+    bool otherZero = other.is_zero();
     bool thisZero = (*this).is_zero();
     if (otherZero && thisZero) {
         ans = true;
@@ -106,16 +107,16 @@ void natural_number_impl::divide_by_two() {
  pass-by-move w/o corresponding return: clears
  returned w/o corresponding parameter: replaces
  receiver: ???
- 
+
  what about?
  one parameter is a function call involving x
  add(std::move(x), f(x)):
  { $0 = std::move(x); $1 = f(x); add($0, $1); }?
  { $1 = f(x); add(std::move(x), $1); }?
- 
+
  */
 
-std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
+std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -133,7 +134,7 @@ std::unique_ptr<natural_number_impl> add(std::unique_ptr<natural_number_impl> x,
     return x;
 }
 
-std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
+std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
@@ -165,7 +166,7 @@ std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_n
     return x;
 }
 
-std::unique_ptr<natural_number_impl> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> &y) {
+std::unique_ptr<natural_number_impl> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y) {
     if (y->is_zero()) {
         x->clear();
     } else {

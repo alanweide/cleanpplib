@@ -11,69 +11,70 @@
 
 #include <clean_base.hpp>
 
-namespace cleanpp {
-    
-    template <typename K, typename V>
-    class pair: public clean_base{
-    private:
+namespace cleanpp
+{
 
-        std::unique_ptr<K> key;
-        std::unique_ptr<V> value;
-    public:
+template <typename K, typename V>
+class pair : public clean_base {
+private:
 
-        pair(): key(), value() {}
+    std::unique_ptr<K> key;
+    std::unique_ptr<V> value;
+public:
 
-        pair(K&& key, V&& value){
-            this->key = std::make_unique<K>(std::move(key));
-            this->value = std::make_unique<V>(std::move(value));
-        }
+    pair() : key(), value() { }
 
-        pair(pair const &other) = delete;
-        pair(pair&& other):
+    pair(K&& key, V&& value) {
+        this->key = std::make_unique<K>(std::move(key));
+        this->value = std::make_unique<V>(std::move(value));
+    }
+
+    pair(pair const& other) = delete;
+    pair(pair&& other) :
         key(std::move(other.key)),
-        value(std::move(other.value)){
-            other.clear();
-        }
+        value(std::move(other.value)) {
+        other.clear();
+    }
 
-        pair& operator=(const pair& other) = delete;
+    pair& operator=(const pair& other) = delete;
 
-        pair& operator=(pair&& other){
-            if(&other == this){
-                return *this;
-            }
-
-            key = std::move(other.key);
-            value = std::move(other.value);
-            other.clear();
+    pair& operator=(pair&& other) {
+        if (&other == this) {
             return *this;
         }
 
-        void clear(){
-            key.reset();
-            value.reset();
-        }
+        key = std::move(other.key);
+        value = std::move(other.value);
+        other.clear();
+        return *this;
+    }
 
-        V getValue(K&& key){
-            return std::move(*this->value);
-        }
+    void clear() {
+        key.reset();
+        value.reset();
+    }
 
-        bool operator==(pair& other){
-            return *this->key == *other.key;
-        }
+    V getValue(K&& key) {
+        return std::move(*this->value);
+    }
 
-        bool operator==(K& key){
-            return *this->key == key;
-        }
+    bool operator==(pair& other) {
+        return *this->key == *other.key;
+    }
 
-        friend std::ostream& operator<<(std::ostream& out, const pair& pair){
-            return out << "(" << *pair.key << ", " << *pair.value << ")";
-        }
+    bool operator==(K& key) {
+        return *this->key == key;
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const pair& pair) {
+        return out << "(" << *pair.key << ", " << *pair.value << ")";
+    }
 
 
 };
 
 template<typename K, typename V>
-class map_impl : public clean_base{
+class map_impl : public clean_base {
 
     /*
     map is modeled by finite set of Pair
@@ -88,7 +89,7 @@ public:
 
     /**
      * @brief Adds the pair (key, value) to this
-     * 
+     *
      * @param key - the key to be added
      * @param value - the associated value to be added
      *
@@ -100,7 +101,7 @@ public:
 
     /**
      * @brief Reports whether there is a pair in this whose first component is key
-     * 
+     *
      * @param key - the key to be checked
      * @return true iff there is a pair in this whose first component is key
      * @ensures hasKey = (key is in DOMAIN(this))
@@ -110,8 +111,8 @@ public:
 
     /**
      * @brief Removes the pair whose first component is key and returns it
-     * 
-     * @param key - the key to be removed 
+     *
+     * @param key - the key to be removed
      * @return the pair removed
      * @requires key is in DOMAIN(this)
      * @ensures remove.key = key and remove is in #this and this = #this \ {remove}
@@ -121,23 +122,23 @@ public:
 
     /**
      * @brief Removes and returns an arbitrary pair from this
-     * 
+     *
      * @return the pair removed from this
      * @requires |this| > 0
      * @ensures removeAny is in #this and this = #this \ {removeAny}
      */
     virtual pair<K, V> removeAny() = 0;
-    
+
 
     /**
      * @brief Reports the size of this
-     * 
+     *
      * @return the number of pairs in this
      * @ensures size = |this|
      */
     virtual int size() = 0;
 
-    friend std::ostream& operator<<(std::ostream& out, map_impl<K, V>& o){
+    friend std::ostream& operator<<(std::ostream& out, map_impl<K, V>& o) {
         return out << o.to_str();
     }
 
