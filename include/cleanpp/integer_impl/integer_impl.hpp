@@ -113,11 +113,11 @@ private:
     friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
 
 public:
-        /*
-         updates this
-         ensures this = #this + 1
-         */
-        virtual void increment();
+    /*
+     updates this
+     ensures this = #this + 1
+     */
+    virtual void increment();
 
     /*
      updates this

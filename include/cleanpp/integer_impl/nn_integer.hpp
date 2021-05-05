@@ -34,7 +34,7 @@ public:
 	integer_sign sign() const override;
 	std::unique_ptr<integer_impl> new_instance() const override;
 
-	private:
+private:
 	natural_number n_;
 	enum integer_sign sign_;
 };
