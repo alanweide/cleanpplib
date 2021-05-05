@@ -40,20 +40,21 @@ $(lib_objects): %.o: %.cpp $(includepath)/clean_base.hpp $(wildcard $(includepat
 # ---------------
 # Testing targets
 # ---------------
-test gtest: libCleanpp.a $(testdir)/build
+test gtest: $(testdir)/build
 	@echo "Running tests..."
 	@cd $(testdir)/build && ctest
 	@echo "Done."
 
 build-test: $(testdir)/build
 
-$(testdir)/build:
+$(testdir)/build: libCleanpp.a
 	@cmake -S $(testdir) -B $(testdir)/build
 	@cmake --build $(testdir)/build
 
 # ----------------
 # Cleaning targets
 # ----------------
+.PHONY: clean clean-lib clean-obj clean-test
 clean: clean-lib clean-obj clean-test
 	@echo "Done."
 
