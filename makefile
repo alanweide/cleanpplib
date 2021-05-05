@@ -59,10 +59,13 @@ clean: clean-lib clean-obj clean-test
 	@echo "Done."
 
 clean-lib:
-	-rm libCleanpp.a $(lib_objects)
+	@echo "Cleaning library..."
+	@-rm -f libCleanpp.a $(lib_objects)
 
 clean-obj:
-	-rm */**.o
+	@echo "Cleaning miscellaneous object files..."
+	@-rm -f */**.o
 	
 clean-test:
-	-rm -r $(testdir)/build
+	@echo "Cleaning $(testdir) build files..."
+	@-rm -rf $(testdir)/build

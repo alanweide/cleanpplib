@@ -1,7 +1,6 @@
 Build/**
 **/.DS_Store
 **/*.exe
-.vscode
 **/*.a
 **/*.o
 **/*.out
