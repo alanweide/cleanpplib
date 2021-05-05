@@ -3,9 +3,9 @@
 
 CMakeFiles/TestLinkedStackInt.dir/TestLinkedStackInt.cpp.o
  ../../include/cleanpp/clean_base.hpp
- ../../include/cleanpp/stack_impls/linked_stack.hpp
- ../../include/cleanpp/stack_impls/stack_impl.hpp
- /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestLinkedStackInt.cpp
+ ../../include/cleanpp/stack_impl/linked_stack.hpp
+ ../../include/cleanpp/stack_impl/stack_impl.hpp
+ /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestLinkedStackInt.cpp
  _deps/googletest-src/googletest/include/gtest/gtest-death-test.h
  _deps/googletest-src/googletest/include/gtest/gtest-matchers.h
  _deps/googletest-src/googletest/include/gtest/gtest-message.h

@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest
+CMAKE_SOURCE_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build
+CMAKE_BINARY_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -167,14 +167,14 @@ CMakeFiles/TestStackBasedListNaturalNumber.dir/all: _deps/googletest-build/googl
 CMakeFiles/TestStackBasedListNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestStackBasedListNaturalNumber.dir/build.make CMakeFiles/TestStackBasedListNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestStackBasedListNaturalNumber.dir/build.make CMakeFiles/TestStackBasedListNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=27,28 "Built target TestStackBasedListNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=27,28 "Built target TestStackBasedListNaturalNumber"
 .PHONY : CMakeFiles/TestStackBasedListNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestStackBasedListNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestStackBasedListNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestStackBasedListNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -195,14 +195,14 @@ CMakeFiles/TestFlexSetNaturalNumber.dir/all: _deps/googletest-build/googletest/C
 CMakeFiles/TestFlexSetNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexSetNaturalNumber.dir/build.make CMakeFiles/TestFlexSetNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexSetNaturalNumber.dir/build.make CMakeFiles/TestFlexSetNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=15,16 "Built target TestFlexSetNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=15,16 "Built target TestFlexSetNaturalNumber"
 .PHONY : CMakeFiles/TestFlexSetNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexSetNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexSetNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexSetNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -223,14 +223,14 @@ CMakeFiles/TestArrayStackNaturalNumber.dir/all: _deps/googletest-build/googletes
 CMakeFiles/TestArrayStackNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestArrayStackNaturalNumber.dir/build.make CMakeFiles/TestArrayStackNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestArrayStackNaturalNumber.dir/build.make CMakeFiles/TestArrayStackNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=3,4 "Built target TestArrayStackNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=3,4 "Built target TestArrayStackNaturalNumber"
 .PHONY : CMakeFiles/TestArrayStackNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestArrayStackNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestArrayStackNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestArrayStackNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -251,14 +251,14 @@ CMakeFiles/TestArrayQueueNaturalNumber.dir/all: _deps/googletest-build/googletes
 CMakeFiles/TestArrayQueueNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestArrayQueueNaturalNumber.dir/build.make CMakeFiles/TestArrayQueueNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestArrayQueueNaturalNumber.dir/build.make CMakeFiles/TestArrayQueueNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=1,2 "Built target TestArrayQueueNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=1,2 "Built target TestArrayQueueNaturalNumber"
 .PHONY : CMakeFiles/TestArrayQueueNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestArrayQueueNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestArrayQueueNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestArrayQueueNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -279,14 +279,14 @@ CMakeFiles/TestFlexListNaturalNumber.dir/all: _deps/googletest-build/googletest/
 CMakeFiles/TestFlexListNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexListNaturalNumber.dir/build.make CMakeFiles/TestFlexListNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexListNaturalNumber.dir/build.make CMakeFiles/TestFlexListNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=9,10 "Built target TestFlexListNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=9,10 "Built target TestFlexListNaturalNumber"
 .PHONY : CMakeFiles/TestFlexListNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexListNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexListNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexListNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -307,14 +307,14 @@ CMakeFiles/TestBoundedNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/g
 CMakeFiles/TestBoundedNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestBoundedNN.dir/build.make CMakeFiles/TestBoundedNN.dir/depend
 	$(MAKE) -f CMakeFiles/TestBoundedNN.dir/build.make CMakeFiles/TestBoundedNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=5,6 "Built target TestBoundedNN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=5,6 "Built target TestBoundedNN"
 .PHONY : CMakeFiles/TestBoundedNN.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestBoundedNN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestBoundedNN.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestBoundedNN.dir/rule
 
 # Convenience name for target.
@@ -335,14 +335,14 @@ CMakeFiles/TestStackNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gte
 CMakeFiles/TestStackNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestStackNN.dir/build.make CMakeFiles/TestStackNN.dir/depend
 	$(MAKE) -f CMakeFiles/TestStackNN.dir/build.make CMakeFiles/TestStackNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=29,30 "Built target TestStackNN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=29,30 "Built target TestStackNN"
 .PHONY : CMakeFiles/TestStackNN.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestStackNN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestStackNN.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestStackNN.dir/rule
 
 # Convenience name for target.
@@ -363,14 +363,14 @@ CMakeFiles/TestFlexStackInt.dir/all: _deps/googletest-build/googletest/CMakeFile
 CMakeFiles/TestFlexStackInt.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexStackInt.dir/build.make CMakeFiles/TestFlexStackInt.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexStackInt.dir/build.make CMakeFiles/TestFlexStackInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=17,18 "Built target TestFlexStackInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=17,18 "Built target TestFlexStackInt"
 .PHONY : CMakeFiles/TestFlexStackInt.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexStackInt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexStackInt.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexStackInt.dir/rule
 
 # Convenience name for target.
@@ -391,14 +391,14 @@ CMakeFiles/TestFlexInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles
 CMakeFiles/TestFlexInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexInteger.dir/build.make CMakeFiles/TestFlexInteger.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexInteger.dir/build.make CMakeFiles/TestFlexInteger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=7,8 "Built target TestFlexInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=7,8 "Built target TestFlexInteger"
 .PHONY : CMakeFiles/TestFlexInteger.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexInteger.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexInteger.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexInteger.dir/rule
 
 # Convenience name for target.
@@ -419,14 +419,14 @@ CMakeFiles/TestFlexNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtes
 CMakeFiles/TestFlexNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexNN.dir/build.make CMakeFiles/TestFlexNN.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexNN.dir/build.make CMakeFiles/TestFlexNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=11,12 "Built target TestFlexNN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=11,12 "Built target TestFlexNN"
 .PHONY : CMakeFiles/TestFlexNN.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexNN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexNN.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexNN.dir/rule
 
 # Convenience name for target.
@@ -447,14 +447,14 @@ CMakeFiles/TestLinkedStackNaturalNumber.dir/all: _deps/googletest-build/googlete
 CMakeFiles/TestLinkedStackNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedStackNaturalNumber.dir/build.make CMakeFiles/TestLinkedStackNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedStackNaturalNumber.dir/build.make CMakeFiles/TestLinkedStackNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=23,24 "Built target TestLinkedStackNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=23,24 "Built target TestLinkedStackNaturalNumber"
 .PHONY : CMakeFiles/TestLinkedStackNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestLinkedStackNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestLinkedStackNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestLinkedStackNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -475,14 +475,14 @@ CMakeFiles/TestFlexQueueNaturalNumber.dir/all: _deps/googletest-build/googletest
 CMakeFiles/TestFlexQueueNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexQueueNaturalNumber.dir/build.make CMakeFiles/TestFlexQueueNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexQueueNaturalNumber.dir/build.make CMakeFiles/TestFlexQueueNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=13,14 "Built target TestFlexQueueNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=13,14 "Built target TestFlexQueueNaturalNumber"
 .PHONY : CMakeFiles/TestFlexQueueNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestFlexQueueNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexQueueNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestFlexQueueNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -503,14 +503,14 @@ CMakeFiles/TestLinkedQueueNaturalNumber.dir/all: _deps/googletest-build/googlete
 CMakeFiles/TestLinkedQueueNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedQueueNaturalNumber.dir/build.make CMakeFiles/TestLinkedQueueNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedQueueNaturalNumber.dir/build.make CMakeFiles/TestLinkedQueueNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=19,20 "Built target TestLinkedQueueNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=19,20 "Built target TestLinkedQueueNaturalNumber"
 .PHONY : CMakeFiles/TestLinkedQueueNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestLinkedQueueNaturalNumber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestLinkedQueueNaturalNumber.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestLinkedQueueNaturalNumber.dir/rule
 
 # Convenience name for target.
@@ -531,14 +531,14 @@ CMakeFiles/TestVectorInteger.dir/all: _deps/googletest-build/googletest/CMakeFil
 CMakeFiles/TestVectorInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestVectorInteger.dir/build.make CMakeFiles/TestVectorInteger.dir/depend
 	$(MAKE) -f CMakeFiles/TestVectorInteger.dir/build.make CMakeFiles/TestVectorInteger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=31,32 "Built target TestVectorInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=31,32 "Built target TestVectorInteger"
 .PHONY : CMakeFiles/TestVectorInteger.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestVectorInteger.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestVectorInteger.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestVectorInteger.dir/rule
 
 # Convenience name for target.
@@ -559,14 +559,14 @@ CMakeFiles/TestNNInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/g
 CMakeFiles/TestNNInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestNNInteger.dir/build.make CMakeFiles/TestNNInteger.dir/depend
 	$(MAKE) -f CMakeFiles/TestNNInteger.dir/build.make CMakeFiles/TestNNInteger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=25,26 "Built target TestNNInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=25,26 "Built target TestNNInteger"
 .PHONY : CMakeFiles/TestNNInteger.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestNNInteger.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestNNInteger.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestNNInteger.dir/rule
 
 # Convenience name for target.
@@ -587,14 +587,14 @@ CMakeFiles/TestLinkedStackInt.dir/all: _deps/googletest-build/googletest/CMakeFi
 CMakeFiles/TestLinkedStackInt.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedStackInt.dir/build.make CMakeFiles/TestLinkedStackInt.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedStackInt.dir/build.make CMakeFiles/TestLinkedStackInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=21,22 "Built target TestLinkedStackInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=21,22 "Built target TestLinkedStackInt"
 .PHONY : CMakeFiles/TestLinkedStackInt.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TestLinkedStackInt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestLinkedStackInt.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : CMakeFiles/TestLinkedStackInt.dir/rule
 
 # Convenience name for target.
@@ -615,14 +615,14 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletes
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=35,36 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=35,36 "Built target gmock_main"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule
 
 # Convenience name for target.
@@ -642,14 +642,14 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=33,34 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=33,34 "Built target gmock"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
 
 # Convenience name for target.
@@ -669,14 +669,14 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=39,40 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=39,40 "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -696,14 +696,14 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=37,38 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=37,38 "Built target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.

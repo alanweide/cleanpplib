@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gmock_main.cc
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gmock_main.cc
 iostream
 -
 gmock/gmock.h
-/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gmock/gmock.h
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gmock/gmock.h
 gtest/gtest.h
-/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gtest/gtest.h
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googlemock/src/gtest/gtest.h
 tchar.h
 -
 

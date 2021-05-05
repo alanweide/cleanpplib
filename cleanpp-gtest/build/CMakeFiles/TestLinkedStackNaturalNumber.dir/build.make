@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest
+CMAKE_SOURCE_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build
+CMAKE_BINARY_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TestLinkedStackNaturalNumber.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/TestLinkedStackNaturalNumber.dir/flags.make
 
 CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o: CMakeFiles/TestLinkedStackNaturalNumber.dir/flags.make
 CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o: ../TestLinkedStackNaturalNumber.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o -c /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.o -c /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp
 
 CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp > CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp > CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.i
 
 CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp -o CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestLinkedStackNaturalNumber.cpp -o CMakeFiles/TestLinkedStackNaturalNumber.dir/TestLinkedStackNaturalNumber.cpp.s
 
 # Object files for target TestLinkedStackNaturalNumber
 TestLinkedStackNaturalNumber_OBJECTS = \
@@ -82,9 +82,9 @@ TestLinkedStackNaturalNumber: CMakeFiles/TestLinkedStackNaturalNumber.dir/build.
 TestLinkedStackNaturalNumber: lib/libgtest_main.a
 TestLinkedStackNaturalNumber: lib/libgtest.a
 TestLinkedStackNaturalNumber: CMakeFiles/TestLinkedStackNaturalNumber.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable TestLinkedStackNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable TestLinkedStackNaturalNumber"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TestLinkedStackNaturalNumber.dir/link.txt --verbose=$(VERBOSE)
-	/usr/bin/cmake -D TEST_TARGET=TestLinkedStackNaturalNumber -D TEST_EXECUTABLE=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestLinkedStackNaturalNumber -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=TestLinkedStackNaturalNumber_TESTS -D CTEST_FILE=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestLinkedStackNaturalNumber[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -P /usr/share/cmake-3.16/Modules/GoogleTestAddTests.cmake
+	/usr/bin/cmake -D TEST_TARGET=TestLinkedStackNaturalNumber -D TEST_EXECUTABLE=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestLinkedStackNaturalNumber -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=TestLinkedStackNaturalNumber_TESTS -D CTEST_FILE=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestLinkedStackNaturalNumber[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -P /usr/share/cmake-3.16/Modules/GoogleTestAddTests.cmake
 
 # Rule to build all files generated by this target.
 CMakeFiles/TestLinkedStackNaturalNumber.dir/build: TestLinkedStackNaturalNumber
@@ -96,6 +96,6 @@ CMakeFiles/TestLinkedStackNaturalNumber.dir/clean:
 .PHONY : CMakeFiles/TestLinkedStackNaturalNumber.dir/clean
 
 CMakeFiles/TestLinkedStackNaturalNumber.dir/depend:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles/TestLinkedStackNaturalNumber.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles/TestLinkedStackNaturalNumber.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/TestLinkedStackNaturalNumber.dir/depend
 

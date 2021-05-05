@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest
+CMAKE_SOURCE_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build
+CMAKE_BINARY_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TestVectorInteger.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/TestVectorInteger.dir/flags.make
 
 CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o: CMakeFiles/TestVectorInteger.dir/flags.make
 CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o: ../TestVectorInteger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o -c /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.o -c /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp
 
 CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp > CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp > CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.i
 
 CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp -o CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestVectorInteger.cpp -o CMakeFiles/TestVectorInteger.dir/TestVectorInteger.cpp.s
 
 # Object files for target TestVectorInteger
 TestVectorInteger_OBJECTS = \
@@ -82,9 +82,9 @@ TestVectorInteger: CMakeFiles/TestVectorInteger.dir/build.make
 TestVectorInteger: lib/libgtest_main.a
 TestVectorInteger: lib/libgtest.a
 TestVectorInteger: CMakeFiles/TestVectorInteger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable TestVectorInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable TestVectorInteger"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TestVectorInteger.dir/link.txt --verbose=$(VERBOSE)
-	/usr/bin/cmake -D TEST_TARGET=TestVectorInteger -D TEST_EXECUTABLE=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestVectorInteger -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=TestVectorInteger_TESTS -D CTEST_FILE=/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/TestVectorInteger[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -P /usr/share/cmake-3.16/Modules/GoogleTestAddTests.cmake
+	/usr/bin/cmake -D TEST_TARGET=TestVectorInteger -D TEST_EXECUTABLE=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestVectorInteger -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=TestVectorInteger_TESTS -D CTEST_FILE=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestVectorInteger[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -P /usr/share/cmake-3.16/Modules/GoogleTestAddTests.cmake
 
 # Rule to build all files generated by this target.
 CMakeFiles/TestVectorInteger.dir/build: TestVectorInteger
@@ -96,6 +96,6 @@ CMakeFiles/TestVectorInteger.dir/clean:
 .PHONY : CMakeFiles/TestVectorInteger.dir/clean
 
 CMakeFiles/TestVectorInteger.dir/depend:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles/TestVectorInteger.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles/TestVectorInteger.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/TestVectorInteger.dir/depend
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest
+CMAKE_SOURCE_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build
+CMAKE_BINARY_DIR = /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-build/CMakeFiles/progress.marks
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-build/CMakeFiles/progress.marks
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/clean
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,17 +154,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(MAKE) -f CMakeFiles/Makefile2 _deps/googletest-build/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -191,6 +191,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

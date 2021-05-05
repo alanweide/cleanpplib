@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/../include/cleanpp -isystem /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest/include -isystem /mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest 
+CXX_INCLUDES = -I/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/../include/cleanpp -isystem /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest/include -isystem /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest 
 

@@ -14,7 +14,7 @@ memory
 assert.h
 -
 
-../../include/cleanpp/stack_impls/linked_stack.hpp
+../../include/cleanpp/stack_impl/linked_stack.hpp
 type_traits
 -
 stdio.h
@@ -22,9 +22,9 @@ stdio.h
 sstream
 -
 stack_impl.hpp
-../../include/cleanpp/stack_impls/stack_impl.hpp
+../../include/cleanpp/stack_impl/stack_impl.hpp
 
-../../include/cleanpp/stack_impls/stack_impl.hpp
+../../include/cleanpp/stack_impl/stack_impl.hpp
 stdio.h
 -
 iostream
@@ -32,9 +32,9 @@ iostream
 memory
 -
 clean_base.hpp
-../../include/cleanpp/stack_impls/clean_base.hpp
+-
 
-/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/TestLinkedStackInt.cpp
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestLinkedStackInt.cpp
 gtest/gtest.h
 -
 stdio.h
@@ -43,7 +43,7 @@ string
 -
 sstream
 -
-stack_impls/linked_stack.hpp
+stack_impl/linked_stack.hpp
 -
 
 _deps/googletest-src/googletest/include/gtest/gtest-death-test.h

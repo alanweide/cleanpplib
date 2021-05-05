@@ -6,5 +6,5 @@ CXX_FLAGS =   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREA
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest/include -I/mnt/c/Users/rache/OneDrive/Desktop/forked_cleanpplib/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest 
+CXX_INCLUDES = -I/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest/include -I/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/_deps/googletest-src/googletest 
 
