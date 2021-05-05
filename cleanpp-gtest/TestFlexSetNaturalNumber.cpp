@@ -234,10 +234,7 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyTrueTest) {
     EXPECT_TRUE(contains);
 }
 
-/**
- Weird error when running this test. segfault at closing curly brace (during destructor?) most of the time but sometimes in EXPECT_TRUE(contains)???
- */
-TEST(FlexSetNaturalNumber, BigSetContainsTest) {
+TEST(FlexSetNaturalNumber, BigSetContains0Test) {
     set_type s;
     int expected_size = 12;
     nn_type a;
@@ -247,14 +244,32 @@ TEST(FlexSetNaturalNumber, BigSetContainsTest) {
         nn_type n{bounded_nn{}, i};
         s.add(std::move(n));
     }
-    std::cout << "Past loop." << std::endl;
     
     bool contains;
     contains = s.contains(std::move(a));
     
     int actual_size = s.getSize();
-    EXPECT_EQ(expected_size, actual_size) << "Size is wrong.";
-    EXPECT_TRUE(contains) << "Does not contain whatever it is supposed to.";
+    EXPECT_EQ(expected_size, actual_size);
+    EXPECT_TRUE(contains);
+}
+
+TEST(FlexSetNaturalNumber, BigSetContains6Test) {
+    set_type s;
+    int expected_size = 12;
+    nn_type a{bounded_nn{}, 6};
+    
+    int numElem = 12;
+    for (long i = 0; i < numElem; i++) {
+        nn_type n{bounded_nn{}, i};
+        s.add(std::move(n));
+    }
+    
+    bool contains;
+    contains = s.contains(std::move(a));
+    
+    int actual_size = s.getSize();
+    EXPECT_EQ(expected_size, actual_size);
+    EXPECT_TRUE(contains);
 }
 
 TEST(FlexSetNaturalNumber, ContainsNonEmptyFalseTest) {
