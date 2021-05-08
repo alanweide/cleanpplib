@@ -2,9 +2,10 @@
 
 #include <string>
 #include <sstream>
-#include <clean_nn/natural_number.hpp>
-#include <clean_map/map.hpp>
-#include <map_impls/map_on_set.hpp>
+#include <natural_number.hpp>
+#include <map.hpp>
+#include <map_impl/map_impl.hpp>
+#include <map_impl/map_on_set.hpp>
 
 using namespace cleanpp;
 
@@ -200,6 +201,7 @@ TEST(FlexMapNaturalNumber, RemoveToNonEmptySecondAddTest){
 
     std::string m_str = mapToString(m);
 
+    
     EXPECT_TRUE(m_str == expected);
     EXPECT_TRUE(key1 == expected_key1);
     EXPECT_TRUE(val1 == expected_val1);

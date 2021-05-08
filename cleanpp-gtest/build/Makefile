@@ -246,6 +246,19 @@ TestBoundedNN/fast:
 .PHONY : TestBoundedNN/fast
 
 #=============================================================================
+# Target rules for targets named TestFlexMapNaturalNumber
+
+# Build rule for target.
+TestFlexMapNaturalNumber: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TestFlexMapNaturalNumber
+.PHONY : TestFlexMapNaturalNumber
+
+# fast build rule for target.
+TestFlexMapNaturalNumber/fast:
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/build
+.PHONY : TestFlexMapNaturalNumber/fast
+
+#=============================================================================
 # Target rules for targets named TestStackNN
 
 # Build rule for target.
@@ -562,6 +575,33 @@ TestFlexListNaturalNumber.cpp.s:
 	$(MAKE) -f CMakeFiles/TestFlexListNaturalNumber.dir/build.make CMakeFiles/TestFlexListNaturalNumber.dir/TestFlexListNaturalNumber.cpp.s
 .PHONY : TestFlexListNaturalNumber.cpp.s
 
+TestFlexMapNaturalNumber.o: TestFlexMapNaturalNumber.cpp.o
+
+.PHONY : TestFlexMapNaturalNumber.o
+
+# target to build an object file
+TestFlexMapNaturalNumber.cpp.o:
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/TestFlexMapNaturalNumber.cpp.o
+.PHONY : TestFlexMapNaturalNumber.cpp.o
+
+TestFlexMapNaturalNumber.i: TestFlexMapNaturalNumber.cpp.i
+
+.PHONY : TestFlexMapNaturalNumber.i
+
+# target to preprocess a source file
+TestFlexMapNaturalNumber.cpp.i:
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/TestFlexMapNaturalNumber.cpp.i
+.PHONY : TestFlexMapNaturalNumber.cpp.i
+
+TestFlexMapNaturalNumber.s: TestFlexMapNaturalNumber.cpp.s
+
+.PHONY : TestFlexMapNaturalNumber.s
+
+# target to generate assembly for a file
+TestFlexMapNaturalNumber.cpp.s:
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/TestFlexMapNaturalNumber.cpp.s
+.PHONY : TestFlexMapNaturalNumber.cpp.s
+
 TestFlexNN.o: TestFlexNN.cpp.o
 
 .PHONY : TestFlexNN.o
@@ -876,6 +916,7 @@ help:
 	@echo "... TestArrayQueueNaturalNumber"
 	@echo "... TestFlexListNaturalNumber"
 	@echo "... TestBoundedNN"
+	@echo "... TestFlexMapNaturalNumber"
 	@echo "... TestStackNN"
 	@echo "... TestFlexStackInt"
 	@echo "... TestFlexInteger"
@@ -907,6 +948,9 @@ help:
 	@echo "... TestFlexListNaturalNumber.o"
 	@echo "... TestFlexListNaturalNumber.i"
 	@echo "... TestFlexListNaturalNumber.s"
+	@echo "... TestFlexMapNaturalNumber.o"
+	@echo "... TestFlexMapNaturalNumber.i"
+	@echo "... TestFlexMapNaturalNumber.s"
 	@echo "... TestFlexNN.o"
 	@echo "... TestFlexNN.i"
 	@echo "... TestFlexNN.s"

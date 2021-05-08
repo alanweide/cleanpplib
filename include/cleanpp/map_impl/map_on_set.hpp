@@ -71,6 +71,7 @@ public:
             }
 
         }
+        this->rep = std::move(temp);
         return result;
     }
 

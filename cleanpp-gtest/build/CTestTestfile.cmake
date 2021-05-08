@@ -9,6 +9,7 @@ include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/bu
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestBoundedNN[1]_include.cmake")
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexInteger[1]_include.cmake")
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexListNaturalNumber[1]_include.cmake")
+include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexMapNaturalNumber[1]_include.cmake")
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexNN[1]_include.cmake")
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexQueueNaturalNumber[1]_include.cmake")
 include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexSetNaturalNumber[1]_include.cmake")

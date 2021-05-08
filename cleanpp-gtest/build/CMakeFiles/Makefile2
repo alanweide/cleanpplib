@@ -59,6 +59,7 @@ all: CMakeFiles/TestArrayStackNaturalNumber.dir/all
 all: CMakeFiles/TestArrayQueueNaturalNumber.dir/all
 all: CMakeFiles/TestFlexListNaturalNumber.dir/all
 all: CMakeFiles/TestBoundedNN.dir/all
+all: CMakeFiles/TestFlexMapNaturalNumber.dir/all
 all: CMakeFiles/TestStackNN.dir/all
 all: CMakeFiles/TestFlexStackInt.dir/all
 all: CMakeFiles/TestFlexInteger.dir/all
@@ -85,6 +86,7 @@ clean: CMakeFiles/TestArrayStackNaturalNumber.dir/clean
 clean: CMakeFiles/TestArrayQueueNaturalNumber.dir/clean
 clean: CMakeFiles/TestFlexListNaturalNumber.dir/clean
 clean: CMakeFiles/TestBoundedNN.dir/clean
+clean: CMakeFiles/TestFlexMapNaturalNumber.dir/clean
 clean: CMakeFiles/TestStackNN.dir/clean
 clean: CMakeFiles/TestFlexStackInt.dir/clean
 clean: CMakeFiles/TestFlexInteger.dir/clean
@@ -167,7 +169,7 @@ CMakeFiles/TestStackBasedListNaturalNumber.dir/all: _deps/googletest-build/googl
 CMakeFiles/TestStackBasedListNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestStackBasedListNaturalNumber.dir/build.make CMakeFiles/TestStackBasedListNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestStackBasedListNaturalNumber.dir/build.make CMakeFiles/TestStackBasedListNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=27,28 "Built target TestStackBasedListNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=29,30 "Built target TestStackBasedListNaturalNumber"
 .PHONY : CMakeFiles/TestStackBasedListNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
@@ -195,7 +197,7 @@ CMakeFiles/TestFlexSetNaturalNumber.dir/all: _deps/googletest-build/googletest/C
 CMakeFiles/TestFlexSetNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexSetNaturalNumber.dir/build.make CMakeFiles/TestFlexSetNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexSetNaturalNumber.dir/build.make CMakeFiles/TestFlexSetNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=15,16 "Built target TestFlexSetNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=17,18 "Built target TestFlexSetNaturalNumber"
 .PHONY : CMakeFiles/TestFlexSetNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
@@ -328,6 +330,34 @@ CMakeFiles/TestBoundedNN.dir/clean:
 .PHONY : CMakeFiles/TestBoundedNN.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/TestFlexMapNaturalNumber.dir
+
+# All Build rule for target.
+CMakeFiles/TestFlexMapNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
+CMakeFiles/TestFlexMapNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/depend
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=11,12 "Built target TestFlexMapNaturalNumber"
+.PHONY : CMakeFiles/TestFlexMapNaturalNumber.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/TestFlexMapNaturalNumber.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TestFlexMapNaturalNumber.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles 0
+.PHONY : CMakeFiles/TestFlexMapNaturalNumber.dir/rule
+
+# Convenience name for target.
+TestFlexMapNaturalNumber: CMakeFiles/TestFlexMapNaturalNumber.dir/rule
+
+.PHONY : TestFlexMapNaturalNumber
+
+# clean rule for target.
+CMakeFiles/TestFlexMapNaturalNumber.dir/clean:
+	$(MAKE) -f CMakeFiles/TestFlexMapNaturalNumber.dir/build.make CMakeFiles/TestFlexMapNaturalNumber.dir/clean
+.PHONY : CMakeFiles/TestFlexMapNaturalNumber.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/TestStackNN.dir
 
 # All Build rule for target.
@@ -335,7 +365,7 @@ CMakeFiles/TestStackNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gte
 CMakeFiles/TestStackNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestStackNN.dir/build.make CMakeFiles/TestStackNN.dir/depend
 	$(MAKE) -f CMakeFiles/TestStackNN.dir/build.make CMakeFiles/TestStackNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=29,30 "Built target TestStackNN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=31,32 "Built target TestStackNN"
 .PHONY : CMakeFiles/TestStackNN.dir/all
 
 # Build rule for subdir invocation for target.
@@ -363,7 +393,7 @@ CMakeFiles/TestFlexStackInt.dir/all: _deps/googletest-build/googletest/CMakeFile
 CMakeFiles/TestFlexStackInt.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexStackInt.dir/build.make CMakeFiles/TestFlexStackInt.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexStackInt.dir/build.make CMakeFiles/TestFlexStackInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=17,18 "Built target TestFlexStackInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=19,20 "Built target TestFlexStackInt"
 .PHONY : CMakeFiles/TestFlexStackInt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -419,7 +449,7 @@ CMakeFiles/TestFlexNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtes
 CMakeFiles/TestFlexNN.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexNN.dir/build.make CMakeFiles/TestFlexNN.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexNN.dir/build.make CMakeFiles/TestFlexNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=11,12 "Built target TestFlexNN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=13,14 "Built target TestFlexNN"
 .PHONY : CMakeFiles/TestFlexNN.dir/all
 
 # Build rule for subdir invocation for target.
@@ -447,7 +477,7 @@ CMakeFiles/TestLinkedStackNaturalNumber.dir/all: _deps/googletest-build/googlete
 CMakeFiles/TestLinkedStackNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedStackNaturalNumber.dir/build.make CMakeFiles/TestLinkedStackNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedStackNaturalNumber.dir/build.make CMakeFiles/TestLinkedStackNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=23,24 "Built target TestLinkedStackNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=25,26 "Built target TestLinkedStackNaturalNumber"
 .PHONY : CMakeFiles/TestLinkedStackNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
@@ -475,7 +505,7 @@ CMakeFiles/TestFlexQueueNaturalNumber.dir/all: _deps/googletest-build/googletest
 CMakeFiles/TestFlexQueueNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestFlexQueueNaturalNumber.dir/build.make CMakeFiles/TestFlexQueueNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestFlexQueueNaturalNumber.dir/build.make CMakeFiles/TestFlexQueueNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=13,14 "Built target TestFlexQueueNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=15,16 "Built target TestFlexQueueNaturalNumber"
 .PHONY : CMakeFiles/TestFlexQueueNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
@@ -503,7 +533,7 @@ CMakeFiles/TestLinkedQueueNaturalNumber.dir/all: _deps/googletest-build/googlete
 CMakeFiles/TestLinkedQueueNaturalNumber.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedQueueNaturalNumber.dir/build.make CMakeFiles/TestLinkedQueueNaturalNumber.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedQueueNaturalNumber.dir/build.make CMakeFiles/TestLinkedQueueNaturalNumber.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=19,20 "Built target TestLinkedQueueNaturalNumber"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=21,22 "Built target TestLinkedQueueNaturalNumber"
 .PHONY : CMakeFiles/TestLinkedQueueNaturalNumber.dir/all
 
 # Build rule for subdir invocation for target.
@@ -531,7 +561,7 @@ CMakeFiles/TestVectorInteger.dir/all: _deps/googletest-build/googletest/CMakeFil
 CMakeFiles/TestVectorInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestVectorInteger.dir/build.make CMakeFiles/TestVectorInteger.dir/depend
 	$(MAKE) -f CMakeFiles/TestVectorInteger.dir/build.make CMakeFiles/TestVectorInteger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=31,32 "Built target TestVectorInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=33,34 "Built target TestVectorInteger"
 .PHONY : CMakeFiles/TestVectorInteger.dir/all
 
 # Build rule for subdir invocation for target.
@@ -559,7 +589,7 @@ CMakeFiles/TestNNInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/g
 CMakeFiles/TestNNInteger.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestNNInteger.dir/build.make CMakeFiles/TestNNInteger.dir/depend
 	$(MAKE) -f CMakeFiles/TestNNInteger.dir/build.make CMakeFiles/TestNNInteger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=25,26 "Built target TestNNInteger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=27,28 "Built target TestNNInteger"
 .PHONY : CMakeFiles/TestNNInteger.dir/all
 
 # Build rule for subdir invocation for target.
@@ -587,7 +617,7 @@ CMakeFiles/TestLinkedStackInt.dir/all: _deps/googletest-build/googletest/CMakeFi
 CMakeFiles/TestLinkedStackInt.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f CMakeFiles/TestLinkedStackInt.dir/build.make CMakeFiles/TestLinkedStackInt.dir/depend
 	$(MAKE) -f CMakeFiles/TestLinkedStackInt.dir/build.make CMakeFiles/TestLinkedStackInt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=21,22 "Built target TestLinkedStackInt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=23,24 "Built target TestLinkedStackInt"
 .PHONY : CMakeFiles/TestLinkedStackInt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -615,7 +645,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletes
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=35,36 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=37,38 "Built target gmock_main"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -642,7 +672,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=33,34 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=35,36 "Built target gmock"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -669,7 +699,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=39,40 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=41,42 "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -696,7 +726,7 @@ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=37,38 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/CMakeFiles --progress-num=39,40 "Built target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
