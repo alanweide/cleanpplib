@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/TestFlexListNaturalNumber.dir/TestFlexListNaturalNumber.cpp.o  -o TestFlexListNaturalNumber   -L/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/..  -Wl,-rpath,/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/.. lib/libgtest_main.a -lCleanpp lib/libgtest.a -lpthread 

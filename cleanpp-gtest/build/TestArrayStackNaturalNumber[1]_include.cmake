@@ -1,5 +1,0 @@
-if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestArrayStackNaturalNumber[1]_tests.cmake")
-  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestArrayStackNaturalNumber[1]_tests.cmake")
-else()
-  add_test(TestArrayStackNaturalNumber_NOT_BUILT TestArrayStackNaturalNumber_NOT_BUILT)
-endif()
