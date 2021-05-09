@@ -1,0 +1,5 @@
+if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexSetNaturalNumber[1]_tests.cmake")
+  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexSetNaturalNumber[1]_tests.cmake")
+else()
+  add_test(TestFlexSetNaturalNumber_NOT_BUILT TestFlexSetNaturalNumber_NOT_BUILT)
+endif()

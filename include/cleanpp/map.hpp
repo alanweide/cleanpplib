@@ -7,6 +7,7 @@
 #include <memory>
 
 #include <clean_base.hpp>
+#include <map_impl/map_on_set.hpp>
 #include <set_impl/set_impl.hpp>
 #include <set_impl/set_on_queue.hpp>
 

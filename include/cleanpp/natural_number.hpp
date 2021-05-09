@@ -188,20 +188,20 @@ public:
 	/**
 	 ensures add = #x + y
 	 */
-	friend natural_number add(natural_number&& x, natural_number& y) {
-		natural_number sum(std::forward<natural_number>(x));
-
-		std::unique_ptr<natural_number_impl> sum_casted(static_cast<natural_number_impl*>(sum.rep_.release()));
-		std::unique_ptr<natural_number_impl> y_casted(static_cast<natural_number_impl*>(y.rep_.release()));
-
-		sum_casted = add(std::move(sum_casted), y_casted);
-
-		y.rep_ = std::move(y_casted);
-		sum.rep_ = std::move(sum_casted);
-
-		return sum;
+	friend std::tuple<natural_number, natural_number, natural_number> add(natural_number&& x, natural_number&& y) {
+        natural_number sum(stack_nn{}, 0);
+        
+        std::unique_ptr<natural_number_impl> sum_casted(static_cast<natural_number_impl*>(sum.rep_.release()));
+		std::unique_ptr<natural_number_impl> x_casted(static_cast<natural_number_impl*>(x.rep_.release()));
+        std::unique_ptr<natural_number_impl> y_casted(static_cast<natural_number_impl*>(y.rep_.release()));
+		std::tie(sum_casted, x_casted, y_casted) = add(std::move(x_casted), std::move(y_casted));
+		x.rep_ = std::move(x_casted);
+        y.rep_ = std::move(y_casted);
+        sum.rep_ = std::move(sum_casted);
+        
+        return std::make_tuple(std::move(sum), std::move(x), std::move(y));
 	}
-
+	
 	/**
 	 requires x >= y
 	 ensures  subtract = #x - y

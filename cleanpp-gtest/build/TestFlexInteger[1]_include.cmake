@@ -1,0 +1,5 @@
+if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexInteger[1]_tests.cmake")
+  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestFlexInteger[1]_tests.cmake")
+else()
+  add_test(TestFlexInteger_NOT_BUILT TestFlexInteger_NOT_BUILT)
+endif()

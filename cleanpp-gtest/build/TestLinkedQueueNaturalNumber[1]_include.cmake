@@ -1,0 +1,5 @@
+if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestLinkedQueueNaturalNumber[1]_tests.cmake")
+  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestLinkedQueueNaturalNumber[1]_tests.cmake")
+else()
+  add_test(TestLinkedQueueNaturalNumber_NOT_BUILT TestLinkedQueueNaturalNumber_NOT_BUILT)
+endif()

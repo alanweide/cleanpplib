@@ -1,0 +1,5 @@
+if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestArrayQueueNaturalNumber[1]_tests.cmake")
+  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestArrayQueueNaturalNumber[1]_tests.cmake")
+else()
+  add_test(TestArrayQueueNaturalNumber_NOT_BUILT TestArrayQueueNaturalNumber_NOT_BUILT)
+endif()
