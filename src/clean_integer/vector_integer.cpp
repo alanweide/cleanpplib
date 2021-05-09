@@ -9,16 +9,17 @@
 #include <assert.h>
 #include <integer_impl/vector_integer.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 vector_integer::vector_integer(int n) {
-    set_from_long(n);
+	set_from_long(n);
 }
 
-vector_integer::vector_integer(vector_integer &&other): rep_(std::move(other.rep_)), sign_(other.sign_) {
+vector_integer::vector_integer(vector_integer&& other) : rep_(std::move(other.rep_)), sign_(other.sign_) {
 	other.clear();
 }
 
-vector_integer& vector_integer::operator=(vector_integer &&other) {
+vector_integer& vector_integer::operator=(vector_integer&& other) {
 	if (&other == this) {
 		return *this;
 	}
@@ -37,26 +38,26 @@ void vector_integer::clear() {
 int vector_integer::divide_by_radix() {
 	int d;
 	if (!rep_.empty()) {
-        d = rep_.back();
-        rep_.pop_back();
-    } else {
-        d = 0;
-    }
-    if (rep_.empty()) {
-        sign_ = ZERO;
-    }
-    assert (0 <= d && d < RADIX);
+		d = rep_.back();
+		rep_.pop_back();
+	} else {
+		d = 0;
+	}
+	if (rep_.empty()) {
+		sign_ = ZERO;
+	}
+	assert(0 <= d && d < RADIX);
 	return d;
 }
 
 void vector_integer::multiply_by_radix(int d) {
-	assert (0 <= d && d < RADIX);
-    if (0 < d && rep_.empty()) {
-        sign_ = POSITIVE;
-    }
-    if (!rep_.empty() || d != 0) {
-        rep_.push_back(d);
-    }
+	assert(0 <= d && d < RADIX);
+	if (0 < d && rep_.empty()) {
+		sign_ = POSITIVE;
+	}
+	if (!rep_.empty() || d != 0) {
+		rep_.push_back(d);
+	}
 }
 
 integer_sign vector_integer::sign() const {
@@ -72,7 +73,7 @@ void vector_integer::negate() {
 }
 
 std::unique_ptr<integer_impl> vector_integer::new_instance() const {
-    return std::make_unique<vector_integer>();
+	return std::make_unique<vector_integer>();
 }
 
 }

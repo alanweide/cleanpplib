@@ -13,7 +13,7 @@ using namespace cleanpp;
 typedef stack_nn nn_type;
 typedef array_queue<nn_type> queue_nn_type;
 
-static std::string queueNNToString(std::unique_ptr<queue_impl<nn_type>> &s) {
+static std::string queueNNToString(std::unique_ptr<queue_impl<nn_type>>& s) {
 	std::stringstream s_stm;
 	s_stm << *s;
 	std::string s_str = s_stm.str();
@@ -30,9 +30,9 @@ TEST(ArrayQueueNaturalNumber, InitializerDefTest) {
 TEST(ArrayQueueNaturalNumber, ClearEmptyTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
-	
+
 	q->clear();
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == empty_stack);
 }
@@ -40,12 +40,12 @@ TEST(ArrayQueueNaturalNumber, ClearEmptyTest) {
 TEST(ArrayQueueNaturalNumber, ClearSingleElementTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
-	
+
 	nn_type a(5);
 	q->enqueue(std::move(a));
-	
+
 	q->clear();
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == empty_stack);
 }
@@ -53,15 +53,15 @@ TEST(ArrayQueueNaturalNumber, ClearSingleElementTest) {
 TEST(ArrayQueueNaturalNumber, ClearManyElementsTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string empty_stack = "<>";
-	
+
 	int numElem = 12;
 	for (int i = 0; i < numElem; i++) {
 		nn_type n(i);
 		q->enqueue(std::move(n));
 	}
-	
+
 	q->clear();
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == empty_stack);
 }
@@ -81,21 +81,21 @@ TEST(ArrayQueueNaturalNumber, IsEmpty_NonEmptyTest) {
 TEST(ArrayQueueNaturalNumber, IsEmpty_Empty_EnqDeqTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	nn_type a(1), b(2);
-	
+
 	q->enqueue(std::move(a));
 	b = q->dequeue();
-	
+
 	EXPECT_TRUE(q->is_empty());
 }
 
 TEST(ArrayQueueNaturalNumber, EnqueueToEmptyTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<1>";
-	
+
 	nn_type a(1);
-	
+
 	q->enqueue(std::move(a));
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == expected);
 }
@@ -103,12 +103,12 @@ TEST(ArrayQueueNaturalNumber, EnqueueToEmptyTest) {
 TEST(ArrayQueueNaturalNumber, EnqueueToNonEmptyTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<1, 2>";
-	
+
 	nn_type a(1), b(2);
 	q->enqueue(std::move(a));
-	
+
 	q->enqueue(std::move(b));
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == expected);
 }
@@ -117,12 +117,12 @@ TEST(ArrayQueueNaturalNumber, DequeueEmptyToEmptyTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<>";
 	nn_type expected_a(1);
-	
+
 	nn_type a(1);
 	q->enqueue(std::move(a));
-	
+
 	a = q->dequeue();
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == expected);
 	EXPECT_TRUE(a == expected_a);
@@ -132,12 +132,12 @@ TEST(ArrayQueueNaturalNumber, DequeueNonEmptyToEmptyTest) {
 	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
 	std::string expected = "<>";
 	nn_type expected_a(0), expected_b(1);
-	
+
 	nn_type a(1), b(2);
 	q->enqueue(std::move(a));
-	
+
 	b = q->dequeue();
-	
+
 	std::string q_str = queueNNToString(q);
 	EXPECT_TRUE(q_str == expected);
 	EXPECT_TRUE(a == expected_a);
@@ -145,57 +145,57 @@ TEST(ArrayQueueNaturalNumber, DequeueNonEmptyToEmptyTest) {
 }
 
 TEST(ArrayQueueNaturalNumber, DequeueNonEmptyToEmptyAfterNonEmptyTest) {
-    std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
-    std::string expected = "<>";
-    nn_type expected_a(0), expected_b(1);
-    
-    nn_type a(1), b(2);
-    q->enqueue(std::move(a));
-    a = q->dequeue();
-    q->enqueue(std::move(a));
-    
-    b = q->dequeue();
-    
-    std::string q_str = queueNNToString(q);
-    EXPECT_TRUE(q_str == expected);
-    EXPECT_TRUE(a == expected_a);
-    EXPECT_TRUE(b == expected_b);
+	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::string expected = "<>";
+	nn_type expected_a(0), expected_b(1);
+
+	nn_type a(1), b(2);
+	q->enqueue(std::move(a));
+	a = q->dequeue();
+	q->enqueue(std::move(a));
+
+	b = q->dequeue();
+
+	std::string q_str = queueNNToString(q);
+	EXPECT_TRUE(q_str == expected);
+	EXPECT_TRUE(a == expected_a);
+	EXPECT_TRUE(b == expected_b);
 }
 
 TEST(ArrayQueueNaturalNumber, DequeueFromLongTest) {
-    std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
-    std::string expected_queue = "<1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11>";
-    nn_type a, a_expected;
-    
-    int numElem = 12;
-    for (int i = 0; i < numElem; i++) {
-        nn_type n(i);
-        q->enqueue(std::move(n));
-    }
-    
-    a = q->dequeue();
-    
-    std::string q_str = queueNNToString(q);
-    EXPECT_TRUE(q_str == expected_queue);
-    EXPECT_TRUE(a == a_expected);
+	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::string expected_queue = "<1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11>";
+	nn_type a, a_expected;
+
+	int numElem = 12;
+	for (int i = 0; i < numElem; i++) {
+		nn_type n(i);
+		q->enqueue(std::move(n));
+	}
+
+	a = q->dequeue();
+
+	std::string q_str = queueNNToString(q);
+	EXPECT_TRUE(q_str == expected_queue);
+	EXPECT_TRUE(a == a_expected);
 }
 
 TEST(ArrayQueueNaturalNumber, DequeueAllFromLongTest) {
-    std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
-    std::string expected_queue = "<>";
-    nn_type a, a_expected;
-    
-    int numElem = 12;
-    for (int i = 0; i < numElem; i++) {
-        nn_type n(i);
-        q->enqueue(std::move(n));
-    }
-    
+	std::unique_ptr<queue_impl<nn_type>> q = std::make_unique<queue_nn_type>();
+	std::string expected_queue = "<>";
+	nn_type a, a_expected;
+
+	int numElem = 12;
 	for (int i = 0; i < numElem; i++) {
-    	a = q->dequeue();
+		nn_type n(i);
+		q->enqueue(std::move(n));
 	}
-    
-    std::string q_str = queueNNToString(q);
-    EXPECT_TRUE(q_str == expected_queue);
-    // EXPECT_TRUE(a == a_expected);
+
+	for (int i = 0; i < numElem; i++) {
+		a = q->dequeue();
+	}
+
+	std::string q_str = queueNNToString(q);
+	EXPECT_TRUE(q_str == expected_queue);
+	// EXPECT_TRUE(a == a_expected);
 }

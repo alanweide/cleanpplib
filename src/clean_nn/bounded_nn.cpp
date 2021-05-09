@@ -12,28 +12,29 @@
 #include <nn_impl/bounded_nn.hpp>
 
 
-namespace cleanpp {
-bounded_nn::bounded_nn(long n): n_(n) {};
+namespace cleanpp
+{
+bounded_nn::bounded_nn(long n) : n_(n) { };
 
-bounded_nn::bounded_nn(bounded_nn&& other): n_(std::move(other.n_)) {
+bounded_nn::bounded_nn(bounded_nn&& other) : n_(std::move(other.n_)) {
     other.clear();
 }
 
 bounded_nn::~bounded_nn() {
-	n_ = 0;
+    n_ = 0;
 }
 
 bounded_nn& bounded_nn::operator=(bounded_nn&& other) {
     if (&other == this) {
         return *this;
     }
-    
+
     n_ = other.n_;
     other.clear();
     return *this;
 }
 
-bool bounded_nn::operator==(const bounded_nn &other) {
+bool bounded_nn::operator==(const bounded_nn& other) {
     return this->n_ == other.n_;
 }
 
@@ -50,7 +51,7 @@ void bounded_nn::multiply_by_radix(int d) {
 int bounded_nn::divide_by_radix() {
     int d = n_ % RADIX;
     n_ /= RADIX;
-	return d;
+    return d;
 }
 
 std::unique_ptr<natural_number_kernel_impl> bounded_nn::new_instance() {

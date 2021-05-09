@@ -12,7 +12,7 @@ using namespace cleanpp;
 typedef stack_nn nn_type;
 typedef linked_stack<nn_type> stack_nn_type;
 
-static std::string stackNNToString(std::unique_ptr<stack_impl<nn_type>> &s) {
+static std::string stackNNToString(std::unique_ptr<stack_impl<nn_type>>& s) {
     std::stringstream s_stm;
     s_stm << *s;
     std::string s_str = s_stm.str();
@@ -49,10 +49,10 @@ TEST(LinkedStackNaturalNumber, IsEmpty_Empty_PushPopTest) {
 TEST(LinkedStackNaturalNumber, PushToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<1>";
-    
+
     nn_type a(1);
     s->push(std::move(a));
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
 }
@@ -60,11 +60,11 @@ TEST(LinkedStackNaturalNumber, PushToEmptyTest) {
 TEST(LinkedStackNaturalNumber, PushToNonEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<2, 1>";
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     s->push(std::move(b));
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
 }
@@ -73,11 +73,11 @@ TEST(LinkedStackNaturalNumber, PopEmptyToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_a(0);
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     b = s->pop();
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
     EXPECT_TRUE(a == expected_a);
@@ -87,11 +87,11 @@ TEST(LinkedStackNaturalNumber, PopNonEmptyToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_b(1);
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     b = s->pop();
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
     EXPECT_TRUE(b == expected_b);

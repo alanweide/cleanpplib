@@ -9,7 +9,8 @@
 #include <integer_impl/nn_integer.hpp>
 #include <natural_number.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 nn_integer::nn_integer(int n) {
 	if (n < 0) {
 		sign_ = NEGATIVE;
@@ -22,11 +23,11 @@ nn_integer::nn_integer(int n) {
 	n_.set_from_long(n);
 }
 
-nn_integer::nn_integer(nn_integer &&other): n_(std::move(other.n_)), sign_(other.sign_) {
+nn_integer::nn_integer(nn_integer&& other) : n_(std::move(other.n_)), sign_(other.sign_) {
 	other.clear();
 }
 
-nn_integer& nn_integer::operator=(nn_integer &&other) {
+nn_integer& nn_integer::operator=(nn_integer&& other) {
 	if (&other == this) {
 		return *this;
 	}
@@ -47,12 +48,12 @@ int nn_integer::divide_by_radix() {
 	if (n_.is_zero()) {
 		sign_ = ZERO;
 	}
-	assert (0 <= d && d < RADIX);
+	assert(0 <= d && d < RADIX);
 	return d;
 }
 
 void nn_integer::multiply_by_radix(int d) {
-	assert (0 <= d && d < RADIX);
+	assert(0 <= d && d < RADIX);
 	if (0 < d && n_.is_zero()) {
 		sign_ = POSITIVE;
 	}
@@ -72,7 +73,7 @@ void nn_integer::negate() {
 }
 
 std::unique_ptr<integer_impl> nn_integer::new_instance() const {
-    return std::make_unique<nn_integer>();
+	return std::make_unique<nn_integer>();
 }
 
 }

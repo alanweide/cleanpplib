@@ -10,16 +10,16 @@
 #include <memory>
 #include <stack>
 
-#include "CleanStack.hpp"
-#include "BoundedMovingStack.cpp"
-#include "LinkedStack.cpp"
+#include <stack_impl/stack_impl.hpp>
+#include <stack_impl/array_stack.hpp>
+#include <stack_impl/linked_stack.hpp>
 
-#include "CleanQueue.hpp"
-#include "BoundedQueue.cpp"
-#include "LinkedQueue.cpp"
+#include <queue_impl/queue_impl.hpp>
+#include <queue_impl/array_queue.hpp>
+#include <queue_impl/linked_queue.hpp>
 
-#include "CleanList.hpp"
-#include "ListWithCursor.cpp"
+#include <list_impl/list_impl.hpp>
+#include <list_impl/stack_based_list.hpp>
 
 using namespace std;
 
