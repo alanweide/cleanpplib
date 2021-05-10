@@ -13,7 +13,7 @@ using namespace cleanpp;
 typedef stack_nn nn_type;
 typedef array_stack<nn_type> stack_nn_type;
 
-static std::string stackNNToString(std::unique_ptr<stack_impl<nn_type>> &s) {
+static std::string stackNNToString(std::unique_ptr<stack_impl<nn_type>>& s) {
     std::stringstream s_stm;
     s_stm << *s;
     std::string s_str = s_stm.str();
@@ -50,10 +50,10 @@ TEST(ArrayStackNaturalNumber, IsEmpty_Empty_PushPopTest) {
 TEST(ArrayStackNaturalNumber, PushToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<1>";
-    
+
     nn_type a(1);
     s->push(std::move(a));
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
 }
@@ -61,11 +61,11 @@ TEST(ArrayStackNaturalNumber, PushToEmptyTest) {
 TEST(ArrayStackNaturalNumber, PushToNonEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<2, 1>";
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     s->push(std::move(b));
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
 }
@@ -74,11 +74,11 @@ TEST(ArrayStackNaturalNumber, PopEmptyToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_a(0);
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     b = s->pop();
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
     EXPECT_TRUE(a == expected_a);
@@ -88,11 +88,11 @@ TEST(ArrayStackNaturalNumber, PopNonEmptyToEmptyTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<>";
     nn_type expected_b(1);
-    
+
     nn_type a(1), b(2);
     s->push(std::move(a));
     b = s->pop();
-    
+
     std::string s_str = stackNNToString(s);
     EXPECT_TRUE(s_str == expected_stack);
     EXPECT_TRUE(b == expected_b);
@@ -101,7 +101,7 @@ TEST(ArrayStackNaturalNumber, PopNonEmptyToEmptyTest) {
 TEST(ArrayStackNaturalNumber, NonMonotonicResizingTest) {
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     nn_type expected_b(1);
-    
+
     const int cap = 100;
     for (int i = 0; i < cap; i++) {
         nn_type n(i);
@@ -111,6 +111,6 @@ TEST(ArrayStackNaturalNumber, NonMonotonicResizingTest) {
         nn_type n;
         n = s->pop();
     }
-    
+
     EXPECT_TRUE(s->is_empty());
 }

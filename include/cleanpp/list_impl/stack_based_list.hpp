@@ -14,24 +14,25 @@
 #include <stack_impl/array_stack.hpp>
 #include <stack.hpp>
 
-namespace cleanpp {
+namespace cleanpp
+{
 
 template <typename T>
-class stack_based_list: public list_impl<T> {
+class stack_based_list : public list_impl<T> {
 public:
     stack_based_list<T>() {
         prec_ = std::make_unique<array_stack<T>>();
         rem_ = std::make_unique<array_stack<T>>();
     }
-    
-    stack_based_list<T>(stack_based_list<T> const &other) = delete;
+
+    stack_based_list<T>(stack_based_list<T> const& other) = delete;
     stack_based_list<T>(stack_based_list<T>&& other) {
         prec_ = std::move(other.prec_);
         rem_ = std::move(other.rem_);
         other.clear(); // done "for free" by previous two statements in this case
     }
-    
-    stack_based_list<T>& operator=(stack_based_list<T> const &other) = delete;
+
+    stack_based_list<T>& operator=(stack_based_list<T> const& other) = delete;
     stack_based_list<T>& operator=(stack_based_list<T>&& other) {
         if (&other == this) {
             return this;
@@ -41,52 +42,52 @@ public:
         other.clear(); // done "for free" by previous two statements in this case
         return this;
     }
-    
-    bool operator==(stack_based_list<T> &other) {
+
+    bool operator==(stack_based_list<T>& other) {
         return *(this->prec_) == *(other.prec_) && *(this->rem_) == *(other.rem_);
     }
-    
+
     void clear() override {
         prec_->clear();
         rem_->clear();
     }
-    
+
     void swap(stack_based_list<T>& other) {
         prec_->swap(other.prec_);
         rem_->swap(other.rem_);
     }
-    
+
     void advance() override {
         assert(!is_at_end());
         T x{ };
         x = rem_->pop();
         prec_->push(std::move(x));
     }
-    
+
     void retreat() override {
         assert(!is_at_front());
         T x{ };
         x = prec_->pop();
         rem_->push(std::move(x));
     }
-    
+
     void insert(T&& x) override {
         prec_->push(std::forward<T>(x));
     }
-    
+
     T remove() override {
         assert(!is_at_end());
         return rem_->pop();
     }
-    
-    bool is_at_end() const override  {
+
+    bool is_at_end() const override {
         return rem_->is_empty();
     }
-    
-    bool is_at_front() const override  {
+
+    bool is_at_front() const override {
         return prec_->is_empty();
     }
-        
+
     std::string to_str() override {
         std::stringstream out;
         out << "(";

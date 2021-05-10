@@ -10,15 +10,15 @@ using namespace cleanpp;
 
 typedef nn_integer bigint_type;
 
-static std::string bigintToString(std::unique_ptr<integer_impl> &o) {
-	std::stringstream s;
+static std::string bigintToString(std::unique_ptr<integer_impl>& o) {
+    std::stringstream s;
     s << *o;
     return s.str();
 }
 
 TEST(NNInteger, InitializerDefTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(n_str == "0");
     EXPECT_TRUE(n->sign() == ZERO);
@@ -26,7 +26,7 @@ TEST(NNInteger, InitializerDefTest) {
 
 TEST(NNInteger, Initializer_SingleDigTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(4);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(n_str == "4");
     EXPECT_TRUE(n->sign() == POSITIVE);
@@ -34,7 +34,7 @@ TEST(NNInteger, Initializer_SingleDigTest) {
 
 TEST(NNInteger, Initializer_TwoDigTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(45);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(n_str == "45");
     EXPECT_TRUE(n->sign() == POSITIVE);
@@ -42,125 +42,125 @@ TEST(NNInteger, Initializer_TwoDigTest) {
 
 
 TEST(NNInteger, Initializer_SingleDigNegTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-4);
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(n_str == "-4");
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-4);
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(n_str == "-4");
     EXPECT_TRUE(n->sign() == NEGATIVE);
 }
 
 TEST(NNInteger, Initializer_TwoDigNegTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-45);
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(n_str == "-45");
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-45);
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(n_str == "-45");
     EXPECT_TRUE(n->sign() == NEGATIVE);
 }
 
 TEST(NNInteger, ClearZeroTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>();
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
     n->clear();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, ClearPositiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(47);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
     n->clear();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, ClearNegativeTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-47);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-	
-	n->clear();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-47);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
+    n->clear();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementZeroTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>();
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(1);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(1);
+
     n->increment();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementNineTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(9);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(10);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(10);
+
     n->increment();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementFiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(5);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(6);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(6);
+
     n->increment();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementNegTenTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-10);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-9);
-	
-	n->increment();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-10);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-9);
+
+    n->increment();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementNegFiveTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-4);
-	
-	n->increment();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-4);
+
+    n->increment();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, IncrementNegOneTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-1);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-	
-	n->increment();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-1);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
+    n->increment();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DecrementOneTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(1);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
     n->decrement();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DecrementTenTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(10);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(9);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(9);
+
     n->decrement();
 
     std::string n_str = bigintToString(n);
@@ -169,111 +169,111 @@ TEST(NNInteger, DecrementTenTest) {
 
 TEST(NNInteger, DecrementFiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(5);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(4);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(4);
+
     n->decrement();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DecrementZeroTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(0);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-1);
-	
-	n->decrement();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(0);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-1);
+
+    n->decrement();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DecrementNegNineTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-9);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-10);
-	
-	n->decrement();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-9);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-10);
+
+    n->decrement();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DecrementNegFiveTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-6);
-	
-	n->decrement();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-6);
+
+    n->decrement();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadZero_ZeroTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(0);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-    
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
     n->multiply_by_radix(0);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadZero_FiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(0);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(5);
 
     n->multiply_by_radix(5);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadFive_ZeroTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(5);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(50);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(50);
 
     n->multiply_by_radix(0);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadFive_FiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(5);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(55);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(55);
 
     n->multiply_by_radix(5);
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadNegFive_ZeroTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-50);
-	
-	n->multiply_by_radix(0);
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-50);
+
+    n->multiply_by_radix(0);
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, MultRadNegFive_FiveTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-55);
-	
-	n->multiply_by_radix(5);
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-55);
+
+    n->multiply_by_radix(5);
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
 }
 
 TEST(NNInteger, DivRadZeroTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(0);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
 
     int d = 4;
     d = n->divide_by_radix();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
     EXPECT_TRUE(d == 0);
@@ -281,11 +281,11 @@ TEST(NNInteger, DivRadZeroTest) {
 
 TEST(NNInteger, DivRadFiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(5);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
 
     int d = 4;
     d = n->divide_by_radix();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
     EXPECT_TRUE(d == 5);
@@ -293,11 +293,11 @@ TEST(NNInteger, DivRadFiveTest) {
 
 TEST(NNInteger, DiveRadFiftyTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(50);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(5);
 
     int d = 4;
     d = n->divide_by_radix();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
     EXPECT_TRUE(d == 0);
@@ -305,50 +305,50 @@ TEST(NNInteger, DiveRadFiftyTest) {
 
 TEST(NNInteger, DivRadFiftyFiveTest) {
     std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(55);
-    std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(5);
 
     int d = 4;
     d = n->divide_by_radix();
-    
+
     std::string n_str = bigintToString(n);
     EXPECT_TRUE(*n == *expected);
     EXPECT_TRUE(d == 5);
 }
 
 TEST(NNInteger, DivRadNegFiveTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(0);
-	
-	int d = 4;
-	d = n->divide_by_radix();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
-	EXPECT_TRUE(d == 5);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-5);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(0);
+
+    int d = 4;
+    d = n->divide_by_radix();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
+    EXPECT_TRUE(d == 5);
 }
 
 TEST(NNInteger, DiveRadNegFiftyTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-50);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-5);
-	
-	int d = 4;
-	d = n->divide_by_radix();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
-	EXPECT_TRUE(d == 0);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-50);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-5);
+
+    int d = 4;
+    d = n->divide_by_radix();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
+    EXPECT_TRUE(d == 0);
 }
 
 TEST(NNInteger, DivRadNegFiftyFiveTest) {
-	std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-55);
-	std::unique_ptr<integer_impl> expected= std::make_unique<bigint_type>(-5);
-	
-	int d = 4;
-	d = n->divide_by_radix();
-	
-	std::string n_str = bigintToString(n);
-	EXPECT_TRUE(*n == *expected);
-	EXPECT_TRUE(d == 5);
+    std::unique_ptr<integer_impl> n = std::make_unique<bigint_type>(-55);
+    std::unique_ptr<integer_impl> expected = std::make_unique<bigint_type>(-5);
+
+    int d = 4;
+    d = n->divide_by_radix();
+
+    std::string n_str = bigintToString(n);
+    EXPECT_TRUE(*n == *expected);
+    EXPECT_TRUE(d == 5);
 }
 
 TEST(NNInteger, CloneFromZeroTest) {
@@ -382,7 +382,7 @@ TEST(NNInteger, CloneFromThreeTest) {
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(3);
 
     n = n2->clone();
-    
+
     EXPECT_TRUE(*n == *n_exp);
     EXPECT_TRUE(*n2 == *n2_exp);
 }
@@ -430,7 +430,7 @@ TEST(NNInteger, CloneFromNegThreeTest) {
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-3);
 
     n = n2->clone();
-    
+
     EXPECT_TRUE(*n == *n_exp);
     EXPECT_TRUE(*n2 == *n2_exp);
 }
@@ -468,7 +468,7 @@ TEST(NNInteger, CompareZeroZeroTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -483,7 +483,7 @@ TEST(NNInteger, CompareZeroOneTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(1);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(1);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -498,7 +498,7 @@ TEST(NNInteger, CompareOneZeroTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(0);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -513,7 +513,7 @@ TEST(NNInteger, CompareFiveTwoTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(2);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(2);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -528,7 +528,7 @@ TEST(NNInteger, CompareFiveNeg4Test) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(-4);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -558,7 +558,7 @@ TEST(NNInteger, CompareTenSixTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(6);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(6);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -573,7 +573,7 @@ TEST(NNInteger, CompareNegTenNegSixTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(-6);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-6);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -588,7 +588,7 @@ TEST(NNInteger, CompareTenNegTenTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-10);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -603,7 +603,7 @@ TEST(NNInteger, CompareNegTenTenTest) {
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
-    
+
     int comp = compare(n1, n2);
 
     std::string n1_str = bigintToString(n1);
@@ -703,7 +703,7 @@ TEST(NNInteger, AddTenTenTest) {
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Add57_66Test){
+TEST(NNInteger, Add57_66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(57);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(66);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(123);
@@ -808,7 +808,7 @@ TEST(NNInteger, AddNegTenNegTenTest) {
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Add57_Neg66Test){
+TEST(NNInteger, Add57_Neg66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(67);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(-56);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
@@ -883,7 +883,7 @@ TEST(NNInteger, SubtractTenTenTest) {
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Subtract77_66Test){
+TEST(NNInteger, Subtract77_66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(77);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(66);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
@@ -898,7 +898,7 @@ TEST(NNInteger, Subtract77_66Test){
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Subtract77_6Test){
+TEST(NNInteger, Subtract77_6Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(77);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(6);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(71);
@@ -913,7 +913,7 @@ TEST(NNInteger, Subtract77_6Test){
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Subtract71_66Test){
+TEST(NNInteger, Subtract71_66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(71);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(66);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
@@ -988,7 +988,7 @@ TEST(NNInteger, SubtractNegFourNegFourTest) {
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Subtract77_Neg66Test){
+TEST(NNInteger, Subtract77_Neg66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(77);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(-66);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(143);
@@ -1003,7 +1003,7 @@ TEST(NNInteger, Subtract77_Neg66Test){
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, SubtractNeg77_66Test){
+TEST(NNInteger, SubtractNeg77_66Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(-77);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(66);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-143);
@@ -1018,7 +1018,7 @@ TEST(NNInteger, SubtractNeg77_66Test){
     EXPECT_TRUE(*n2 == *n2_exp);
 }
 
-TEST(NNInteger, Subtract1_2Test){
+TEST(NNInteger, Subtract1_2Test) {
     std::unique_ptr<integer_impl> n1 = std::make_unique<bigint_type>(1);
     std::unique_ptr<integer_impl> n2 = std::make_unique<bigint_type>(2);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-1);

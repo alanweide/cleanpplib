@@ -13,21 +13,22 @@
 #include <assert.h>
 #include <natural_number.hpp>
 
-namespace cleanpp {
-class bounded_nn: public natural_number_impl {
+namespace cleanpp
+{
+class bounded_nn : public natural_number_impl {
 public:
     bounded_nn(long n = 0);
-    
-    bounded_nn(bounded_nn const &other) = delete;
+
+    bounded_nn(bounded_nn const& other) = delete;
     bounded_nn(bounded_nn&& other);
-	
-	~bounded_nn();
-    
+
+    ~bounded_nn();
+
     bounded_nn& operator=(const bounded_nn& other) = delete;
     bounded_nn& operator=(bounded_nn&& other);
-        
-    bool operator==(const bounded_nn &other);
-    
+
+    bool operator==(const bounded_nn& other);
+
     void clear() override;
     bool is_zero() const override;
     void multiply_by_radix(int d) override;
@@ -37,7 +38,7 @@ public:
     void decrement() override;
     void set_from_long(long n) override;
     void divide_by_two() override;
-    
+
     friend std::ostream& operator<<(std::ostream& out, bounded_nn& o) {
         return out << o.n_;
     }
