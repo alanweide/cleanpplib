@@ -1,5 +1,0 @@
-if(EXISTS "/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestStackNN[1]_tests.cmake")
-  include("/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/build/TestStackNN[1]_tests.cmake")
-else()
-  add_test(TestStackNN_NOT_BUILT TestStackNN_NOT_BUILT)
-endif()
