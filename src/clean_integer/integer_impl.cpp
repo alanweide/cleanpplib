@@ -266,21 +266,28 @@ std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl> &&
 	return std::move(x);
 }
 
-std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> add(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y) {
 
+    std::unique_ptr<integer_impl> x_clone = x->clone();
+    std::unique_ptr<integer_impl> y_clone = y->clone();
+    std::unique_ptr<integer_impl> result;
     if (x->sign() == ZERO || x->sign() == y->sign()) {
-        return combine_same(std::move(x), y);
+        result = combine_same(std::move(x), y);
+        return std::make_tuple(std::move(result), std::move(x_clone), std::move(y_clone));
     } else {
-        return combine_different(std::move(x), y);
+        result = combine_different(std::move(x), y);
+        return std::make_tuple(std::move(result), std::move(x_clone), std::move(y_clone));
     }
 }
 
-std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> subtract(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y) {
+    std::unique_ptr<integer_impl> diff;
     y->negate();
-    x = add(std::move(x), y);
+    std::unique_ptr<integer_impl> dummy;
+    std::tie(diff, x, y) = add(std::move(x), std::move(y));
     y->negate();
 	
-	return std::move(x);
+	return std::make_tuple(std::move(diff), std::move(x), std::move(y));
 }
 
 int compare(std::unique_ptr<integer_impl> &x, std::unique_ptr<integer_impl> &y) {

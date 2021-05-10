@@ -205,35 +205,42 @@ public:
 	 requires x >= y
 	 ensures  subtract = #x - y
 	 */
-	friend natural_number subtract(natural_number&& x, natural_number &y) {
-        natural_number diff(std::forward<natural_number>(x));
+	friend std::tuple<natural_number, natural_number, natural_number> subtract(natural_number&& x, natural_number&& y) {
+        natural_number diff(stack_nn{}, 0);
 		
 		std::unique_ptr<natural_number_impl> diff_casted(static_cast<natural_number_impl*>(diff.rep_.release()));
+		std::unique_ptr<natural_number_impl> x_casted(static_cast<natural_number_impl*>(x.rep_.release()));
 		std::unique_ptr<natural_number_impl> y_casted(static_cast<natural_number_impl*>(y.rep_.release()));
 		
-        diff_casted = subtract(std::move(diff_casted), y_casted);
+        // diff_casted = subtract(std::move(diff_casted), y_casted);
+		std::tie(diff_casted, x_casted, y_casted) = subtract(std::move(x_casted), std::move(y_casted));
 		
+		x.rep_ = std::move(x_casted);
         y.rep_ = std::move(y_casted);
 		diff.rep_ = std::move(diff_casted);
 		
-		return diff;
+		return std::make_tuple(std::move(diff), std::move(x), std::move(y));
 	}
 
     /**
      ensures  \f$\mathtt{add} = \mathtt{\#x} \times \mathtt{y}\f$
      */
-    friend natural_number multiply(natural_number&& x, natural_number &y) {
-        natural_number product(std::forward<natural_number>(x));
+    friend std::tuple<natural_number, natural_number, natural_number> multiply(natural_number&& x, natural_number&& y) {
+        natural_number product(stack_nn{}, 0);
         
         std::unique_ptr<natural_number_impl> product_casted(static_cast<natural_number_impl*>(product.rep_.release()));
+		std::unique_ptr<natural_number_impl> x_casted(static_cast<natural_number_impl*>(x.rep_.release()));
         std::unique_ptr<natural_number_impl> y_casted(static_cast<natural_number_impl*>(y.rep_.release()));
+		
         
-        product_casted = multiply(std::move(product_casted), y_casted);
+        // product_casted = multiply(std::move(product_casted), y_casted);
+		std::tie(product_casted, x_casted, y_casted) = multiply(std::move(x_casted), std::move(y_casted));
         
+		x.rep_ = std::move(x_casted);
         y.rep_ = std::move(y_casted);
         product.rep_ = std::move(product_casted);
         
-        return product;
+        return std::make_tuple(std::move(product), std::move(x), std::move(y));
     }
 };
 

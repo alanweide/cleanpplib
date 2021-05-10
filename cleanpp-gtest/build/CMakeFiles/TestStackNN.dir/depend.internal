@@ -3,12 +3,15 @@
 
 CMakeFiles/TestStackNN.dir/TestStackNN.cpp.o
  ../../include/cleanpp/clean_base.hpp
+ ../../include/cleanpp/natural_number.hpp
+ ../../include/cleanpp/nn_impl/bounded_nn.hpp
  ../../include/cleanpp/nn_impl/nn_impl.hpp
  ../../include/cleanpp/nn_impl/stack_nn.hpp
  ../../include/cleanpp/stack.hpp
  ../../include/cleanpp/stack_impl/array_stack.hpp
  ../../include/cleanpp/stack_impl/stack_impl.hpp
  /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/cleanpp-gtest/TestStackNN.cpp
+ /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/src/clean_nn/natural_number.cpp
  _deps/googletest-src/googletest/include/gtest/gtest-death-test.h
  _deps/googletest-src/googletest/include/gtest/gtest-matchers.h
  _deps/googletest-src/googletest/include/gtest/gtest-message.h

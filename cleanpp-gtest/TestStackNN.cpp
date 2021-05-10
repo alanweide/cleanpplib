@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <nn_impl/stack_nn.hpp>
+#include "../src/clean_nn/natural_number.cpp"
 
 using namespace cleanpp;
 
@@ -342,7 +343,8 @@ TEST(StackNN, AddZeroZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -356,7 +358,8 @@ TEST(StackNN, AddZeroFiveTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(5);
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -370,7 +373,8 @@ TEST(StackNN, AddFiveZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -384,7 +388,8 @@ TEST(StackNN, AddFourFourTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(8);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(4);
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -398,7 +403,8 @@ TEST(StackNN, AddFiveFiveTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(10);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(5);
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -412,7 +418,8 @@ TEST(StackNN, AddTenTenTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(20);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(10);
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -426,7 +433,8 @@ TEST(StackNN, Add57_66Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(123);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
     
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -440,7 +448,8 @@ TEST(StackNN, SubtractZeroZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -454,7 +463,8 @@ TEST(StackNN, SubtractFiveZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -468,7 +478,8 @@ TEST(StackNN, SubtractFourFourTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(4);
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -482,7 +493,8 @@ TEST(StackNN, SubtractTenTenTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(10);
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -496,7 +508,8 @@ TEST(StackNN, Subtract77_66Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(11);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -510,7 +523,8 @@ TEST(StackNN, Subtract77_6Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(71);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(6);
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -524,7 +538,8 @@ TEST(StackNN, Subtract71_66Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
     
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -538,7 +553,8 @@ TEST(StackNN, MultiplyZeroZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -552,7 +568,8 @@ TEST(StackNN, MultiplyFiveZeroTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -566,7 +583,8 @@ TEST(StackNN, MultiplyFourFourTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(16);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(4);
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -580,7 +598,8 @@ TEST(StackNN, MultiplyTenTenTest) {
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(100);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(10);
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -594,7 +613,8 @@ TEST(StackNN, Multiply77_66Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5082);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -608,7 +628,8 @@ TEST(StackNN, Multiply77_6Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(462);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(6);
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);
@@ -622,7 +643,8 @@ TEST(StackNN, Multiply71_66Test){
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(4686);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
     
-    n1 = multiply(std::move(n1), n2);
+    std::unique_ptr<natural_number_impl> dummy = std::make_unique<stack_nn>();
+    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
 
     std::string n1_str = nnPtrToString(n1);
     std::string n2_str = nnPtrToString(n2);

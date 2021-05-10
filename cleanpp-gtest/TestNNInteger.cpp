@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <integer_impl/nn_integer.hpp>
+#include "../src/clean_integer/integer_impl.cpp"
 
 using namespace cleanpp;
 
@@ -618,7 +619,8 @@ TEST(NNInteger, AddZeroZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -632,7 +634,8 @@ TEST(NNInteger, AddZeroFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(5);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -646,7 +649,8 @@ TEST(NNInteger, AddFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -660,7 +664,8 @@ TEST(NNInteger, AddFourFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -674,7 +679,8 @@ TEST(NNInteger, AddFiveFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(5);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -688,7 +694,8 @@ TEST(NNInteger, AddTenTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(20);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -702,7 +709,8 @@ TEST(NNInteger, Add57_66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(123);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -716,7 +724,8 @@ TEST(NNInteger, AddZeroNegFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-5);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -730,7 +739,8 @@ TEST(NNInteger, AddNegFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -744,7 +754,8 @@ TEST(NNInteger, AddFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -758,7 +769,8 @@ TEST(NNInteger, AddNegFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -772,7 +784,8 @@ TEST(NNInteger, AddNegFiveNegFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-5);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -786,7 +799,8 @@ TEST(NNInteger, AddNegTenNegTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-20);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-10);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -800,7 +814,8 @@ TEST(NNInteger, Add57_Neg66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-56);
 
-    n1 = add(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -814,7 +829,8 @@ TEST(NNInteger, SubtractZeroZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -828,7 +844,8 @@ TEST(NNInteger, SubtractFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -842,7 +859,8 @@ TEST(NNInteger, SubtractFourFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -856,7 +874,8 @@ TEST(NNInteger, SubtractTenTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -870,7 +889,8 @@ TEST(NNInteger, Subtract77_66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -884,7 +904,8 @@ TEST(NNInteger, Subtract77_6Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(71);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(6);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -898,7 +919,8 @@ TEST(NNInteger, Subtract71_66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -912,7 +934,8 @@ TEST(NNInteger, Subtract3_4Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -926,7 +949,8 @@ TEST(NNInteger, SubtractNegFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -940,7 +964,8 @@ TEST(NNInteger, SubtractFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -954,7 +979,8 @@ TEST(NNInteger, SubtractNegFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -968,7 +994,8 @@ TEST(NNInteger, Subtract77_Neg66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(143);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -982,7 +1009,8 @@ TEST(NNInteger, SubtractNeg77_66Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-143);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -996,7 +1024,8 @@ TEST(NNInteger, Subtract1_2Test){
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(2);
 
-    n1 = subtract(std::move(n1), n2);
+    std::unique_ptr<integer_impl> dummy = std::make_unique<bigint_type>();
+    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);

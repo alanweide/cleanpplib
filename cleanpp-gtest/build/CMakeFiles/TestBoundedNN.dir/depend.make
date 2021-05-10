@@ -10,6 +10,7 @@ CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: ../../include/cleanpp/stack.hp
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: ../../include/cleanpp/stack_impl/array_stack.hpp
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: ../../include/cleanpp/stack_impl/stack_impl.hpp
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: ../TestBoundedNN.cpp
+CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: /home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/src/clean_nn/natural_number.cpp
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: _deps/googletest-src/googletest/include/gtest/gtest-death-test.h
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: _deps/googletest-src/googletest/include/gtest/gtest-matchers.h
 CMakeFiles/TestBoundedNN.dir/TestBoundedNN.cpp.o: _deps/googletest-src/googletest/include/gtest/gtest-message.h

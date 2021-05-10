@@ -234,35 +234,38 @@ public:
 	/*
 	 ensures  add = #x + y
 	 */
-	friend integer add(integer&& x, integer &y) {
-        integer sum(std::forward<integer>(x));
+	friend std::tuple<integer, integer, integer> add(integer&& x, integer&& y) {
+        integer sum(nn_integer{}, 0);
 		
 		std::unique_ptr<integer_impl> sum_casted(static_cast<integer_impl*>(sum.rep_.release()));
+		std::unique_ptr<integer_impl> x_casted(static_cast<integer_impl*>(x.rep_.release()));
 		std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
-        
-		sum_casted = add(std::move(sum_casted), y_casted);
-		
+
+		std::tie(sum_casted, x_casted, y_casted) = add(std::move(x_casted), std::move(y_casted));
+		x.rep_ = std::move(x_casted);
         y.rep_ = std::move(y_casted);
 		sum.rep_ = std::move(sum_casted);
 
-		return sum;
+		return std::make_tuple(std::move(sum), std::move(x), std::move(y));
 	}
 	
 	/*
 	 ensures subtract = #x - y
 	 */
-    friend integer subtract(integer&& x, integer &y) {
-        integer diff(std::forward<integer>(x));
+    friend std::tuple<integer, integer, integer> subtract(integer&& x, integer&& y) {
+        integer diff(nn_integer{}, 0);
         
         std::unique_ptr<integer_impl> diff_casted(static_cast<integer_impl*>(diff.rep_.release()));
+		std::unique_ptr<integer_impl> x_casted(static_cast<integer_impl*>(x.rep_.release()));
         std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
         
-        diff_casted = subtract(std::move(diff_casted), y_casted);
+        std::tie(diff_casted, x_casted, y_casted) = subtract(std::move(x_casted), std::move(y_casted));
         
+		x.rep_ = std::move(x_casted);
         y.rep_ = std::move(y_casted);
         diff.rep_ = std::move(diff_casted);
 
-		return diff;
+		return std::make_tuple(std::move(diff), std::move(x), std::move(y));
 	}
 	
 	/*

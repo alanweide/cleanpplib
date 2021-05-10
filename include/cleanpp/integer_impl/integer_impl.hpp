@@ -154,13 +154,13 @@ public:
      updates  x
      ensures  x = #x + y
      */
-    friend std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> add(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y);
     
     /*
      updates x
      ensures x = #x - y
      */
-	friend std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl> &&x, std::unique_ptr<integer_impl> &y);
+	friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> subtract(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y);
 
     /*
      ensures compare > 0 ==> x > y and

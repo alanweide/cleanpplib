@@ -93,6 +93,20 @@ nn_impl/nn_impl.hpp
 -
 nn_impl/bounded_nn.hpp
 -
+../src/clean_nn/natural_number.cpp
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/src/clean_nn/natural_number.cpp
+
+/home/wwjanning400m/forked_cleanpplib_linux/cleanpplib/src/clean_nn/natural_number.cpp
+memory
+-
+assert.h
+-
+stdio.h
+-
+natural_number.hpp
+-
+nn_impl/bounded_nn.hpp
+-
 
 _deps/googletest-src/googletest/include/gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h
