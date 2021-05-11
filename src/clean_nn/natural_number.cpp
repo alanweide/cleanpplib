@@ -116,34 +116,32 @@ void natural_number_impl::divide_by_two() {
 
  */
 
-std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y) {
-    std::unique_ptr<natural_number_impl> sum = std::make_unique<stack_nn>();
+std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
     y_low = y->divide_by_radix();
     if (!y->is_zero()) {
-        std::tie(sum, x, y) = add(std::move(x), std::move(y));
+        std::tie(x, y) = add(std::move(x), std::move(y));
     }
 
-    int sum_low = x_low + y_low;
-    if (sum_low >= natural_number_impl::RADIX) {
-        sum_low -= natural_number_impl::RADIX;
-        sum->increment();
+    x_low += y_low;
+    if (x_low >= natural_number_impl::RADIX) {
+        x_low -= natural_number_impl::RADIX;
+        x->increment();
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    sum->multiply_by_radix(sum_low);
-    return std::make_tuple(std::move(sum), std::move(x), std::move(y));
+    return std::make_tuple(std::move(x), std::move(y));
 }
 
-std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y) {
+std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y) {
     int x_low;
     x_low = x->divide_by_radix();
     int y_low;
     y_low = y->divide_by_radix();
     if (!y->is_zero()) {
-        x = subtract(std::move(x), y);
+        std::tie(x, y) = subtract(std::move(x), std::move(y));
     }
     x_low -= y_low;
     if (x_low < 0) {
@@ -152,7 +150,7 @@ std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_imp
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);
-    return x;
+    return std::make_tuple(std::move(x), std::move(y));
 }
 
 std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_number_impl> x, int d) {
@@ -164,31 +162,29 @@ std::unique_ptr<natural_number_impl> multiply_by_digit(std::unique_ptr<natural_n
     }
     std::unique_ptr<natural_number_impl> nn_last_dig(static_cast<natural_number_impl*>(x->new_instance().release()));
     // nn_last_dig = add(std::move(nn_last_dig), x);
-    std::unique_ptr<natural_number_impl> dummy;
-    std::tie(nn_last_dig, dummy, x) = add(std::move(nn_last_dig), std::move(x));
+    std::tie(nn_last_dig, x) = add(std::move(nn_last_dig), std::move(x));
     nn_last_dig->set_from_long(last_dig);
     // x = add(std::move(x), nn_last_dig);
-    std::tie(x, dummy, nn_last_dig) = add(std::move(x), std::move(nn_last_dig));
+    std::tie(x, nn_last_dig) = add(std::move(x), std::move(nn_last_dig));
     return x;
 }
 
-std::unique_ptr<natural_number_impl> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y) {
+std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y) {
     if (y->is_zero()) {
         x->clear();
     } else {
         int y_ones = y->divide_by_radix();
         std::unique_ptr<natural_number_impl> x_copy(static_cast<natural_number_impl*>(x->new_instance().release()));
         // x_copy = add(std::move(x_copy), x);
-        std::unique_ptr<natural_number_impl> dummy;
-        std::tie(x_copy, dummy, x) = add(std::move(x_copy), std::move(x));
+        std::tie(x_copy, x) = add(std::move(x_copy), std::move(x));
         x_copy = multiply_by_digit(std::move(x_copy), y_ones);
-        x = multiply(std::move(x), y);
+        std::tie(x, y) = multiply(std::move(x), std::move(y));
         x->multiply_by_radix(0);
         // x = add(std::move(x), x_copy);
-        std::tie(x, dummy, x_copy) = add(std::move(x), std::move(x_copy));
+        std::tie(x, x_copy) = add(std::move(x), std::move(x_copy));
         y->multiply_by_radix(y_ones);
     }
-    return x;
+    return std::make_tuple(std::move(x), std::move(y));
 }
 
 
