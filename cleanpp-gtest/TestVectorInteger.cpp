@@ -468,7 +468,8 @@ TEST(VectorInteger, CompareZeroZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -483,7 +484,8 @@ TEST(VectorInteger, CompareZeroOneTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(1);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -498,7 +500,8 @@ TEST(VectorInteger, CompareOneZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(0);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -513,7 +516,8 @@ TEST(VectorInteger, CompareFiveTwoTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(2);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -528,7 +532,8 @@ TEST(VectorInteger, CompareFiveNeg4Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -543,7 +548,8 @@ TEST(VectorInteger, CompareNegFourFiveTest) {
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-4);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -558,7 +564,8 @@ TEST(VectorInteger, CompareTenSixTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(6);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -573,7 +580,8 @@ TEST(VectorInteger, CompareNegTenNegSixTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-6);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -588,7 +596,8 @@ TEST(VectorInteger, CompareTenNegTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-10);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -603,7 +612,8 @@ TEST(VectorInteger, CompareNegTenTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
 
-    int comp = compare(n1, n2);
+    int comp;
+    std::tie(comp, n1, n2) = compare(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -618,7 +628,7 @@ TEST(VectorInteger, AddZeroZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -632,7 +642,7 @@ TEST(VectorInteger, AddZeroFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(5);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -646,7 +656,7 @@ TEST(VectorInteger, AddFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -660,7 +670,7 @@ TEST(VectorInteger, AddFourFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -674,7 +684,7 @@ TEST(VectorInteger, AddFiveFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(5);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -688,7 +698,7 @@ TEST(VectorInteger, AddTenTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(20);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -702,7 +712,7 @@ TEST(VectorInteger, Add57_66Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(123);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -716,7 +726,7 @@ TEST(VectorInteger, AddZeroNegFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-5);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -730,7 +740,7 @@ TEST(VectorInteger, AddNegFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -744,7 +754,7 @@ TEST(VectorInteger, AddFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -758,7 +768,7 @@ TEST(VectorInteger, AddNegFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -772,7 +782,7 @@ TEST(VectorInteger, AddNegFiveNegFiveTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-10);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-5);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -786,7 +796,7 @@ TEST(VectorInteger, AddNegTenNegTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-20);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-10);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -800,7 +810,7 @@ TEST(VectorInteger, Add67_Neg56Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-56);
 
-    n1 = add(std::move(n1), n2);
+    std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -814,7 +824,7 @@ TEST(VectorInteger, SubtractZeroZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>();
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -828,7 +838,7 @@ TEST(VectorInteger, SubtractFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -842,7 +852,7 @@ TEST(VectorInteger, SubtractFourFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -856,7 +866,7 @@ TEST(VectorInteger, SubtractTenTenTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(10);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -870,7 +880,7 @@ TEST(VectorInteger, Subtract77_66Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(11);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -884,7 +894,7 @@ TEST(VectorInteger, Subtract77_6Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(71);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(6);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -898,7 +908,7 @@ TEST(VectorInteger, Subtract71_66Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -912,7 +922,7 @@ TEST(VectorInteger, Subtract3_4Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -926,7 +936,7 @@ TEST(VectorInteger, SubtractNegFiveZeroTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-5);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>();
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -940,7 +950,7 @@ TEST(VectorInteger, SubtractFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(8);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -954,7 +964,7 @@ TEST(VectorInteger, SubtractNegFourNegFourTest) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(0);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-4);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -968,7 +978,7 @@ TEST(VectorInteger, Subtract77_Neg66Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(143);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(-66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -982,7 +992,7 @@ TEST(VectorInteger, SubtractNeg77_66Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-143);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(66);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -996,7 +1006,7 @@ TEST(VectorInteger, Subtract1_2Test) {
     std::unique_ptr<integer_impl> n1_exp = std::make_unique<bigint_type>(-1);
     std::unique_ptr<integer_impl> n2_exp = std::make_unique<bigint_type>(2);
 
-    n1 = subtract(std::move(n1), n2);
+    std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);

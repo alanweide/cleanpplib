@@ -96,21 +96,21 @@ private:
      requires (x > 0 ==> y >= 0) and (x < 0 ==> y <= 0)
      ensures  |x| = |#x| + |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> combine_same(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 
     /*
      updates  x
      requires (x > 0 ==> y <= 0) and (x < 0 ==> y >= 0)
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= y)
      */
-    friend std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> combine_different(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 
     /*
      updates  x
      requires |x| > |y|
      ensures  |x| = |#x| - |y| and (x >= 0 iff #x >= 0)
      */
-    friend std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 
 public:
     /*
@@ -154,20 +154,20 @@ public:
      updates  x
      ensures  x = #x + y
      */
-    friend std::unique_ptr<integer_impl> add(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> add(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 
     /*
      updates x
      ensures x = #x - y
      */
-    friend std::unique_ptr<integer_impl> subtract(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> subtract(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 
     /*
      ensures compare > 0 ==> x > y and
              compare = 0 ==> x = y and
              compare < 0 ==> x < y
      */
-    friend int compare(std::unique_ptr<integer_impl>& x, std::unique_ptr<integer_impl>& y);
+    friend std::tuple<int, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> compare(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y);
 };
 }
 

@@ -234,35 +234,35 @@ public:
 	/*
 	 ensures  add = #x + y
 	 */
-	friend integer add(integer&& x, integer& y) {
+	friend std::tuple<integer, integer> add(integer&& x, integer&& y) {
 		integer sum(std::forward<integer>(x));
 
 		std::unique_ptr<integer_impl> sum_casted(static_cast<integer_impl*>(sum.rep_.release()));
 		std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
 
-		sum_casted = add(std::move(sum_casted), y_casted);
+		std::tie(sum_casted, y_casted) = add(std::move(sum_casted), std::move(y_casted));
 
 		y.rep_ = std::move(y_casted);
 		sum.rep_ = std::move(sum_casted);
 
-		return sum;
+		return std::make_tuple(std::move(sum), std::move(y));
 	}
 
 	/*
 	 ensures subtract = #x - y
 	 */
-	friend integer subtract(integer&& x, integer& y) {
+	friend std::tuple<integer, integer> subtract(integer&& x, integer&& y) {
 		integer diff(std::forward<integer>(x));
 
 		std::unique_ptr<integer_impl> diff_casted(static_cast<integer_impl*>(diff.rep_.release()));
 		std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
 
-		diff_casted = subtract(std::move(diff_casted), y_casted);
+		std::tie(diff_casted, y_casted) = subtract(std::move(diff_casted), std::move(y_casted));
 
 		y.rep_ = std::move(y_casted);
 		diff.rep_ = std::move(diff_casted);
 
-		return diff;
+		return std::make_tuple(std::move(diff), std::move(y));
 	}
 
 	/*
@@ -270,18 +270,18 @@ public:
 	 compare = 0 ==> x = y and
 	 compare < 0 ==> x < y
 	 */
-	friend int compare(integer& x, integer& y) {
+	friend std::tuple<int, integer, integer> compare(integer&& x, integer&& y) {
 		int comp;
 
 		std::unique_ptr<integer_impl> x_casted(static_cast<integer_impl*>(x.rep_.release()));
 		std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
 
-		comp = compare(x_casted, y_casted);
+		std::tie(comp, x_casted, y_casted) = compare(std::move(x_casted), std::move(y_casted));
 
 		y.rep_ = std::move(y_casted);
 		x.rep_ = std::move(x_casted);
 
-		return comp;
+		return std::make_tuple(comp, std::move(x), std::move(y));
 	}
 
 };
