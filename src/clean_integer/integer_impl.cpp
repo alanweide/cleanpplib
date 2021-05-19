@@ -24,7 +24,8 @@ namespace cleanpp
 int compare_magnitude(std::unique_ptr<integer_impl>& x, std::unique_ptr<integer_impl>& y) {
 	integer_sign x_sign = x->abs();
 	integer_sign y_sign = y->abs();
-	int comp = compare(x, y);
+	int comp;
+	std::tie(comp, x, y) = compare(std::move(x), std::move(y));
 	x->assign_sign(x_sign);
 	y->assign_sign(y_sign);
 	return comp;
@@ -199,7 +200,7 @@ std::unique_ptr<integer_impl> integer_impl::clone() {
  * friend functions
  * ---------------------------- */
 
-std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> combine_same(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
 	assert(x->sign() == y->sign() || x->sign() == ZERO || y->sign() == ZERO);
 
 	integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -208,7 +209,7 @@ std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl>&& x, st
 	x_low = x->divide_by_radix();
 	y_low = y->divide_by_radix();
 	if (y->sign() != ZERO) {
-		x = combine_same(std::move(x), y);
+		std::tie(x, y) = combine_same(std::move(x), std::move(y));
 	}
 	x_low += y_low;
 	if (x_low >= integer_impl::RADIX) {
@@ -223,10 +224,10 @@ std::unique_ptr<integer_impl> combine_same(std::unique_ptr<integer_impl>&& x, st
 
 	y->assign_sign(y_sign);
 
-	return std::move(x);
+	return std::make_tuple(std::move(x), std::move(y));
 }
 
-std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> remove(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
 	assert(compare_magnitude(x, y) > 0);
 
 	integer_sign x_sign = x->abs(), y_sign = y->abs();
@@ -235,7 +236,7 @@ std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::uni
 	x_low = x->divide_by_radix();
 	y_low = y->divide_by_radix();
 	if (y->sign() != ZERO) {
-		x = remove(std::move(x), y);
+		std::tie(x, y) = remove(std::move(x), std::move(y));
 	}
 	x_low -= y_low;
 	if (x_low < 0) {
@@ -248,60 +249,56 @@ std::unique_ptr<integer_impl> remove(std::unique_ptr<integer_impl>&& x, std::uni
 	x->assign_sign(x_sign);
 	y->assign_sign(y_sign);
 
-	return std::move(x);
+	return std::make_tuple(std::move(x), std::move(y));
 }
 
-std::unique_ptr<integer_impl> combine_different(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>& y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> combine_different(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
 	assert(x->sign() != y->sign() || x->sign() == ZERO);
 
 	if (compare_magnitude(x, y) > 0) {
-		x = remove(std::move(x), y);
+		std::tie(x, y) = remove(std::move(x), std::move(y));
 	} else if (compare_magnitude(x, y) < 0) {
 		std::unique_ptr<integer_impl> tmp = std::move(x);
 		x = y->clone();
-		x = remove(std::move(x), tmp);
+		std::tie(x, tmp) = remove(std::move(x), std::move(tmp));
 	} else {
 		x->clear();
 	}
 
-	return std::move(x);
+	return std::make_tuple(std::move(x), std::move(y));
 }
 
-std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> add(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y) {
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> add(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
 
-    std::unique_ptr<integer_impl> x_clone = x->clone();
-    std::unique_ptr<integer_impl> sum;
-    if (x->sign() == ZERO || x->sign() == y->sign()) {
-        sum = combine_same(std::move(x), y);
-        return std::make_tuple(std::move(sum), std::move(x_clone), std::move(y));
-    } else {
-        sum = combine_different(std::move(x), y);
-        return std::make_tuple(std::move(sum), std::move(x_clone), std::move(y));
-    }
+	if (x->sign() == ZERO || x->sign() == y->sign()) {
+		return combine_same(std::move(x), std::move(y));
+	} else {
+		return combine_different(std::move(x), std::move(y));
+	}
 }
 
-std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> subtract(std::unique_ptr<integer_impl> x, std::unique_ptr<integer_impl> y) {
-    std::unique_ptr<integer_impl> diff;
-    y->negate();
-    std::tie(diff, x, y) = add(std::move(x), std::move(y));
-    y->negate();
-	
-	return std::make_tuple(std::move(diff), std::move(x), std::move(y));
+std::tuple<std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> subtract(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
+	y->negate();
+	std::tie(x, y) = add(std::move(x), std::move(y));
+	y->negate();
+
+	return std::make_tuple(std::move(x), std::move(y));
 }
 
-int compare(std::unique_ptr<integer_impl>& x, std::unique_ptr<integer_impl>& y) {
+std::tuple<int, std::unique_ptr<integer_impl>, std::unique_ptr<integer_impl>> compare(std::unique_ptr<integer_impl>&& x, std::unique_ptr<integer_impl>&& y) {
 	if (x->sign() > y->sign()) {
-		return 1;
+		return std::make_tuple(1, std::move(x), std::move(y));
 	} else if (x->sign() < y->sign()) {
-		return -1;
+		return std::make_tuple(-1, std::move(x), std::move(y));
 	} else if (x->sign() == ZERO && y->sign() == ZERO) {
-		return 0;
+		return std::make_tuple(0, std::move(x), std::move(y));
 	} else {
 		integer_sign x_sign = x->abs(), y_sign = y->abs();
 		int x_low, y_low;
 		x_low = x->divide_by_radix();
 		y_low = y->divide_by_radix();
-		int comp = compare(x, y);
+		int comp;
+		std::tie(comp, x, y) = compare(std::move(x), std::move(y));
 		if (comp == 0) {
 			comp = x_low - y_low;
 		}
@@ -311,7 +308,8 @@ int compare(std::unique_ptr<integer_impl>& x, std::unique_ptr<integer_impl>& y) 
 		x->assign_sign(x_sign);
 		y->assign_sign(y_sign);
 
-		return comp * x_sign;
+		comp *= x_sign;
+		return std::make_tuple(comp, std::move(x), std::move(y));
 	}
 }
 }
