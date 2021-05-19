@@ -143,10 +143,10 @@ std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_
     if (!y->is_zero()) {
         std::tie(x, y) = subtract(std::move(x), std::move(y));
     }
-    int diff_low = x_low - y_low;
-    if (diff_low < 0) {
-        diff_low += natural_number_impl::RADIX;
-        diff->decrement();
+    x_low -= y_low;
+    if (x_low < 0) {
+        x_low += natural_number_impl::RADIX;
+        x->decrement();
     }
     x->multiply_by_radix(x_low);
     y->multiply_by_radix(y_low);

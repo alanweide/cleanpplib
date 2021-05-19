@@ -16,7 +16,7 @@
 #include "stack_based_list.hpp"
 #include "natural_number.hpp"
 #include "bounded_nn.hpp"
-#include "natural_number_impl.hpp"
+#include "nn_impl.hpp"
 #include "stack_nn.hpp"
 #include "set_on_queue.hpp"
 #include "set_impl.hpp"

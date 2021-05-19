@@ -7,20 +7,10 @@
 //
 #include <memory>
 #include <iostream>
-#include "integer.hpp"
-#include "nn_integer.hpp"
 #include "bounded_nn.hpp"
-#include "vector_integer.hpp"
 #include "queue.hpp"
 #include "linked_queue.hpp"
 #include "array_queue.hpp"
-#include "stack.hpp"
-#include "array_stack.hpp"
-#include "linked_stack.hpp"
-#include "stack_impl.hpp"
-#include "list.hpp"
-#include "list_impl.hpp"
-#include "stack_based_list.hpp"
 #include "natural_number.hpp"
 #include "bounded_nn.hpp"
 #include "nn_impl.hpp"
@@ -42,11 +32,12 @@ template<typename T>
 std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
     queue<T> front, back;
     while( !q.is_empty() ){
-        T element = q.dequeue();
+        T element;
+        std::tie(element, q) = std::move(q).dequeue(); //rref-qualified function 
         if(compare(partition, element) < 0){
-            back.enqueue(std::move(element));
+            back = std::move(back).enqueue(std::move(element)); //rref-qualified function
         } else {
-            front.enqueue(std::move(element));
+            front = std::move(front).enqueue(std::move(element)); //rref-qualified function
         }
     }
     return std::make_tuple( std::move(partition), std::move(front), std::move(back) );
@@ -61,23 +52,26 @@ queue<T> quickSort(queue<T> q){
             q.enqueue(std::move(element));
             queue<T> front, back;
 
-            T partitioner = q.dequeue();
+            T partitioner;
+            std::tie(partitioner, q) = std::move(q).dequeue(); //rref-qualified function
             
             std::tie(partitioner, front, back) = partition(std::move(q), std::move(partitioner));
             
             front = quickSort(std::move(front));
             back = quickSort(std::move(back));
         
-            front.enqueue(std::move(partitioner));
+            front = std::move(front).enqueue(std::move(partitioner)); //rref-qualified function
             while( !back.is_empty() ){
-                front.enqueue(back.dequeue());
+                T backElement;
+                std::tie(backElement, back) = std::move(back).dequeue(); //rref-qualified function
+                front = std::move(front).enqueue(std::move(backElement)); //rref-qualified function
 
             }
             
             q = std::move(front);
         
         } else{
-            q.enqueue(std::move(element));
+            q = std::move(q).enqueue(std::move(element)); //rref-qualified function
         }
     }
      
@@ -90,10 +84,11 @@ int main(int argc, const char* argv[]) {
 
   queue<stack_nn> qnn( linked_queue<stack_nn>{} );
   
-  qnn.enqueue(stack_nn(2));
-  qnn.enqueue(stack_nn(3));
-  qnn.enqueue(stack_nn(5));
-  qnn.enqueue(stack_nn(4));
+  qnn = std::move(qnn).enqueue(stack_nn(2)); //rref-qualified function
+  qnn = std::move(qnn).enqueue(stack_nn(3)); //rref-qualified function
+  qnn = std::move(qnn).enqueue(stack_nn(5)); //rref-qualified function
+  qnn = std::move(qnn).enqueue(stack_nn(4)); //rref-qualified function
+
 
   qnn = quickSort<stack_nn>(std::move(qnn));
 
@@ -108,18 +103,23 @@ int compare(stack_nn& nn1,
             stack_nn& nn2) {
 
   //base cases
-  if(nn1.is_zero() && nn2.is_zero()){
+  bool isZero1, isZero2;
+  std::tie(isZero1, nn1) = std::move(nn1).is_zero(); //rref-qualified function
+  std::tie(isZero2, nn2) = std::move(nn2).is_zero(); //rref-qualified function
+
+  if(isZero1 && isZero2){
       return 0;
   }
-  if(nn1.is_zero()){
+  if(isZero1){
       return -1;
   }
-  if(nn2.is_zero()){
+  if(isZero2){
       return 1;
   }
 
   //recursive cases
-  int rem1 = nn1.divide_by_radix(), rem2 = nn2.divide_by_radix();
+  std::tie(rem1, nn1) = std::move(nn1).divide_by_radix(); //rref-qualified function
+  std::tie(rem2, nn2) = std::move(nn2).divide_by_radix(); //rref-qualified function
 
   int result;
   if(compare(nn1, nn2) == 0){
@@ -128,8 +128,8 @@ int compare(stack_nn& nn1,
     result = compare(nn1, nn2);
   }
 
-  nn1.multiply_by_radix(std::move(rem1));
-  nn2.multiply_by_radix(std::move(rem2));
+  nn1 = std::move(nn1).multiply_by_radix(std::move(rem1));
+  nn2 = std::move(nn2).multiply_by_radix(std::move(rem2));
 
   return result;
 
