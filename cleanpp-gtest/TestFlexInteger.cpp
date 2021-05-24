@@ -624,12 +624,7 @@ TEST(FlexInteger, AddZeroZeroTest) {
     integer n1_exp(bigint_kernel_impl{});
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -643,12 +638,7 @@ TEST(FlexInteger, AddZeroFiveTest) {
     integer n1_exp(bigint_kernel_impl{}, 5);
     integer n2_exp(bigint_kernel_impl{}, 5);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -662,12 +652,7 @@ TEST(FlexInteger, AddFiveZeroTest) {
     integer n1_exp(bigint_kernel_impl{}, 5);
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -681,12 +666,7 @@ TEST(FlexInteger, AddFourFourTest) {
     integer n1_exp(bigint_kernel_impl{}, 8);
     integer n2_exp(bigint_kernel_impl{}, 4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -700,12 +680,7 @@ TEST(FlexInteger, AddFiveFiveTest) {
     integer n1_exp(bigint_kernel_impl{}, 10);
     integer n2_exp(bigint_kernel_impl{}, 5);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -719,12 +694,7 @@ TEST(FlexInteger, AddTenTenTest) {
     integer n1_exp(bigint_kernel_impl{}, 20);
     integer n2_exp(bigint_kernel_impl{}, 10);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -738,12 +708,7 @@ TEST(FlexInteger, Add57_66Test) {
     integer n1_exp(bigint_kernel_impl{}, 123);
     integer n2_exp(bigint_kernel_impl{}, 66);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -757,12 +722,7 @@ TEST(FlexInteger, AddZeroNegFiveTest) {
     integer n1_exp(bigint_kernel_impl{}, -5);
     integer n2_exp(bigint_kernel_impl{}, -5);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -776,12 +736,7 @@ TEST(FlexInteger, AddNegFiveZeroTest) {
     integer n1_exp(bigint_kernel_impl{}, -5);
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -795,12 +750,7 @@ TEST(FlexInteger, AddFourNegFourTest) {
     integer n1_exp(bigint_kernel_impl{}, 0);
     integer n2_exp(bigint_kernel_impl{}, -4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -814,12 +764,7 @@ TEST(FlexInteger, AddNegFourNegFourTest) {
     integer n1_exp(bigint_kernel_impl{}, -8);
     integer n2_exp(bigint_kernel_impl{}, -4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -833,12 +778,7 @@ TEST(FlexInteger, AddNegFiveNegFiveTest) {
     integer n1_exp(bigint_kernel_impl{}, -10);
     integer n2_exp(bigint_kernel_impl{}, -5);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -852,12 +792,7 @@ TEST(FlexInteger, AddNegTenNegTenTest) {
     integer n1_exp(bigint_kernel_impl{}, -20);
     integer n2_exp(bigint_kernel_impl{}, -10);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -871,12 +806,7 @@ TEST(FlexInteger, Add57_Neg66Test) {
     integer n1_exp(bigint_kernel_impl{}, 11);
     integer n2_exp(bigint_kernel_impl{}, -56);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = add(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -890,12 +820,7 @@ TEST(FlexInteger, SubtractZeroZeroTest) {
     integer n1_exp(bigint_kernel_impl{});
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -909,12 +834,7 @@ TEST(FlexInteger, SubtractFiveZeroTest) {
     integer n1_exp(bigint_kernel_impl{}, 5);
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -928,12 +848,7 @@ TEST(FlexInteger, SubtractFourFourTest) {
     integer n1_exp(bigint_kernel_impl{}, 0);
     integer n2_exp(bigint_kernel_impl{}, 4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -947,12 +862,7 @@ TEST(FlexInteger, SubtractTenTenTest) {
     integer n1_exp(bigint_kernel_impl{}, 0);
     integer n2_exp(bigint_kernel_impl{}, 10);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -966,12 +876,7 @@ TEST(FlexInteger, Subtract77_66Test) {
     integer n1_exp(bigint_kernel_impl{}, 11);
     integer n2_exp(bigint_kernel_impl{}, 66);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -985,12 +890,7 @@ TEST(FlexInteger, Subtract77_6Test) {
     integer n1_exp(bigint_kernel_impl{}, 71);
     integer n2_exp(bigint_kernel_impl{}, 6);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1004,12 +904,7 @@ TEST(FlexInteger, Subtract71_66Test) {
     integer n1_exp(bigint_kernel_impl{}, 5);
     integer n2_exp(bigint_kernel_impl{}, 66);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1023,12 +918,7 @@ TEST(FlexInteger, Subtract3_4Test) {
     integer n1_exp(bigint_kernel_impl{}, -1);
     integer n2_exp(bigint_kernel_impl{}, 4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1042,12 +932,7 @@ TEST(FlexInteger, SubtractNegFiveZeroTest) {
     integer n1_exp(bigint_kernel_impl{}, -5);
     integer n2_exp(bigint_kernel_impl{});
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1061,12 +946,7 @@ TEST(FlexInteger, SubtractFourNegFourTest) {
     integer n1_exp(bigint_kernel_impl{}, 8);
     integer n2_exp(bigint_kernel_impl{}, -4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1080,12 +960,7 @@ TEST(FlexInteger, SubtractNegFourNegFourTest) {
     integer n1_exp(bigint_kernel_impl{}, 0);
     integer n2_exp(bigint_kernel_impl{}, -4);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1099,12 +974,7 @@ TEST(FlexInteger, Subtract77_Neg66Test) {
     integer n1_exp(bigint_kernel_impl{}, 143);
     integer n2_exp(bigint_kernel_impl{}, -66);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1118,12 +988,7 @@ TEST(FlexInteger, SubtractNeg77_66Test) {
     integer n1_exp(bigint_kernel_impl{}, -143);
     integer n2_exp(bigint_kernel_impl{}, 66);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);
@@ -1137,12 +1002,7 @@ TEST(FlexInteger, Subtract1_2Test) {
     integer n1_exp(bigint_kernel_impl{}, -1);
     integer n2_exp(bigint_kernel_impl{}, 2);
 
-<<<<<<< HEAD
-    integer dummy(bigint_kernel_impl{});
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = bigintToString(n1);
     std::string n2_str = bigintToString(n2);

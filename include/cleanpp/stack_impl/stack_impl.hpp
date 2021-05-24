@@ -15,11 +15,13 @@
 
 #include <clean_base.hpp>
 
+
+
 namespace cleanpp
 {
 
 template <class T>
-class stack_impl : public clean_base {
+class stack_kernel_impl : public clean_base {
     /*
      stack is modeled by string of T
      */
@@ -60,7 +62,7 @@ public:
      * @return true iff this = other
      * @ensures '==' = (this = other)
      */
-    bool operator==(stack_impl<T>& other) {
+    bool operator==(stack_kernel_impl<T>& other) {
         bool ans;
         if (is_empty() && other.is_empty()) {
             ans = true;
@@ -77,9 +79,38 @@ public:
         return ans;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, stack_impl<T>& o) {
+    friend std::ostream& operator<<(std::ostream& out, stack_kernel_impl<T>& o) {
         return out << o.to_str();
     }
+};
+
+template<class T>
+class stack_impl : public stack_kernel_impl<T> {
+private:
+    /***** helper method *****/
+    void move_to_bottom(T&& element){
+        if(!this->is_empty()){
+            T top = this->pop();
+            this->move_to_bottom(std::move(element));
+            this->push(std::move(top));
+        } else {
+            this->push(std::move(element));
+        }
+        
+
+    }
+public:
+  /*
+   updates this
+   ensures this = rev(#this)
+  */
+  void flip(){
+      if(!this->is_empty()){
+          T top = this->pop();
+          this->flip();
+          this->move_to_bottom(std::move(top));
+      }
+  }
 };
 
 }

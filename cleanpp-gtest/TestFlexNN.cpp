@@ -350,16 +350,9 @@ TEST(FlexNN, AddZeroZeroTest) {
 	natural_number n2(nn_type{});
 	natural_number n1_exp(nn_type{});
 	natural_number n2_exp(nn_type{});
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -371,16 +364,9 @@ TEST(FlexNN, AddZeroFiveTest) {
 	natural_number n2(nn_type{}, 5);
 	natural_number n1_exp(nn_type{}, 5);
 	natural_number n2_exp(nn_type{}, 5);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -392,16 +378,9 @@ TEST(FlexNN, AddFiveZeroTest) {
 	natural_number n2(nn_type{}, 0);
 	natural_number n1_exp(nn_type{}, 5);
 	natural_number n2_exp(nn_type{}, 0);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -413,16 +392,9 @@ TEST(FlexNN, AddFourFourTest) {
 	natural_number n2(nn_type{}, 4);
 	natural_number n1_exp(nn_type{}, 8);
 	natural_number n2_exp(nn_type{}, 4);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -434,16 +406,9 @@ TEST(FlexNN, AddFiveFiveTest) {
 	natural_number n2(nn_type{}, 5);
 	natural_number n1_exp(nn_type{}, 10);
 	natural_number n2_exp(nn_type{}, 5);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -455,16 +420,9 @@ TEST(FlexNN, AddTenTenTest) {
 	natural_number n2(nn_type{}, 10);
 	natural_number n1_exp(nn_type{}, 20);
 	natural_number n2_exp(nn_type{}, 10);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -476,16 +434,9 @@ TEST(FlexNN, Add57_66Test) {
 	natural_number n2(nn_type{}, 66);
 	natural_number n1_exp(nn_type{}, 123);
 	natural_number n2_exp(nn_type{}, 66);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = add(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = add(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -497,16 +448,9 @@ TEST(FlexNN, SubtractZeroZeroTest) {
 	natural_number n2(nn_type{});
 	natural_number n1_exp(nn_type{});
 	natural_number n2_exp(nn_type{});
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -518,16 +462,9 @@ TEST(FlexNN, SubtractFiveZeroTest) {
 	natural_number n2(nn_type{}, 0);
 	natural_number n1_exp(nn_type{}, 5);
 	natural_number n2_exp(nn_type{}, 0);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -539,16 +476,9 @@ TEST(FlexNN, SubtractFourFourTest) {
 	natural_number n2(nn_type{}, 4);
 	natural_number n1_exp(nn_type{}, 0);
 	natural_number n2_exp(nn_type{}, 4);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -560,16 +490,9 @@ TEST(FlexNN, SubtractTenTenTest) {
 	natural_number n2(nn_type{}, 10);
 	natural_number n1_exp(nn_type{}, 0);
 	natural_number n2_exp(nn_type{}, 10);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -581,16 +504,9 @@ TEST(FlexNN, Subtract77_66Test) {
 	natural_number n2(nn_type{}, 66);
 	natural_number n1_exp(nn_type{}, 11);
 	natural_number n2_exp(nn_type{}, 66);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -602,16 +518,9 @@ TEST(FlexNN, Subtract77_6Test) {
 	natural_number n2(nn_type{}, 6);
 	natural_number n1_exp(nn_type{}, 71);
 	natural_number n2_exp(nn_type{}, 6);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -623,16 +532,9 @@ TEST(FlexNN, Subtract71_66Test) {
 	natural_number n2(nn_type{}, 66);
 	natural_number n1_exp(nn_type{}, 5);
 	natural_number n2_exp(nn_type{}, 66);
-<<<<<<< HEAD
-	
-	natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-	
-=======
 
 	std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
 
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
@@ -640,22 +542,12 @@ TEST(FlexNN, Subtract71_66Test) {
 }
 
 TEST(FlexNN, MultiplyZeroZeroTest) {
-<<<<<<< HEAD
-    natural_number n1(nn_type{});
-    natural_number n2(nn_type{});
-    natural_number n1_exp(nn_type{});
-    natural_number n2_exp(nn_type{});
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 	natural_number n1(nn_type{});
 	natural_number n2(nn_type{});
 	natural_number n1_exp(nn_type{});
 	natural_number n2_exp(nn_type{});
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
@@ -664,22 +556,12 @@ TEST(FlexNN, MultiplyZeroZeroTest) {
 }
 
 TEST(FlexNN, MultiplyFiveZeroTest) {
-<<<<<<< HEAD
-    natural_number n1(nn_type{}, 5);
-    natural_number n2(nn_type{});
-    natural_number n1_exp(nn_type{}, 0);
-    natural_number n2_exp(nn_type{});
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 	natural_number n1(nn_type{}, 5);
 	natural_number n2(nn_type{});
 	natural_number n1_exp(nn_type{}, 0);
 	natural_number n2_exp(nn_type{});
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
@@ -688,22 +570,12 @@ TEST(FlexNN, MultiplyFiveZeroTest) {
 }
 
 TEST(FlexNN, MultiplyFourFourTest) {
-<<<<<<< HEAD
-    natural_number n1(nn_type{}, 4);
-    natural_number n2(nn_type{}, 4);
-    natural_number n1_exp(nn_type{}, 16);
-    natural_number n2_exp(nn_type{}, 4);
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 	natural_number n1(nn_type{}, 4);
 	natural_number n2(nn_type{}, 4);
 	natural_number n1_exp(nn_type{}, 16);
 	natural_number n2_exp(nn_type{}, 4);
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
 	std::string n1_str = nnToString(n1);
 	std::string n2_str = nnToString(n2);
@@ -712,65 +584,6 @@ TEST(FlexNN, MultiplyFourFourTest) {
 }
 
 TEST(FlexNN, MultiplyTenTenTest) {
-<<<<<<< HEAD
-    natural_number n1(nn_type{}, 10);
-    natural_number n2(nn_type{}, 10);
-    natural_number n1_exp(nn_type{}, 100);
-    natural_number n2_exp(nn_type{}, 10);
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-
-    std::string n1_str = nnToString(n1);
-    std::string n2_str = nnToString(n2);
-    EXPECT_TRUE(n1 == n1_exp);
-    EXPECT_TRUE(n2 == n2_exp);
-}
-
-TEST(FlexNN, Multiply77_66Test){
-    natural_number n1(nn_type{}, 77);
-    natural_number n2(nn_type{}, 66);
-    natural_number n1_exp(nn_type{}, 5082);
-    natural_number n2_exp(nn_type{}, 66);
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-
-    std::string n1_str = nnToString(n1);
-    std::string n2_str = nnToString(n2);
-    EXPECT_TRUE(n1 == n1_exp);
-    EXPECT_TRUE(n2 == n2_exp);
-}
-
-TEST(FlexNN, Multiply77_6Test){
-    natural_number n1(nn_type{}, 77);
-    natural_number n2(nn_type{}, 6);
-    natural_number n1_exp(nn_type{}, 462);
-    natural_number n2_exp(nn_type{}, 6);
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-
-    std::string n1_str = nnToString(n1);
-    std::string n2_str = nnToString(n2);
-    EXPECT_TRUE(n1 == n1_exp);
-    EXPECT_TRUE(n2 == n2_exp);
-}
-
-TEST(FlexNN, Multiply71_66Test){
-    natural_number n1(nn_type{}, 71);
-    natural_number n2(nn_type{}, 66);
-    natural_number n1_exp(nn_type{}, 4686);
-    natural_number n2_exp(nn_type{}, 66);
-    
-    natural_number dummy(nn_type{});
-	std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-
-    std::string n1_str = nnToString(n1);
-    std::string n2_str = nnToString(n2);
-    EXPECT_TRUE(n1 == n1_exp);
-    EXPECT_TRUE(n2 == n2_exp);
-=======
 	natural_number n1(nn_type{}, 10);
 	natural_number n2(nn_type{}, 10);
 	natural_number n1_exp(nn_type{}, 100);
@@ -824,5 +637,4 @@ TEST(FlexNN, Multiply71_66Test) {
 	std::string n2_str = nnToString(n2);
 	EXPECT_TRUE(n1 == n1_exp);
 	EXPECT_TRUE(n2 == n2_exp);
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 }

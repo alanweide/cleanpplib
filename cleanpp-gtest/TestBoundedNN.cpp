@@ -439,15 +439,8 @@ TEST(BoundedNN, SubtractZeroZeroTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -460,15 +453,8 @@ TEST(BoundedNN, SubtractFiveZeroTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -481,15 +467,8 @@ TEST(BoundedNN, SubtractFourFourTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(4);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(4);
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -502,15 +481,8 @@ TEST(BoundedNN, SubtractTenTenTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(10);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(10);
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -523,15 +495,8 @@ TEST(BoundedNN, Subtract77_66Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(66);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(11);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -544,15 +509,8 @@ TEST(BoundedNN, Subtract77_6Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(6);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(71);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(6);
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -565,15 +523,8 @@ TEST(BoundedNN, Subtract71_66Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(66);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
-<<<<<<< HEAD
-    
-    // n1 = subtract(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = subtract(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = subtract(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -586,15 +537,8 @@ TEST(BoundedNN, MultiplyZeroZeroTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -607,15 +551,8 @@ TEST(BoundedNN, MultiplyFiveZeroTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>();
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(0);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>();
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -633,13 +570,7 @@ TEST(BoundedNN, MultiplyFourFourTest) {
     std::unique_ptr<natural_number_impl> n1_exp(new nn_type(16));
     std::unique_ptr<natural_number_impl> n2_exp(new nn_type(4));
 
-<<<<<<< HEAD
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -652,15 +583,8 @@ TEST(BoundedNN, MultiplyTenTenTest) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(10);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(100);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(10);
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -673,15 +597,8 @@ TEST(BoundedNN, Multiply77_66Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(66);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(5082);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -694,15 +611,8 @@ TEST(BoundedNN, Multiply77_6Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(6);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(462);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(6);
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);
@@ -715,15 +625,8 @@ TEST(BoundedNN, Multiply71_66Test) {
     std::unique_ptr<natural_number_impl> n2 = std::make_unique<nn_type>(66);
     std::unique_ptr<natural_number_impl> n1_exp = std::make_unique<nn_type>(4686);
     std::unique_ptr<natural_number_impl> n2_exp = std::make_unique<nn_type>(66);
-<<<<<<< HEAD
-    
-    // n1 = multiply(std::move(n1), n2);
-    std::unique_ptr<natural_number_impl> dummy = std::make_unique<nn_type>();
-    std::tie(n1, dummy, n2) = multiply(std::move(n1), std::move(n2));
-=======
 
     std::tie(n1, n2) = multiply(std::move(n1), std::move(n2));
->>>>>>> 6fba7e7735ea1c6d4c06ca62f91eecf55ac7a992
 
     std::string n1_str = nnToString(n1);
     std::string n2_str = nnToString(n2);

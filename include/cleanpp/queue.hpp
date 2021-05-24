@@ -24,12 +24,12 @@ template <typename I>
 using _queue_def_t = array_queue<I>;
 
 template <typename Item>
-class queue : public clean_base {
+class queue_kernel : public clean_base {
 	/**
 	 queue is modeled by string of Item
 	 */
 protected:
-	std::unique_ptr<queue_impl<Item>> rep_;
+	std::unique_ptr<queue_kernel_impl<Item>> rep_;
 public:
 
 	/**
@@ -37,16 +37,15 @@ public:
 	 *
 	 * @ensures this = <>
 	 */
-	queue() : rep_(std::make_unique<_queue_def_t<Item>>()) { }
+	queue_kernel() : rep_(std::make_unique<_queue_def_t<Item>>()) { }
 
 	template<template<typename> class I>
-	queue(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
+	queue_kernel(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
 		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
-			"Template parameter I must derive from cleanpp::queue");
+			"Template parameter I must derive from queue_kernel");
 	}
 
-
-	queue(const queue<Item>& o) = delete;
+	queue_kernel(const queue_kernel<Item>& o) = delete;
 
 
 	/**
@@ -54,11 +53,11 @@ public:
 	 *
 	 * @param other - the queue being moved from
 	 */
-	queue(queue<Item>&& other) : rep_(std::move(other.rep_)) {
+	queue_kernel(queue_kernel<Item>&& other) : rep_(std::move(other.rep_)) {
 		other.rep_ = std::make_unique<_queue_def_t<Item>>();
 	}
 
-	queue<Item>& operator=(const queue<Item>& other) = delete;
+	queue_kernel<Item>& operator=(const queue_kernel<Item>& other) = delete;
 
 	/**
 	  * @brief custom move assignment operator
@@ -67,7 +66,7 @@ public:
 	  * @return the newly-assigned this
 	  * @ensures this = #other
 	  */
-	queue<Item>& operator=(queue<Item>&& other) {
+	queue_kernel<Item>& operator=(queue_kernel<Item>&& other) {
 		if (&other == this) {
 			return *this;
 		}
@@ -122,13 +121,64 @@ public:
 	 * @return true iff (this = other)
 	 * @ensures '==' = (this = other)
 	 */
-	bool operator==(queue<Item>& other) {
+	bool operator==(queue_kernel<Item>& other) {
 		return *this->rep_ == *other.rep_;
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, queue<Item>& o) {
+	friend std::ostream& operator<<(std::ostream& out, queue_kernel<Item>& o) {
 		return out << *o.rep_;
 	}
+};
+
+template<typename Item>
+class queue : public queue_kernel<Item> {
+public:
+
+	queue() : queue_kernel<Item>() { }
+
+	template<template<typename> class I>
+	queue(__attribute__((unused)) const I<Item>& impl) : queue_kernel<Item>(impl) {
+		static_assert(std::is_base_of<queue_impl<Item>, I<Item>>::value,
+			"Type of impl must derive from queue");
+	}
+
+	queue(const queue& other) = delete;
+	/*
+	 clears other
+	 initialization ensures this = #other
+	*/
+	queue(queue&& other) : queue_kernel<Item>(std::forward<queue_kernel<Item>>(other)) { }
+
+	queue& operator=(const queue& other) = delete;
+	/*
+	 clears other
+	 replaces this
+	 ensures this = #other
+	*/
+	queue& operator=(queue&& other) {
+		if (&other == this) {
+			return *this;
+		}
+		this->rep_ = std::move(other.rep_);
+		other.rep_ = std::make_unique<_queue_def_t<Item>>();
+		return *this;
+	}
+
+	/*
+	 updates this
+	 clears q
+	 ensures this = #this * #q
+	*/
+	void append(queue&& q){
+		std::unique_ptr<queue_impl<Item>> casted_this(static_cast<queue_impl<Item>*>(this->rep_.release()));
+		std::unique_ptr<queue_impl<Item>> casted_q(static_cast<queue_impl<Item>*>(q.rep_.release()));
+		casted_this->append(std::move(casted_q));
+
+		this->rep_ = std::move(casted_this);
+		q.rep_ = std::make_unique<_queue_def_t<Item>>();
+		
+	}
+
 };
 
 }

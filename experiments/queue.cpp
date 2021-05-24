@@ -8,23 +8,21 @@
 #include "natural_number.cpp"
 #include "queue.hpp"
 #include "stack_nn.cpp"
+#include "stack.hpp"
 
 using namespace cleanpp;
 
 
 int main(){
 
-	queue<natural_number> qnn;
-	for(int i = 0; i < 55; i++){
-		natural_number element(stack_nn{}, i);
-		qnn.enqueue(std::move(element));
+	stack<int> q;
+	for(int i = 0; i < 5; i++){
+		q.push(std::move(i));
 	}
-	for(int i = 0; i < 33; i++){
-		qnn.dequeue();
-	}
-
-	while(!qnn.is_empty()){
-		natural_number element(qnn.dequeue());
-		std::cout<<element<<std::endl;
-	}
+	
+	std::cout<<q<<std::endl;
+	q.flip();
+	// qNew.dequeue();
+	std::cout<<q<<std::endl;
+	
 }

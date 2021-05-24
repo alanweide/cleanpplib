@@ -21,12 +21,9 @@
 
 using namespace cleanpp;
 
-int compare(stack_nn& nn1,
-            stack_nn& nn2);
+std::tuple<int, natural_number, natural_number> compare(natural_number nn1,
+            natural_number nn2);
 
-bool operator<(stack_nn& nn1, stack_nn& nn2){
-    return compare(nn1, nn2) < 0;   
-}
 
 template<typename T>
 std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
@@ -34,7 +31,9 @@ std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
     while( !q.is_empty() ){
         T element;
         std::tie(element, q) = std::move(q).dequeue(); //rref-qualified function 
-        if(compare(partition, element) < 0){
+        int comparison;
+        std::tie(comparison, partition, element) = compare(std::move(partition), std::move(element));
+        if(comparison < 0){
             back = std::move(back).enqueue(std::move(element)); //rref-qualified function
         } else {
             front = std::move(front).enqueue(std::move(element)); //rref-qualified function
@@ -45,11 +44,13 @@ std::tuple<T, queue<T>, queue<T>> partition(queue<T> q, T partition){
 
 template<typename T>
 queue<T> quickSort(queue<T> q){
-
-    if(!q.is_empty() ){
-        T element = q.dequeue();
+    bool empty;
+    std::tie(empty, q) = std::move(q).is_empty(); //rref-qualified function
+    if(!empty ){
+        T element;
+        std::tie(element, q) = std::move(q).dequeue(); //rref-qualified function
         if( !q.is_empty() ){
-            q.enqueue(std::move(element));
+            q = std::move(q).enqueue(std::move(element)); //rref-qualified function
             queue<T> front, back;
 
             T partitioner;
@@ -61,11 +62,13 @@ queue<T> quickSort(queue<T> q){
             back = quickSort(std::move(back));
         
             front = std::move(front).enqueue(std::move(partitioner)); //rref-qualified function
-            while( !back.is_empty() ){
+            bool backEmpty;
+            std::tie(backEmpty, back) = std::move(back).is_empty(); //rref-qualified function
+            while( backEmpty ){
                 T backElement;
                 std::tie(backElement, back) = std::move(back).dequeue(); //rref-qualified function
                 front = std::move(front).enqueue(std::move(backElement)); //rref-qualified function
-
+                std::tie(backEmpty, back) = std::move(back).is_empty(); //rref-qualified function
             }
             
             q = std::move(front);
@@ -99,8 +102,8 @@ int main(int argc, const char* argv[]) {
 
 }
 
-int compare(stack_nn& nn1,
-            stack_nn& nn2) {
+std::tuple<int, natural_number, natural_number> compare(natural_number nn1,
+            natural_number nn2) {
 
   //base cases
   bool isZero1, isZero2;
@@ -122,15 +125,17 @@ int compare(stack_nn& nn1,
   std::tie(rem2, nn2) = std::move(nn2).divide_by_radix(); //rref-qualified function
 
   int result;
-  if(compare(nn1, nn2) == 0){
+  int comparison;
+  std::tie(comparison, nn1, nn2) = compare(std::move(nn1), std::move(nn2));
+  if(comparison == 0){
     result = rem1 - rem2;
   } else{
-    result = compare(nn1, nn2);
+    std::tie(result, nn1, nn2) = compare(std::move(nn1), std::move(nn2));
   }
 
   nn1 = std::move(nn1).multiply_by_radix(std::move(rem1));
   nn2 = std::move(nn2).multiply_by_radix(std::move(rem2));
 
-  return result;
+  return std::make_tuple(result, std::move(nn1), std::move(nn2));
 
 }

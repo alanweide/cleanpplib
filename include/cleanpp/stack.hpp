@@ -18,15 +18,15 @@ namespace cleanpp
 {
 
 template<typename Item>
-class stack : public clean_base {
+class stack_kernel : public clean_base {
 protected:
     template <typename I>
     using _flex_stack_def_t = array_stack<I>;
-    static_assert(std::is_base_of<stack_impl<int>, _flex_stack_def_t<int>>::value,
+    static_assert(std::is_base_of<stack_kernel_impl<int>, _flex_stack_def_t<int>>::value,
         "_flex_stack_def_t must derive from stack<Item>");
 
 
-    std::unique_ptr<stack_impl<Item>> rep_;
+    std::unique_ptr<stack_kernel_impl<Item>> rep_;
 public:
 
     /**
@@ -34,26 +34,26 @@ public:
      *
      * @ensures this = <>
      */
-    stack() : rep_(std::make_unique<_flex_stack_def_t<Item>>()) { }
+    stack_kernel() : rep_(std::make_unique<_flex_stack_def_t<Item>>()) { }
 
     template<template<typename> class I>
-    stack(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
-        static_assert(std::is_base_of<stack_impl<Item>, I<Item>>::value,
-            "Template parameter I must derive from stack<Item>");
+    stack_kernel(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
+        static_assert(std::is_base_of<stack_kernel_impl<Item>, I<Item>>::value,
+            "Template parameter I must derive from stack_kernel<Item>");
     }
 
-    stack(const stack<Item>& o) = delete;
+    stack_kernel(const stack_kernel<Item>& o) = delete;
 
     /**
      * @brief Custom move constructor
      *
      * @param o - the stack being moved from
      */
-    stack(stack<Item>&& o) : rep_(std::move(o.rep_)) {
+    stack_kernel(stack_kernel<Item>&& o) : rep_(std::move(o.rep_)) {
         o.rep_ = std::make_unique<_flex_stack_def_t<Item>>();
     }
 
-    stack<Item>& operator=(const stack<Item>& o) = delete;
+    stack_kernel<Item>& operator=(const stack_kernel<Item>& o) = delete;
 
     /**
      * @brief custom move assignment operator
@@ -62,7 +62,7 @@ public:
      * @return the newly-assigned this
      * @ensures this = #other
      */
-    stack<Item>& operator=(stack<Item>&& other) {
+    stack_kernel<Item>& operator=(stack_kernel<Item>&& other) {
         if (&other == this) {
             return *this;
         }
@@ -118,14 +118,71 @@ public:
      * @return true iff this = other
      * @ensures '==' = (this = other)
      */
-    bool operator==(stack<Item>& other) {
+    bool operator==(stack_kernel<Item>& other) {
         return *this->rep_ == *other.rep_;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, stack<Item>& o) {
+    friend std::ostream& operator<<(std::ostream& out, stack_kernel<Item>& o) {
         return out << *o.rep_;
     }
 };
+
+template<typename Item>
+class stack : public stack_kernel<Item> {
+protected:
+    template <typename I>
+    using _flex_stack_def_t = array_stack<I>;
+    static_assert(std::is_base_of<stack_kernel_impl<int>, _flex_stack_def_t<int>>::value,
+        "_flex_stack_def_t must derive from stack<Item>");
+
+public:
+
+    stack() : stack_kernel<Item>() { }
+
+    template<template<typename> class I>
+    stack(__attribute__((unused)) const I<Item>& impl) : stack_kernel<Item>(impl) {
+        static_assert(std::is_base_of<stack_impl<Item>, I<Item>>::value,
+            "Type of impl must derive from stack");
+    }
+
+    stack(const stack& other) = delete;
+
+    /*
+     clears other
+     initialization ensures this = #other
+    */
+    stack(stack&& other) : stack_kernel<Item>(std::forward<stack_kernel<Item>>(other)) { }
+
+    stack& operator=(const stack& other) = delete;
+    /*
+     clears other
+     replaces this
+     ensures this = #other
+    */
+    stack& operator=(stack&& other) {
+        if(&other == this) {
+            return *this;
+        }
+        this->rep_ = std::move(other.rep_);
+        other.rep_ = std::make_unique<_flex_stack_def_t<Item>>();
+        return *this;
+    }
+
+    /*
+     updates this
+     ensures this = rev(#this)
+    */
+    void flip() { 
+        std::unique_ptr<stack_impl<Item>> casted_this(static_cast<stack_impl<Item>*>(this->rep_.release()));
+        
+        casted_this->flip();
+        this->rep_ = std::move(casted_this);
+        
+    }
+
+
+};
+
 }
 
 #endif /* flexible_stack_h */
