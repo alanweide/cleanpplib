@@ -17,7 +17,7 @@ namespace cleanpp
 {
 
 template<typename T>
-class set_impl : public clean_base {
+class set_kernel_impl : public clean_base {
 
   /**
    * set is modeled by finite set of T
@@ -45,7 +45,7 @@ public:
    * @return true iff element is in this
    * @ensures contains = (x is in this)
    */
-  virtual bool contains(T&& x) = 0;
+  virtual std::tuple<bool, T> contains(T&& x) = 0;
 
 
   /**
@@ -79,10 +79,31 @@ public:
 
   virtual bool isEmpty() = 0;
 
-  friend std::ostream& operator<<(std::ostream& out, set_impl<T>& o) {
+  friend std::ostream& operator<<(std::ostream& out, set_kernel_impl<T>& o) {
     return out << o.to_str();
   }
 
+};
+
+
+template<typename T>
+class set_impl : public set_kernel_impl<T> {
+public:
+  /*
+   clears s
+   updates this
+   ensures this = #this union #s 
+  */
+  void set_union(std::unique_ptr<set_impl> s){
+    while(!s->isEmpty()){
+      T element = s->removeAny();
+      bool has;
+      std::tie(has, element) = this->contains(std::move(element));
+      if(!has) {
+        this->add(std::move(element));
+      }
+    }
+  }
 };
 
 }

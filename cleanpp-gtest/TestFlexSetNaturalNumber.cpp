@@ -212,7 +212,7 @@ TEST(FlexSetNaturalNumber, ContainsEmptyTest) {
     nn_type a;
 
     bool contains;
-    contains = s.contains(std::move(a));
+    std::tie(contains, a) = s.contains(std::move(a));
 
     std::string s_str = setToString(s);
     EXPECT_TRUE(s_str == empty_set);
@@ -227,7 +227,7 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyTrueTest) {
     s.add(std::move(adder));
 
     bool contains;
-    contains = s.contains(std::move(a));
+    std::tie(contains, a) = s.contains(std::move(a));
 
     std::string s_str = setToString(s);
     EXPECT_TRUE(s_str == expected);
@@ -247,7 +247,7 @@ TEST(FlexSetNaturalNumber, BigSetContains0Test) {
     }
 
     bool contains;
-    contains = s.contains(std::move(a));
+    std::tie(contains, a) = s.contains(std::move(a));
 
     int actual_size = s.getSize();
     EXPECT_EQ(expected_size, actual_size);
@@ -266,7 +266,7 @@ TEST(FlexSetNaturalNumber, BigSetContains6Test) {
     }
 
     bool contains;
-    contains = s.contains(std::move(a));
+    std::tie(contains, a) = s.contains(std::move(a));
 
     int actual_size = s.getSize();
     EXPECT_EQ(expected_size, actual_size);
@@ -281,9 +281,39 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyFalseTest) {
     s.add(std::move(adder));
 
     bool contains;
-    contains = s.contains(std::move(a));
+    std::tie(contains, a) = s.contains(std::move(a));
 
     std::string s_str = setToString(s);
     EXPECT_TRUE(s_str == expected);
     EXPECT_TRUE(!contains);
 }
+
+TEST(FlexSetNaturalNumber, SetUnionEmpty){
+    set_type receiver_s, transmitter_s;
+
+    receiver_s.set_union(std::move(transmitter_s));
+
+    std::string receiver_str = setToString(receiver_s);
+    std::string transmitter_str = setToString(transmitter_s);
+    EXPECT_TRUE(receiver_str == empty_set);
+    EXPECT_TRUE(transmitter_str == empty_set);
+
+}
+
+TEST(FlexSetNaturalNumber, SetUnionNonEmpty){
+    set_type receiver_s, transmitter_s;
+    std::string expected_poss1 = "{0, 1}", expected_poss2 = "{1, 0}";
+    nn_type a(0L), b(1L);
+
+    receiver_s.add(std::move(a));
+    transmitter_s.add(std::move(b));
+
+    receiver_s.set_union(std::move(transmitter_s));
+
+    std::string receiver_str = setToString(receiver_s);
+    std::string transmitter_str = setToString(transmitter_s);
+    EXPECT_TRUE(receiver_str == expected_poss1 || receiver_str == expected_poss2);
+    EXPECT_TRUE(transmitter_str == empty_set);
+
+}
+

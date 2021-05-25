@@ -30,6 +30,7 @@ class queue_kernel : public clean_base {
 	 */
 protected:
 	std::unique_ptr<queue_kernel_impl<Item>> rep_;
+	
 public:
 
 	/**
@@ -172,6 +173,7 @@ public:
 	void append(queue&& q){
 		std::unique_ptr<queue_impl<Item>> casted_this(static_cast<queue_impl<Item>*>(this->rep_.release()));
 		std::unique_ptr<queue_impl<Item>> casted_q(static_cast<queue_impl<Item>*>(q.rep_.release()));
+		
 		casted_this->append(std::move(casted_q));
 
 		this->rep_ = std::move(casted_this);

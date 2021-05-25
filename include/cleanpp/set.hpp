@@ -18,14 +18,14 @@ template <typename I>
 using _set_def_t = set_on_queue<I>;
 
 template <typename Item>
-class set : public clean_base {
+class set_kernel : public clean_base {
 
     /*
     set is modeled by finite set of Item
     */
 
 protected:
-    std::unique_ptr<set_impl<Item>> rep_;
+    std::unique_ptr<set_kernel_impl<Item>> rep_;
 
 public:
 
@@ -35,15 +35,15 @@ public:
      *
      * @ensures this = {}
      */
-    set() : rep_(std::make_unique<_set_def_t<Item>>()) { }
+    set_kernel() : rep_(std::make_unique<_set_def_t<Item>>()) { }
 
     template<template<typename> class I>
-    set(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
-        static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value,
-            "Template parameter I must derive from cleanpp::set");
+    set_kernel(__attribute__((unused)) const I<Item>& impl) : rep_(std::make_unique<I<Item>>()) {
+        static_assert(std::is_base_of<set_kernel_impl<Item>, I<Item>>::value,
+            "Template parameter I must derive from cleanpp::set_kernel");
     }
 
-    set(const queue<Item>& o) = delete;
+    set_kernel(const queue<Item>& o) = delete;
 
 
     /**
@@ -52,11 +52,11 @@ public:
      * @param other - set to move from
      * @ensures this = #other
      */
-    set(set<Item>&& other) : rep_(std::move(other.rep_)) {
+    set_kernel(set_kernel<Item>&& other) : rep_(std::move(other.rep_)) {
         other.rep_ = std::make_unique<_set_def_t<Item>>();
     }
 
-    set<Item>& operator=(const set<Item>& other) = delete;
+    set_kernel<Item>& operator=(const set_kernel<Item>& other) = delete;
 
 
     /**
@@ -66,7 +66,7 @@ public:
      * @return the newly-assigned this
      * @ensures this = #other
      */
-    set<Item>& operator=(set<Item>&& other) {
+    set_kernel<Item>& operator=(set_kernel<Item>&& other) {
         if (&other == this) {
             return *this;
         }
@@ -105,8 +105,12 @@ public:
      * @return true iff element is in this
      * @ensures contains = (x is in this)
      */
-    bool contains(Item&& x) {
-        return rep_->contains(std::forward<Item>(x));
+    std::tuple<bool, Item> contains(Item&& x) {
+
+        bool has;
+        
+        std::tie(has, x) = rep_->contains(std::forward<Item>(x));
+        return std::make_tuple(std::move(has), std::move(x));
     }
 
 
@@ -160,12 +164,68 @@ public:
      * @param other - set to compare to
      * @return true iff sets contain the same elements
      */
-    bool operator==(set<Item>& other) {
+    bool operator==(set_kernel<Item>& other) {
         return *this->rep_ == *other.rep_;
     }
 
-    friend std::ostream& operator<<(std::ostream& out, set<Item>& o) {
+    friend std::ostream& operator<<(std::ostream& out, set_kernel<Item>& o) {
         return out << *o.rep_;
+    }
+
+
+};
+
+template <typename Item>
+class set : public set_kernel<Item> {
+public:
+
+    set() : set_kernel<Item>() { }
+
+    template<template<typename> class I>
+    set(__attribute__((unused)) const I<Item>& impl) : set_kernel<Item>(impl) {
+        static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value,
+            "Type of impl must derive from queue");
+    }
+
+    set(const set& other) = delete;
+
+    /*
+     clears other
+     initialization ensures this = #other
+    */
+    set(set&& other) : set<Item>(std::forward<set_kernel<Item>>(other)) { }
+
+    set& operator=(const set& other) = delete;
+
+    /*
+     clears other
+     replaces this
+     ensures this = #other
+    */
+    set& operator=(set&& other) {
+        if(&other == this) {
+            return *this;
+        }
+        this->rep_ = std::move(other.rep_);
+        other.rep_ = std::make_unique<_set_def_t<Item>>();
+        return *this;
+
+    }
+
+    /*
+     updates this
+     clears s
+     ensures this = #this union #s
+    */
+    void set_union(set<Item>&& s) {
+        std::unique_ptr<set_impl<Item>> casted_this(static_cast<set_impl<Item>*>(this->rep_.release()));
+        std::unique_ptr<set_impl<Item>> casted_s(static_cast<set_impl<Item>*>(s.rep_.release()));
+
+        casted_this->set_union(std::move(casted_s));
+
+        this->rep_ = std::move(casted_this);
+        s.rep_ = std::make_unique<_set_def_t<Item>>();
+
     }
 
 

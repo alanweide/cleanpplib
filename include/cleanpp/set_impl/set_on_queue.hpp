@@ -102,7 +102,6 @@ public:
 
     T remove(T&& x) {
 
-
         std::tie(this->rep, x) = moveToFront(std::move(this->rep), std::move(x));
 
         size--;
@@ -116,7 +115,7 @@ public:
         return this->rep.dequeue();
     }
 
-    bool contains(T&& x) {
+    std::tuple<bool, T> contains(T&& x) {
         bool has = false;
 
         // Recursive implementation
@@ -148,7 +147,7 @@ public:
            this->rep.enqueue(std::move(front));
        }
 
-        return has;
+        return std::make_tuple(has, std::move(x));
 
     }
 

@@ -74,7 +74,7 @@ public:
 };
 
 template<typename K, typename V>
-class map_impl : public clean_base {
+class map_kernel_impl : public clean_base {
 
     /*
     map is modeled by finite set of Pair
@@ -98,6 +98,15 @@ class map_impl : public clean_base {
      */
     virtual void add(K&& key, V&& value) = 0;
 
+    /**
+     * @brief Adds the pair p to this
+     *
+     * @param p - the pair to be added
+     *
+     * @requires p is not in this
+     * @ensures this = #this union {p}
+    */
+    virtual void add(pair<K, V>&& p) = 0;
 
     /**
      * @brief Reports whether there is a pair in this whose first component is key
@@ -138,8 +147,27 @@ class map_impl : public clean_base {
      */
     virtual int size() = 0;
 
-    friend std::ostream& operator<<(std::ostream& out, map_impl<K, V>& o) {
+    friend std::ostream& operator<<(std::ostream& out, map_kernel_impl<K, V>& o) {
         return out << o.to_str();
+    }
+
+};
+
+template<typename K, typename V>
+class map_impl : public map_kernel_impl<K, V> {
+public:
+
+    /*
+     updates this
+     clears m
+     requires DOMAIN(this) intersection DOMAIN(m) = {}
+     ensures this = #this union #m
+    */
+    void combine_with(std::unique_ptr<map_impl<K, V>> m) {
+        while(m->size() != 0){
+            pair<K, V> element = m->removeAny();
+            this->add(std::move(element));
+        }
     }
 
 };
