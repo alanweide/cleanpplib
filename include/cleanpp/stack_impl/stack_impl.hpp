@@ -14,11 +14,15 @@
 #include <memory>
 
 #include <clean_base.hpp>
+#include <stack_impl/linked_stack.hpp>
 
 
 
 namespace cleanpp
 {
+
+template<class T>
+class linked_stack;
 
 template <class T>
 class stack_kernel_impl : public clean_base {
@@ -96,21 +100,34 @@ private:
         } else {
             this->push(std::move(element));
         }
-        
-
     }
+    
 public:
   /*
    updates this
    ensures this = rev(#this)
   */
-  void flip(){
-      if(!this->is_empty()){
-          T top = this->pop();
-          this->flip();
-          this->move_to_bottom(std::move(top));
-      }
-  }
+//   void flip() {
+//       if(!this->is_empty()){
+//           T top = this->pop();
+//           this->flip();
+//           this->move_to_bottom(std::move(top));
+//       }
+//   }
+
+    void flip() {
+        stack_impl<T>* temp = new linked_stack<T>();
+        while(!this->is_empty()){
+            temp->push(this->pop());
+        }
+        std::cout<<"this before swap: "<<*this<<std::endl;
+        std::cout<<*temp<<std::endl;
+        stack_impl<T>* temp2 = std::move(temp);
+        std::cout<<"this after swap: "<<*this<<std::endl;
+        std::cout<<*temp<<std::endl;
+        std::cout<<*temp2<<std::endl;
+        // *this = *temp; //problem code
+    }
 };
 
 }

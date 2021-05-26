@@ -300,12 +300,46 @@ TEST(FlexSetNaturalNumber, SetUnionEmpty){
 
 }
 
-TEST(FlexSetNaturalNumber, SetUnionNonEmpty){
+TEST(FlexSetNaturalNumber, SetUnionBothNonEmpty){
     set_type receiver_s, transmitter_s;
     std::string expected_poss1 = "{0, 1}", expected_poss2 = "{1, 0}";
     nn_type a(0L), b(1L);
 
     receiver_s.add(std::move(a));
+    transmitter_s.add(std::move(b));
+
+    receiver_s.set_union(std::move(transmitter_s));
+
+    std::string receiver_str = setToString(receiver_s);
+    std::string transmitter_str = setToString(transmitter_s);
+    EXPECT_TRUE(receiver_str == expected_poss1 || receiver_str == expected_poss2);
+    EXPECT_TRUE(transmitter_str == empty_set);
+
+}
+
+TEST(FlexSetNaturalNumber, SetUnionReceiverNonEmpty){
+    set_type receiver_s, transmitter_s;
+    std::string expected_poss1 = "{0, 1}", expected_poss2 = "{1, 0}";
+    nn_type a(0L), b(1L);
+
+    receiver_s.add(std::move(a));
+    receiver_s.add(std::move(b));
+
+    receiver_s.set_union(std::move(transmitter_s));
+
+    std::string receiver_str = setToString(receiver_s);
+    std::string transmitter_str = setToString(transmitter_s);
+    EXPECT_TRUE(receiver_str == expected_poss1 || receiver_str == expected_poss2);
+    EXPECT_TRUE(transmitter_str == empty_set);
+
+}
+
+TEST(FlexSetNaturalNumber, SetUnionTransmitterNonEmpty){
+    set_type receiver_s, transmitter_s;
+    std::string expected_poss1 = "{0, 1}", expected_poss2 = "{1, 0}";
+    nn_type a(0L), b(1L);
+
+    transmitter_s.add(std::move(a));
     transmitter_s.add(std::move(b));
 
     receiver_s.set_union(std::move(transmitter_s));

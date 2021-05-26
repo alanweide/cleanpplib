@@ -238,4 +238,24 @@ TEST(FlexQueueNaturalNumber, AppendEmptyToEmpty) {
     EXPECT_TRUE(transmitter_str == expected_transmitter);
 }
 
+TEST(FlexQueueNaturalNumber, AppendNonEmptyToNonEmpty) {
+    queue_type receiver_q, transmitter_q;
+    std::string expected_receiver = "<0, 1, 2, 3>",
+        expected_transmitter = "<>";
+
+    int numElem = 2;
+    for(long i = 0; i < numElem; i++){
+        nn_type n(i), n2(i + 2);
+        receiver_q.enqueue(std::move(n));
+        transmitter_q.enqueue(std::move(n2));
+    }
+
+    receiver_q.append(std::move(transmitter_q));
+
+    std::string receiver_str = queueToString(receiver_q);
+    std::string transmitter_str = queueToString(transmitter_q);
+    EXPECT_TRUE(receiver_str == expected_receiver);
+    EXPECT_TRUE(transmitter_str == expected_transmitter);
+}
+
 

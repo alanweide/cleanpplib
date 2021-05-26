@@ -281,12 +281,46 @@ TEST(FlexMapNaturalNumber, CombineWithEmpty) {
     
 }
 
-TEST(FlexMapNaturalNumber, CombineWithNonEmpty) {
+TEST(FlexMapNaturalNumber, CombineWithBothNonEmpty) {
     map_type receiver_m, transmitter_m;
     std::string expected_poss1 = "{(1, 2), (3, 4)}", expected_poss2 = "{(3, 4), (1, 2)}";
     nn_type key1(1L), val1(2L), key2(3L), val2(4L);
 
     receiver_m.add(std::move(key1), std::move(val1));
+    transmitter_m.add(std::move(key2), std::move(val2));
+
+    receiver_m.combine_with(std::move(transmitter_m));
+
+    std::string receiver_str = mapToString(receiver_m);
+    std::string transmitter_str = mapToString(transmitter_m);
+    EXPECT_TRUE(receiver_str == expected_poss1 || receiver_str == expected_poss2);
+    EXPECT_TRUE(transmitter_str == empty_map);
+    
+}
+
+TEST(FlexMapNaturalNumber, CombineWithReceiverNonEmpty) {
+    map_type receiver_m, transmitter_m;
+    std::string expected_poss1 = "{(1, 2), (3, 4)}", expected_poss2 = "{(3, 4), (1, 2)}";
+    nn_type key1(1L), val1(2L), key2(3L), val2(4L);
+
+    receiver_m.add(std::move(key1), std::move(val1));
+    receiver_m.add(std::move(key2), std::move(val2));
+
+    receiver_m.combine_with(std::move(transmitter_m));
+
+    std::string receiver_str = mapToString(receiver_m);
+    std::string transmitter_str = mapToString(transmitter_m);
+    EXPECT_TRUE(receiver_str == expected_poss1 || receiver_str == expected_poss2);
+    EXPECT_TRUE(transmitter_str == empty_map);
+    
+}
+
+TEST(FlexMapNaturalNumber, CombineWithTransmitterNonEmpty) {
+    map_type receiver_m, transmitter_m;
+    std::string expected_poss1 = "{(1, 2), (3, 4)}", expected_poss2 = "{(3, 4), (1, 2)}";
+    nn_type key1(1L), val1(2L), key2(3L), val2(4L);
+
+    transmitter_m.add(std::move(key1), std::move(val1));
     transmitter_m.add(std::move(key2), std::move(val2));
 
     receiver_m.combine_with(std::move(transmitter_m));
