@@ -24,15 +24,17 @@ static std::string setToString(set<stack_nn>& s) {
 
 int main(){
 
-	stack<stack_nn> q, f;
+	set<stack_nn> set1, set2;
 	for(long i = 1; i < 4; i++){
 		stack_nn elem(i), elem2(i);
-		q.push(std::move(elem));
+		set1.add(std::move(elem));
+		set2.add(std::move(elem2));
 	}
 	
-	q.flip();
+	set2 = set1.set_union(std::move(set2));
 	
-	std::cout<<q<<std::endl;
+	std::cout<<set1<<std::endl;
+	std::cout<<set2<<std::endl;
 
 	
 

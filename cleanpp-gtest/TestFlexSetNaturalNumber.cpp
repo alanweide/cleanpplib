@@ -291,7 +291,7 @@ TEST(FlexSetNaturalNumber, ContainsNonEmptyFalseTest) {
 TEST(FlexSetNaturalNumber, SetUnionEmpty){
     set_type receiver_s, transmitter_s;
 
-    receiver_s.set_union(std::move(transmitter_s));
+    transmitter_s = receiver_s.set_union(std::move(transmitter_s));
 
     std::string receiver_str = setToString(receiver_s);
     std::string transmitter_str = setToString(transmitter_s);
@@ -308,7 +308,7 @@ TEST(FlexSetNaturalNumber, SetUnionBothNonEmpty){
     receiver_s.add(std::move(a));
     transmitter_s.add(std::move(b));
 
-    receiver_s.set_union(std::move(transmitter_s));
+    transmitter_s = receiver_s.set_union(std::move(transmitter_s));
 
     std::string receiver_str = setToString(receiver_s);
     std::string transmitter_str = setToString(transmitter_s);
@@ -325,7 +325,7 @@ TEST(FlexSetNaturalNumber, SetUnionReceiverNonEmpty){
     receiver_s.add(std::move(a));
     receiver_s.add(std::move(b));
 
-    receiver_s.set_union(std::move(transmitter_s));
+    transmitter_s = receiver_s.set_union(std::move(transmitter_s));
 
     std::string receiver_str = setToString(receiver_s);
     std::string transmitter_str = setToString(transmitter_s);
@@ -342,7 +342,7 @@ TEST(FlexSetNaturalNumber, SetUnionTransmitterNonEmpty){
     transmitter_s.add(std::move(a));
     transmitter_s.add(std::move(b));
 
-    receiver_s.set_union(std::move(transmitter_s));
+    transmitter_s = receiver_s.set_union(std::move(transmitter_s));
 
     std::string receiver_str = setToString(receiver_s);
     std::string transmitter_str = setToString(transmitter_s);
@@ -350,4 +350,23 @@ TEST(FlexSetNaturalNumber, SetUnionTransmitterNonEmpty){
     EXPECT_TRUE(transmitter_str == empty_set);
 
 }
+
+TEST(FlexSetNaturalNumber, SetUnionIntersectionNonEmpty){
+    set_type receiver_s, transmitter_s;
+    std::string expected_receiver = "{0}", expected_transmitter = "{0}";
+    nn_type a(0L), b(0L);
+
+    receiver_s.add(std::move(a));
+    transmitter_s.add(std::move(b));
+
+    transmitter_s = receiver_s.set_union(std::move(transmitter_s));
+
+    std::string receiver_str = setToString(receiver_s);
+    std::string transmitter_str = setToString(transmitter_s);
+    EXPECT_TRUE(receiver_str == expected_receiver);
+    EXPECT_TRUE(transmitter_str == expected_transmitter);
+
+}
+
+
 

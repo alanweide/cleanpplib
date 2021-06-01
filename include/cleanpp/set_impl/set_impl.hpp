@@ -12,6 +12,8 @@
 #include <memory>
 
 #include <clean_base.hpp>
+#include "set_on_queue.hpp"
+
 
 namespace cleanpp
 {
@@ -94,15 +96,19 @@ public:
    updates this
    ensures this = #this union #s 
   */
-  void set_union(std::unique_ptr<set_impl> s){
+  std::unique_ptr<set_impl> set_union(std::unique_ptr<set_impl> s){
+    std::unique_ptr<set_impl> temp = std::make_unique<set_on_queue<T>>();
     while(!s->isEmpty()){
       T element = s->removeAny();
       bool has;
       std::tie(has, element) = this->contains(std::move(element));
       if(!has) {
         this->add(std::move(element));
+      } else {
+        temp->add(std::move(element));
       }
     }
+    return std::move(temp);
   }
 };
 

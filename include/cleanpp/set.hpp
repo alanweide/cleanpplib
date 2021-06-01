@@ -184,7 +184,7 @@ public:
     template<template<typename> class I>
     set(__attribute__((unused)) const I<Item>& impl) : set_kernel<Item>(impl) {
         static_assert(std::is_base_of<set_impl<Item>, I<Item>>::value,
-            "Type of impl must derive from queue");
+            "Type of impl must derive from set");
     }
 
     set(const set& other) = delete;
@@ -217,14 +217,16 @@ public:
      clears s
      ensures this = #this union #s
     */
-    void set_union(set<Item>&& s) {
+    set<Item>&& set_union(set<Item>&& s) {
         std::unique_ptr<set_impl<Item>> casted_this(static_cast<set_impl<Item>*>(this->rep_.release()));
         std::unique_ptr<set_impl<Item>> casted_s(static_cast<set_impl<Item>*>(s.rep_.release()));
 
-        casted_this->set_union(std::move(casted_s));
+        casted_s = casted_this->set_union(std::move(casted_s));
 
         this->rep_ = std::move(casted_this);
-        s.rep_ = std::make_unique<_set_def_t<Item>>();
+        s.rep_ = std::move(casted_s);
+
+        return std::move(s);
 
     }
 
