@@ -92,6 +92,7 @@ public:
 
     linked_stack<T>& operator=(const linked_stack<T>& other) = delete;
     linked_stack<T>& operator=(linked_stack<T>&& other) {
+        std::printf("%s:%s%s", __FILE__, __func__, std::endl);
         if (&other == this) {
             return *this;
         }
@@ -108,6 +109,9 @@ public:
         assert(is_empty());
     }
 
+    std::unique_ptr<stack_impl<T>> new_instance() override {
+        return std::make_unique<linked_stack<T>>();
+    }
 
     void push(T&& x) override {
         top_ptr_ = std::make_unique<stack_node>(std::forward<T>(x), std::move(top_ptr_));

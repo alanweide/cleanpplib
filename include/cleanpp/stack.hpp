@@ -175,7 +175,9 @@ public:
     void flip() { 
         std::unique_ptr<stack_impl<Item>> casted_this(static_cast<stack_impl<Item>*>(this->rep_.release()));
         
+        // casted_this = casted_this->flipped();
         casted_this->flip();
+        std::cout << __FILE__ << ":" << __LINE__ << ": casted_this = " << *casted_this << std::endl;
         this->rep_ = std::move(casted_this);
         
     }

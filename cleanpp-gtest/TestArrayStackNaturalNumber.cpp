@@ -115,3 +115,17 @@ TEST(ArrayStackNaturalNumber, NonMonotonicResizingTest) {
 
     EXPECT_TRUE(s->is_empty());
 }
+
+TEST(ArrayStackNaturalNumber, FlipNonEmptyTest) {
+    std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
+    std::string expected_stack = "<0, 1, 2, 3, 4>";
+    int numElem = 5;
+    for (int i = 0; i < numElem; i++) {
+        s->push(std::move(i));
+    }
+
+    s->flip();
+
+    std::string s_str = stackNNToString(s);
+    EXPECT_EQ(s_str, expected_stack);
+}

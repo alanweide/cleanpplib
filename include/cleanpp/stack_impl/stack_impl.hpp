@@ -58,7 +58,6 @@ public:
      */
     virtual bool is_empty() const = 0;
 
-
     /**
      * @brief overloaded equality operator
      *
@@ -92,8 +91,8 @@ template<class T>
 class stack_impl : public stack_kernel_impl<T> {
 private:
     /***** helper method *****/
-    void move_to_bottom(T&& element){
-        if(!this->is_empty()){
+    void move_to_bottom(T&& element) {
+        if (!this->is_empty()) {
             T top = this->pop();
             this->move_to_bottom(std::move(element));
             this->push(std::move(top));
@@ -101,32 +100,45 @@ private:
             this->push(std::move(element));
         }
     }
-    
-public:
-  /*
-   updates this
-   ensures this = rev(#this)
-  */
-//   void flip() {
-//       if(!this->is_empty()){
-//           T top = this->pop();
-//           this->flip();
-//           this->move_to_bottom(std::move(top));
-//       }
-//   }
 
-    void flip() {
-        stack_impl<T>* temp = new linked_stack<T>();
-        while(!this->is_empty()){
-            temp->push(this->pop());
+public:
+    /*
+     updates this
+     ensures this = rev(#this)
+    */
+    //   void flip() {
+    //       if(!this->is_empty()){
+    //           T top = this->pop();
+    //           this->flip();
+    //           this->move_to_bottom(std::move(top));
+    //       }
+    //   }
+
+    virtual std::unique_ptr<stack_impl<T>> new_instance() = 0;
+
+    virtual std::unique_ptr<stack_impl<T>> flipped() {
+        std::unique_ptr<stack_impl<T>> temp = this->new_instance();
+        while (!this->is_empty()) {
+            T popped = this->pop();
+            temp->push(std::move(popped));
         }
-        std::cout<<"this before swap: "<<*this<<std::endl;
-        std::cout<<*temp<<std::endl;
-        stack_impl<T>* temp2 = std::move(temp);
-        std::cout<<"this after swap: "<<*this<<std::endl;
-        std::cout<<*temp<<std::endl;
-        std::cout<<*temp2<<std::endl;
-        // *this = *temp; //problem code
+        return temp;
+    }
+
+    virtual void flip() {
+        std::unique_ptr<stack_impl<T>> temp = this->new_instance();
+        // *temp = std::move(*this);
+        // stack_impl<T>* temp = std::move(this);
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __func__ << "::this = " << *this << std::endl;
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __func__ << "::temp = " << *temp << std::endl;
+        while (!this->is_empty()) {
+            T popped = this->pop();
+            std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::popped = " << popped << std::endl;
+            temp->push(std::move(popped));
+        }
+        *this = *temp; //problem code
+        std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::this = " << *this << std::endl;
+        std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::temp = " << *temp << std::endl;
     }
 };
 
