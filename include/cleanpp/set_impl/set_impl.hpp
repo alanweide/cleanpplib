@@ -87,6 +87,8 @@ public:
 
 };
 
+template<typename T>
+class set_on_queue;
 
 template<typename T>
 class set_impl : public set_kernel_impl<T> {

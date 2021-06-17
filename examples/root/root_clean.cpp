@@ -1,23 +1,13 @@
 #include <memory>
 #include <iostream>
 #include "integer.hpp"
-#include "nn_integer.hpp"
-#include "bounded_nn.hpp"
-#include "vector_integer.hpp"
-#include "queue.hpp"
-#include "linked_queue.hpp"
-#include "array_queue.hpp"
-#include "stack.hpp"
-#include "array_stack.hpp"
-#include "linked_stack.hpp"
-#include "stack_impl.hpp"
-#include "list.hpp"
-#include "list_impl.hpp"
-#include "stack_based_list.hpp"
+#include "integer_impl/nn_integer.hpp"
+#include "nn_impl/bounded_nn.hpp"
+#include "integer_impl/vector_integer.hpp"
 #include "natural_number.hpp"
-#include "bounded_nn.hpp"
-#include "nn_impl.hpp"
-#include "stack_nn.hpp"
+#include "nn_impl/bounded_nn.hpp"
+#include "nn_impl/nn_impl.hpp"
+#include "nn_impl/stack_nn.hpp"
 #include <queue>
 #include <iostream>
 #include <stdlib.h>
@@ -32,10 +22,10 @@ natural_number power(natural_number nn, int p){
     
     int i = 0; 
     natural_number base(stack_nn{}, 0);
-    base = add(std::move(base), nn);
+    std::tie(base, nn) = add(std::move(base), std::move(nn));
     
     while(i < p - 1){ 
-        base = multiply(std::move(base), nn);
+        std::tie(base, nn) = multiply(std::move(base), std::move(nn));
         i++;
     }
 
@@ -52,17 +42,17 @@ natural_number root(natural_number nn, int r){
     if(compare(nn, one) != 0){
         natural_number lowEnough(stack_nn{}, 0);
         natural_number tooHigh(stack_nn{}, 0);
-        tooHigh = add(std::move(tooHigh), nn);
+        std::tie(tooHigh, nn) = add(std::move(tooHigh), std::move(nn));
         lowEnough.increment();
         while(compare(tooHigh, lowEnough) > 0){
             lowEnough.decrement();
 
             natural_number root(stack_nn{}, 0);
-            root = add(std::move(root), lowEnough);
-            root = add(std::move(root), tooHigh);
+            std::tie(root, lowEnough) = add(std::move(root), std::move(lowEnough));
+            std::tie(root, tooHigh) = add(std::move(root), std::move(tooHigh));
             root.divide_by_two();
             natural_number powerResult(stack_nn{}, 0);
-            powerResult = add(std::move(powerResult), root);
+            std::tie(powerResult, root) = add(std::move(powerResult), std::move(root));
             powerResult = power(std::move(powerResult), r);
 
             if(compare(powerResult, nn) > 0){
