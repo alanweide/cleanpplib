@@ -17,6 +17,8 @@
 
 namespace cleanpp
 {
+template <typename T>
+class set_impl;
 
 template <typename T>
 class set_on_queue : public set_impl<T> {
