@@ -210,6 +210,7 @@ public:
 		natural_number diff(std::forward<natural_number>(x));
 
 		std::unique_ptr<natural_number_impl> diff_casted(static_cast<natural_number_impl*>(diff.rep_.release()));
+		std::unique_ptr<natural_number_impl> x_casted(static_cast<natural_number_impl*>(x.rep_.release()));
 		std::unique_ptr<natural_number_impl> y_casted(static_cast<natural_number_impl*>(y.rep_.release()));
 
 		std::tie(diff_casted, y_casted) = subtract(std::move(diff_casted), std::move(y_casted));

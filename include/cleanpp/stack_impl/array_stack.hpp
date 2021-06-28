@@ -97,6 +97,10 @@ public:
 		length_ = 0;
 	}
 
+    std::unique_ptr<stack_impl<T>> new_instance() override {
+        return std::make_unique<linked_stack<T>>();
+    }
+
 	void push(T&& x) override {
 		contents_[length_] = std::forward<T>(x);
 		length_++;

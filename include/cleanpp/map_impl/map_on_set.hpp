@@ -59,6 +59,10 @@ private:
 
     }
 
+    void add(pair<K, V>&& p) {
+        this->rep.add(std::move(p));
+    }
+
     pair<K, V> remove(K&& key) {
         set<pair<K, V>> temp;
         pair<K, V> result;

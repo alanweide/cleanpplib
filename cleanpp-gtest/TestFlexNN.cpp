@@ -5,6 +5,7 @@
 #include <natural_number.hpp>
 #include <nn_impl/bounded_nn.hpp>
 #include <nn_impl/stack_nn.hpp>
+#include "../src/clean_nn/natural_number.cpp"
 
 using namespace cleanpp;
 
