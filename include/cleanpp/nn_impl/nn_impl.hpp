@@ -86,18 +86,18 @@ public:
     /*
      ensures add = #x + y
      */
-    friend std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y);
+    friend std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> add(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y);
     
     /*
      requires x >= y
      ensures  add = #x - y
      */
-    friend std::unique_ptr<natural_number_impl> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y);
+    friend std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> subtract(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y);
 
     /*
      ensures multiply = #x * y
      */
-    friend std::unique_ptr<natural_number_impl> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl>& y);
+    friend std::tuple<std::unique_ptr<natural_number_impl>, std::unique_ptr<natural_number_impl>> multiply(std::unique_ptr<natural_number_impl> x, std::unique_ptr<natural_number_impl> y);
 
 
 
