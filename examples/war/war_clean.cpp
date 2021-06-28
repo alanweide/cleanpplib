@@ -1,17 +1,19 @@
+#include <memory>
 #include <iostream>
-#include "nn_integer.hpp"
-#include "bounded_nn.hpp"
-#include "vector_integer.hpp"
-#include "linked_queue.hpp"
-#include "array_queue.hpp"
-#include "array_stack.hpp"
-#include "stack_based_list.hpp"
-#include "natural_number.hpp"
+#include "integer.hpp"
+#include "integer_impl/nn_integer.hpp"
+#include "nn_impl/bounded_nn.hpp"
+#include "integer_impl/vector_integer.hpp"
 #include "queue.hpp"
+#include "queue_impl/linked_queue.hpp"
+#include "queue_impl/array_queue.hpp"
+#include "natural_number.hpp"
+#include "nn_impl/bounded_nn.hpp"
+#include "nn_impl/nn_impl.hpp"
+#include "nn_impl/stack_nn.hpp"
 #include <queue>
 #include <iostream>
 #include <stdlib.h>
-#include <ctime>
 
 using namespace cleanpp;
 

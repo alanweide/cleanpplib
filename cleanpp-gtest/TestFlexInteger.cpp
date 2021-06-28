@@ -6,6 +6,7 @@
 #include <integer_impl/nn_integer.hpp>
 #include <integer_impl/vector_integer.hpp>
 #include <integer.hpp>
+#include "../src/clean_integer/integer_impl.cpp"
 
 using namespace cleanpp;
 

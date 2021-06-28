@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <integer_impl/nn_integer.hpp>
+#include "../src/clean_integer/integer_impl.cpp"
 
 using namespace cleanpp;
 

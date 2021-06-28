@@ -224,3 +224,42 @@ TEST(FlexStackInt, AssignNonemptyNonemptyMultiImplTest) {
     EXPECT_TRUE(s_str == s_exp);
     EXPECT_TRUE(t_str == t_exp);
 }
+
+TEST(FlexStackInt, FlipNonEmpty){
+    GTEST_SKIP();
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<0, 1, 2, 3, 4>";
+    int numElem = 5;
+    for(int i = 0; i < numElem; i++){
+        s.push(std::move(i));
+    }
+
+    s.flip();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}
+
+TEST(FlexStackInt, FlipEmpty){
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<>";
+
+    s.flip();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}
+
+TEST(FlexStackInt, FlipBig){
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>";
+    int numElem = 10;
+    for(int i = 0; i < numElem; i++){
+        s.push(std::move(i));
+    }
+
+    s.flip();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}

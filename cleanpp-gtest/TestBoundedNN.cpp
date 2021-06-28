@@ -4,6 +4,7 @@
 #include <sstream>
 #include <nn_impl/nn_impl.hpp>
 #include <nn_impl/bounded_nn.hpp>
+#include "../src/clean_nn/natural_number.cpp"
 
 using namespace cleanpp;
 

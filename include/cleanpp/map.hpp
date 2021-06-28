@@ -20,14 +20,14 @@ template <typename K, typename V>
 using _map_def_t = map_on_set<K, V>;
 
 template <typename K, typename V>
-class map : public clean_base {
+class map_kernel : public clean_base {
 
     /*
         map is modeled by finite set of pair
     */
 
 protected:
-    std::unique_ptr<map_impl<K, V>> rep_;
+    std::unique_ptr<map_kernel_impl<K, V>> rep_;
 
 public:
 
@@ -36,15 +36,15 @@ public:
      *
      * @ensures this = {}
      */
-    map() : rep_(std::make_unique<_map_def_t<K, V>>()) { }
+    map_kernel() : rep_(std::make_unique<_map_def_t<K, V>>()) { }
 
     template<template<typename, typename> class I>
-    map(__attribute__((unused)) const I<K, V>& impl) : rep_(std::make_unique<I<K, V>>()) {
-        static_assert(std::is_base_of<map_impl<K, V>, I<K, V>>::value,
+    map_kernel(__attribute__((unused)) const I<K, V>& impl) : rep_(std::make_unique<I<K, V>>()) {
+        static_assert(std::is_base_of<map_kernel_impl<K, V>, I<K, V>>::value,
             "Template parameter I must derive from cleanpp::map");
     }
 
-    map(const map<K, V>& o) = delete;
+    map_kernel(const map_kernel<K, V>& o) = delete;
 
 
     /**
@@ -52,12 +52,12 @@ public:
      *
      * @param other - the map being moved from
      */
-    map(map<K, V>&& other) : rep_(std::move(other.rep_)) {
+    map_kernel(map_kernel<K, V>&& other) : rep_(std::move(other.rep_)) {
         other.rep_ = std::make_unique<_map_def_t<K, V>>();
     }
 
 
-    map<K, V>& operator=(const map<K, V>& other) = delete;
+    map_kernel<K, V>& operator=(const map_kernel<K, V>& other) = delete;
 
 
     /**
@@ -67,7 +67,7 @@ public:
      * @return the newly-assigned this
      * @ensures this = #other
      */
-    map<K, V>& operator=(map<K, V>&& other) {
+    map_kernel<K, V>& operator=(map_kernel<K, V>&& other) {
         if (&other == this) {
             return *this;
         }
@@ -147,8 +147,62 @@ public:
         return this->rep_->size();
     }
 
-    friend std::ostream& operator<<(std::ostream& out, map<K, V>& o) {
+    friend std::ostream& operator<<(std::ostream& out, map_kernel<K, V>& o) {
         return out << *o.rep_;
+    }
+
+
+};
+
+template <typename K, typename V>
+class map : public map_kernel<K, V> {
+public:
+
+    map() : map_kernel<K, V>() { }
+
+    template<template<typename, typename> class I>
+    map(__attribute__((unused)) const I<K, V>& impl) : map_kernel<K, V>(impl) {
+        static_assert(std::is_base_of<map_impl<K, V>, I<K, V>>:: value,
+            "Type of impl must derive from map");
+    }
+
+    map(const map& other) = delete;
+
+    /*
+     clears other
+     initialization ensures this = #other
+    */
+    map(map&& other) : map_kernel<K, V>(std::forward<map_kernel<K, V>>(other)) { }
+
+    map& operator=(const map& other) = delete;
+    /*
+     clears other
+     replaces this
+     ensures this = #other
+    */
+    map& operator=(map&& other) { 
+        if(&other == this) {
+            return *this;
+        }
+        this->rep_ = std::move(other.rep_);
+        other.rep_ = std::make_unique<_map_def_t<K, V>>();
+        return *this;
+    }
+
+    /*
+     updates this
+     clears m
+     requires DOMAIN(#this) intersection DOMAIN(#m) = {}
+     ensures this = #this union #m
+    */
+    void combine_with(map<K, V> m) {
+        std::unique_ptr<map_impl<K, V>> casted_this(static_cast<map_impl<K, V>*>(this->rep_.release()));
+        std::unique_ptr<map_impl<K, V>> casted_m(static_cast<map_impl<K, V>*>(m.rep_.release()));
+
+        casted_this->combine_with(std::move(casted_m));
+
+        this->rep_ = std::move(casted_this);
+        m.rep_ = std::make_unique<_map_def_t<K, V>>();
     }
 
 

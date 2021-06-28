@@ -238,6 +238,7 @@ public:
 		integer sum(std::forward<integer>(x));
 
 		std::unique_ptr<integer_impl> sum_casted(static_cast<integer_impl*>(sum.rep_.release()));
+		std::unique_ptr<integer_impl> x_casted(static_cast<integer_impl*>(x.rep_.release()));
 		std::unique_ptr<integer_impl> y_casted(static_cast<integer_impl*>(y.rep_.release()));
 
 		std::tie(sum_casted, y_casted) = add(std::move(sum_casted), std::move(y_casted));

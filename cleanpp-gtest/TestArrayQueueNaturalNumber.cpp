@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include <queue_impl/queue_impl.hpp>
 #include <queue_impl/linked_queue.hpp>
 #include <queue_impl/array_queue.hpp>
 #include <nn_impl/bounded_nn.hpp>

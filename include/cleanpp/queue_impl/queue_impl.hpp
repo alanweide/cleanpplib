@@ -15,10 +15,11 @@
 
 #include <clean_base.hpp>
 
+
 namespace cleanpp
 {
 template <typename T>
-class queue_impl : public clean_base {
+class queue_kernel_impl : public clean_base {
 	/*
 	 queue is modeled by string of T
 	 */
@@ -51,8 +52,24 @@ public:
 	 */
 	virtual bool is_empty() const = 0;
 
-	friend std::ostream& operator<<(std::ostream& out, queue_impl<T>& o) {
+	friend std::ostream& operator<<(std::ostream& out, queue_kernel_impl<T>& o) {
 		return out << o.to_str();
+	}
+};
+
+template<typename T>
+class queue_impl : public queue_kernel_impl<T> {
+public:
+
+	/*
+	 updates this
+	 clears q
+	 ensures this = #this * #q
+	*/
+	void append(std::unique_ptr<queue_impl> q){
+		while(!q->is_empty()){
+			this->enqueue(q->dequeue());
+		}
 	}
 };
 
