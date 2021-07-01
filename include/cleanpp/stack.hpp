@@ -52,12 +52,6 @@ public:
     stack_kernel(stack_kernel<Item>&& o) : rep_(std::move(o.rep_)) {
         o.rep_ = std::make_unique<_flex_stack_def_t<Item>>();
     }
-    template<template<typename> class I>
-    stack(stack<Item>&& o, __attribute__((unused)) const I<Item>& impl) : rep_(std::move(o.rep_)) {
-        static_assert(std::is_base_of<stack_impl<Item>, I<Item>>::value,
-            "Template parameter I must derive from stack_impl<Item>");
-        o.rep_ = std::make_unique<I<Item>>();
-    }
 
     stack_kernel<Item>& operator=(const stack_kernel<Item>& o) = delete;
 
@@ -76,17 +70,6 @@ public:
         other.rep_ = std::make_unique<_flex_stack_def_t<Item>>();
         return *this;
     }
-    template<template<typename> class I>
-    stack<Item>& operator=(stack<Item>&& other, __attribute__((unused)) const I<Item>& impl) {
-        static_assert(std::is_base_of<stack_impl<Item>, I<Item>>::value,
-            "Template parameter I must derive from stack_impl<Item>");
-        if (&other == this) {
-            return *this;
-        }
-        rep_ = std::move(other.rep_);
-        other.rep_ = std::make_unique<I<Item>>();
-        return *this;
-    }
 
     /**
      * @brief clears this
@@ -96,8 +79,8 @@ public:
     }
 
     /**
-     * @brief Adds x to the top of this
-     *
+     * @brief Adds x to the top of this  
+     *  
      * @param x - the entry to be added
      * @ensures this = <x> * #this
      */
