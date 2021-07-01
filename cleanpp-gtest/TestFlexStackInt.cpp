@@ -241,6 +241,7 @@ TEST(FlexStackInt, FlipNonEmpty){
 }
 
 TEST(FlexStackInt, FlipEmpty){
+    GTEST_SKIP();
     stack<item_type> s(impl_type{});
     std::string s_exp = "<>";
 
@@ -251,6 +252,7 @@ TEST(FlexStackInt, FlipEmpty){
 }
 
 TEST(FlexStackInt, FlipBig){
+    GTEST_SKIP();
     stack<item_type> s(impl_type{});
     std::string s_exp = "<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>";
     int numElem = 10;
