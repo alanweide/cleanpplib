@@ -29,6 +29,13 @@ TEST(FlexStackInt, InitializerDefTest) {
     EXPECT_TRUE(s_str == empty_stack);
 }
 
+TEST(FlexStackInt, InitializerDefImplTest) {
+    stack<item_type> s;
+    std::string empty_stack = "<>";
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == empty_stack);
+}
+
 TEST(FlexStackInt, IsEmpty_EmptyTest) {
     stack<item_type> s(impl_type{});
     EXPECT_TRUE(s.is_empty());
