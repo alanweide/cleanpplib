@@ -24,7 +24,7 @@ To run the included tests, you must have CMake installed; they can be built and 
 
 ## Using the library
 
-Once the library is build, the static library can be placed on your system's includepath, or it can be explicitly linked at compile-time.
+Once the library is built, the static library can be placed on your system's includepath, or it can be explicitly linked at compile-time.
 For examples of explicit linking, see the Makefile target `%.o`.
 
 ## List of Components in this Library
