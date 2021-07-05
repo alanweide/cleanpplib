@@ -4,7 +4,7 @@
 ## Introduction
 
 This library contains a (small) collection of software components written in the Clean++ Discipline.
-All of the software components in this library are mutable.
+All of the types in this library are mutable.
 
 Clean++ is a programming discipline that leverages C++ move semantics to ensure code is readable, efficient, and—most importantly—sound to reason about in a local, modular fashion.
 The three driving principles of Clean++ are:
