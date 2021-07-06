@@ -175,11 +175,20 @@ public:
     void flip() { 
         std::unique_ptr<stack_impl<Item>> casted_this(static_cast<stack_impl<Item>*>(this->rep_.release()));
         
-        // casted_this = casted_this->flipped();
-        casted_this->flip();
-        std::cout << __FILE__ << ":" << __LINE__ << ": casted_this = " << *casted_this << std::endl;
+        casted_this = casted_this->flipped();
         this->rep_ = std::move(casted_this);
         
+    }
+
+    stack flipped() {
+        std::unique_ptr<stack_impl<Item>> casted_this(static_cast<stack_impl<Item>*>(this->rep_.release()));
+        
+        casted_this = casted_this->flipped();
+
+        stack flipped_stack;
+        flipped_stack.rep_ = std::move(casted_this);
+        
+        return std::move(flipped_stack);
     }
 
 };

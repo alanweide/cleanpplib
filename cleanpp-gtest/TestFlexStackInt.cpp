@@ -233,7 +233,6 @@ TEST(FlexStackInt, AssignNonemptyNonemptyMultiImplTest) {
 }
 
 TEST(FlexStackInt, FlipNonEmpty){
-    GTEST_SKIP();
     stack<item_type> s(impl_type{});
     std::string s_exp = "<0, 1, 2, 3, 4>";
     int numElem = 5;
@@ -248,7 +247,6 @@ TEST(FlexStackInt, FlipNonEmpty){
 }
 
 TEST(FlexStackInt, FlipEmpty){
-    GTEST_SKIP();
     stack<item_type> s(impl_type{});
     std::string s_exp = "<>";
 
@@ -259,7 +257,6 @@ TEST(FlexStackInt, FlipEmpty){
 }
 
 TEST(FlexStackInt, FlipBig){
-    GTEST_SKIP();
     stack<item_type> s(impl_type{});
     std::string s_exp = "<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>";
     int numElem = 10;
@@ -268,6 +265,44 @@ TEST(FlexStackInt, FlipBig){
     }
 
     s.flip();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}
+
+TEST(FlexStackInt, FlippedNonEmpty){
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<0, 1, 2, 3, 4>";
+    int numElem = 5;
+    for(int i = 0; i < numElem; i++){
+        s.push(std::move(i));
+    }
+
+    s = s.flipped();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}
+
+TEST(FlexStackInt, FlippedEmpty){
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<>";
+
+    s = s.flipped();
+
+    std::string s_str = stackToString(s);
+    EXPECT_TRUE(s_str == s_exp);
+}
+
+TEST(FlexStackInt, FlippedBig){
+    stack<item_type> s(impl_type{});
+    std::string s_exp = "<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>";
+    int numElem = 10;
+    for(int i = 0; i < numElem; i++){
+        s.push(std::move(i));
+    }
+
+    s = s.flipped();
 
     std::string s_str = stackToString(s);
     EXPECT_TRUE(s_str == s_exp);

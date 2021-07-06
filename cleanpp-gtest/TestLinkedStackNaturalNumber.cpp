@@ -98,7 +98,6 @@ TEST(LinkedStackNaturalNumber, PopNonEmptyToEmptyTest) {
 }
 
 TEST(LinkedStackNaturalNumber, FlipNonEmptyTest) {
-    GTEST_SKIP();
     std::unique_ptr<stack_impl<nn_type>> s = std::make_unique<stack_nn_type>();
     std::string expected_stack = "<0, 1, 2, 3, 4>";
     int numElem = 5;
@@ -106,7 +105,7 @@ TEST(LinkedStackNaturalNumber, FlipNonEmptyTest) {
         s->push(std::move(i));
     }
 
-    s->flip();
+    s = s->flipped();
 
     std::string s_str = stackNNToString(s);
     EXPECT_EQ(s_str, expected_stack);

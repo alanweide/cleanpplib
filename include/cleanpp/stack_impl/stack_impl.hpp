@@ -116,6 +116,10 @@ public:
 
     virtual std::unique_ptr<stack_impl<T>> new_instance() = 0;
 
+    /*
+     clears this
+     ensures flipped = rev(#this)
+    */
     virtual std::unique_ptr<stack_impl<T>> flipped() {
         std::unique_ptr<stack_impl<T>> temp = this->new_instance();
         while (!this->is_empty()) {
@@ -123,22 +127,6 @@ public:
             temp->push(std::move(popped));
         }
         return temp;
-    }
-
-    virtual void flip() {
-        std::unique_ptr<stack_impl<T>> temp = this->new_instance();
-        // *temp = std::move(*this);
-        // stack_impl<T>* temp = std::move(this);
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __func__ << "::this = " << *this << std::endl;
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __func__ << "::temp = " << *temp << std::endl;
-        while (!this->is_empty()) {
-            T popped = this->pop();
-            std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::popped = " << popped << std::endl;
-            temp->push(std::move(popped));
-        }
-        *this = *temp; //problem code
-        std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::this = " << *this << std::endl;
-        std::cout << __FILE__ << ":" << __LINE__ << __func__ << "::temp = " << *temp << std::endl;
     }
 };
 
