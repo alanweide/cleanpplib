@@ -1,5 +1,5 @@
 # Clean++ Component Library
-### Alan Weide, Paolo A.G. Sivilotti, and Murali Sitaraman
+### Alan Weide, Paolo A.G. Sivilotti, Murali Sitaraman, and Will Janning
 
 ## Introduction
 
